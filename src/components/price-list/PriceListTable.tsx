@@ -19,8 +19,7 @@ export function PriceListTable({ miners }: PriceListTableProps) {
                         <TableHead className="text-right font-semibold text-muted-foreground py-3">Efficiency</TableHead>
                         <TableHead className="text-right font-semibold text-muted-foreground py-3">Power</TableHead>
                         <TableHead className="text-right font-semibold text-muted-foreground py-3">Daily Rev</TableHead>
-                        <TableHead className="text-right font-semibold text-muted-foreground py-3">Daily Profit</TableHead>
-                        <TableHead className="text-right font-semibold text-muted-foreground py-3">ROI</TableHead>
+                        <TableHead className="text-right font-semibold text-muted-foreground py-3">Gross ROI</TableHead>
                         <TableHead className="text-right font-semibold text-muted-foreground py-3">Payback</TableHead>
                         <TableHead className="text-right font-semibold text-foreground py-3 pr-4">Unit Price</TableHead>
                     </TableRow>
@@ -28,8 +27,16 @@ export function PriceListTable({ miners }: PriceListTableProps) {
                 <TableBody>
                     {miners.map((r, i) => {
                         const m = r.miner;
-                        const dailyProfit = m.dailyRevenueUSD - m.dailyExpenseUSD;
-                        // const paybackYears = dailyProfit > 0 ? ((m.calculatedPrice / dailyProfit) / 365).toFixed(1) : 'N/A'; // Already calculated below
+
+                        // Gross Logic
+                        let paybackYears = "N/A";
+                        let grossROI = 0;
+
+                        if (m.dailyRevenueUSD > 0 && m.calculatedPrice > 0) {
+                            const years = (m.calculatedPrice / m.dailyRevenueUSD) / 365;
+                            paybackYears = years.toFixed(1) + " yrs";
+                            grossROI = ((m.dailyRevenueUSD * 365) / m.calculatedPrice) * 100;
+                        }
 
                         return (
                             <TableRow key={i} className="hover:bg-muted/50 border-b border-border last:border-0 h-12 transition-colors">
@@ -40,27 +47,11 @@ export function PriceListTable({ miners }: PriceListTableProps) {
                                 <TableCell className="text-right font-medium text-emerald-600 py-2 text-sm">
                                     ${m.dailyRevenueUSD.toFixed(2)}
                                 </TableCell>
-                                <TableCell className="text-right font-medium text-emerald-600 py-2 text-sm">
-                                    ${dailyProfit.toFixed(2)}
-                                </TableCell>
                                 <TableCell className="text-right font-medium text-blue-600 py-2 text-sm">
-                                    {m.clientProfitabilityPercent.toFixed(0)}%
+                                    {grossROI.toFixed(0)}%
                                 </TableCell>
                                 <TableCell className="text-right font-medium text-amber-600 py-2 text-sm">
-                                    {(() => {
-                                        if (m.calculatedPrice <= 0 || dailyProfit <= 0) return "N/A";
-                                        // Payback usually logic is Price / Daily Profit, but code was Price / Daily Revenue (Gross Payback).
-                                        // Using Net Profit is standard for "Payback Period".
-                                        // However, the original code had a comment: // Gross Payback = Price / Daily Revenue
-                                        // I will switch to Net Profit for "Payback" as it's more accurate for the user, 
-                                        // unless "Gross Payback" is specifically what they want. usually Payback = ROI^-1.
-                                        // ROI column is {m.clientProfitabilityPercent}% which is (DailyProfit * 365 / Price)?
-                                        // Let's check logic: ROI is usually Annual Profit / Cost. 
-                                        // If ROI is 100%, Payback is 1 year.
-                                        // Let's stick to what allows consistency. I will use Net Profit for payback.
-                                        const yrs = (m.calculatedPrice / dailyProfit) / 365;
-                                        return yrs.toFixed(1) + " yrs";
-                                    })()}
+                                    {paybackYears}
                                 </TableCell>
                                 <TableCell className="text-right font-bold text-lg text-foreground pr-4 py-2">
                                     ${m.calculatedPrice.toLocaleString(undefined, { maximumFractionDigits: 0 })}

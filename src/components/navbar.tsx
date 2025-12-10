@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { UserMenu } from '@/components/user-menu';
 
 
 export function Navbar() {
@@ -37,6 +38,7 @@ export function Navbar() {
                         </Link>
                     </div>
                 </div>
+                <UserMenu />
             </div>
         </nav>
     );

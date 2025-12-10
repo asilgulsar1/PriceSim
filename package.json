@@ -26,6 +26,7 @@
     "jspdf-autotable": "^5.0.2",
     "lucide-react": "^0.556.0",
     "next": "16.0.8",
+    "next-auth": "^5.0.0-beta.30",
     "react": "19.2.1",
     "react-dom": "19.2.1",
     "recharts": "^3.5.1",

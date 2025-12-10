@@ -1,7 +1,8 @@
 
 import { NextResponse } from 'next/server';
-import { put } from '@vercel/blob';
 import { fetchMarketData } from '@/lib/api';
+import { split } from 'postcss/lib/list'; // Ensure no bad auto-imports.
+import { saveSimulationLog } from '@/lib/storage';
 import { solveMinerPrice } from '@/lib/pricing-solver';
 import { INITIAL_MINERS } from '@/lib/miner-data';
 import { ContractTerms, MarketConditions } from '@/lib/price-simulator-calculator';
@@ -49,18 +50,9 @@ export async function GET(request: Request) {
             miners: ranked
         };
 
-        // 7. Store to Vercel Blob
-        // 'addRandomSuffix: false' ensures we overwrite or keep a predictable URL if we delete old ones
-        // Actually, just uploading new will create new URL usually, but we want 'latest'.
-        // Vercel Blob doesn't support 'overwrite' directly on same URL easily without `access: 'public'`.
-        // We will just upload and the `list` in GET will grab the latest one (sorted by date usually).
-        // Better: Upload with same pathname but Vercel Blob adds suffix.
-        // We rely on `list` to find the newest.
-
-        await put('miners-latest.json', JSON.stringify(payload), {
-            access: 'public',
-            addRandomSuffix: false // Try to keep clean name, though Blob might still version it
-        });
+        // 7. Store using centralized storage utility (saves to logs/ AND miners-latest.json)
+        // Importing dynamically or at top? Let's add import at top.
+        await saveSimulationLog(payload, false);
 
         return NextResponse.json({ success: true, count: ranked.length, timestamp: payload.updatedAt });
 

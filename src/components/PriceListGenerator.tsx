@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import toPng from 'html-to-image'; // Fix import: default import typically
+import { toPng } from 'html-to-image';
 import jsPDF from 'jspdf';
 import { solveMinerPrice } from "@/lib/pricing-solver";
 import { INITIAL_MINERS } from "@/lib/miner-data";
@@ -15,9 +15,6 @@ import { PriceListControls } from "./price-list/PriceListControls";
 import { PriceListFilterBar, SortField } from "./price-list/PriceListFilterBar";
 import { PriceListTable } from "./price-list/PriceListTable";
 import { PriceListPdfTemplate } from "./price-list/PriceListPdfTemplate";
-
-// Fix html-to-image import issue if necessary (sometimes it's * as htmlToImage)
-import * as htmlToImage from 'html-to-image';
 
 export function PriceListGenerator() {
     // --- State ---
@@ -306,7 +303,7 @@ export function PriceListGenerator() {
 
         try {
             const element = documentRef.current;
-            const imgData = await htmlToImage.toPng(element, { backgroundColor: '#ffffff', pixelRatio: 2 });
+            const imgData = await toPng(element, { backgroundColor: '#ffffff', pixelRatio: 2 });
 
             const pdf = new jsPDF({
                 orientation: 'portrait',

@@ -74,7 +74,7 @@ export function PriceSimulator() {
             setResults(calculated as CalculatedMiner[]);
             setCalculating(false);
 
-            // Persist for Price List
+            // Persist for Price List (Local)
             try {
                 const simulationData = {
                     updatedAt: new Date().toISOString(),
@@ -88,7 +88,15 @@ export function PriceSimulator() {
                     miners: calculated
                 };
                 localStorage.setItem('LATEST_SIMULATION_DATA', JSON.stringify(simulationData));
-                console.log("Simulation data saved for Price List");
+                console.log("Simulation data saved for Price List locally");
+
+                // Persist Log to Cloud (Async)
+                fetch('/api/logs/create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(simulationData)
+                }).catch(err => console.error("Failed to upload simulation log", err));
+
             } catch (e) {
                 console.error("Failed to save simulation data", e);
             }
