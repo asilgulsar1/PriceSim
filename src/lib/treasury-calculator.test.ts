@@ -55,4 +55,62 @@ describe('TreasuryCalculatorLogic', () => {
         // precise check: it might produce one "shutdown" entry and stop
         // The current logic produces 'totalDays' entries. The fix should make it produce ~1-2 entries.
     });
+
+    it('should convert advance payment immediately to BTC (regression test)', () => {
+        // Setup: Contract with advance payment
+        const miner: MinerProfile = {
+            name: 'Test Miner',
+            hashrateTH: 100,
+            powerWatts: 0, // No power cost to isolate advance payment math
+            price: 0
+        };
+
+        const contract: ContractTerms = {
+            electricityRate: 0.05,
+            opexRate: 0.01,
+            poolFee: 0,
+            contractDurationYears: 1,
+            advancePaymentYears: 1, // 1 Year Advance
+            hardwareCostUSD: 0
+        };
+
+        const market: MarketConditions = {
+            btcPrice: 50000,
+            networkDifficulty: 80e12, // Realistic difficulty
+            blockReward: 3.125,
+            difficultyGrowthMonthly: 0,
+            btcPriceGrowthAnnual: 0
+        };
+
+        const config: SimulationConfig = {
+            startDate: new Date('2024-01-01'),
+            initialInvestment: 0,
+            reinvestMode: 'hold'
+        };
+
+        // Advance Calc:
+        // Daily Cost = 0 kw * ... Wait, power is 0.
+        // Let's set powerWatts so there IS a cost.
+        miner.powerWatts = 1000; // 1 kW => 24 kWh/day
+        // Daily USD = 24 * (0.05 + 0.01) = 24 * 0.06 = 1.44 USD/day
+        // Yearly = 1.44 * 365 = 525.6 USD
+        // Advance Payment = 525.6 USD
+        // Converted to BTC @ 50,000 = 525.6 / 50000 = 0.010512 BTC
+
+        const result = TreasuryCalculatorLogic.calculate(miner, contract, market, config);
+        const initialProjection = result.projections[0];
+
+        // Verification
+        // Treasury BTC should be approx 0.010512 (plus/minus small mining yield from day 0 if any, but `initialBTC` is the starting point)
+        // Actually `treasuryBTC` in projection[0] includes the effects of Day 0.
+        // But we can check `summary.initialInvestmentUSD`?
+        // Or we can check that `treasuryCash` is 0.
+
+        // 1. Cash should be 0 (because we converted to BTC)
+        expect(initialProjection.treasuryCash).toBeCloseTo(0, 5);
+
+        // 2. Treasury BTC should be roughly Advance Payment BTC
+        // (It changes slightly due to daily mining yield, but should be > 0.01)
+        expect(initialProjection.treasuryBTC).toBeGreaterThan(0.01);
+    });
 });

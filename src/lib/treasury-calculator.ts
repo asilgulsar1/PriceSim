@@ -93,8 +93,8 @@ export class TreasuryCalculatorLogic {
         const advanceDays = advanceYears * 365;
         const advancePaymentUSD = baseDailyOpExUSD * advanceDays;
 
-        // Advance payment is kept as CASH (to pay bills), not converted to BTC
-        initialCash += advancePaymentUSD;
+        // Advance payment is immediately converted to BTC
+        initialBTC += advancePaymentUSD / market.btcPrice;
 
 
         // Total Client Investment (for ROI calc)
@@ -103,7 +103,7 @@ export class TreasuryCalculatorLogic {
 
         // Treasury State
         let treasuryBTC = initialBTC;
-        let treasuryCash = initialCash;
+        const treasuryCash = initialCash;
 
         const totalDays = contract.contractDurationYears * 365;
         let isShutdown = false;
@@ -233,8 +233,8 @@ export class TreasuryCalculatorLogic {
             // Outflow: Pay Client Yield
             treasuryBTC -= netYieldBTC;
 
-            // Inflow: Client pays OpEx (we keep as Cash)
-            treasuryCash += dailyOpExUSD_Inflow;
+            // Inflow: Client pays OpEx (we convert to BTC and hold, as per legacy logic)
+            treasuryBTC += dailyOpExBTC;
 
             // Bankruptcy Check
             // If Treasury BTC < 0, we can't pay the client.

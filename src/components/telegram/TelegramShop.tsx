@@ -43,42 +43,41 @@ export function TelegramShop() {
     }, []);
 
     useEffect(() => {
+        const calculate = () => {
+            const miners = INITIAL_MINERS;
+            const calculated = miners.map(miner => {
+                const contract: ContractTerms = {
+                    electricityRate: 0.08,
+                    opexRate: 0,
+                    poolFee: 1.0,
+                    contractDurationYears: 4
+                };
+
+                // Fixed 50% margin for the shop for now, standardizing the offer
+                const targetProfit = 50;
+
+                return solveMinerPrice(miner, contract, market, targetProfit, false);
+            });
+
+            // Sort by ROI (profitability) descending
+            calculated.sort((a, b) => b.clientProfitabilityPercent - a.clientProfitabilityPercent);
+            setResults(calculated);
+        };
         calculate();
     }, [market]);
 
-    const calculate = () => {
-        const miners = INITIAL_MINERS;
-        const calculated = miners.map(miner => {
-            const contract: ContractTerms = {
-                electricityRate: 0.08,
-                opexRate: 0,
-                poolFee: 1.0,
-                contractDurationYears: 4
-            };
-
-            // Fixed 50% margin for the shop for now, standardizing the offer
-            const targetProfit = 50;
-
-            return solveMinerPrice(miner, contract, market, targetProfit, false);
-        });
-
-        // Sort by ROI (profitability) descending
-        calculated.sort((a, b) => b.clientProfitabilityPercent - a.clientProfitabilityPercent);
-        setResults(calculated);
-    };
-
     const handleBuy = (miner: SolvedMiner) => {
         // In a real Telegram WebApp, this would trigger a payment or open a chat
-        // @ts-ignore
+        // @ts-expect-error Telegram WebApp is injected
         if (window.Telegram?.WebApp) {
-            // @ts-ignore
+            // @ts-expect-error Telegram WebApp is injected
             window.Telegram.WebApp.sendData(JSON.stringify({
                 action: 'buy_request',
                 model: miner.name,
                 price: miner.calculatedPrice,
                 currency: 'USD'
             }));
-            // @ts-ignore
+            // @ts-expect-error Telegram WebApp is injected
             window.Telegram.WebApp.close();
         } else {
             alert(`Buy Request for ${miner.name} at $${miner.calculatedPrice.toLocaleString()}`);

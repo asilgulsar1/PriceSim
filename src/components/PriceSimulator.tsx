@@ -21,6 +21,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { PriceSimulatorCalculator, MinerProfile, ContractTerms, MarketConditions, SimulationConfig, DailyProjection } from '@/lib/price-simulator-calculator';
 import { fetchMarketData } from "@/lib/api";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { solveMinerPrice } from '@/lib/pricing-solver';
 
 // Hardcoded Miner List
 // Hardcoded Miner List - Sourced from User Image
@@ -213,6 +214,7 @@ export function PriceSimulator() {
 
     const calculatePrices = () => {
         setLoading(true);
+        // Small timeout to allow UI to render loading state
         setTimeout(() => {
             const calculated = miners.map(miner => {
                 const contract: ContractTerms = {
@@ -222,177 +224,20 @@ export function PriceSimulator() {
                     contractDurationYears: durationYears
                 };
 
-                // PASS 1: Run Simulation with Miner Price (Hardware Cost)
-                // This is just to get the production metrics (M) and Hosting Cost metrics (H_btc)
-                // These metrics don't depend on the investment amount
-                const configPass1: SimulationConfig = {
-                    startDate: new Date(),
-                    initialInvestment: miner.price,
-                    reinvestMode: 'hold'
-                };
-
-                const resPass1 = PriceSimulatorCalculator.calculate(miner, contract, market, configPass1);
-
-                const totalRevenueUSD = resPass1.summary.totalRevenueUSD;
-                const totalCostUSD = resPass1.summary.totalCostUSD;
-                const totalProductionBTC = resPass1.summary.totalProductionBTC;
-
-                // Calculate Metrics
-                const M = totalProductionBTC;
-
-                // Calculate H_btc (Sum of daily hosting / daily price)
-                let H_btc_sum = 0;
-                resPass1.projections.forEach(day => {
-                    if (!day.isShutdown) {
-                        H_btc_sum += day.totalDailyCostUSD / day.btcPrice;
-                    }
-                });
-
-                const estExpenseBTC = M;
-                const estRevenueHostingBTC = H_btc_sum;
-
-                // Calculate Sales Price (X)
-                const targetMargin = targetProfitPercent / 100;
-                let calculatedPrice = 0;
-
-                if (isBtcTarget) {
-                    // BTC Basis Calculation
-                    if (targetMargin >= 1) {
-                        calculatedPrice = 0;
-                    } else {
-                        // Formula: Price = (Revenue - Cost) / (1 - TargetMargin)
-                        // Derivation: Price * (1 - T) = Revenue - Cost
-                        const P_btc = (M - H_btc_sum) / (1 - targetMargin);
-                        console.log(`[Miner: ${miner.name}] Calculated P_btc: ${P_btc} | M=${M}, H=${H_btc_sum}, T=${targetMargin}`);
-                        calculatedPrice = P_btc * market.btcPrice;
-                    }
-                } else {
-                    // USD Basis Calculation with BTC Appreciation
-                    // With BTC tracking: FinalUSD = [(Price/InitialBTC) + NetBTCFlow] × FinalBTC
-                    // Target: FinalUSD = Price × TargetMargin
-
-                    // Get shutdown point
-                    const shutdownDay = resPass1.projections.find(p => p.isShutdown) || resPass1.projections[resPass1.projections.length - 1];
-                    const finalBtcPrice = shutdownDay.btcPrice;
-                    const initialBtcPrice = market.btcPrice;
-
-                    // Calculate net BTC flow from Pass 1
-                    // This is independent of the initial investment amount
-                    let netBtcFlow = 0;
-                    resPass1.projections.forEach(day => {
-                        if (!day.isShutdown) {
-                            const hostingFeeBTC = day.totalDailyCostUSD / day.btcPrice;
-                            netBtcFlow += (hostingFeeBTC - day.netProductionBTC);
-                        }
-                    });
-
-                    if (targetMargin >= 1) {
-                        calculatedPrice = 0;
-                    } else {
-                        // Equation: [(P / initialBtcPrice) + netBtcFlow] × finalBtcPrice = P × targetMargin
-                        // Expand: (P × finalBtcPrice / initialBtcPrice) + (netBtcFlow × finalBtcPrice) = P × targetMargin
-                        // Rearrange: P × (finalBtcPrice / initialBtcPrice - targetMargin) = -netBtcFlow × finalBtcPrice
-                        // Solve: P = (-netBtcFlow × finalBtcPrice) / (finalBtcPrice / initialBtcPrice - targetMargin)
-
-                        const priceRatio = finalBtcPrice / initialBtcPrice;
-                        const denominator = priceRatio - targetMargin;
-
-                        if (Math.abs(denominator) < 0.001) {
-                            // BTC appreciation approximately equals target margin - edge case
-                            calculatedPrice = 0;
-                            console.warn(`[${miner.name}] BTC appreciation (${(priceRatio * 100).toFixed(1)}%) ≈ target (${(targetMargin * 100)}%) - cannot calculate price`);
-                        } else {
-                            calculatedPrice = (-netBtcFlow * finalBtcPrice) / denominator;
-                            console.log(`[${miner.name}] Price=${calculatedPrice.toFixed(0)} | NetBTC=${netBtcFlow.toFixed(6)}, InitBTC=$${initialBtcPrice.toFixed(0)}, FinalBTC=$${finalBtcPrice.toFixed(0)}, Ratio=${priceRatio.toFixed(2)}x`);
-                        }
-                    }
-                }
-
-                // Arithmetic Check: Ensure Price is not NaN or Infinite
-                if (!isFinite(calculatedPrice) || isNaN(calculatedPrice)) {
-                    console.error(`[Miner: ${miner.name}] Error: Calculated price is NaN or Infinite`);
-                    calculatedPrice = 0;
-                }
-
-                // PASS 2: Re-run with Calculated Price as Initial Investment
-                const configPass2: SimulationConfig = {
-                    startDate: new Date(),
-                    initialInvestment: calculatedPrice > 0 ? calculatedPrice : miner.price, // Use miner price if neg for fallback
-                    reinvestMode: 'hold'
-                };
-
-                const resFinal = PriceSimulatorCalculator.calculate(miner, contract, market, configPass2);
-
-                // Calculate Final Treasury Balances based on FINAL simulation
-                let finalTreasuryBTC = 0;
-                let finalTreasuryUSD = 0;
-
-                if (calculatedPrice > 0) {
-                    // Calculate final treasury from the actual simulation results
-                    // The simulation now tracks treasury correctly starting from Sales Price
-                    // We use the SHUTDOWN date (or end of contract) to show the result of the "Mining Project"
-                    // Otherwise post-shutdown HODL appreciation skews the result (e.g. BTC goes to $400k in year 5)
-
-                    let targetDay = resFinal.projections[resFinal.projections.length - 1];
-
-                    // Find the last active mining day or the shutdown day
-                    const shutdownDay = resFinal.projections.find(p => p.isShutdown);
-                    if (shutdownDay) {
-                        // Use the last day allowed before pure HODL phase? 
-                        // Actually, if we want "Project Result", it's the state at Shutdown.
-                        // But 'shutdownDay' is the first day OF shutdown (production 0).
-                        // So we want the day BEFORE shutdown? Or just that day (value is same, just no prod).
-                        targetDay = shutdownDay;
-                    }
-
-
-                    finalTreasuryBTC = targetDay.btcHeld;
-                    finalTreasuryUSD = targetDay.portfolioValueUSD;
-
-                    console.log(`[Miner: ${miner.name}] Final Treasury BTC Debug: TargetDayIndex=${targetDay.dayIndex}, isShutdown=${targetDay.isShutdown}, btcHeld=${targetDay.btcHeld}, cashBalance=${targetDay.cashBalance}, btcPrice=${targetDay.btcPrice}`);
-
-
-                    // VERIFICATION CHECK: Final Treasury should match Target Profit % of Initial Treasury
-                    const initialTreasuryUSD = calculatedPrice; // Since we start with sales price
-                    const expectedFinalUSD = initialTreasuryUSD * targetMargin;
-                    const diffPercent = Math.abs((finalTreasuryUSD - expectedFinalUSD) / expectedFinalUSD) * 100;
-
-                    // Allow deviation due to discrete steps and H/M variations
-                    if (diffPercent > 5.0) {
-                        console.warn(`[Verification Warning] Final Treasury deviation > 5%. Expected: $${expectedFinalUSD.toFixed(0)}, Actual: $${finalTreasuryUSD.toFixed(0)}`);
-                    } else {
-                        console.log(`[Verification Passed] Final Treasury matches Target Profit (${targetProfitPercent}%) within ${diffPercent.toFixed(2)}%`);
-                    }
-                }
-
-                const day1Revenue = resFinal.projections.length > 0 ? resFinal.projections[0].dailyRevenueUSD : 0;
-                const day1Expense = resFinal.projections.length > 0 ? resFinal.projections[0].totalDailyCostUSD : 0;
-                // Annualize the simplified return metric: (Day 1 Revenue * 365) / Price
-                const clientProfitabilityPercent = calculatedPrice > 0 ? ((day1Revenue * 365) / calculatedPrice) * 100 : 0;
-
-                return {
-                    ...miner,
-                    calculatedPrice,
-                    projectLifeDays: resFinal.summary.totalDays,
-                    totalRevenueUSD,
-                    totalCostUSD,
-                    estExpenseBTC,
-                    estRevenueHostingBTC,
-                    finalTreasuryBTC,
-                    finalTreasuryUSD,
-                    projections: resFinal.projections, // Use projections from Pass 2
-                    roiPercent: targetProfitPercent,
-                    targetMet: calculatedPrice > 0,
-                    clientProfitabilityPercent,
-                    dailyRevenueUSD: day1Revenue,
-                    dailyExpenseUSD: day1Expense
-                };
+                // Use the shared solver - Single Source of Truth
+                return solveMinerPrice(
+                    miner,
+                    contract,
+                    market,
+                    targetProfitPercent,
+                    isBtcTarget
+                );
             });
 
             // Initial sort by calculatedPrice descending
             calculated.sort((a, b) => b.calculatedPrice - a.calculatedPrice);
 
-            setResults(calculated);
+            setResults(calculated as CalculatedMiner[]);
             setLoading(false);
         }, 100);
     };
@@ -644,8 +489,8 @@ export function PriceSimulator() {
                                     return coolingMatch && searchMatch;
                                 })
                                 .sort((a, b) => {
-                                    let valA = a[sortConfig.key];
-                                    let valB = b[sortConfig.key];
+                                    const valA = a[sortConfig.key];
+                                    const valB = b[sortConfig.key];
 
                                     // Handle string comparison for names
                                     if (typeof valA === 'string' && typeof valB === 'string') {
