@@ -87,12 +87,12 @@ export function PriceListPdfTemplate({
                         <Table>
                             <TableHeader className="bg-slate-900">
                                 <TableRow className="hover:bg-slate-900 border-none">
-                                    <TableHead className="font-bold text-white py-2 pl-4 h-10">Model</TableHead>
-                                    <TableHead className="text-right font-bold text-white py-2 h-10">Score</TableHead>
+                                    <TableHead className="font-bold text-white py-2 pl-4 h-10 w-[20%]">Model</TableHead>
                                     <TableHead className="text-right font-bold text-slate-200 py-2 h-10">Hashrate</TableHead>
+                                    <TableHead className="text-right font-bold text-slate-200 py-2 h-10">Efficiency</TableHead>
                                     <TableHead className="text-right font-bold text-slate-200 py-2 h-10">Power</TableHead>
-                                    <TableHead className="text-right font-bold text-slate-200 py-2 h-10">Eff</TableHead>
                                     <TableHead className="text-right font-bold text-emerald-300 py-2 h-10">Daily Rev</TableHead>
+                                    <TableHead className="text-right font-bold text-emerald-300 py-2 h-10">Daily Profit</TableHead>
                                     <TableHead className="text-right font-bold text-blue-300 py-2 h-10">ROI</TableHead>
                                     <TableHead className="text-right font-bold text-amber-300 py-2 h-10">Payback</TableHead>
                                     <TableHead className="text-right font-bold text-white py-2 pr-4 h-10">Unit Price</TableHead>
@@ -106,12 +106,14 @@ export function PriceListPdfTemplate({
                                     return (
                                         <TableRow key={i} className="hover:bg-slate-50 border-b border-slate-100 last:border-0 h-10">
                                             <TableCell className="font-semibold text-slate-800 pl-4 py-2 text-sm">{m.name}</TableCell>
-                                            <TableCell className="text-right font-bold text-white py-2 text-sm">{r.score.toFixed(0)}</TableCell>
                                             <TableCell className="text-right text-slate-600 py-2 text-sm">{m.hashrateTH} T</TableCell>
+                                            <TableCell className="text-right text-slate-600 py-2 text-sm">{(m.powerWatts / m.hashrateTH).toFixed(1)} J/T</TableCell>
                                             <TableCell className="text-right text-slate-600 py-2 text-sm">{m.powerWatts} W</TableCell>
-                                            <TableCell className="text-right text-slate-600 py-2 text-sm">{(m.powerWatts / m.hashrateTH).toFixed(1)}</TableCell>
                                             <TableCell className="text-right font-bold text-emerald-600 py-2 text-sm">
                                                 ${m.dailyRevenueUSD.toFixed(2)}
+                                            </TableCell>
+                                            <TableCell className="text-right font-bold text-emerald-600 py-2 text-sm">
+                                                ${dailyProfit.toFixed(2)}
                                             </TableCell>
                                             <TableCell className="text-right font-bold text-blue-600 py-2 text-sm">
                                                 {m.clientProfitabilityPercent.toFixed(0)}%

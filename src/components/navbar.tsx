@@ -1,63 +1,41 @@
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
+
 export function Navbar() {
     return (
-        <nav className="border-b bg-background">
-            <div className="flex h-16 items-center px-4 container mx-auto">
-                <div className="mr-8 font-bold text-xl">
-                    Mining Sim
-                </div>
-                <div className="flex items-center space-x-6 text-sm font-medium">
-                    <Link
-                        href="/price-simulator"
-                        className={cn(
-                            "transition-colors hover:text-foreground/80",
-                            "text-foreground"
-                        )}
-                    >
-                        Price Simulator
+        <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
+            <div className="flex h-16 items-center px-4 container mx-auto justify-between">
+                <div className="flex items-center gap-8">
+                    <Link href="/" className="font-bold text-xl tracking-tight">
+                        Mining Sim
                     </Link>
-                    <Link
-                        href="/formula-approach"
-                        className={cn(
-                            "transition-colors hover:text-foreground/80",
-                            "text-foreground text-orange-600 font-bold"
-                        )}
-                    >
-                        Formula Approach
-                    </Link>
-                    <Link
-                        href="/price-list"
-                        className={cn(
-                            "transition-colors hover:text-foreground/80",
-                            "font-bold text-blue-600"
-                        )}
-                    >
-                        Price List Generator
-                    </Link>
-                    <Link
-                        href="/"
-                        className={cn(
-                            "transition-colors hover:text-foreground/80",
-                            // Since we don't have usePathname hook usage here yet (it requires client component), 
-                            // let's just make simple links for now. 
-                            // Or better, make this a client component if we want active states.
-                            // For simplicity and robustness, standard links are fine.
-                            "text-foreground"
-                        )}
-                    >
-                        Mining Calculator
-                    </Link>
-                    <Link
-                        href="/treasury"
-                        className={cn(
-                            "transition-colors hover:text-foreground/80",
-                            "text-foreground"
-                        )}
-                    >
-                        Treasury Calculator
-                    </Link>
+                    <div className="hidden md:flex items-center space-x-6 text-sm font-medium">
+                        <Link
+                            href="/price-simulator"
+                            className={cn(
+                                "transition-colors hover:text-foreground/80 text-foreground/60"
+                            )}
+                        >
+                            Price Simulator
+                        </Link>
+                        <Link
+                            href="/price-list"
+                            className={cn(
+                                "transition-colors hover:text-foreground/80 text-foreground/60"
+                            )}
+                        >
+                            Price List
+                        </Link>
+                        <Link
+                            href="/treasury"
+                            className={cn(
+                                "transition-colors hover:text-foreground/80 text-foreground/60"
+                            )}
+                        >
+                            Treasury
+                        </Link>
+                    </div>
                 </div>
             </div>
         </nav>
