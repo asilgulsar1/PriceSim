@@ -39,6 +39,9 @@ export async function saveUsers(users: User[]) {
     await put(USERS_FILE_PATH, JSON.stringify(users), {
         access: 'public',
         addRandomSuffix: false, // Overwrites the file
+        token: process.env.BLOB_READ_WRITE_TOKEN,
+        // @ts-ignore - Vercel Blob types might be slightly outdated in this project
+        allowOverwrite: true,
     });
 }
 
