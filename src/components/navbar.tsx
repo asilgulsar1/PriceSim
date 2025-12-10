@@ -19,6 +19,24 @@ export function Navbar() {
                         Price Simulator
                     </Link>
                     <Link
+                        href="/formula-approach"
+                        className={cn(
+                            "transition-colors hover:text-foreground/80",
+                            "text-foreground text-orange-600 font-bold"
+                        )}
+                    >
+                        Formula Approach
+                    </Link>
+                    <Link
+                        href="/price-list"
+                        className={cn(
+                            "transition-colors hover:text-foreground/80",
+                            "font-bold text-blue-600"
+                        )}
+                    >
+                        Price List Generator
+                    </Link>
+                    <Link
                         href="/"
                         className={cn(
                             "transition-colors hover:text-foreground/80",

@@ -415,7 +415,10 @@ export function TreasuryCalculator() {
                                     <Label>Elec Rate ($/kWh)</Label>
                                     <Input type="number" step="0.01" value={contract.electricityRate} onChange={e => setContract({ ...contract, electricityRate: Number(e.target.value) })} />
                                 </div>
-
+                                <div className="space-y-2">
+                                    <Label>Margin/OpEx ($/kWh)</Label>
+                                    <Input type="number" step="0.01" value={contract.opexRate || 0} onChange={e => setContract({ ...contract, opexRate: Number(e.target.value) })} />
+                                </div>
                             </div>
 
                             <div className="space-y-2">
