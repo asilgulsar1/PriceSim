@@ -1,3 +1,5 @@
+import { DEFAULT_MARKET_CONDITIONS } from "./constants";
+
 export interface MarketData {
     btcPrice: number;
     networkDifficulty: number;
@@ -74,8 +76,8 @@ export async function fetchMarketData(): Promise<MarketData> {
     } catch (error) {
         console.error('Error fetching market data:', error);
         return {
-            btcPrice: 60000, // Fallback
-            networkDifficulty: 86000000000000, // Fallback ~86T
+            btcPrice: 60000, // Fallback - consider using DEFAULT? DEFAULT has recent price.
+            networkDifficulty: DEFAULT_MARKET_CONDITIONS.networkDifficulty,
             blockReward: 3.125
         };
     }

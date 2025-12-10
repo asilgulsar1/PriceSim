@@ -14,6 +14,7 @@ import { fetchMarketData } from "@/lib/api";
 import { INITIAL_MINERS, MinerProfile } from "@/lib/miner-data";
 import { FormulaCalculator, FormulaResult } from "@/lib/formula-calculator";
 import { MarketConditions, ContractTerms } from "@/lib/calculator";
+import { DEFAULT_MARKET_CONDITIONS, DEFAULT_CONTRACT_TERMS } from "@/lib/constants";
 
 interface CalculatedFormulaMiner extends MinerProfile {
     result: FormulaResult;
@@ -25,20 +26,12 @@ export default function FormulaApproachPage() {
     const [isBtcBased, setIsBtcBased] = useState(false);
 
     // Inputs
-    const [difficultyGrowthMonthly, setDifficultyGrowthMonthly] = useState(4.0);
-    const [btcPriceGrowthMonthly, setBtcPriceGrowthMonthly] = useState(2.5);
-    const [hostingRate, setHostingRate] = useState(0.06);
+    const [difficultyGrowthMonthly, setDifficultyGrowthMonthly] = useState(DEFAULT_MARKET_CONDITIONS.difficultyGrowthMonthly);
+    const [btcPriceGrowthMonthly, setBtcPriceGrowthMonthly] = useState(DEFAULT_MARKET_CONDITIONS.btcPriceGrowthMonthly || 2.5);
+    const [hostingRate, setHostingRate] = useState(DEFAULT_CONTRACT_TERMS.electricityRate);
 
     // Market Data
-    const [market, setMarket] = useState<MarketConditions>({
-        btcPrice: 96000,
-        networkDifficulty: 102000000000000,
-        blockReward: 3.125,
-        difficultyGrowthMonthly: 4.0,
-        btcPriceGrowthMonthly: 2.5,
-        btcPriceGrowthAnnual: 34,
-        nextHalvingDate: new Date('2028-04-10')
-    });
+    const [market, setMarket] = useState<MarketConditions>(DEFAULT_MARKET_CONDITIONS);
     const [marketDataLoaded, setMarketDataLoaded] = useState(false);
 
     // Results

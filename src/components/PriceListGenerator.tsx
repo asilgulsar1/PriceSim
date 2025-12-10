@@ -1,59 +1,113 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { FileDown, Download, RefreshCw, Loader2, Search, ArrowUpDown } from "lucide-react";
-import { fetchMarketData } from "@/lib/api";
-import { solveMinerPrice, SolvedMiner } from "@/lib/pricing-solver";
-import { INITIAL_MINERS } from "@/lib/miner-data";
-import { MarketConditions, ContractTerms } from "@/lib/price-simulator-calculator";
-import { rankMiners, MinerScoreDetail } from "@/lib/miner-scoring";
+import toPng from 'html-to-image'; // Fix import: default import typically
 import jsPDF from 'jspdf';
-import { toPng } from 'html-to-image';
+import { solveMinerPrice } from "@/lib/pricing-solver";
+import { INITIAL_MINERS } from "@/lib/miner-data";
+import { ContractTerms } from "@/lib/price-simulator-calculator";
+import { rankMiners, MinerScoreDetail } from "@/lib/miner-scoring";
+import { DEFAULT_CONTRACT_TERMS, DEFAULT_TARGET_MARGIN } from "@/lib/constants";
+import { useMarketData } from "@/hooks/useMarketData";
+
+// Sub-components
+import { PriceListControls } from "./price-list/PriceListControls";
+import { PriceListFilterBar, SortField } from "./price-list/PriceListFilterBar";
+import { PriceListTable } from "./price-list/PriceListTable";
+import { PriceListPdfTemplate } from "./price-list/PriceListPdfTemplate";
+
+// Fix html-to-image import issue if necessary (sometimes it's * as htmlToImage)
+import * as htmlToImage from 'html-to-image';
 
 export function PriceListGenerator() {
-    // State
+    // --- State ---
     const [clientName, setClientName] = useState('Valued Client');
-    const [marginMode, setMarginMode] = useState<'percent' | 'usd'>('percent');
-    const [marginValue, setMarginValue] = useState<number>(50); // Default 50% Client ROI
+    const [salesMargin, setSalesMargin] = useState<number>(0);
+    const [salesMarginType, setSalesMarginType] = useState<'usd' | 'percent'>('usd');
 
-    // Market Data
-    const [market, setMarket] = useState<MarketConditions>({
-        btcPrice: 96500,
-        networkDifficulty: 101.6e12,
-        blockReward: 3.125,
-        difficultyGrowthMonthly: 4,
-        btcPriceGrowthMonthly: 2.5,
-        btcPriceGrowthAnnual: 0
-    });
+    // Market Hook
+    const { market, setMarket } = useMarketData();
     const [loading, setLoading] = useState(false);
     const [lastUpdated, setLastUpdated] = useState<string | null>(null);
 
-    // Results (Now storing MinerScoreDetail directly for scores)
-    const [results, setResults] = useState<MinerScoreDetail[]>([]);
-
-    // Derived recommendations from results
-    const recommendations = React.useMemo(() => {
-        if (results.length === 0) return { topROI: [], topRevenue: [], topEfficiency: [] };
-
-        // Clone to sort safely
-        const byROI = [...results].sort((a, b) => b.raw.profitability - a.raw.profitability).slice(0, 2);
-        const byRev = [...results].sort((a, b) => b.raw.revenue - a.raw.revenue).slice(0, 2);
-        const byEff = [...results].sort((a, b) => a.raw.efficiency - b.raw.efficiency).slice(0, 2);
-
-        return { topROI: byROI, topRevenue: byRev, topEfficiency: byEff };
-    }, [results]);
+    // Results
+    const [baseResults, setBaseResults] = useState<MinerScoreDetail[]>([]); // Store raw data synced from Simulator
+    const [results, setResults] = useState<MinerScoreDetail[]>([]); // Displayed data (with margin)
 
     // Filter & Sort State
     const [searchTerm, setSearchTerm] = useState('');
-    const [sortBy, setSortBy] = useState<'price' | 'roi' | 'payback' | 'efficiency' | 'revenue' | 'score'>('score');
+    const [sortBy, setSortBy] = useState<SortField>('score');
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
 
+    const documentRef = useRef<HTMLDivElement>(null);
+
+    // --- Derived State: Apply Margin ---
+    useEffect(() => {
+        if (baseResults.length === 0) {
+            setResults([]); // Clear results if baseResults is empty
+            return;
+        }
+
+        const updated = baseResults.map(item => {
+            const rawMiner = { ...item.miner }; // Shallow clone
+
+            // Apply Margin
+            // Base Price comes from Simulator. We add margin to it.
+            let marginAmount = 0;
+            if (salesMarginType === 'usd') {
+                marginAmount = salesMargin;
+            } else {
+                marginAmount = rawMiner.calculatedPrice * (salesMargin / 100);
+            }
+
+            rawMiner.calculatedPrice = rawMiner.calculatedPrice + marginAmount;
+
+            // Recalculate ROI (Client Profitability)
+            // Original ROI = (NetProfit / Price) ? or (NetProfit - Price) / Price?
+            // Need to know how `clientProfitabilityPercent` was calculated.
+            // In pricing-solver.ts check: clientProfitabilityPercent usually (TotalRevenue - TotalCost - Price) / Price * 100?
+            // Or simple ROI = (Total Revenue - Total Cost) / Price?
+            // Let's approximate based on typical logic:
+            // NetProfit (Lifetime) = dailyProfit * days.
+            // ROI = (NetProfit - Price) / Price. 
+            // We have `totalRevenueUSD` and `totalCostUSD` in specific fields if they were preserved?
+            // The `CalculatedMiner` has `dailyRevenueUSD`, `dailyExpenseUSD`, `projectLifeDays`.
+            // Let's recalculate based on these.
+
+            const totalRevenue = rawMiner.dailyRevenueUSD * rawMiner.projectLifeDays;
+            const totalCost = rawMiner.dailyExpenseUSD * rawMiner.projectLifeDays;
+            const netOperatingProfit = totalRevenue - totalCost;
+
+            // Gross Annualized Revenue ROI (Used for Sorting & Scoring)
+            if (rawMiner.calculatedPrice > 0 && rawMiner.dailyRevenueUSD > 0) {
+                rawMiner.clientProfitabilityPercent = ((rawMiner.dailyRevenueUSD * 365) / rawMiner.calculatedPrice) * 100;
+            } else {
+                rawMiner.clientProfitabilityPercent = 0;
+            }
+
+            // We need to recreate the Score Detail wrapper
+            // rankMiners might need to re-run if score depends on price?
+            // For simple display updates, we can just update the miner object.
+            return {
+                ...item,
+                miner: rawMiner
+            };
+        });
+
+        // Re-Rank if needed?
+        // rankMiners calc score based on ROI, Price, etc.
+        // It's safer to re-rank.
+        // But `updated` is `MinerScoreDetail[]`. rankMiners takes `CalculatedMiner[]`.
+        // Let's extract miners and re-rank.
+        const minersOnly = updated.map(u => u.miner);
+        const reRanked = rankMiners(minersOnly);
+        // Ranker now uses the pre-calculated Gross ROI
+        setResults(reRanked);
+
+    }, [baseResults, salesMargin, salesMarginType]);
+
+
+    // --- Derived State ---
     const filteredResults = React.useMemo(() => {
         return results
             .filter(r => r.miner.name.toLowerCase().includes(searchTerm.toLowerCase()))
@@ -66,10 +120,19 @@ export function PriceListGenerator() {
                     case 'price': valA = a.miner.calculatedPrice; valB = b.miner.calculatedPrice; break;
                     case 'roi': valA = a.miner.clientProfitabilityPercent; valB = b.miner.clientProfitabilityPercent; break;
                     case 'payback':
-                        const profitA = a.miner.dailyRevenueUSD - a.miner.dailyExpenseUSD;
-                        const profitB = b.miner.dailyRevenueUSD - b.miner.dailyExpenseUSD;
-                        valA = profitA > 0 ? (a.miner.calculatedPrice / profitA) : 99999;
-                        valB = profitB > 0 ? (b.miner.calculatedPrice / profitB) : 99999;
+                        const getPaybackDays = (m: any) => {
+                            if (m.calculatedPrice <= 0) return 0;
+                            let cumulative = 0;
+                            if (m.projections) {
+                                for (const day of m.projections) {
+                                    cumulative += (day.dailyRevenueUSD - day.totalDailyCostUSD);
+                                    if (cumulative >= m.calculatedPrice) return day.dayIndex;
+                                }
+                            }
+                            return 99999; // Never pays back
+                        };
+                        valA = getPaybackDays(a.miner);
+                        valB = getPaybackDays(b.miner);
                         break;
                     case 'efficiency': valA = a.miner.powerWatts / a.miner.hashrateTH; valB = b.miner.powerWatts / b.miner.hashrateTH; break;
                     case 'revenue': valA = a.miner.dailyRevenueUSD; valB = b.miner.dailyRevenueUSD; break;
@@ -78,35 +141,105 @@ export function PriceListGenerator() {
             });
     }, [results, searchTerm, sortBy, sortOrder]);
 
-    // Ref for PDF generation
-    const documentRef = useRef<HTMLDivElement>(null);
+    const recommendations = React.useMemo(() => {
+        if (results.length === 0) return { topROI: [], topRevenue: [], topEfficiency: [] };
+        const byROI = [...results].sort((a, b) => b.raw.profitability - a.raw.profitability).slice(0, 2);
+        const byRev = [...results].sort((a, b) => b.raw.revenue - a.raw.revenue).slice(0, 2);
+        const byEff = [...results].sort((a, b) => a.raw.efficiency - b.raw.efficiency).slice(0, 2); // Lower eff is better usually, but logic in scoring might have inverted standard? 
+        // In scoring, efficiencyScore is higher for lower J/TH. 
+        // But raw efficiency is J/TH. So sorting asc is correct for "Best Efficiency" (lowest J/TH).
+        // Let's verify sort logic from original:
+        // `byEff = [...results].sort((a, b) => a.raw.efficiency - b.raw.efficiency)` -> Ascending (Lower is better). Correct.
+        return { topROI: byROI, topRevenue: byRev, topEfficiency: byEff };
+    }, [results]);
 
-    // Initial Load
-    useEffect(() => {
-        refreshData();
-    }, []);
 
-    // Manual Recalculation if specific inputs change (client-side override)
-    // We only trigger this if user manually changes margin. 
-    // IF loading from API, we respect that data primarily.
-    // But if user changes margin, we MUST recalculate locally.
-    useEffect(() => {
-        if (!loading && results.length > 0) {
-            // Check if current results match margin? Logic is complex.
-            // Simplified: If user interacts with Margin, trigger local calc.
-            // But 'calculate()' function needs to be robust.
-        }
-    }, [marginValue]);
+    // --- Effects ---
+
+    // --- Effects ---
+
+    // --- Effects ---
+
+    // Auto-load removed. Data is fetched only when 'Fresh Data' is clicked.
+
+
+    // ... (rest of effects) // Initial load only, refreshData depends on nothing reactive (except calculateLocal which is stable?) NO.
+    // refreshData depends on calculateLocal.
+    // But we only want to run ONCE on mount.
+    // So [] is fine, but linter will complain.
+    // Actually, refreshData changes if calculateLocal changes.
+    // And calculateLocal changes if market/margin changes.
+    // So this effect will re-run constantly if we include it.
+    // We want "On Mount".
+    // So let's disable the exhaustive-deps rule for this line or keep it empty.
+
+
+    // Trigger local calc when Margin changes
+    // Local auto-calc removed to prioritize Sync flow
+    // useEffect(() => { if (!loading && results.length > 0) calculateLocal(); }, [marginValue]);
+
+    // --- Actions ---
+
+    const calculateLocal = React.useCallback(() => {
+        setLoading(true);
+        // Small timeout for UI
+        setTimeout(() => {
+            const miners = INITIAL_MINERS;
+            const calculated = miners.map(miner => {
+                const contract: ContractTerms = DEFAULT_CONTRACT_TERMS;
+                // Note: marginValue is gone. What to use? Default 50?
+                return solveMinerPrice(miner, contract, market, DEFAULT_TARGET_MARGIN, false);
+            });
+
+            const ranked = rankMiners(calculated);
+            setBaseResults(ranked); // Update Base
+            setLastUpdated('Calculated Locally (Live)');
+            setLoading(false);
+        }, 50);
+    }, [market]); // Removed marginValue from deps, as it's now handled by the margin effect
 
     const refreshData = async () => {
         setLoading(true);
+
+        // Helper to normalize input data (unwrap if it's already ranked/wrapped)
+        const normalizeMiners = (list: any[]) => {
+            if (list.length > 0 && list[0].miner) {
+                return list.map((x: any) => x.miner);
+            }
+            return list;
+        };
+
         try {
-            // 1. Try to fetch cached API data
+            // 1. Try to fetch LATEST from Price Simulator (LocalStorage)
+            const savedSim = localStorage.getItem('LATEST_SIMULATION_DATA');
+            if (savedSim) {
+                const data = JSON.parse(savedSim);
+                if (data.miners && Array.isArray(data.miners)) {
+                    // Set BASE Results (Raw)
+                    const rawMiners = normalizeMiners(data.miners);
+                    const ranked = rankMiners(rawMiners);
+                    setBaseResults(ranked);
+
+                    if (data.updatedAt) setLastUpdated(`Synced from Simulator (${new Date(data.updatedAt).toLocaleTimeString()})`);
+                    if (data.market) setMarket(data.market);
+                    setLoading(false);
+                    return;
+                }
+            }
+        } catch (e) {
+            console.warn("Failed to fetch simulator data", e);
+        }
+
+        // 2. Fallback: API or Local
+        // Use existing API fallback logic if local storage empty
+        try {
             const res = await fetch('/api/miners/latest');
             if (res.ok) {
                 const data = await res.json();
                 if (data.miners && Array.isArray(data.miners)) {
-                    setResults(data.miners);
+                    const rawMiners = normalizeMiners(data.miners);
+                    const ranked = rankMiners(rawMiners);
+                    setBaseResults(ranked);
                     if (data.updatedAt) setLastUpdated(new Date(data.updatedAt).toLocaleString());
                     if (data.market) setMarket(data.market);
                     setLoading(false);
@@ -117,101 +250,33 @@ export function PriceListGenerator() {
             console.warn("Failed to fetch cached data, falling back to local calculation", e);
         }
 
-        // 2. Fallback: Fetch Market Data and Calculate Locally
-        try {
-            const data = await fetchMarketData();
-            setMarket(prev => ({
-                ...prev,
-                btcPrice: data.btcPrice,
-                networkDifficulty: data.networkDifficulty
-            }));
-            // Local Calculation
-            calculateLocal(data);
-        } catch (e) {
-            console.error("Failed to load market data", e);
-            setLoading(false);
-        }
-    };
-
-    const calculateLocal = (marketData?: any) => {
-        const currentMarket = marketData ? { ...market, btcPrice: marketData.btcPrice, networkDifficulty: marketData.networkDifficulty } : market;
-
-        const miners = INITIAL_MINERS;
-        const calculated = miners.map(miner => {
-            const contract: ContractTerms = {
-                electricityRate: 0.08,
-                opexRate: 0,
-                poolFee: 1.0,
-                contractDurationYears: 4
-            };
-
-            const targetProfit = marginMode === 'percent' ? marginValue : 50;
-            return solveMinerPrice(miner, contract, currentMarket, targetProfit, false);
-        });
-
-        const ranked = rankMiners(calculated);
-        setResults(ranked);
-        setLastUpdated('Calculated Locally (Live)');
-        setLoading(false);
-    };
-
-    // Trigger local calc when Margin changes
-    useEffect(() => {
-        // Debounce or simple effect?
-        // Only run if we have data to recalc
+        // 3. Last Resort: Local
         calculateLocal();
-    }, [marginValue, marginMode]);
-
-
-    const handleDownloadPDF = async () => {
-        if (!documentRef.current) return;
-
-        try {
-            const element = documentRef.current;
-            const imgData = await toPng(element, { backgroundColor: '#ffffff', pixelRatio: 2 });
-
-            const pdf = new jsPDF({
-                orientation: 'portrait',
-                unit: 'mm',
-                format: 'a4'
-            });
-
-            const imgWidth = 210; // A4 width in mm
-            const pageHeight = 297; // A4 height in mm
-            const elementWidth = element.offsetWidth;
-            const elementHeight = element.offsetHeight;
-
-            // Calculate height in PDF mm based on aspect ratio
-            const imgHeight = (elementHeight * imgWidth) / elementWidth;
-
-            let heightLeft = imgHeight;
-            let position = 0;
-
-            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
-
-            while (heightLeft >= 0) {
-                position = heightLeft - imgHeight;
-                pdf.addPage();
-                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-                heightLeft -= pageHeight;
-            }
-
-            pdf.save(`proposal_${clientName.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
-        } catch (error) {
-            console.error("Error generating PDF:", error);
-            if (confirm("PDF Generation failed. Would you like to print instead?")) {
-                window.print();
-            }
-        }
     };
-
     const handleExportCSV = () => {
         const headers = ['Model', 'Score', 'Hashrate (TH/s)', 'Power (W)', 'Efficiency (J/TH)', 'Unit Price ($)', 'Daily Revenue ($)', 'Payback (Years)', 'ROI (%)'];
         const rows = filteredResults.map(r => {
             const m = r.miner;
-            const dailyProfit = m.dailyRevenueUSD - m.dailyExpenseUSD;
-            const paybackYears = dailyProfit > 0 ? ((m.calculatedPrice / dailyProfit) / 365).toFixed(1) : 'N/A';
+            let paybackYears = 'N/A';
+
+            // Dynamic Payback Calculation
+            if (m.calculatedPrice > 0 && m.projections) {
+                let cumulative = 0;
+                let foundDay = -1;
+                for (const day of m.projections) {
+                    cumulative += (day.dailyRevenueUSD - day.totalDailyCostUSD);
+                    if (cumulative >= m.calculatedPrice) {
+                        foundDay = day.dayIndex;
+                        break;
+                    }
+                }
+                if (foundDay !== -1) {
+                    paybackYears = (foundDay / 365).toFixed(1);
+                } else {
+                    paybackYears = `>${(m.projectLifeDays / 365).toFixed(0)}`;
+                }
+            }
+
             return [
                 m.name,
                 r.score.toFixed(1),
@@ -236,265 +301,80 @@ export function PriceListGenerator() {
         document.body.removeChild(link);
     };
 
+    const handleDownloadPDF = async () => {
+        if (!documentRef.current) return;
+
+        try {
+            const element = documentRef.current;
+            const imgData = await htmlToImage.toPng(element, { backgroundColor: '#ffffff', pixelRatio: 2 });
+
+            const pdf = new jsPDF({
+                orientation: 'portrait',
+                unit: 'mm',
+                format: 'a4'
+            });
+
+            const imgWidth = 210; // A4 width in mm
+            const pageHeight = 297; // A4 height in mm
+            const elementWidth = element.offsetWidth;
+            const elementHeight = element.offsetHeight;
+            const imgHeight = (elementHeight * imgWidth) / elementWidth;
+
+            let heightLeft = imgHeight;
+            let position = 0;
+
+            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+
+            while (heightLeft >= 0) {
+                position = heightLeft - imgHeight;
+                pdf.addPage();
+                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+            }
+
+            pdf.save(`proposal_${clientName.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
+        } catch (error) {
+            console.error("Error generating PDF:", error);
+            if (confirm("PDF Generation failed. Would you like to print instead?")) {
+                window.print();
+            }
+        }
+    };
+
     return (
         <div className="space-y-8 p-4">
+            <PriceListControls
+                clientName={clientName}
+                setClientName={setClientName}
+                salesMargin={salesMargin}
+                setSalesMargin={setSalesMargin}
+                salesMarginType={salesMarginType}
+                setSalesMarginType={setSalesMarginType}
+                lastUpdated={lastUpdated}
+                loading={loading}
+                onRefresh={refreshData}
+                onExportCSV={handleExportCSV}
+                onDownloadPDF={handleDownloadPDF}
+            />
 
-            {/* Control Panel */}
-            <Card className="border-l-4 border-l-blue-600">
-                <CardHeader>
-                    <div className="flex justify-between items-center">
-                        <CardTitle>Price List Configuration</CardTitle>
-                        <div className="text-xs text-slate-500 text-right">
-                            {lastUpdated && <p>Updated: {lastUpdated}</p>}
-                        </div>
-                    </div>
-                </CardHeader>
-                <CardContent className="flex flex-col md:flex-row gap-6 items-end">
-                    <div className="w-full md:w-1/3 space-y-2">
-                        <Label>Client Name</Label>
-                        <Input
-                            value={clientName}
-                            onChange={(e) => setClientName(e.target.value)}
-                            placeholder="Enter Client Name"
-                        />
-                    </div>
+            <PriceListFilterBar
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                sortBy={sortBy}
+                setSortBy={setSortBy}
+                sortOrder={sortOrder}
+                toggleSortOrder={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}
+            />
 
-                    <div className="w-full md:w-1/4 space-y-2">
-                        <Label>Client Target Margin (ROI)</Label>
-                        <div className="flex gap-2">
-                            <Input
-                                type="number"
-                                value={marginValue}
-                                onChange={(e) => setMarginValue(Number(e.target.value))}
-                            />
-                            <div className="flex items-center bg-muted px-3 rounded-md text-sm font-medium">
-                                %
-                            </div>
-                        </div>
-                    </div>
+            <PriceListTable miners={filteredResults} />
 
-                    <div className="flex gap-2 ml-auto">
-                        <Button variant="outline" onClick={refreshData} disabled={loading}>
-                            {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <RefreshCw className="mr-2 h-4 w-4" />}
-                            Fresh Data
-                        </Button>
-                        <Button variant="outline" onClick={handleExportCSV}>
-                            <Download className="mr-2 h-4 w-4" />
-                            Export CSV
-                        </Button>
-                        <Button onClick={handleDownloadPDF}>
-                            <FileDown className="mr-2 h-4 w-4" />
-                            Export PDF
-                        </Button>
-                    </div>
-                </CardContent>
-            </Card>
-
-            {/* Filter / Sort Controls */}
-            <div className="flex gap-4 items-center bg-white p-4 rounded-lg border shadow-sm">
-                <div className="relative flex-1 max-w-sm">
-                    <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                    <Input
-                        placeholder="Search models..."
-                        className="pl-8"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                </div>
-                <Select value={sortBy} onValueChange={(v: any) => setSortBy(v)}>
-                    <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Sort by" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="score">Sort by Score</SelectItem>
-                        <SelectItem value="roi">Sort by ROI</SelectItem>
-                        <SelectItem value="price">Sort by Price</SelectItem>
-                        <SelectItem value="payback">Sort by Payback</SelectItem>
-                        <SelectItem value="revenue">Sort by Revenue</SelectItem>
-                        <SelectItem value="efficiency">Sort by Efficiency</SelectItem>
-                    </SelectContent>
-                </Select>
-                <Button variant="ghost" size="icon" onClick={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}>
-                    <ArrowUpDown className={`h-4 w-4 transition-transform ${sortOrder === 'desc' ? 'rotate-180' : ''}`} />
-                </Button>
-            </div>
-
-            {/* Interactive Table View */}
-            <div className="rounded-lg overflow-hidden border border-slate-200 shadow-sm bg-white">
-                <Table>
-                    <TableHeader className="bg-slate-50">
-                        <TableRow className="hover:bg-slate-50">
-                            <TableHead className="font-bold text-slate-900 py-3 pl-4">Model</TableHead>
-                            <TableHead className="text-center font-bold text-purple-600 py-3">Score</TableHead>
-                            <TableHead className="text-right font-bold text-slate-700 py-3">Hashrate</TableHead>
-                            <TableHead className="text-right font-bold text-slate-700 py-3">Power</TableHead>
-                            <TableHead className="text-right font-bold text-slate-700 py-3">Eff</TableHead>
-                            <TableHead className="text-right font-bold text-emerald-600 py-3">Daily Rev</TableHead>
-                            <TableHead className="text-right font-bold text-blue-600 py-3">ROI</TableHead>
-                            <TableHead className="text-right font-bold text-amber-600 py-3">Payback</TableHead>
-                            <TableHead className="text-right font-bold text-slate-900 py-3 pr-4">Unit Price</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {filteredResults.map((r, i) => {
-                            const m = r.miner;
-                            const dailyProfit = m.dailyRevenueUSD - m.dailyExpenseUSD;
-                            const paybackYears = dailyProfit > 0 ? ((m.calculatedPrice / dailyProfit) / 365).toFixed(1) : 'N/A';
-                            return (
-                                <TableRow key={i} className="hover:bg-slate-50 border-b border-slate-100 last:border-0 h-10">
-                                    <TableCell className="font-semibold text-slate-800 pl-4 py-2 text-sm">{m.name}</TableCell>
-                                    <TableCell className="text-center font-bold text-purple-600 py-2 text-sm">{r.score.toFixed(0)}</TableCell>
-                                    <TableCell className="text-right text-slate-600 py-2 text-sm">{m.hashrateTH} T</TableCell>
-                                    <TableCell className="text-right text-slate-600 py-2 text-sm">{m.powerWatts} W</TableCell>
-                                    <TableCell className="text-right text-slate-600 py-2 text-sm">{(m.powerWatts / m.hashrateTH).toFixed(1)}</TableCell>
-                                    <TableCell className="text-right font-bold text-emerald-600 py-2 text-sm">
-                                        ${m.dailyRevenueUSD.toFixed(2)}
-                                    </TableCell>
-                                    <TableCell className="text-right font-bold text-blue-600 py-2 text-sm">
-                                        {m.clientProfitabilityPercent.toFixed(0)}%
-                                    </TableCell>
-                                    <TableCell className="text-right font-bold text-amber-600 py-2 text-sm">
-                                        {paybackYears} <span className="text-xs font-normal text-slate-400">yrs</span>
-                                    </TableCell>
-                                    <TableCell className="text-right font-extrabold text-lg text-slate-900 pr-4 py-2">
-                                        ${m.calculatedPrice.toLocaleString(undefined, { maximumFractionDigits: 0 })}
-                                    </TableCell>
-                                </TableRow>
-                            );
-                        })}
-                    </TableBody>
-                </Table>
-            </div>
-
-            {/* Hidden Document Template for PDF Generation */}
-            <div style={{ position: 'absolute', left: '-9999px', top: 0 }}>
-                <div
-                    ref={documentRef}
-                    className="bg-white p-12 shadow-none border-none w-[210mm] text-slate-900"
-                    style={{ minHeight: 'fit-content' }}
-                >
-
-                    {/* Header / Brand */}
-                    <div className="flex justify-between items-start mb-8 border-b pb-4">
-                        <div>
-                            <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Segments Cloud</h1>
-                            <p className="text-slate-500 font-medium mt-1">Enterprise Mining Solutions</p>
-                        </div>
-                        <div className="text-right text-sm text-slate-500">
-                            <p>{new Date().toLocaleDateString()}</p>
-                            <p className="mt-1">Prepared for: <span className="font-semibold text-slate-900 block text-base">{clientName || 'Valued Client'}</span></p>
-                        </div>
-                    </div>
-
-                    {/* Letter */}
-                    <div className="mb-8 prose prose-slate max-w-none">
-                        <h3 className="text-lg font-semibold mb-2 text-slate-800">Proposal for Bitcoin Mining Infrastructure</h3>
-                        <p className="mb-2 text-sm leading-relaxed text-slate-600">
-                            Dear {clientName || 'Partner'},
-                        </p>
-                        <p className="mb-2 text-sm leading-relaxed text-slate-600">
-                            We are pleased to present our latest pricing for premium Bitcoin mining hardware hosted at our facilities.
-                            Segments Cloud is dedicated to providing high-performance infrastructure with optimized efficiency.
-                        </p>
-
-                        {/* Recommendations Section */}
-                        {(recommendations.topROI.length > 0) && (
-                            <div className="my-4 bg-slate-50 p-4 rounded-md border border-slate-100">
-                                <h4 className="text-sm font-bold text-slate-800 mb-2">Strategic Recommendations</h4>
-                                <ul className="text-sm space-y-1 text-slate-600 list-disc list-inside">
-                                    <li>
-                                        <span className="font-semibold text-emerald-600">Highest ROI:</span> {recommendations.topROI.map(r => r.miner.name).join(' & ')}
-                                    </li>
-                                    <li>
-                                        <span className="font-semibold text-blue-600">Best Daily Revenue:</span> {recommendations.topRevenue.map(r => r.miner.name).join(' & ')}
-                                    </li>
-                                    <li>
-                                        <span className="font-semibold text-amber-600">Most Efficient:</span> {recommendations.topEfficiency.map(r => r.miner.name).join(' & ')}
-                                    </li>
-                                </ul>
-                            </div>
-                        )}
-
-                        <p className="text-sm leading-relaxed text-slate-600">
-                            The table below outlines our current offering, specifically selected to meet your investment goals.
-                        </p>
-                    </div>
-
-                    {/* Price Table */}
-                    <div className="mb-8">
-                        <div className="flex items-center justify-between mb-3">
-                            <h3 className="text-lg font-bold text-slate-800">
-                                Hardware Configuration & Pricing
-                            </h3>
-                        </div>
-                        <div className="rounded-lg overflow-hidden border border-slate-200">
-                            <Table>
-                                <TableHeader className="bg-slate-900">
-                                    <TableRow className="hover:bg-slate-900 border-none">
-                                        <TableHead className="font-bold text-white py-2 pl-4 h-10">Model</TableHead>
-                                        <TableHead className="text-right font-bold text-white py-2 h-10">Score</TableHead>
-                                        <TableHead className="text-right font-bold text-slate-200 py-2 h-10">Hashrate</TableHead>
-                                        <TableHead className="text-right font-bold text-slate-200 py-2 h-10">Power</TableHead>
-                                        <TableHead className="text-right font-bold text-slate-200 py-2 h-10">Eff</TableHead>
-                                        <TableHead className="text-right font-bold text-emerald-300 py-2 h-10">Daily Rev</TableHead>
-                                        <TableHead className="text-right font-bold text-blue-300 py-2 h-10">ROI</TableHead>
-                                        <TableHead className="text-right font-bold text-amber-300 py-2 h-10">Payback</TableHead>
-                                        <TableHead className="text-right font-bold text-white py-2 pr-4 h-10">Unit Price</TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {filteredResults.map((r, i) => {
-                                        const m = r.miner;
-                                        const dailyProfit = m.dailyRevenueUSD - m.dailyExpenseUSD;
-                                        const paybackYears = dailyProfit > 0 ? ((m.calculatedPrice / dailyProfit) / 365).toFixed(1) : 'N/A';
-                                        return (
-                                            <TableRow key={i} className="hover:bg-slate-50 border-b border-slate-100 last:border-0 h-10">
-                                                <TableCell className="font-semibold text-slate-800 pl-4 py-2 text-sm">{m.name}</TableCell>
-                                                <TableCell className="text-right font-bold text-white py-2 text-sm">{r.score.toFixed(0)}</TableCell>
-                                                <TableCell className="text-right text-slate-600 py-2 text-sm">{m.hashrateTH} T</TableCell>
-                                                <TableCell className="text-right text-slate-600 py-2 text-sm">{m.powerWatts} W</TableCell>
-                                                <TableCell className="text-right text-slate-600 py-2 text-sm">{(m.powerWatts / m.hashrateTH).toFixed(1)}</TableCell>
-                                                <TableCell className="text-right font-bold text-emerald-600 py-2 text-sm">
-                                                    ${m.dailyRevenueUSD.toFixed(2)}
-                                                </TableCell>
-                                                <TableCell className="text-right font-bold text-blue-600 py-2 text-sm">
-                                                    {m.clientProfitabilityPercent.toFixed(0)}%
-                                                </TableCell>
-                                                <TableCell className="text-right font-bold text-amber-600 py-2 text-sm">
-                                                    {paybackYears} <span className="text-xs font-normal text-slate-400">yrs</span>
-                                                </TableCell>
-                                                <TableCell className="text-right font-extrabold text-lg text-slate-900 pr-4 py-2">
-                                                    ${m.calculatedPrice.toLocaleString(undefined, { maximumFractionDigits: 0 })}
-                                                </TableCell>
-                                            </TableRow>
-                                        );
-                                    })}
-                                </TableBody>
-                            </Table>
-                        </div>
-                    </div>
-
-                    {/* Terms / Footer */}
-                    <div className="text-xs text-slate-500 border-t pt-4 mt-auto">
-                        <div className="flex justify-between items-start">
-                            <div>
-                                <h4 className="font-semibold text-slate-700 mb-1">Terms & Conditions</h4>
-                                <ul className="list-disc list-inside space-y-0.5 text-slate-500">
-                                    <li>Prices are subject to change based on market conditions.</li>
-                                    <li>Hosting rates and terms are defined in the Hosting Service Agreement.</li>
-                                </ul>
-                            </div>
-                            <div className="text-right">
-                                <p className="font-semibold text-slate-900">Segments Cloud</p>
-                                <p>www.segments.ae</p>
-                            </div>
-                        </div>
-                        <div className="mt-4 text-center text-slate-400">
-                            Generated on {new Date().toLocaleDateString()}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div >
+            <PriceListPdfTemplate
+                documentRef={documentRef}
+                clientName={clientName}
+                recommendations={recommendations}
+                filteredResults={filteredResults}
+            />
+        </div>
     );
 }

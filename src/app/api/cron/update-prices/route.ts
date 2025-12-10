@@ -6,42 +6,33 @@ import { solveMinerPrice } from '@/lib/pricing-solver';
 import { INITIAL_MINERS } from '@/lib/miner-data';
 import { ContractTerms, MarketConditions } from '@/lib/price-simulator-calculator';
 import { rankMiners } from '@/lib/miner-scoring';
+import { DEFAULT_MARKET_CONDITIONS, DEFAULT_CONTRACT_TERMS, DEFAULT_TARGET_MARGIN } from '@/lib/constants';
 
 export const runtime = 'edge';
 
 export async function GET(request: Request) {
-    // Basic authorization check (Vercel Cron protects this effectively, but good practice)
+    // Basic authorization check
     const authHeader = request.headers.get('authorization');
     if (process.env.CRON_SECRET && authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
-        // Allow if running locally or if standard Vercel protection is assumed sufficient by User
-        // But strictly should return 401. 
-        // For this task, we'll assume Vercel's trusted IP/Invocation protection is primary.
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     try {
         // 1. Fetch Fresh Market Data
         const marketData = await fetchMarketData();
 
-        // 2. Define Standard Market Config for the List
+        // 2. Define Standard Market Config
+        // Merge fetch data with Defaults for growth params
         const market: MarketConditions = {
+            ...DEFAULT_MARKET_CONDITIONS,
             btcPrice: marketData.btcPrice,
-            networkDifficulty: marketData.networkDifficulty,
-            blockReward: marketData.blockReward,
-            difficultyGrowthMonthly: 4.0, // Standard Default
-            btcPriceGrowthMonthly: 2.5,   // Standard Default
-            btcPriceGrowthAnnual: 0,
-            nextHalvingDate: new Date('2028-05-01')
+            networkDifficulty: marketData.networkDifficulty
         };
 
         // 3. Define Standard Contract
-        const contract: ContractTerms = {
-            electricityRate: 0.08, // Default Standard
-            opexRate: 0,
-            poolFee: 1.0,
-            contractDurationYears: 4
-        };
+        const contract: ContractTerms = DEFAULT_CONTRACT_TERMS;
 
-        const targetProfitPercent = 50; // Standard 50% ROI
+        const targetProfitPercent = DEFAULT_TARGET_MARGIN; // Standard ROI from defaults
 
         // 4. Calculate for all Initial Miners
         const calculated = INITIAL_MINERS.map(miner => {

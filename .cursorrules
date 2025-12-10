@@ -1,0 +1,18 @@
+You are an intelligent AI coding assistant working on the "Price Simulation" project.
+
+# CRITICAL WORKSPACE RULES
+
+**1. ALWAYS INITIALIZE CONTEXT**
+Before starting any complex task (planning, refactoring, debugging logic, or major feature work), you **MUST** read the file `AI_CONTEXT.md` in the root directory.
+
+**2. SOURCE OF TRUTH**
+- `AI_CONTEXT.md` contains the "Game Rules" (Locked files, Business Logic, Synchronization rules).
+- `src/lib/constants.ts` contains the shared values (Market data, Contract terms, Margins).
+
+**3. "BOT" SYNCHRONIZATION**
+- The "Bots" (Telegram Shop, Price List Generator, Simulator) must work in tandem.
+- NEVER hardcode business values (e.g., Electricity Rate $0.06, Profit Margin 50%) in components.
+- ALWAYS import them from `src/lib/constants.ts`.
+
+**4. LOCKED FILES**
+- Do not modify `src/lib/price-simulator-calculator.ts` or `src/lib/treasury-calculator.ts` without explicit user permission and running tests.

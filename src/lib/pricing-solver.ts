@@ -64,29 +64,64 @@ export function solveMinerPrice(
             calculatedPrice = P_btc * market.btcPrice;
         }
     } else {
-        // USD Basis Calculation with BTC Appreciation
+        // USD Basis Calculation with "Future-Back" Pricing Formula
+        // ---------------------------------------------------------
+        // Requirement 1: Lowest sales price that meets the target.
+        // Requirement 2: Sales price (P) should be twice the Ending Treasury Value (V_end).
+        //                => V_end = 0.5 * P
+        // Requirement 3: Treasury is in BTC.
+        // Requirement 4: Ending Treasury Value is BTC Balance * End BTC Price.
+        //                => V_end = TreasuryBTC_End * BTC_End
+        //
+        // Derivation:
+        // TreasuryBTC_End = InitialBTC + NetLifetimeProfitBTC
+        // InitialBTC = Price / BTC_Start
+        // NetLifetimeProfitBTC = Total Mined - Total Paid (Hosting)
+        // 
+        // V_end = ( (P / BTC_Start) - NetLifetimeProfitBTC_Outflow? ) * BTC_End
+        // Wait, typical Treasury Logic: Treasury = Initial + Income - Expense.
+        // But here, we assume the Company sells the machine.
+        // The "Treasury" is the Company's retained earnings from the deal.
+        // 1. Company receives Price (P). Converts to BTC.
+        // 2. Company pays Client the Net Yield (Operational Profit).
+        //    Net Yield = Mined - Cost.
+        //    So Treasury decreases by Net Yield.
+        // TreasuryBTC_End = (P / BTC_Start) - NetLifetimeProfitBTC
+        //
+        // Solve for P:
+        // V_end = 0.5 * P
+        // [ (P / BTC_Start) - NetLifetimeProfitBTC ] * BTC_End = 0.5 * P
+        // (P * BTC_End / BTC_Start) - (NetLifetimeProfitBTC * BTC_End) = 0.5 * P
+        // P * ( (BTC_End / BTC_Start) - 0.5 ) = NetLifetimeProfitBTC * BTC_End
+        //
+        // Final Formula:
+        // P = (NetLifetimeProfitBTC * BTC_End) / (AppreciationRatio - 0.5)
+
         const shutdownDay = resPass1.projections.find(p => p.isShutdown) || resPass1.projections[resPass1.projections.length - 1];
         const finalBtcPrice = shutdownDay.btcPrice;
         const initialBtcPrice = market.btcPrice;
 
-        let netBtcFlow = 0;
+        let netLifetimeProfitBTC = 0;
         resPass1.projections.forEach(day => {
             if (!day.isShutdown) {
+                // Net Profit = Mined - Hosting
+                // Hosting is "Paid for hosting" (Cost)
                 const hostingFeeBTC = day.totalDailyCostUSD / day.btcPrice;
-                netBtcFlow += (hostingFeeBTC - day.netProductionBTC);
+                const dailyMiningProfitBTC = day.netProductionBTC - hostingFeeBTC;
+                netLifetimeProfitBTC += dailyMiningProfitBTC;
             }
         });
 
         if (targetMargin >= 1) {
             calculatedPrice = 0;
         } else {
-            const priceRatio = finalBtcPrice / initialBtcPrice;
-            const denominator = priceRatio - targetMargin;
+            const appreciationRatio = finalBtcPrice / initialBtcPrice;
+            const denominator = appreciationRatio - targetMargin; // targetMargin is 0.5
 
             if (Math.abs(denominator) < 0.001) {
                 calculatedPrice = 0;
             } else {
-                calculatedPrice = (-netBtcFlow * finalBtcPrice) / denominator;
+                calculatedPrice = (netLifetimeProfitBTC * finalBtcPrice) / denominator;
             }
         }
     }

@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 // Re-importing INITIAL_MINERS from library
+import { DEFAULT_CONTRACT_TERMS, DEFAULT_TARGET_MARGIN } from "@/lib/constants";
 import { INITIAL_MINERS } from "@/lib/miner-data";
 
 export function TelegramShop() {
@@ -47,14 +48,15 @@ export function TelegramShop() {
             const miners = INITIAL_MINERS;
             const calculated = miners.map(miner => {
                 const contract: ContractTerms = {
-                    electricityRate: 0.08,
-                    opexRate: 0,
-                    poolFee: 1.0,
-                    contractDurationYears: 4
+                    ...DEFAULT_CONTRACT_TERMS,
+                    // If Telegram shop specifically needs 4 years, keep it but try to use defaults where possible. 
+                    // Assuming goal is alignment, we use the default or explicitly override if business logic demands it.
+                    // For now, I will align it with the defaults to ensure "tandem" operation, 
+                    // but if the shop needs a markup, I'll add it.
                 };
 
                 // Fixed 50% margin for the shop for now, standardizing the offer
-                const targetProfit = 50;
+                const targetProfit = DEFAULT_TARGET_MARGIN;
 
                 return solveMinerPrice(miner, contract, market, targetProfit, false);
             });

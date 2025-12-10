@@ -12,6 +12,23 @@ import { MinerProfile, ContractTerms, MarketConditions, SimulationConfig, DailyP
 // Re-exporting interfaces to keep imports clean in the component
 export type { MinerProfile, ContractTerms, MarketConditions, SimulationConfig, DailyProjection, SimulationResult };
 
+export interface CalculatedMiner extends MinerProfile {
+    calculatedPrice: number;
+    projectLifeDays: number;
+    totalRevenueUSD: number;
+    totalCostUSD: number;
+    estExpenseBTC: number;
+    estRevenueHostingBTC: number;
+    finalTreasuryBTC: number;
+    finalTreasuryUSD: number;
+    projections: DailyProjection[];
+    roiPercent: number;
+    targetMet: boolean;
+    clientProfitabilityPercent: number;
+    dailyRevenueUSD: number;
+    dailyExpenseUSD: number;
+}
+
 export class PriceSimulatorCalculator {
 
     static calculate(
