@@ -8,8 +8,13 @@ export interface TreasuryProjection {
 
     // Daily Flows
     dailyYieldBTC: number; // Outflow (Paid to client)
+    dailyYieldUSD: number; // Outflow in USD
     dailyOpExUSD: number; // Inflow (Paid by client)
     dailyOpExBTC: number; // Inflow (Converted)
+
+    // Client's Net Profit (Yield - OpEx)
+    netProfitBTC: number; // Client's profit in BTC
+    netProfitUSD: number; // Client's profit in USD
 
     // Treasury State
     treasuryBTC: number;
@@ -210,8 +215,11 @@ export class TreasuryCalculatorLogic {
                     difficulty: currentDifficulty,
                     btcPrice: currentBtcPrice,
                     dailyYieldBTC: 0,
+                    dailyYieldUSD: 0,
                     dailyOpExUSD: 0,
                     dailyOpExBTC: 0,
+                    netProfitBTC: 0,
+                    netProfitUSD: 0,
                     treasuryBTC,
                     treasuryCash,
                     treasuryUSD: treasuryCash + (treasuryBTC * currentBtcPrice),
@@ -239,14 +247,21 @@ export class TreasuryCalculatorLogic {
                 shutdownDate = date;
             }
 
+            // Calculate client's net profit (Yield - OpEx)
+            const netProfitBTC = netYieldBTC - dailyOpExBTC;
+            const netProfitUSD = (netYieldBTC * currentBtcPrice) - dailyOpExUSD_Inflow;
+
             projections.push({
                 date,
                 dayIndex: day,
                 difficulty: currentDifficulty,
                 btcPrice: currentBtcPrice,
                 dailyYieldBTC: netYieldBTC,
+                dailyYieldUSD: netYieldBTC * currentBtcPrice,
                 dailyOpExUSD: dailyOpExUSD_Inflow,
                 dailyOpExBTC,
+                netProfitBTC,
+                netProfitUSD,
                 treasuryBTC,
                 treasuryCash,
                 treasuryUSD: treasuryCash + (treasuryBTC * currentBtcPrice),

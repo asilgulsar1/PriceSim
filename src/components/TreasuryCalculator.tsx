@@ -17,12 +17,12 @@ import { TreasuryCalculatorLogic, TreasuryResult } from "@/lib/treasury-calculat
 import { MinerProfile, ContractTerms, MarketConditions, SimulationConfig } from "@/lib/calculator";
 import { fetchMarketData } from "@/lib/api";
 
-// Default Initial State
+// Default Miner - matches first line item in Price Simulator
 const defaultMiner: MinerProfile = {
-    name: 'Antminer S21 Pro',
-    hashrateTH: 235,
-    powerWatts: 3500,
-    price: 2500
+    name: 'Antminer S21 XP Hydro',
+    hashrateTH: 473,
+    powerWatts: 5676,
+    price: 12000
 };
 
 const defaultContract: ContractTerms = {
@@ -33,25 +33,25 @@ const defaultContract: ContractTerms = {
     advancePaymentYears: 0,
     setupFeeUSD: 0,
     setupFeeToBTCPercent: 0,
-    hardwareCostUSD: 2000, // Example default
+    hardwareCostUSD: 12000, // Match miner price
     markupToBTCPercent: 100,
     minProfitThreshold: 0,
     minProfitType: 'USD'
 };
 
 const defaultMarket: MarketConditions = {
-    btcPrice: 65000,
-    networkDifficulty: 86000000000000,
+    btcPrice: 92817, // Market-based default (matches Price Simulator)
+    networkDifficulty: 109000000000000, // Market-based default (matches Price Simulator)
     blockReward: 3.125,
-    difficultyGrowthMonthly: 2.0,
-    btcPriceGrowthMonthly: 0.4, // ~5% annual
+    difficultyGrowthMonthly: 4.0,
+    btcPriceGrowthMonthly: 2.5, // ~34.5% annual
     btcPriceGrowthAnnual: 5, // Keep for compatibility
     nextHalvingDate: new Date('2028-05-01')
 };
 
 const defaultConfig: SimulationConfig = {
     startDate: new Date(),
-    initialInvestment: 2500,
+    initialInvestment: 12000, // Match miner price
     reinvestMode: 'hold' // Not used in Treasury logic directly but part of config
 };
 
@@ -224,17 +224,19 @@ export function TreasuryCalculator() {
                 p.date.toLocaleDateString(),
                 `$${p.btcPrice.toLocaleString(undefined, { maximumFractionDigits: 0 })}`,
                 p.dailyYieldBTC.toFixed(6),
+                `$${p.dailyYieldUSD.toFixed(2)}`,
                 `$${p.dailyOpExUSD.toFixed(2)}`,
+                `$${p.netProfitUSD.toFixed(2)}`,
                 p.treasuryBTC.toFixed(4),
                 `$${p.treasuryCash.toLocaleString(undefined, { maximumFractionDigits: 0 })}`,
                 `$${p.treasuryUSD.toLocaleString(undefined, { maximumFractionDigits: 0 })}`
             ]);
 
             autoTable(pdf, {
-                head: [['Day', 'Date', 'BTC Price', 'Yield (BTC)', 'OpEx (USD)', 'Treasury (BTC)', 'Treasury (Cash)', 'Total (USD)']],
+                head: [['Day', 'Date', 'BTC Price', 'Yield (BTC)', 'Yield (USD)', 'OpEx (USD)', 'Net Profit', 'Treasury (BTC)', 'Treasury (Cash)', 'Total (USD)']],
                 body: tableData,
                 startY: yPos,
-                styles: { fontSize: 8 },
+                styles: { fontSize: 7 },
                 headStyles: { fillColor: [22, 163, 74] }
             });
 
@@ -264,13 +266,15 @@ export function TreasuryCalculator() {
     const exportCSV = () => {
         if (!result) return;
 
-        const headers = ['Day', 'Date', 'BTC Price', 'Yield (BTC)', 'OpEx (USD)', 'Treasury (BTC)', 'Treasury (Cash)', 'Total (USD)'];
+        const headers = ['Day', 'Date', 'BTC Price', 'Yield (BTC)', 'Yield (USD)', 'OpEx (USD)', 'Net Profit (USD)', 'Treasury (BTC)', 'Treasury (Cash)', 'Total (USD)'];
         const rows = result.projections.map(p => [
             p.dayIndex,
             p.date.toLocaleDateString(),
             p.btcPrice.toFixed(2),
             p.dailyYieldBTC.toFixed(8),
+            p.dailyYieldUSD.toFixed(2),
             p.dailyOpExUSD.toFixed(2),
+            p.netProfitUSD.toFixed(2),
             p.treasuryBTC.toFixed(8),
             p.treasuryCash.toFixed(2),
             p.treasuryUSD.toFixed(2)
@@ -411,10 +415,7 @@ export function TreasuryCalculator() {
                                     <Label>Elec Rate ($/kWh)</Label>
                                     <Input type="number" step="0.01" value={contract.electricityRate} onChange={e => setContract({ ...contract, electricityRate: Number(e.target.value) })} />
                                 </div>
-                                <div className="space-y-2">
-                                    <Label>OpEx Rate ($/kWh)</Label>
-                                    <Input type="number" step="0.01" value={contract.opexRate} onChange={e => setContract({ ...contract, opexRate: Number(e.target.value) })} />
-                                </div>
+
                             </div>
 
                             <div className="space-y-2">
@@ -593,39 +594,45 @@ export function TreasuryCalculator() {
                                     <DialogTrigger asChild>
                                         <Button variant="outline" size="sm">Show Daily Logs</Button>
                                     </DialogTrigger>
-                                    <DialogContent className="max-w-4xl h-[80vh] flex flex-col">
+                                    <DialogContent className="max-w-6xl w-full h-[80vh] flex flex-col">
                                         <DialogHeader>
                                             <DialogTitle>Daily Simulation Logs</DialogTitle>
                                         </DialogHeader>
                                         <ScrollArea className="flex-1 mt-4 -mx-6 px-6 min-h-0">
-                                            <table className="w-full text-sm text-left whitespace-nowrap">
-                                                <thead className="text-xs uppercase bg-muted sticky top-0 z-10">
-                                                    <tr>
-                                                        <th className="px-4 py-2">Day</th>
-                                                        <th className="px-4 py-2">Date</th>
-                                                        <th className="px-4 py-2">BTC Price</th>
-                                                        <th className="px-4 py-2">Yield (BTC)</th>
-                                                        <th className="px-4 py-2">OpEx (USD)</th>
-                                                        <th className="px-4 py-2">Treasury (BTC)</th>
-                                                        <th className="px-4 py-2">Treasury (Cash)</th>
-                                                        <th className="px-4 py-2">Total (USD)</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {result?.projections.map((p) => (
-                                                        <tr key={p.dayIndex} className="border-b hover:bg-muted/50">
-                                                            <td className="px-4 py-1">{p.dayIndex}</td>
-                                                            <td className="px-4 py-1">{p.date.toLocaleDateString()}</td>
-                                                            <td className="px-4 py-1">${p.btcPrice.toLocaleString(undefined, { maximumFractionDigits: 0 })}</td>
-                                                            <td className="px-4 py-1">{p.dailyYieldBTC.toFixed(6)}</td>
-                                                            <td className="px-4 py-1">${p.dailyOpExUSD.toFixed(2)}</td>
-                                                            <td className="px-4 py-1">{p.treasuryBTC.toFixed(4)}</td>
-                                                            <td className="px-4 py-1">${p.treasuryCash.toLocaleString(undefined, { maximumFractionDigits: 0 })}</td>
-                                                            <td className="px-4 py-1 font-medium">${p.treasuryUSD.toLocaleString(undefined, { maximumFractionDigits: 0 })}</td>
+                                            <div className="overflow-x-auto">
+                                                <table className="w-max min-w-full text-sm text-left whitespace-nowrap">
+                                                    <thead className="text-xs uppercase bg-muted sticky top-0 z-10">
+                                                        <tr>
+                                                            <th className="px-4 py-2">Day</th>
+                                                            <th className="px-4 py-2">Date</th>
+                                                            <th className="px-4 py-2">BTC Price</th>
+                                                            <th className="px-4 py-2">Yield (BTC)</th>
+                                                            <th className="px-4 py-2">Yield (USD)</th>
+                                                            <th className="px-4 py-2">OpEx (USD)</th>
+                                                            <th className="px-4 py-2">Net Profit (USD)</th>
+                                                            <th className="px-4 py-2">Treasury (BTC)</th>
+                                                            <th className="px-4 py-2">Treasury (Cash)</th>
+                                                            <th className="px-4 py-2">Total (USD)</th>
                                                         </tr>
-                                                    ))}
-                                                </tbody>
-                                            </table>
+                                                    </thead>
+                                                    <tbody>
+                                                        {result?.projections.map((p) => (
+                                                            <tr key={p.dayIndex} className="border-b hover:bg-muted/50">
+                                                                <td className="px-4 py-1">{p.dayIndex}</td>
+                                                                <td className="px-4 py-1">{p.date.toLocaleDateString()}</td>
+                                                                <td className="px-4 py-1">${p.btcPrice.toLocaleString(undefined, { maximumFractionDigits: 0 })}</td>
+                                                                <td className="px-4 py-1">{p.dailyYieldBTC.toFixed(6)}</td>
+                                                                <td className="px-4 py-1">${p.dailyYieldUSD.toFixed(2)}</td>
+                                                                <td className="px-4 py-1">${p.dailyOpExUSD.toFixed(2)}</td>
+                                                                <td className="px-4 py-1 font-semibold text-emerald-600">${p.netProfitUSD.toFixed(2)}</td>
+                                                                <td className="px-4 py-1">{p.treasuryBTC.toFixed(4)}</td>
+                                                                <td className="px-4 py-1">${p.treasuryCash.toLocaleString(undefined, { maximumFractionDigits: 0 })}</td>
+                                                                <td className="px-4 py-1 font-medium">${p.treasuryUSD.toLocaleString(undefined, { maximumFractionDigits: 0 })}</td>
+                                                            </tr>
+                                                        ))}
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </ScrollArea>
                                     </DialogContent>
                                 </Dialog>

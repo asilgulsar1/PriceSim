@@ -10,6 +10,15 @@ export function Navbar() {
                 </div>
                 <div className="flex items-center space-x-6 text-sm font-medium">
                     <Link
+                        href="/price-simulator"
+                        className={cn(
+                            "transition-colors hover:text-foreground/80",
+                            "text-foreground"
+                        )}
+                    >
+                        Price Simulator
+                    </Link>
+                    <Link
                         href="/"
                         className={cn(
                             "transition-colors hover:text-foreground/80",
@@ -30,15 +39,6 @@ export function Navbar() {
                         )}
                     >
                         Treasury Calculator
-                    </Link>
-                    <Link
-                        href="/price-simulator"
-                        className={cn(
-                            "transition-colors hover:text-foreground/80",
-                            "text-foreground"
-                        )}
-                    >
-                        Price Simulator
                     </Link>
                 </div>
             </div>

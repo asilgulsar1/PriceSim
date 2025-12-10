@@ -59,12 +59,15 @@ describe('MiningCalculator', () => {
         expect(result.projections[14].difficulty).toBeCloseTo(market.networkDifficulty * expectedGrowth, 0);
     });
 
-    test('detects breakeven', () => {
-        // High price to ensure breakeven
-        const highPriceMarket = { ...market, btcPrice: 1000000 };
-        const result = MiningCalculator.calculate(miner, contract, highPriceMarket, config);
+    test('treasury depletes over time in normal conditions', () => {
+        // Normal market conditions - treasury should deplete
+        const result = MiningCalculator.calculate(miner, contract, market, config);
 
-        expect(result.summary.breakevenDate).not.toBeNull();
+        const initialValue = result.projections[0].portfolioValueUSD;
+        const finalValue = result.projections[result.projections.length - 1].portfolioValueUSD;
+
+        // Treasury should have depleted (final < initial)
+        expect(finalValue).toBeLessThan(initialValue);
     });
 
     test('handles halving correctly', () => {
@@ -103,38 +106,31 @@ describe('MiningCalculator', () => {
         }
     });
 
-    test('handles sell_daily strategy', () => {
-        const sellConfig: SimulationConfig = { ...config, reinvestMode: 'sell_daily' };
-        const result = MiningCalculator.calculate(miner, contract, market, sellConfig);
+    test('treasury model: btcHeld starts high and depletes', () => {
+        const result = MiningCalculator.calculate(miner, contract, market, config);
 
-        // BTC Held should be 0
-        expect(result.projections[10].btcHeld).toBe(0);
+        // Day 0: BTC Held should be close to sale price converted to BTC
+        // (slightly less due to first day's operations already applied)
+        const expectedInitialBTC = config.initialInvestment / market.btcPrice;
+        expect(result.projections[0].btcHeld).toBeCloseTo(expectedInitialBTC, 2);
 
-        // Cash balance should increase (or decrease less) as we sell BTC
-        // Revenue is realized
+        // Day 10: BTC Held should have decreased significantly
+        expect(result.projections[10].btcHeld).toBeLessThan(expectedInitialBTC * 0.99);
+
+        // Revenue tracks hosting fees received
         expect(result.projections[10].cumulativeRevenueUSD).toBeGreaterThan(0);
     });
 
-    test('handles hold strategy', () => {
-        const holdConfig: SimulationConfig = { ...config, reinvestMode: 'hold' };
-        const result = MiningCalculator.calculate(miner, contract, market, holdConfig);
+    test('treasury model: portfolio value calculation', () => {
+        const result = MiningCalculator.calculate(miner, contract, market, config);
 
-        // BTC Held should increase
-        expect(result.projections[10].btcHeld).toBeGreaterThan(0);
+        // Portfolio value = cashBalance + (btcHeld * currentPrice)
+        const day10 = result.projections[10];
+        const expectedPortfolioValue = day10.cashBalance + (day10.btcHeld * day10.btcPrice);
 
-        // Cumulative Revenue (Realized) should be 0 (since we hold)
-        // Wait, logic says: cumulativeRevenueUSD tracks "Realized + Unrealized"? 
-        // Let's check logic: 
-        // if sell_daily: cumulativeRevenueUSD += dailyRevenueUSD
-        // if hold: cumulativeRevenueUSD is NOT incremented daily.
-        // So for hold, cumulativeRevenueUSD should be 0?
-        // Let's check the code: 
-        // Line 218: "Let's track Realized Revenue."
-        // Line 264: totalRevenueUSD: cumulativeRevenueUSD + (btcHeld * currentBtcPrice)
+        expect(day10.portfolioValueUSD).toBeCloseTo(expectedPortfolioValue, 2);
 
-        expect(result.projections[10].cumulativeRevenueUSD).toBe(0);
-
-        // But Portfolio Value should include BTC value
-        expect(result.projections[10].portfolioValueUSD).toBeGreaterThan(result.projections[10].cashBalance);
+        // Portfolio value should be positive (treasury has value)
+        expect(day10.portfolioValueUSD).toBeGreaterThan(0);
     });
 });
