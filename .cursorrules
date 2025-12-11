@@ -16,3 +16,6 @@ Before starting any complex task (planning, refactoring, debugging logic, or maj
 
 **4. LOCKED FILES**
 - Do not modify `src/lib/price-simulator-calculator.ts` or `src/lib/treasury-calculator.ts` without explicit user permission and running tests.
+
+**5. RUN TESTS BEFORE DEPLOYMENT**
+- You **MUST** run `npm test` and ensure all tests pass before suggesting a deployment or committing changes that affect business logic or UI components.

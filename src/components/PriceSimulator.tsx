@@ -76,6 +76,12 @@ export function PriceSimulator() {
 
             // Persist for Price List (Local)
             try {
+                // Strip heavy projections for storage
+                const minersForStorage = calculated.map(m => {
+                    const { projections, ...rest } = m;
+                    return rest;
+                });
+
                 const simulationData = {
                     updatedAt: new Date().toISOString(),
                     market,
@@ -85,16 +91,18 @@ export function PriceSimulator() {
                         poolFee: 1.0,
                         contractDurationYears: durationYears
                     },
-                    miners: calculated
+                    miners: minersForStorage
                 };
                 localStorage.setItem('LATEST_SIMULATION_DATA', JSON.stringify(simulationData));
                 console.log("Simulation data saved for Price List locally");
 
-                // Persist Log to Cloud (Async)
+                // Persist Log to Cloud (Async) - Keep full data for cloud logs? Maybe also strip to save bandwidth if not needed?
+                // Let's strip for cloud too to be safe/faster for now, unless we really need debug traces.
+                // Actually, for "Log", maybe we want the summary.
                 fetch('/api/logs/create', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(simulationData)
+                    body: JSON.stringify(simulationData) // Sending stripped data
                 }).catch(err => console.error("Failed to upload simulation log", err));
 
             } catch (e) {

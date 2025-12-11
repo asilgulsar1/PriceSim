@@ -10,6 +10,25 @@ jest.mock('@/lib/api', () => ({
     fetchMarketData: jest.fn(),
 }));
 
+// Mock pricing-solver
+jest.mock('@/lib/pricing-solver', () => ({
+    solveMinerPrice: jest.fn((miner) => ({
+        name: miner.name,
+        hashrateTH: miner.hashrateTH,
+        powerWatts: miner.powerWatts,
+        calculatedPrice: 1000,
+        dailyRevenueUSD: 10,
+        dailyExpenseUSD: 5,
+        projectLifeDays: 365,
+        projections: [],
+        clientProfitabilityPercent: 50,
+        finalTreasuryUSD: 500,
+        finalTreasuryBTC: 0.01,
+        estExpenseBTC: 0.005,
+        estRevenueHostingBTC: 0.01
+    }))
+}));
+
 // Mock MiningCalculator
 jest.mock('@/lib/calculator', () => {
     return {
@@ -65,47 +84,60 @@ describe('PriceSimulator', () => {
                     isShutdown: false,
                 }
             ]
+
         });
+
+        // Mock global fetch
+        (global.fetch as jest.Mock) = jest.fn(() =>
+            Promise.resolve({
+                json: () => Promise.resolve({}),
+            })
+        );
     });
 
     it('renders the simulation parameters form', async () => {
         render(<PriceSimulator />);
-        expect(screen.getByText('Simulation Parameters')).toBeInTheDocument();
+        expect(screen.getByText('Market Assumptions')).toBeInTheDocument();
     });
 
     it('calculates prices correctly', async () => {
         render(<PriceSimulator />);
 
+        // Wait for loading to finish
+        await waitFor(() => expect(screen.getByText('Calculate').closest('button')).not.toBeDisabled());
+
         // Click Calculate
         fireEvent.click(screen.getByText('Calculate'));
 
         // Wait for results
-        await waitFor(() => {
-            expect(screen.getByText('Antminer S21 XP')).toBeInTheDocument();
-            // Check for calculated price (mocked logic will produce some price)
-            // We just check if the table row is rendered
-            const daysElements = screen.getAllByText(/1000 days/);
-            expect(daysElements.length).toBeGreaterThan(0);
-        });
+        // Check for calculated price
+        await screen.findByText('Antminer S21 XP', {}, { timeout: 3000 });
+        const daysElements = screen.getAllByText(/365 days/);
+        expect(daysElements.length).toBeGreaterThan(0);
     });
 
     it('adds a custom miner', async () => {
         render(<PriceSimulator />);
 
         // Open Add Miner form
-        fireEvent.click(screen.getByText('Add Miner'));
+        fireEvent.click(screen.getByText('Add Custom Miner'));
 
         // Fill form
-        fireEvent.change(screen.getByPlaceholderText('e.g. SuperMiner 9000'), { target: { value: 'TestMiner' } });
+        fireEvent.change(screen.getByPlaceholderText('Antminer S21 Pro'), { target: { value: 'TestMiner' } });
         fireEvent.change(screen.getByPlaceholderText('200'), { target: { value: '150' } });
         fireEvent.change(screen.getByPlaceholderText('3000'), { target: { value: '2500' } });
 
         // Click Add
         fireEvent.click(screen.getByText('Add'));
 
+        // Wait for loading to finish
+        await waitFor(() => expect(screen.getByText('Calculate').closest('button')).not.toBeDisabled());
+
+        // Click Calculate to refresh the list with the new miner
+        fireEvent.click(screen.getByText('Calculate'));
+
         // Check if miner appears
-        await waitFor(() => {
-            expect(screen.getByText('TestMiner')).toBeInTheDocument();
-        });
+        // Check if miner appears
+        await screen.findByText('TestMiner', {}, { timeout: 3000 });
     });
 });

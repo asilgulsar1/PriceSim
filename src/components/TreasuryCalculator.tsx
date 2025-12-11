@@ -541,7 +541,7 @@ export function TreasuryCalculator() {
                                                         ? "WIN: DEAL APPROVED"
                                                         : "CAUTION: MARGINAL RESULT"}
                                         </h3>
-                                        <p className="text-sm text-muted-foreground">
+                                        <div className="text-sm text-muted-foreground">
                                             {result.summary.isNegative
                                                 ? "Treasury goes negative before contract ends."
                                                 : result.summary.isAdvisoryTriggered
@@ -549,7 +549,7 @@ export function TreasuryCalculator() {
                                                     : result.summary.isWin
                                                         ? "Treasury surplus exceeds 50% of total client investment."
                                                         : "Treasury is positive but below 50% target."}
-                                        </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -660,7 +660,7 @@ export function TreasuryCalculator() {
                                     <CardTitle className="text-blue-700 dark:text-blue-400 text-lg">Analysis</CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-sm leading-relaxed">
+                                    <div className="text-sm leading-relaxed">
                                         The simulation runs for <strong>{result.summary.totalDays} days</strong>.
                                         {result.summary.shutdownDate && (
                                             <>
@@ -680,7 +680,7 @@ export function TreasuryCalculator() {
                                             <li>Advance Hosting: <strong>{contract.advancePaymentYears} years</strong> (Converted to BTC).</li>
                                         </ul>
                                         The final treasury value is <strong>${result.summary.finalTreasuryUSD.toLocaleString()}</strong>, representing a <strong>{result.summary.roiPercent.toFixed(1)}%</strong> return on the total client investment.
-                                    </p>
+                                    </div>
                                 </CardContent>
                             </Card>
                         </>

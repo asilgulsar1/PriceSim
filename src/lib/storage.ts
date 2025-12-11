@@ -46,3 +46,15 @@ export async function listSimulationLogs(): Promise<SimulationLog[]> {
         size: b.size
     })).sort((a, b) => b.uploadedAt.getTime() - a.uploadedAt.getTime());
 }
+
+export async function saveMarketPrices(data: any) {
+    // Overwrite the single source of truth for market prices
+    const blob = await put('market-prices.json', JSON.stringify(data), {
+        access: 'public',
+        addRandomSuffix: false,
+        token: process.env.BLOB_READ_WRITE_TOKEN,
+        // @ts-ignore - The error message explicitly suggested this property
+        allowOverwrite: true
+    });
+    return blob;
+}

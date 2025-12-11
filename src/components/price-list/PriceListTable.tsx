@@ -3,6 +3,8 @@
 import React from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { MinerScoreDetail } from "@/lib/miner-scoring";
+import Link from "next/link";
+import { slugify } from "@/lib/slug-utils";
 
 interface PriceListTableProps {
     miners: MinerScoreDetail[];
@@ -38,9 +40,15 @@ export function PriceListTable({ miners }: PriceListTableProps) {
                             grossROI = ((m.dailyRevenueUSD * 365) / m.calculatedPrice) * 100;
                         }
 
+
                         return (
+
                             <TableRow key={i} className="hover:bg-muted/50 border-b border-border last:border-0 h-12 transition-colors">
-                                <TableCell className="font-medium text-foreground pl-4 py-2 text-sm">{m.name}</TableCell>
+                                <TableCell className="font-medium text-foreground pl-4 py-2 text-sm">
+                                    <Link href={`/products/${slugify(m.name)}`} className="hover:underline hover:text-blue-600">
+                                        {m.name}
+                                    </Link>
+                                </TableCell>
                                 <TableCell className="text-right text-muted-foreground py-2 text-sm">{m.hashrateTH} T</TableCell>
                                 <TableCell className="text-right text-muted-foreground py-2 text-sm">{(m.powerWatts / m.hashrateTH).toFixed(1)} J/T</TableCell>
                                 <TableCell className="text-right text-muted-foreground py-2 text-sm">{m.powerWatts} W</TableCell>

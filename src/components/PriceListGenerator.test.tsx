@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor, act } from '@testing-library/react';
+import { render, screen, waitFor, act, fireEvent } from '@testing-library/react';
 import { PriceListGenerator } from './PriceListGenerator';
 import '@testing-library/jest-dom';
 
@@ -60,6 +60,7 @@ describe('PriceListGenerator Sync Logic', () => {
         localStorage.setItem('LATEST_SIMULATION_DATA', JSON.stringify(mockSimData));
 
         await act(async () => { render(<PriceListGenerator />); });
+        fireEvent.click(screen.getByText('Fresh Data'));
 
         await waitFor(() => {
             expect(screen.getByText('Simulator Miner')).toBeInTheDocument();
@@ -94,6 +95,7 @@ describe('PriceListGenerator Sync Logic', () => {
         );
 
         await act(async () => { render(<PriceListGenerator />); });
+        fireEvent.click(screen.getByText('Fresh Data'));
 
         await waitFor(() => {
             expect(screen.getByText('API Miner')).toBeInTheDocument();
@@ -103,6 +105,7 @@ describe('PriceListGenerator Sync Logic', () => {
     it('falls back to local calculation only if both fail', async () => {
         // Empty storage, Failed fetch
         await act(async () => { render(<PriceListGenerator />); });
+        fireEvent.click(screen.getByText('Fresh Data'));
 
         await waitFor(() => {
             // Should contain default miners from INITIAL_MINERS

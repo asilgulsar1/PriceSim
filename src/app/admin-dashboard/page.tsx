@@ -5,7 +5,7 @@ export default async function AdminDashboard() {
     const users = await getUsers();
 
     return (
-        <div className="container mx-auto p-8 max-w-4xl">
+        <div className="container mx-auto p-4 md:p-8 max-w-4xl">
             <h1 className="text-3xl font-bold mb-6">User Management</h1>
 
             <div className="bg-white dark:bg-zinc-800 rounded-lg shadow p-6 mb-8">

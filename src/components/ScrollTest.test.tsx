@@ -3,17 +3,42 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { PriceSimulator } from './PriceSimulator';
 import { fetchMarketData } from '@/lib/api';
-import { MiningCalculator } from '@/lib/calculator';
 
 // Mock API and Calculator to ensure it renders populated state
 jest.mock('@/lib/api', () => ({
     fetchMarketData: jest.fn(),
 }));
 
-jest.mock('@/lib/calculator', () => ({
-    MiningCalculator: {
-        calculate: jest.fn(),
-    },
+jest.mock('@/lib/pricing-solver', () => ({
+    solveMinerPrice: jest.fn((miner) => ({
+        name: miner.name,
+        hashrateTH: miner.hashrateTH || 100,
+        powerWatts: miner.powerWatts || 3000,
+        calculatedPrice: 1000,
+        dailyRevenueUSD: 10,
+        dailyExpenseUSD: 5,
+        projectLifeDays: 365,
+        projections: [{
+            dayIndex: 1,
+            date: '2024-01-01',
+            btcPrice: 65000,
+            difficulty: 86000000000000,
+            netProductionBTC: 0.001,
+            totalDailyCostUSD: 10,
+            dailyProfitUSD: 55,
+            accumulatedProfitUSD: 55,
+            dailyRevenueUSD: 65,
+            btcHeld: 0.01,
+            cashBalance: 1000,
+            portfolioValueUSD: 1650,
+            isShutdown: false
+        }],
+        clientProfitabilityPercent: 50,
+        finalTreasuryUSD: 500,
+        finalTreasuryBTC: 0.01,
+        estExpenseBTC: 0.005,
+        estRevenueHostingBTC: 0.01
+    }))
 }));
 
 // Mock UI Components to simplify structure and ensure immediate rendering
@@ -40,37 +65,33 @@ describe('PriceSimulator Scroll Fix', () => {
             networkDifficulty: 86000000000000,
         });
 
-        (MiningCalculator.calculate as jest.Mock).mockReturnValue({
-            summary: {
-                totalDays: 10,
-                totalProductionBTC: 1.5,
-                totalCostUSD: 20000,
-                totalRevenueUSD: 90000,
-            },
-            projections: [
-                {
-                    dayIndex: 0,
-                    btcPrice: 65000,
-                    difficulty: 86000000000000,
-                    netProductionBTC: 0.001,
-                    totalDailyCostUSD: 20,
-                    dailyProfitUSD: 45,
-                    isShutdown: false,
-                }
-            ]
-        });
+        (global.fetch as jest.Mock) = jest.fn(() =>
+            Promise.resolve({
+                json: () => Promise.resolve({}),
+            })
+        );
     });
 
     it('Daily Logs table has correct scroll classes', async () => {
         render(<PriceSimulator />);
 
+        // Wait for loading to finish (button enabled)
+        await waitFor(() => expect(screen.getByText('Calculate').closest('button')).not.toBeDisabled());
+
         // Click Calculate to populate results
         fireEvent.click(screen.getByText('Calculate'));
 
         // Wait for results to render
-        await waitFor(() => {
-            // Find Daily Logs table by specific header
-            const dailyLogsHeaders = screen.getAllByText('Production (BTC)');
+        await waitFor(async () => {
+            // Find View button
+            const viewButtons = screen.getAllByText('View');
+            expect(viewButtons.length).toBeGreaterThan(0);
+
+            // Click to open dialog
+            fireEvent.click(viewButtons[0]);
+
+            // Find Daily Logs table by specific header inside dialog
+            const dailyLogsHeaders = await screen.findAllByText('Production (BTC)');
             expect(dailyLogsHeaders.length).toBeGreaterThan(0);
 
             // Get the table

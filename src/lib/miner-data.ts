@@ -36,8 +36,8 @@ export function getMinerReleaseYear(modelName: string): number {
 
 export const INITIAL_MINERS: MinerProfile[] = [
     // Hydro - S23 Series
-    { name: 'Antminer S23 Hydro Mix', hashrateTH: 1160, powerWatts: 11020, price: 0 }, // 1.16 P
-    { name: 'Antminer S23 Hydro Mix', hashrateTH: 580, powerWatts: 5510, price: 0 },
+    { name: 'Antminer S23 Hydro Mix 1160T', hashrateTH: 1160, powerWatts: 11020, price: 0 }, // 1.16 P
+    { name: 'Antminer S23 Hydro Mix 580T', hashrateTH: 580, powerWatts: 5510, price: 0 },
 
     // Hydro - S21 Series
     { name: 'Antminer S21e XP Hydro 3U', hashrateTH: 860, powerWatts: 11180, price: 0 },

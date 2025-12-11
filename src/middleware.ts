@@ -12,7 +12,7 @@ export default auth((req) => {
         // If trying to access a protected page, let NextAuth handle the redirect to sign-in
         // or we can force it. NextAuth middleware usually handles this if we return false?
         // Actually, simply wrapping with `auth` exposes the session. We need to do the logic.
-        const isSignInPage = nextUrl.pathname.startsWith('/api/auth/signin');
+        const isSignInPage = nextUrl.pathname.startsWith('/api/auth/signin') || nextUrl.pathname === '/login';
         if (!isSignInPage) {
             // We rely on NextAuth to handle the unauthenticated state for generic pages?
             // Actually, it's better to explicitly redirect to api/auth/signin or a custom login page
@@ -21,7 +21,7 @@ export default auth((req) => {
             // However, standard NextAuth middleware example usually just allows falling through if valid?
 
             // Let's implement strict blocking
-            return Response.redirect(new URL('/api/auth/signin', nextUrl));
+            return Response.redirect(new URL('/login', nextUrl));
         }
     }
 
