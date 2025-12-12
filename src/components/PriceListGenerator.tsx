@@ -26,6 +26,7 @@ export function PriceListGenerator() {
     const { market, setMarket } = useMarketData();
     const [loading, setLoading] = useState(false);
     const [lastUpdated, setLastUpdated] = useState<string | null>(null);
+    const [marketPrices, setMarketPrices] = useState<Map<string, number>>(new Map()); // Store market middle prices by miner name
 
     // Results
     const [baseResults, setBaseResults] = useState<MinerScoreDetail[]>([]); // Store raw data synced from Simulator
@@ -38,7 +39,7 @@ export function PriceListGenerator() {
 
     const documentRef = useRef<HTMLDivElement>(null);
 
-    // --- Derived State: Apply Margin ---
+    // --- Derived State: Apply Market Price Max Logic + Margin ---
     useEffect(() => {
         if (baseResults.length === 0) {
             setResults([]); // Clear results if baseResults is empty
@@ -48,8 +49,17 @@ export function PriceListGenerator() {
         const updated = baseResults.map(item => {
             const rawMiner = { ...item.miner }; // Shallow clone
 
-            // Apply Margin
-            // Base Price comes from Simulator. We add margin to it.
+            // STEP 1: Apply Max(Simulator Price, Market Middle Price) Logic
+            // Get market middle price for this miner (match by name)
+            const marketMiddlePrice = marketPrices.get(rawMiner.name) || 0;
+
+            // Use the higher of the two prices as the base price
+            const basePrice = Math.max(rawMiner.calculatedPrice, marketMiddlePrice);
+
+            // Update to base price (before margin)
+            rawMiner.calculatedPrice = basePrice;
+
+            // STEP 2: Apply Margin on top of the base price
             let marginAmount = 0;
             if (salesMarginType === 'usd') {
                 marginAmount = salesMargin;
@@ -59,18 +69,7 @@ export function PriceListGenerator() {
 
             rawMiner.calculatedPrice = rawMiner.calculatedPrice + marginAmount;
 
-            // Recalculate ROI (Client Profitability)
-            // Original ROI = (NetProfit / Price) ? or (NetProfit - Price) / Price?
-            // Need to know how `clientProfitabilityPercent` was calculated.
-            // In pricing-solver.ts check: clientProfitabilityPercent usually (TotalRevenue - TotalCost - Price) / Price * 100?
-            // Or simple ROI = (Total Revenue - Total Cost) / Price?
-            // Let's approximate based on typical logic:
-            // NetProfit (Lifetime) = dailyProfit * days.
-            // ROI = (NetProfit - Price) / Price. 
-            // We have `totalRevenueUSD` and `totalCostUSD` in specific fields if they were preserved?
-            // The `CalculatedMiner` has `dailyRevenueUSD`, `dailyExpenseUSD`, `projectLifeDays`.
-            // Let's recalculate based on these.
-
+            // STEP 3: Recalculate ROI (Client Profitability)
             const totalRevenue = rawMiner.dailyRevenueUSD * rawMiner.projectLifeDays;
             const totalCost = rawMiner.dailyExpenseUSD * rawMiner.projectLifeDays;
             const netOperatingProfit = totalRevenue - totalCost;
@@ -82,26 +81,18 @@ export function PriceListGenerator() {
                 rawMiner.clientProfitabilityPercent = 0;
             }
 
-            // We need to recreate the Score Detail wrapper
-            // rankMiners might need to re-run if score depends on price?
-            // For simple display updates, we can just update the miner object.
             return {
                 ...item,
                 miner: rawMiner
             };
         });
 
-        // Re-Rank if needed?
-        // rankMiners calc score based on ROI, Price, etc.
-        // It's safer to re-rank.
-        // But `updated` is `MinerScoreDetail[]`. rankMiners takes `CalculatedMiner[]`.
-        // Let's extract miners and re-rank.
+        // Re-Rank miners with updated prices
         const minersOnly = updated.map(u => u.miner);
         const reRanked = rankMiners(minersOnly);
-        // Ranker now uses the pre-calculated Gross ROI
         setResults(reRanked);
 
-    }, [baseResults, salesMargin, salesMarginType]);
+    }, [baseResults, salesMargin, salesMarginType, marketPrices]);
 
 
     // --- Derived State ---
@@ -219,6 +210,10 @@ export function PriceListGenerator() {
 
                     if (data.updatedAt) setLastUpdated(`Synced from Simulator (${new Date(data.updatedAt).toLocaleTimeString()})`);
                     if (data.market) setMarket(data.market);
+
+                    // Fetch market prices
+                    await fetchMarketPrices();
+
                     setLoading(false);
                     return;
                 }
@@ -239,6 +234,10 @@ export function PriceListGenerator() {
                     setBaseResults(ranked);
                     if (data.updatedAt) setLastUpdated(new Date(data.updatedAt).toLocaleString());
                     if (data.market) setMarket(data.market);
+
+                    // Fetch market prices
+                    await fetchMarketPrices();
+
                     setLoading(false);
                     return;
                 }
@@ -249,6 +248,31 @@ export function PriceListGenerator() {
 
         // 3. Last Resort: Local
         calculateLocal();
+
+        // Still try to fetch market prices even for local calculation
+        await fetchMarketPrices();
+    };
+
+    const fetchMarketPrices = async () => {
+        try {
+            const res = await fetch('/api/market/latest', { cache: 'no-store' });
+            if (res.ok) {
+                const data = await res.json();
+                if (data.miners && Array.isArray(data.miners)) {
+                    // Build a Map of miner name -> middle price
+                    const pricesMap = new Map<string, number>();
+                    data.miners.forEach((miner: any) => {
+                        if (miner.name && miner.stats && miner.stats.middlePrice > 0) {
+                            pricesMap.set(miner.name, miner.stats.middlePrice);
+                        }
+                    });
+                    setMarketPrices(pricesMap);
+                    console.log(`Loaded market prices for ${pricesMap.size} miners`);
+                }
+            }
+        } catch (e) {
+            console.warn("Failed to fetch market prices", e);
+        }
     };
     const handleExportCSV = () => {
         const headers = ['Model', 'Score', 'Hashrate (TH/s)', 'Power (W)', 'Efficiency (J/TH)', 'Unit Price ($)', 'Daily Revenue ($)', 'Payback (Years)', 'ROI (%)'];
