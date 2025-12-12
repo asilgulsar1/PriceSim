@@ -337,7 +337,7 @@ export function PriceListGenerator() {
                         }
                     });
                     setMarketPrices(pricesMap);
-                    console.log(`Loaded market prices for ${pricesMap.size} miners`);
+                    console.log(`Loaded market prices for ${pricesMap.size} miners (Fuzzy Logic Active)`);
                     console.log("Market Keys available:", Array.from(pricesMap.keys()));
                 }
             } else {
