@@ -204,10 +204,14 @@ export function MarketPriceTable({ initialData, lastUpdated }: MarketPriceTableP
                             </TableRow>
                         ) : (
                             sortedData.map((miner) => (
-                                <TableRow key={miner.id}>
+                                <TableRow key={miner.id} className="group">
                                     <TableCell className="font-medium">
                                         <div className="flex flex-col">
-                                            <Link href={`/products/${slugify(miner.name)}`} className="hover:underline text-primary font-semibold">
+                                            <Link
+                                                href={`/products/${slugify(miner.name)}`}
+                                                className="hover:underline text-primary font-semibold cursor-pointer relative z-10"
+                                                style={{ pointerEvents: 'auto' }}
+                                            >
                                                 {miner.name}
                                             </Link>
                                             <span className="text-xs text-muted-foreground">{miner.listings.length > 0 && miner.listings[0].stockStatus}</span>
