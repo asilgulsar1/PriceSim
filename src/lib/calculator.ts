@@ -124,7 +124,7 @@ export class MiningCalculator {
 
     // Treasury Model: Convert sale price to BTC reserve
     let btcHeld = config.initialInvestment / market.btcPrice;
-    let cashBalance = 0;
+    const cashBalance = 0;
 
     let breakevenDate: Date | null = null;
     let shutdownDate: Date | null = null;

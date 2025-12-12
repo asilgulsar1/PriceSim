@@ -28,6 +28,23 @@ export interface MarketListing {
     stockStatus?: string;
 }
 
+// Define a more specific type for the raw marketplace items
+interface RawMarketplaceItem {
+    miner: {
+        slug: string;
+        name: string;
+        hashrates?: { algorithm?: { name: string } }[];
+        // Add other properties of miner if needed
+    };
+    vendor?: {
+        name: string;
+        website?: string;
+    };
+    price: number;
+    currency: string;
+    stockStatus?: string;
+}
+
 export async function fetchMarketplaceData(): Promise<MarketMiner[]> {
     try {
         console.log('Fetching marketplace data via static extraction...');
@@ -47,31 +64,31 @@ export async function fetchMarketplaceData(): Promise<MarketMiner[]> {
         ]);
 
         // Process Marketplace Data
-        let foundPrices: any[] = [];
+        let foundPrices: RawMarketplaceItem[] = [];
         if (marketRes.ok) {
             const html = await marketRes.text();
             const $ = cheerio.load(html);
-            $('script').each((_, el) => {
+            $('script').each((_idx, el) => {
                 const content = $(el).html() || '';
                 if (content.includes('self.__next_f.push')) {
                     const extracted = extractPricesFromScript(content);
                     if (extracted) {
                         foundPrices = extracted;
-                        return false;
+                        return false; // Stop iteration
                     }
                 }
             });
         }
 
         // Process Main Page Data for High Hashrate / Upcoming models
-        const referenceMiners = new Map<string, any>();
+        const referenceMiners = new Map<string, { id: string; name: string; specs: { hashrateTH: number; powerW: number; algo: string; }; price: number; }>();
         if (mainRes.ok) {
             const html = await mainRes.text();
             const $ = cheerio.load(html);
 
             // The main page uses a specific table structure. 
             // We look for rows that contain SHA-256
-            $('tr').each((_, row) => {
+            $('tr').each((_idx: number, row: cheerio.Element) => {
                 const text = $(row).text();
                 if (!text.includes('SHA-256')) return;
 
@@ -84,7 +101,7 @@ export async function fetchMarketplaceData(): Promise<MarketMiner[]> {
                 // Usually structure: <a><span>...</span><span>...</span></a>
                 // Let's take the text of the *first* child node of the anchor that is text?
 
-                let rawName = modelCell.find('a').first().text().trim();
+                const rawName = modelCell.find('a').first().text().trim();
                 // If name repeats itself (common in responsive tables using ::before/::after or hidden spans)
                 // e.g. "Name (Hash)Name (Hash)"
                 // We can roughly detect this if the string length is essentially 2x and the halves match.

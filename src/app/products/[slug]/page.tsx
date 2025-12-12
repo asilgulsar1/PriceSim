@@ -1,136 +1,136 @@
-import React from 'react';
-import { notFound } from 'next/navigation';
-import { Metadata } from 'next';
+
 import { INITIAL_MINERS } from '@/lib/miner-data';
 import { slugify } from '@/lib/slug-utils';
-import { ProductPricing } from '@/components/ProductPricing';
-import Link from 'next/link';
-import { ArrowLeft, Zap, Box, Activity } from 'lucide-react';
+import { notFound } from 'next/navigation'; // Server component safe
+import { Metadata } from 'next';
+import ProductPageClient from '@/components/ProductPageClient';
 
-interface ComponentProps {
-    params: Promise<{
-        slug: string;
-    }>;
+import { list } from '@vercel/blob';
+
+
+interface ExtendedMinerProfile {
+    name: string;
+    hashrateTH: number;
+    powerWatts: number;
+    price: number;
+    listings?: any[];
+    stats?: any;
+    slug?: string;
 }
 
-export async function generateStaticParams() {
-    return INITIAL_MINERS.map((miner) => ({
-        slug: slugify(miner.name),
-    }));
+// Helper to find miner
+async function getMiner(slug: string): Promise<ExtendedMinerProfile | null> {
+    let result: ExtendedMinerProfile | null = null;
+
+    // 1. Check Static List
+    const staticMiner = INITIAL_MINERS.find(m => slugify(m.name) === slug);
+    if (staticMiner) {
+        result = { ...staticMiner, slug };
+    }
+
+    // 2. Fetch Market Data to enrich or fallback
+    try {
+        const { blobs } = await list({ prefix: 'market-prices.json', limit: 1, token: process.env.BLOB_READ_WRITE_TOKEN });
+        if (blobs.length > 0) {
+            const res = await fetch(blobs[0].url, { next: { revalidate: 60 } });
+            if (res.ok) {
+                const data = await res.json();
+                const marketMiner = data.miners?.find((m: any) => slugify(m.name) === slug);
+
+                if (marketMiner) {
+                    // If we didn't have a static miner, use this one
+                    if (!result) {
+                        result = {
+                            name: marketMiner.name,
+                            hashrateTH: marketMiner.specs.hashrateTH,
+                            powerWatts: marketMiner.specs.powerW,
+                            price: marketMiner.stats.middlePrice,
+                            slug, // Ensure slug is attached
+                        };
+                    }
+
+                    // Attach market data (listings & stats) to the result
+                    result.listings = marketMiner.listings;
+                    result.stats = marketMiner.stats;
+                }
+            }
+        }
+    } catch (e) {
+        console.error("Failed to fetch market miner fallback", e);
+    }
+
+    return result;
 }
 
-export async function generateMetadata({ params }: ComponentProps): Promise<Metadata> {
-    const { slug } = await params;
-    const miner = INITIAL_MINERS.find((m) => slugify(m.name) === slug);
+// SEO Metadata Generator
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const params = await props.params;
+    const miner = await getMiner(params.slug);
 
     if (!miner) {
         return {
-            title: 'Product Not Found',
+            title: 'Miner Not Found',
+            description: 'The requested mining hardware could not be found.'
         };
     }
 
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.asic.ae';
+    const imageUrl = `${baseUrl}/asic-miner-large.png`;
+
     return {
-        title: `${miner.name} - Specs & Pricing`,
-        description: `Buy ${miner.name} (${miner.hashrateTH} TH/s, ${miner.powerWatts}W). View live pricing and profitability analysis.`,
-        keywords: [miner.name, 'ASIC Miner', 'Bitcoin Mining', 'Crypto Mining Hardware'],
+        title: `Buy ${miner.name} | Best Price & Profitability Calculator`,
+        description: `Get the best deal on ${miner.name} (${miner.hashrateTH} TH/s). Real-time profitability ROI: ${(miner.price ? '$' + miner.price : 'Get Quote')}. Verified stock ships from Dubai.`,
+        keywords: [miner.name, 'buy asic miner', 'bitcoin mining hardware', 'crypto mining profitability', 'segments.ae', 'asic.ae'],
+        alternates: {
+            canonical: `${baseUrl}/products/${params.slug}`,
+        },
+        openGraph: {
+            title: `${miner.name} - ${miner.hashrateTH} TH/s - Profitability Analysis`,
+            description: `Efficiency: ${(miner.powerWatts / miner.hashrateTH).toFixed(1)} J/TH. Daily Revenue: Check real-time mining stats.`,
+            images: [{ url: imageUrl, width: 800, height: 600, alt: miner.name }],
+            type: 'website',
+        }
     };
 }
 
-export default async function ProductPage({ params }: ComponentProps) {
-    const { slug } = await params;
-    const miner = INITIAL_MINERS.find((m) => slugify(m.name) === slug);
+export default async function ProductPage(props: { params: Promise<{ slug: string }> }) {
+    const params = await props.params;
+    const miner = await getMiner(params.slug);
 
     if (!miner) {
-        notFound();
+        return notFound();
     }
 
-    const efficiency = (miner.powerWatts / miner.hashrateTH).toFixed(1);
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.asic.ae';
+
+    // JSON-LD Structured Data for SEO
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: miner.name,
+        image: `${baseUrl}/asic-miner-large.png`,
+        description: `Verified ${miner.name} Bitcoin Miner. Hashrate: ${miner.hashrateTH} TH/s. Power: ${miner.powerWatts}W.`,
+        brand: {
+            '@type': 'Brand',
+            name: miner.name.split(' ')[0] // e.g. "Antminer" or "Whatsminer"
+        },
+        offers: {
+            '@type': 'Offer',
+            url: `${baseUrl}/products/${params.slug}`,
+            priceCurrency: 'USD',
+            price: miner.price || '0',
+            availability: 'https://schema.org/InStock',
+            itemCondition: 'https://schema.org/NewCondition',
+        }
+    };
 
     return (
-        <div className="container mx-auto py-12 px-4 max-w-4xl">
-            <Link href="/price-list" className="inline-flex items-center text-muted-foreground hover:text-foreground mb-8 transition-colors">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Price List
-            </Link>
-
-            <div className="grid md:grid-cols-2 gap-12">
-                <div className="space-y-6">
-                    <div>
-                        <h1 className="text-4xl font-extrabold tracking-tight mb-2">{miner.name}</h1>
-                        <p className="text-xl text-muted-foreground">High-performance Bitcoin ASIC Miner</p>
-                    </div>
-
-                    <div className="bg-muted/30 p-6 rounded-2xl border border-border">
-                        <ProductPricing miner={miner} />
-                    </div>
-
-                    <div className="prose dark:prose-invert">
-                        <h3>Product Highlights</h3>
-                        <ul>
-                            <li>Industry leading efficiency at {efficiency} J/TH</li>
-                            <li>Optimized for long-term mining operations</li>
-                            <li>Full warranty support included</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div className="space-y-6">
-                    <div className="grid grid-cols-2 gap-4">
-                        <SpecCard
-                            icon={<Zap className="h-5 w-5 text-yellow-500" />}
-                            label="Hashrate"
-                            value={`${miner.hashrateTH} TH/s`}
-                        />
-                        <SpecCard
-                            icon={<Box className="h-5 w-5 text-blue-500" />}
-                            label="Power Consumption"
-                            value={`${miner.powerWatts} W`}
-                        />
-                        <SpecCard
-                            icon={<Activity className="h-5 w-5 text-green-500" />}
-                            label="Efficiency"
-                            value={`${efficiency} J/TH`}
-                        />
-                        <SpecCard
-                            icon={<Box className="h-5 w-5 text-purple-500" />}
-                            label="Algorithm"
-                            value="SHA-256"
-                        />
-                    </div>
-
-                    <div className="bg-card text-card-foreground p-6 rounded-xl border shadow-sm mt-8">
-                        <h3 className="font-semibold mb-4">Technical Specifications</h3>
-                        <div className="space-y-3 text-sm">
-                            <div className="flex justify-between py-2 border-b">
-                                <span className="text-muted-foreground">Model</span>
-                                <span className="font-medium">{miner.name}</span>
-                            </div>
-                            <div className="flex justify-between py-2 border-b">
-                                <span className="text-muted-foreground">Hashrate</span>
-                                <span className="font-medium">{miner.hashrateTH} TH/s</span>
-                            </div>
-                            <div className="flex justify-between py-2 border-b">
-                                <span className="text-muted-foreground">Power on Wall</span>
-                                <span className="font-medium">{miner.powerWatts} Watts</span>
-                            </div>
-                            <div className="flex justify-between py-2 border-b">
-                                <span className="text-muted-foreground">Efficiency</span>
-                                <span className="font-medium">{efficiency} J/TH</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-}
-
-function SpecCard({ icon, label, value }: { icon: React.ReactNode, label: string, value: string }) {
-    return (
-        <div className="bg-card hover:bg-muted/50 transition-colors p-4 rounded-xl border flex flex-col items-start gap-2">
-            <div className="p-2 bg-muted rounded-lg mb-1">{icon}</div>
-            <div className="text-xs text-muted-foreground font-medium uppercase tracking-wider">{label}</div>
-            <div className="text-lg font-bold">{value}</div>
-        </div>
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <ProductPageClient miner={miner as any} />
+        </>
     );
 }

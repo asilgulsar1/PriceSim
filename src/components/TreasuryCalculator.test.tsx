@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
@@ -10,6 +11,12 @@ import { TextEncoder, TextDecoder } from 'util';
 // Polyfill TextEncoder
 global.TextEncoder = TextEncoder as any;
 global.TextDecoder = TextDecoder as any;
+
+// Mock HTMLAnchorElement.prototype.click to avoid JSDOM navigation error
+Object.defineProperty(HTMLAnchorElement.prototype, 'click', {
+    writable: true,
+    value: jest.fn(),
+});
 
 // Mock API
 jest.mock('@/lib/api', () => ({

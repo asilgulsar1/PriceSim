@@ -97,7 +97,9 @@ describe('PriceSimulator', () => {
 
     it('renders the simulation parameters form', async () => {
         render(<PriceSimulator />);
-        expect(screen.getByText('Market Assumptions')).toBeInTheDocument();
+        await waitFor(() => expect(screen.getByText('Market Assumptions')).toBeInTheDocument());
+        // Wait for button to be enabled to ensure initial load is done
+        await waitFor(() => expect(screen.getByText('Calculate').closest('button')).not.toBeDisabled());
     });
 
     it('calculates prices correctly', async () => {

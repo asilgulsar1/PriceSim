@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -43,20 +44,36 @@ jest.mock('@/lib/pricing-solver', () => ({
 
 // Mock UI Components to simplify structure and ensure immediate rendering
 jest.mock('@/components/ui/card', () => ({
-    Card: ({ children }: any) => <div>{children}</div>,
-    CardHeader: ({ children }: any) => <div>{children}</div>,
-    CardTitle: ({ children }: any) => <h1>{children}</h1>,
-    CardContent: ({ children }: any) => <div>{children}</div>,
+
+    Card: ({ children }: { children?: React.ReactNode }) => <div>{children}</div>,
+    CardHeader: ({ children }: { children?: React.ReactNode }) => <div>{children}</div>,
+    CardTitle: ({ children }: { children?: React.ReactNode }) => <h1>{children}</h1>,
+    CardContent: ({ children }: { children?: React.ReactNode }) => <div>{children}</div>,
 }));
 
 // Mock Dialog to render content immediately (no interaction needed)
-jest.mock('@/components/ui/dialog', () => ({
-    Dialog: ({ children }: any) => <div>{children}</div>,
-    DialogTrigger: ({ children }: any) => <div>{children}</div>,
-    DialogContent: ({ children }: any) => <div data-testid="dialog-content">{children}</div>,
-    DialogHeader: ({ children }: any) => <div>{children}</div>,
-    DialogTitle: ({ children }: any) => <div>{children}</div>,
-}));
+jest.mock('@/components/ui/dialog', () => {
+    // Mock ScrollArea component structure
+    const MockScrollArea = ({ children, className }: { children: React.ReactNode, className?: string }) => (
+        <div data-testid="scroll-area" className={className}>
+            <div data-testid="viewport">
+                {children}
+            </div>
+        </div>
+    );
+
+    return {
+        Dialog: ({ children }: { children?: React.ReactNode }) => <div>{children}</div>,
+        DialogTrigger: ({ children }: { children?: React.ReactNode }) => <div>{children}</div>,
+        DialogContent: ({ children, className }: { children?: React.ReactNode, className?: string }) => (
+            <div data-testid="dialog-content" className={className}>
+                <MockScrollArea>{children}</MockScrollArea>
+            </div>
+        ),
+        DialogHeader: ({ children }: { children?: React.ReactNode }) => <div>{children}</div>,
+        DialogTitle: ({ children }: { children?: React.ReactNode }) => <div>{children}</div>,
+    };
+});
 
 describe('PriceSimulator Scroll Fix', () => {
     beforeEach(() => {

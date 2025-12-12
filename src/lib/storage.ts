@@ -7,10 +7,10 @@ export interface SimulationLog {
     size: number;
 }
 
-export async function saveSimulationLog(data: any, isManual: boolean = false) {
+export async function saveSimulationLog(data: any, isManual: boolean = false) { // eslint-disable-line @typescript-eslint/no-explicit-any
     const timestamp = new Date().toISOString();
     const prefix = isManual ? 'manual' : 'cron';
-    const filename = `logs/${prefix}-simulation-${timestamp}.json`;
+    const filename = `logs / ${prefix} -simulation - ${timestamp}.json`;
 
     // 1. Save the persistent Log
     const logBlob = await put(filename, JSON.stringify(data), {
@@ -47,13 +47,12 @@ export async function listSimulationLogs(): Promise<SimulationLog[]> {
     })).sort((a, b) => b.uploadedAt.getTime() - a.uploadedAt.getTime());
 }
 
-export async function saveMarketPrices(data: any) {
+export async function saveMarketPrices(data: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
     // Overwrite the single source of truth for market prices
     const blob = await put('market-prices.json', JSON.stringify(data), {
         access: 'public',
         addRandomSuffix: false,
         token: process.env.BLOB_READ_WRITE_TOKEN,
-        // @ts-ignore - The error message explicitly suggested this property
         allowOverwrite: true
     });
     return blob;

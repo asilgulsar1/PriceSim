@@ -15,6 +15,8 @@ import {
     TableCell
 } from '@/components/ui/table';
 import { Search, RefreshCw, ArrowUpDown, ArrowUp, ArrowDown, ExternalLink } from 'lucide-react';
+import Link from 'next/link';
+import { slugify } from '@/lib/slug-utils';
 
 interface MarketMiner {
     id: string;
@@ -205,7 +207,9 @@ export function MarketPriceTable({ initialData, lastUpdated }: MarketPriceTableP
                                 <TableRow key={miner.id}>
                                     <TableCell className="font-medium">
                                         <div className="flex flex-col">
-                                            <span>{miner.name}</span>
+                                            <Link href={`/products/${slugify(miner.name)}`} className="hover:underline text-primary font-semibold">
+                                                {miner.name}
+                                            </Link>
                                             <span className="text-xs text-muted-foreground">{miner.listings.length > 0 && miner.listings[0].stockStatus}</span>
                                         </div>
                                     </TableCell>

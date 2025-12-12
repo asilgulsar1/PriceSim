@@ -1,6 +1,6 @@
 import { list, put, del } from '@vercel/blob';
 
-export type UserRole = 'admin' | 'sales';
+export type UserRole = 'admin' | 'sales' | 'client';
 
 export interface User {
     email: string;
@@ -66,9 +66,7 @@ export async function addUser(user: User) {
     await put(getUserPath(user.email), JSON.stringify(user), {
         access: 'public',
         addRandomSuffix: false, // We WANT to determine the filename exactly
-        // @ts-ignore - Vercel Blob types update
         token: process.env.BLOB_READ_WRITE_TOKEN,
-        // @ts-ignore
         allowOverwrite: true, // Explicitly allow updating THIS user
     });
 }
@@ -77,7 +75,6 @@ export async function removeUser(email: string) {
     const path = getUserPath(email);
     // Delete the specific blob for this user
     await del(path, {
-        // @ts-ignore
         token: process.env.BLOB_READ_WRITE_TOKEN,
     });
 }

@@ -30,7 +30,10 @@ export function PriceListPdfTemplate({
     // Fix hydration mismatch by only rendering date on client
     const [currentDate, setCurrentDate] = useState("");
     useEffect(() => {
-        setCurrentDate(new Date().toLocaleDateString());
+        // Wrap in timeout or just set it. The linter warning might be about synchronous updates.
+        // Actually, for hydration, just setting it is fine.
+        const timer = setTimeout(() => setCurrentDate(new Date().toLocaleDateString()), 0);
+        return () => clearTimeout(timer);
     }, []);
 
     // Chunking Logic

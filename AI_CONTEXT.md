@@ -44,3 +44,22 @@ The application has multiple "front-ends" that sell or display contracts. They M
 - **PDF Export**: The PDF generation is fragile. Check `src/components/ProposalDocument.tsx` carefully. 
 - **Halving Logic**: Ensure `currentBlockReward` updates correctly on the halving date.
 - **Treasury Balance**: Remember that `Treasury` usually accumulates in BTC. Do not mix USD/BTC units without explicit conversion.
+
+## 6. Sub-Projects
+### News Strategy & Sales Dashboard (`/news-strategy`)
+A standalone Next.js application for the Sales Team.
+- **Location**: `news-strategy/` (Separate `package.json`).
+- **Port**: Runs on **3001** (`npm run dev -p 3001`).
+- **Goal**: Provide daily AI-summarized market news and "Weekly Certification" quizzes for sales staff.
+- **Connectivity**:
+    - **Shared Data**: Uses the **Main App's Vercel Blob Token** to share the User Database (`users/`).
+    - **API Integration**: Fetches live miner profitability from the Main App (`/api/miners/latest`).
+- **Key Features**: Interactive Quiz, PDF Reporting, Pipedrive CRM Automation.
+- **Future Roadmap**: Continuous News Indexing (NewsAPI/RSS), Celebrity Tracker, and Historical Data Archive.
+
+## 7. Bug & Stability Protocol
+**Before any major code change:**
+1.  **Check `BUGS.md`**: Ensure you are aware of active issues.
+2.  **Run Tests**: `npm test` (or relevant project test script) must pass.
+3.  **Log Issues**: If an error is detected during development, update `BUGS.md` immediately.
+4.  **Fix Verification**: Do not mark a bug as fixed until you have run tests/verification steps.
