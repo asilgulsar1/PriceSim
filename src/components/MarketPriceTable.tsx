@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/table';
 import { Search, RefreshCw, ArrowUpDown, ArrowUp, ArrowDown, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { slugify } from '@/lib/slug-utils';
 
 interface MarketMiner {
@@ -140,6 +141,8 @@ export function MarketPriceTable({ initialData, lastUpdated }: MarketPriceTableP
         return 0;
     });
 
+    const router = useRouter();
+
     const SortIcon = ({ field }: { field: SortField }) => {
         if (sortField !== field) return <ArrowUpDown className="ml-2 h-4 w-4 text-muted-foreground" />;
         return sortOrder === 'asc'
@@ -204,13 +207,17 @@ export function MarketPriceTable({ initialData, lastUpdated }: MarketPriceTableP
                             </TableRow>
                         ) : (
                             sortedData.map((miner) => (
-                                <TableRow key={miner.id} className="group">
+                                <TableRow
+                                    key={miner.id}
+                                    className="group cursor-pointer hover:bg-muted/50 transition-colors"
+                                    onClick={() => router.push(`/products/${slugify(miner.name)}`)}
+                                >
                                     <TableCell className="font-medium">
                                         <div className="flex flex-col">
                                             <Link
                                                 href={`/products/${slugify(miner.name)}`}
-                                                className="hover:underline text-primary font-semibold cursor-pointer relative z-10"
-                                                style={{ pointerEvents: 'auto' }}
+                                                className="hover:underline text-primary font-semibold text-base block w-full py-1"
+                                                onClick={(e) => e.stopPropagation()}
                                             >
                                                 {miner.name}
                                             </Link>

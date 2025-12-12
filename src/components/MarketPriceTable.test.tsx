@@ -3,6 +3,14 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { MarketPriceTable } from './MarketPriceTable';
 
 // Mock Next.js components
+const mockPush = jest.fn();
+
+jest.mock('next/navigation', () => ({
+    useRouter: () => ({
+        push: mockPush,
+    }),
+}));
+
 jest.mock('next/link', () => ({
     __esModule: true,
     default: ({ children, href }: { children: React.ReactNode; href: string }) => (

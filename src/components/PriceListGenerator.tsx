@@ -15,6 +15,68 @@ import { PriceListControls } from "./price-list/PriceListControls";
 import { PriceListFilterBar, SortField } from "./price-list/PriceListFilterBar";
 import { PriceListTable } from "./price-list/PriceListTable";
 import { PriceListPdfTemplate } from "./price-list/PriceListPdfTemplate";
+import { slugify } from "@/lib/slug-utils";
+
+// Fuzzy matching helper
+function findBestMatch(simName: string, marketPrices: Map<string, number>): number {
+    // 1. Exact Match
+    if (marketPrices.has(simName)) return marketPrices.get(simName)!;
+
+    // 2. Slug Match (Exact)
+    const simSlug = slugify(simName);
+    // We can't lookup by key directly if we don't have a slug map, so we iterate.
+
+    // Normalize Helper
+    const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const simNorm = normalize(simName);
+
+    let bestPrice = 0;
+    let maxOverlap = 0;
+
+    for (const [marketName, price] of marketPrices.entries()) {
+        const markNorm = normalize(marketName);
+
+        // Check for containment (Sim contained in Market or Market contained in Sim)
+        // e.g. "antminers21xp" in "antminers21xp270t"
+        if (markNorm.includes(simNorm) || simNorm.includes(markNorm)) {
+            // Found a candidate.
+            // Prefer the one with the longest overlap (most specific match)
+            // Actually, if we match multiple, which one is better?
+            // "Antminer S21" vs "Antminer S21 XP"? 
+            // "antminers21" is in "antminers21xp". Bad match.
+            // We need to match tokens.
+
+            // Revert to token Matching
+            // Split by space/hyphen
+            const simTokens = simName.toLowerCase().split(/[\s-]+/);
+            const markTokens = marketName.toLowerCase().split(/[\s-]+/);
+
+            // Count matching tokens
+            const matches = simTokens.filter(t => markTokens.includes(t));
+            const score = matches.length / Math.max(simTokens.length, markTokens.length);
+
+            if (score > 0.8) { // High confidence match
+                return price;
+            }
+        }
+    }
+
+    // 3. Fallback: Try to strip hashrate from both?
+    // "Antminer S21 Pro 234T" -> "Antminer S21 Pro"
+    // Market: "Antminer S21 Pro (234Th)"
+    // The containment check above handled some, but "234t" vs "234th" fails exact token match.
+
+    // Iterative Containment with detailed verification
+    for (const [marketName, price] of marketPrices.entries()) {
+        if (slugify(marketName).includes(simSlug) || simSlug.includes(slugify(marketName))) {
+            // If the length difference is small, it's likely a match
+            const lenDiff = Math.abs(marketName.length - simName.length);
+            if (lenDiff < 10) return price;
+        }
+    }
+
+    return 0;
+}
 
 export function PriceListGenerator() {
     // --- State ---
@@ -50,8 +112,15 @@ export function PriceListGenerator() {
             const rawMiner = { ...item.miner }; // Shallow clone
 
             // STEP 1: Apply Max(Simulator Price, Market Middle Price) Logic
-            // Get market middle price for this miner (match by name)
-            const marketMiddlePrice = marketPrices.get(rawMiner.name) || 0;
+            // Get market middle price for this miner (using fuzzy matching)
+            const marketMiddlePrice = findBestMatch(rawMiner.name, marketPrices);
+
+            // Debug Log
+            if (marketMiddlePrice > 0) {
+                console.log(`Matched ${rawMiner.name}: Sim=$${rawMiner.calculatedPrice.toFixed(0)} vs Market=$${marketMiddlePrice.toLocaleString()} -> Using $${Math.max(rawMiner.calculatedPrice, marketMiddlePrice).toLocaleString()}`);
+            } else {
+                console.log(`No market match for ${rawMiner.name}`);
+            }
 
             // Use the higher of the two prices as the base price
             const basePrice = Math.max(rawMiner.calculatedPrice, marketMiddlePrice);
@@ -255,6 +324,7 @@ export function PriceListGenerator() {
 
     const fetchMarketPrices = async () => {
         try {
+            console.log("Fetching market prices from API...");
             const res = await fetch('/api/market/latest', { cache: 'no-store' });
             if (res.ok) {
                 const data = await res.json();
@@ -268,7 +338,10 @@ export function PriceListGenerator() {
                     });
                     setMarketPrices(pricesMap);
                     console.log(`Loaded market prices for ${pricesMap.size} miners`);
+                    console.log("Market Keys available:", Array.from(pricesMap.keys()));
                 }
+            } else {
+                console.warn("Market API response not OK:", res.status);
             }
         } catch (e) {
             console.warn("Failed to fetch market prices", e);
