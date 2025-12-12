@@ -113,4 +113,44 @@ describe('PriceListGenerator Sync Logic', () => {
             expect(rows.length).toBeGreaterThan(0);
         });
     });
+
+    it('applies Max price logic using Hashrate matching', async () => {
+        // Mock Sim Data: S23 1160T @ $19k
+        const mockSimData = {
+            updatedAt: new Date().toISOString(),
+            market: { btcPrice: 90000, networkDifficulty: 90 },
+            miners: [
+                { name: 'Sim S23 Mix 1160T', hashrateTH: 1160, powerWatts: 3000, calculatedPrice: 19000, dailyRevenueUSD: 1, dailyExpenseUSD: 1, projectLifeDays: 1, projections: [] }
+            ]
+        };
+        localStorage.setItem('LATEST_SIMULATION_DATA', JSON.stringify(mockSimData));
+
+        // Mock Market API: S23 Hyd 3U (1160T) @ $29k
+        (global.fetch as any) = jest.fn((url) => {
+            if (url.includes('/api/market/latest')) {
+                return Promise.resolve({
+                    ok: true,
+                    json: async () => ({
+                        miners: [
+                            {
+                                name: 'Market S23 Hyd 3U',
+                                stats: { middlePrice: 29000 },
+                                specs: { hashrateTH: 1160 }
+                            }
+                        ]
+                    })
+                });
+            }
+            return Promise.resolve({ ok: false, json: async () => ({}) });
+        });
+
+        await act(async () => { render(<PriceListGenerator />); });
+        fireEvent.click(screen.getByText('Fresh Data'));
+
+        await waitFor(() => {
+            // Expect 29000 (Market) > 19000 (Sim) because hashrate 1160 matches and "S23" matches
+            // Note: The mocked PriceListTable displays price in a cell
+            expect(screen.getByTestId('price-Sim S23 Mix 1160T')).toHaveTextContent('29000');
+        });
+    });
 });

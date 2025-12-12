@@ -17,64 +17,125 @@ import { PriceListTable } from "./price-list/PriceListTable";
 import { PriceListPdfTemplate } from "./price-list/PriceListPdfTemplate";
 import { slugify } from "@/lib/slug-utils";
 
-// Fuzzy matching helper
-function findBestMatch(simName: string, marketPrices: Map<string, number>): number {
-    // 1. Exact Match
-    if (marketPrices.has(simName)) return marketPrices.get(simName)!;
+interface SimpleMarketMiner {
+    name: string;
+    stats: { middlePrice: number };
+    specs: { hashrateTH: number };
+}
 
-    // 2. Slug Match (Exact)
+// Robust matching helper using Hashrate + Series
+function findMatchingMarketMiner(simMiner: { name: string, hashrateTH: number }, marketMiners: SimpleMarketMiner[]): number {
+    const simHash = simMiner.hashrateTH;
+    const simSlug = slugify(simMiner.name);
+
+    // 0. Exact Name Match (Optimization)
+    const exact = marketMiners.find(m => m.name === simMiner.name);
+    if (exact && exact.stats.middlePrice > 0) return exact.stats.middlePrice;
+
+    // Filter candidates by Hashrate Proximity (within 5% or 2 TH for small items)
+    // 5% of 200 is 10. 5% of 1000 is 50.
+    const candidates = marketMiners.filter(m => {
+        const mHash = m.specs.hashrateTH;
+        if (!mHash) return false;
+
+        const diff = Math.abs(simHash - mHash);
+        const limit = Math.max(2, simHash * 0.05);
+        return diff <= limit;
+    });
+
+    if (candidates.length === 0) {
+        // Fallback: If no hashrate match, maybe just name overlap? 
+        // Only if fuzzy score is VERY high.
+        return findBestNameMatch(simMiner.name, marketMiners);
+    }
+
+    // Among candidates (Hashrate matched), find best Name match
+    // We look for critical Series Identifiers
+    // e.g. "S21", "S19", "Hydro", "XP", "Pro"
+    const identifiers = ["s21", "s23", "s19", "l7", "k7", "e9", "hydro", "xp", "pro", "mix", "k", "j", "plus", "+"];
+    const simTokens = getTokens(simSlug, identifiers);
+
+    let bestMatch: SimpleMarketMiner | null = null;
+    let maxScore = -1;
+
+    for (const cand of candidates) {
+        const markSlug = slugify(cand.name);
+        if (cand.stats.middlePrice <= 0) continue;
+
+        const markTokens = getTokens(markSlug, identifiers);
+
+        // Score based on matching critical identifiers
+        // 1. Must match Series (S21, S23, etc)
+        // 2. Bonus for XP, Pro, Hydro
+
+        let score = 0;
+
+        // Critical: Series Match
+        // If Sim has "S23" and Cand doesn't, it's bad.
+        // We iterate simplified series keys
+        const seriesKeys = ["s23", "s21", "s19", "l7", "k7", "e9", "m50", "m60"];
+        const simSeries = seriesKeys.find(k => simSlug.includes(k));
+        const markSeries = seriesKeys.find(k => markSlug.includes(k));
+
+        if (simSeries !== markSeries) {
+            // Major mismatch (e.g. S19 vs S21 with same hashrate? Unlikely but possible)
+            // Penalize heavily
+            score -= 100;
+        } else {
+            score += 50; // Base score for series match
+        }
+
+        // Feature Match (Hydro, XP, Pro)
+        const features = ["hydro", "hyd", "xp", "pro", "plus", "+"]; // normalize hyd->hydro?
+        // Let's just check presence
+        for (const f of features) {
+            // handle hyd/hydro alias
+            const simHas = hasFeature(simSlug, f);
+            const markHas = hasFeature(markSlug, f);
+            if (simHas === markHas) score += 10;
+            else score -= 10;
+        }
+
+        if (score > maxScore) {
+            maxScore = score;
+            bestMatch = cand;
+        }
+    }
+
+    if (bestMatch && maxScore > 0) {
+        return bestMatch.stats.middlePrice;
+    }
+
+    return 0;
+}
+
+function hasFeature(slug: string, feature: string): boolean {
+    if (feature === 'hyd' || feature === 'hydro') return slug.includes('hyd');
+    if (feature === '+' || feature === 'plus') return slug.includes('plus') || slug.includes('s21+');
+    return slug.includes(feature);
+}
+
+function getTokens(slug: string, important: string[]): string[] {
+    return slug.split('-').filter(t => t.length > 0);
+}
+
+function findBestNameMatch(simName: string, marketMiners: SimpleMarketMiner[]): number {
+    // Original fuzzy logic adapted for array
     const simSlug = slugify(simName);
-    // We can't lookup by key directly if we don't have a slug map, so we iterate.
-
-    // Normalize Helper
     const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
     const simNorm = normalize(simName);
 
-    let bestPrice = 0;
-    let maxOverlap = 0;
-
-    for (const [marketName, price] of marketPrices.entries()) {
-        const markNorm = normalize(marketName);
-
-        // Check for containment (Sim contained in Market or Market contained in Sim)
-        // e.g. "antminers21xp" in "antminers21xp270t"
+    for (const m of marketMiners) {
+        const markNorm = normalize(m.name);
         if (markNorm.includes(simNorm) || simNorm.includes(markNorm)) {
-            // Found a candidate.
-            // Prefer the one with the longest overlap (most specific match)
-            // Actually, if we match multiple, which one is better?
-            // "Antminer S21" vs "Antminer S21 XP"? 
-            // "antminers21" is in "antminers21xp". Bad match.
-            // We need to match tokens.
-
-            // Revert to token Matching
-            // Split by space/hyphen
+            // Token check
             const simTokens = simName.toLowerCase().split(/[\s-]+/);
-            const markTokens = marketName.toLowerCase().split(/[\s-]+/);
-
-            // Count matching tokens
+            const markTokens = m.name.toLowerCase().split(/[\s-]+/);
             const matches = simTokens.filter(t => markTokens.includes(t));
             const score = matches.length / Math.max(simTokens.length, markTokens.length);
-
-            if (score > 0.8) { // High confidence match
-                return price;
-            }
+            if (score > 0.8 && m.stats.middlePrice > 0) return m.stats.middlePrice;
         }
     }
-
-    // 3. Fallback: Try to strip hashrate from both?
-    // "Antminer S21 Pro 234T" -> "Antminer S21 Pro"
-    // Market: "Antminer S21 Pro (234Th)"
-    // The containment check above handled some, but "234t" vs "234th" fails exact token match.
-
-    // Iterative Containment with detailed verification
-    for (const [marketName, price] of marketPrices.entries()) {
-        if (slugify(marketName).includes(simSlug) || simSlug.includes(slugify(marketName))) {
-            // If the length difference is small, it's likely a match
-            const lenDiff = Math.abs(marketName.length - simName.length);
-            if (lenDiff < 10) return price;
-        }
-    }
-
     return 0;
 }
 
@@ -88,7 +149,7 @@ export function PriceListGenerator() {
     const { market, setMarket } = useMarketData();
     const [loading, setLoading] = useState(false);
     const [lastUpdated, setLastUpdated] = useState<string | null>(null);
-    const [marketPrices, setMarketPrices] = useState<Map<string, number>>(new Map()); // Store market middle prices by miner name
+    const [marketDataList, setMarketDataList] = useState<SimpleMarketMiner[]>([]);
 
     // Results
     const [baseResults, setBaseResults] = useState<MinerScoreDetail[]>([]); // Store raw data synced from Simulator
@@ -112,14 +173,14 @@ export function PriceListGenerator() {
             const rawMiner = { ...item.miner }; // Shallow clone
 
             // STEP 1: Apply Max(Simulator Price, Market Middle Price) Logic
-            // Get market middle price for this miner (using fuzzy matching)
-            const marketMiddlePrice = findBestMatch(rawMiner.name, marketPrices);
+            // Get market middle price for this miner (using ROBUST matching)
+            const marketMiddlePrice = findMatchingMarketMiner(rawMiner, marketDataList);
 
             // Debug Log
             if (marketMiddlePrice > 0) {
-                console.log(`Matched ${rawMiner.name}: Sim=$${rawMiner.calculatedPrice.toFixed(0)} vs Market=$${marketMiddlePrice.toLocaleString()} -> Using $${Math.max(rawMiner.calculatedPrice, marketMiddlePrice).toLocaleString()}`);
+                console.log(`Matched ${rawMiner.name} (${rawMiner.hashrateTH}T): Sim=$${rawMiner.calculatedPrice.toFixed(0)} vs Market=$${marketMiddlePrice.toLocaleString()} -> Using $${Math.max(rawMiner.calculatedPrice, marketMiddlePrice).toLocaleString()}`);
             } else {
-                console.log(`No market match for ${rawMiner.name}`);
+                console.log(`No market match for ${rawMiner.name} (${rawMiner.hashrateTH}T)`);
             }
 
             // Use the higher of the two prices as the base price
@@ -161,7 +222,7 @@ export function PriceListGenerator() {
         const reRanked = rankMiners(minersOnly);
         setResults(reRanked);
 
-    }, [baseResults, salesMargin, salesMarginType, marketPrices]);
+    }, [baseResults, salesMargin, salesMarginType, marketDataList]);
 
 
     // --- Derived State ---
@@ -329,16 +390,20 @@ export function PriceListGenerator() {
             if (res.ok) {
                 const data = await res.json();
                 if (data.miners && Array.isArray(data.miners)) {
-                    // Build a Map of miner name -> middle price
-                    const pricesMap = new Map<string, number>();
+                    // Build list of market miners
+                    const list: SimpleMarketMiner[] = [];
                     data.miners.forEach((miner: any) => {
                         if (miner.name && miner.stats && miner.stats.middlePrice > 0) {
-                            pricesMap.set(miner.name, miner.stats.middlePrice);
+                            list.push({
+                                name: miner.name,
+                                stats: { middlePrice: miner.stats.middlePrice },
+                                specs: { hashrateTH: miner.specs?.hashrateTH || 0 }
+                            });
                         }
                     });
-                    setMarketPrices(pricesMap);
-                    console.log(`Loaded market prices for ${pricesMap.size} miners (Fuzzy Logic Active)`);
-                    console.log("Market Keys available:", Array.from(pricesMap.keys()));
+                    setMarketDataList(list);
+                    console.log(`Loaded market prices for ${list.length} miners (Hashrate Logic Active)`);
+                    console.log("Market Miners loaded sample:", list.slice(0, 3));
                 }
             } else {
                 console.warn("Market API response not OK:", res.status);
