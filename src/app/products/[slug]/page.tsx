@@ -30,9 +30,13 @@ async function getMiner(slug: string): Promise<ExtendedMinerProfile | null> {
 
     // 2. Fetch Market Data to enrich or fallback
     try {
-        const { blobs } = await list({ prefix: 'market-prices.json', limit: 1, token: process.env.BLOB_READ_WRITE_TOKEN });
+        // Use implicit token from environment like the working API route
+        const { blobs } = await list({ prefix: 'market-prices.json', limit: 1 });
         if (blobs.length > 0) {
-            const res = await fetch(blobs[0].url, { next: { revalidate: 60 } });
+            // Add cache busting query param
+            const blobUrl = `${blobs[0].url}?t=${Date.now()}`;
+            const res = await fetch(blobUrl, { cache: 'no-store' }); // Ensure fresh data
+
             if (res.ok) {
                 const data = await res.json();
                 const marketMiner = data.miners?.find((m: any) => slugify(m.name) === slug);
