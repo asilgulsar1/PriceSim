@@ -15,7 +15,7 @@ export default async function LoginPage(props: { searchParams: Promise<{ callbac
             <div className="relative hidden w-[60%] lg:block">
                 <div className="absolute inset-0 bg-slate-900/20 z-10" />
                 <Image
-                    src="/login-bg.png"
+                    src="/login-bg-v2.png"
                     alt="Mining Data Center"
                     fill
                     className="object-cover"

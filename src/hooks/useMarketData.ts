@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchMarketData } from '@/lib/api';
+import { getMarketDataAction } from '@/app/actions';
 import { DEFAULT_MARKET_CONDITIONS } from '@/lib/constants';
 import { MarketConditions } from '@/lib/price-simulator-calculator';
 
@@ -21,10 +21,9 @@ export function useMarketData(initialMarket?: MarketConditions): UseMarketDataRe
         setLoading(true);
         setError(null);
         try {
-            const data = await fetchMarketData();
-            // Merge fetched data with current state or defaults to preserve user overrides if any,
-            // but usually we want fresh data to override.
-            // Here we map the specific fields we expect from the API.
+            // Use Server Action to avoid CORS and Client-side fetch issues
+            const data = await getMarketDataAction();
+
             setMarket(prev => ({
                 ...prev,
                 btcPrice: data.btcPrice,
@@ -32,6 +31,8 @@ export function useMarketData(initialMarket?: MarketConditions): UseMarketDataRe
             }));
         } catch (e) {
             console.error("Failed to load market data", e);
+            // Even on error, we set loading false (finally block handles this), 
+            // and we already have defaults in state, so app continues.
             setError(e instanceof Error ? e : new Error('Unknown error fetching market data'));
         } finally {
             setLoading(false);

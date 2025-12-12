@@ -26,6 +26,14 @@ jest.mock('recharts', () => ({
 }));
 
 describe('PriceSimulator Integration Flow', () => {
+    // Mock URL.createObjectURL
+    beforeAll(() => {
+        global.URL.createObjectURL = jest.fn(() => 'blob:mock-url');
+        global.fetch = jest.fn(() => Promise.resolve({
+            ok: true,
+            json: async () => ({})
+        } as Response));
+    });
     beforeEach(() => {
         // Deterministic Market Data for Math Verification
         (fetchMarketData as jest.Mock).mockResolvedValue({

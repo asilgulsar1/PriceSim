@@ -38,7 +38,17 @@ export default async function AdminDashboard() {
                         >
                             <option value="sales">Sales</option>
                             <option value="admin">Admin</option>
+                            <option value="reseller">Reseller</option>
                         </select>
+                    </div>
+                    <div className="w-40">
+                        <label className="block text-sm font-medium mb-1">Reseller Margin ($)</label>
+                        <input
+                            name="resellerMargin"
+                            type="number"
+                            placeholder="e.g. 500"
+                            className="w-full p-2 border rounded dark:bg-zinc-700 dark:border-zinc-600"
+                        />
                     </div>
                     <button
                         type="submit"
@@ -61,6 +71,7 @@ export default async function AdminDashboard() {
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Margin</th>
                                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
@@ -70,10 +81,15 @@ export default async function AdminDashboard() {
                                     <td className="px-6 py-4 whitespace-nowrap">{user.name || '-'}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">{user.email}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">
-                                        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${user.role === 'admin' ? 'bg-purple-100 text-purple-800' : 'bg-green-100 text-green-800'
+                                        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${user.role === 'admin' ? 'bg-purple-100 text-purple-800' :
+                                                user.role === 'reseller' ? 'bg-orange-100 text-orange-800' :
+                                                    'bg-green-100 text-green-800'
                                             }`}>
                                             {user.role}
                                         </span>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {user.resellerMargin ? `$${user.resellerMargin}` : '-'}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <form action={removeUserAction}>

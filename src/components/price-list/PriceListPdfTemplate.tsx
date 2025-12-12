@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { MinerScoreDetail } from "@/lib/miner-scoring";
 
 interface Recommendations {
@@ -15,14 +14,70 @@ interface PriceListPdfTemplateProps {
     clientName: string;
     recommendations: Recommendations;
     filteredResults: MinerScoreDetail[];
+    branding?: {
+        companyName?: string;
+        logoUrl?: string;
+        footerText?: string;
+        colors?: {
+            primary: string;
+            secondary: string;
+            accent: string;
+        };
+        customHeadings?: {
+            mainHeading?: string;
+            subHeading?: string;
+            contentText?: string;
+        };
+    };
+    userRole?: string;
+    pdfImages?: {
+        logo: string;
+    };
 }
 
 export function PriceListPdfTemplate({
     documentRef,
     clientName,
     recommendations,
-    filteredResults
+    filteredResults,
+    branding,
+    userRole,
+    pdfImages
 }: PriceListPdfTemplateProps) {
+    const isReseller = userRole === 'reseller';
+
+    // Branding Defaults
+    let logoSrc = "/logo.png";
+    let footerEmail = "sales@segments.ae";
+    let footerCompany = "SEGMENTS CLOUD";
+
+    // Strict Whitelabeling for Resellers
+    if (isReseller) {
+        logoSrc = branding?.logoUrl || ""; // No default logo
+        footerEmail = branding?.footerText || "";
+        footerCompany = branding?.companyName || "Enterprise Mining Solutions";
+    } else {
+        // Default Segments Branding
+        logoSrc = branding?.logoUrl || "/logo.png";
+        footerEmail = branding?.footerText || "sales@segments.ae";
+        footerCompany = branding?.companyName || "SEGMENTS CLOUD";
+    }
+
+    // PREFER BASE64 IF AVAILABLE (Fixes CORS/PDF issues)
+    if (pdfImages?.logo && isReseller && branding?.logoUrl) {
+        logoSrc = pdfImages.logo;
+    } else if (pdfImages?.logo && !isReseller) {
+        logoSrc = pdfImages.logo;
+    }
+
+    // Custom Branding Extraction
+    const colors = branding?.colors || { primary: '#0f172a', secondary: '#334155', accent: '#f97316' };
+    const headings = branding?.customHeadings || {
+        mainHeading: 'Strategic Hardware Acquisition',
+        subHeading: 'Prepared For',
+        contentText: 'Hardware pricing reflects current network difficulty and global supply chain conditions. Acquiring efficient hardware at current levels is recommended to optimize fleet performance for the upcoming cycle.'
+    };
+
     // Pagination Config
     const PAGE_1_ITEMS = 9;
     const PAGE_N_ITEMS = 14;
@@ -30,8 +85,6 @@ export function PriceListPdfTemplate({
     // Fix hydration mismatch by only rendering date on client
     const [currentDate, setCurrentDate] = useState("");
     useEffect(() => {
-        // Wrap in timeout or just set it. The linter warning might be about synchronous updates.
-        // Actually, for hydration, just setting it is fine.
         const timer = setTimeout(() => setCurrentDate(new Date().toLocaleDateString()), 0);
         return () => clearTimeout(timer);
     }, []);
@@ -61,15 +114,21 @@ export function PriceListPdfTemplate({
                         {/* --- Header Section (Page 1 Only) --- */}
                         {pageIndex === 0 && (
                             <>
-                                <div className="bg-white p-8 mb-4 border-b border-orange-500/20 relative shrink-0">
+                                <div className="bg-white p-8 mb-4 border-b relative shrink-0" style={{ borderColor: `${colors.accent}33` }}>
+                                    {/* 33 = 20% opacity hex */}
                                     <div className="flex justify-between items-center relative z-10">
                                         <div>
                                             {/* Logo Image */}
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                                            <img src="/logo.png" alt="Segments Cloud" className="h-[75px] w-auto object-contain" />
+                                            <img
+                                                src={logoSrc}
+                                                alt={footerCompany}
+                                                className="h-[75px] w-auto object-contain"
+                                            // crossOrigin not needed for Base64, but harmless
+                                            />
                                         </div>
                                         <div className="text-right">
-                                            <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">
+                                            <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: colors.secondary }}>
                                                 Institutional Infrastructure
                                             </p>
                                             <p className="text-sm font-semibold text-slate-900">{currentDate}</p>
@@ -79,10 +138,14 @@ export function PriceListPdfTemplate({
 
                                 <div className="px-8 shrink-0">
                                     <div className="mb-8">
-                                        <h2 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">Strategic Hardware Acquisition</h2>
-                                        <div className="flex justify-between items-end border-b border-slate-200 pb-4">
+                                        <h2 className="text-2xl font-bold mb-2 tracking-tight" style={{ color: colors.primary }}>
+                                            {headings.mainHeading}
+                                        </h2>
+                                        <div className="flex justify-between items-end border-b pb-4" style={{ borderColor: '#e2e8f0' }}>
                                             <div>
-                                                <p className="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Prepared For</p>
+                                                <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: colors.secondary }}>
+                                                    {headings.subHeading}
+                                                </p>
                                                 <p className="text-xl font-bold text-slate-900">{clientName || 'Valued Partner'}</p>
                                             </div>
                                             <div className="text-right">
@@ -92,16 +155,22 @@ export function PriceListPdfTemplate({
                                     </div>
 
                                     {/* Market Context (Professional) */}
-                                    <div className="bg-slate-50 border border-slate-100 p-4 rounded-sm mb-6 flex items-start gap-4">
-                                        <div className="bg-blue-900 text-white rounded-full w-8 h-8 flex items-center justify-center font-serif font-bold text-sm shrink-0">i</div>
-                                        <div>
-                                            <h3 className="font-bold text-slate-900 text-sm">Market Context</h3>
-                                            <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                                                Hardware pricing reflects current network difficulty and global supply chain conditions.
-                                                Acquiring efficient hardware at current levels is recommended to optimize fleet performance for the upcoming cycle.
-                                            </p>
+                                    {headings.contentText && (
+                                        <div className="bg-slate-50 border border-slate-100 p-4 rounded-sm mb-6 flex items-start gap-4">
+                                            <div
+                                                className="text-white rounded-full w-8 h-8 flex items-center justify-center font-serif font-bold text-sm shrink-0"
+                                                style={{ backgroundColor: colors.accent }}
+                                            >
+                                                i
+                                            </div>
+                                            <div>
+                                                <h3 className="font-bold text-sm" style={{ color: colors.primary }}>Market Context</h3>
+                                                <p className="text-xs text-slate-600 mt-1 leading-relaxed whitespace-pre-line">
+                                                    {headings.contentText}
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    )}
 
                                     {/* Strategic Analysis (Gross Revenue Focus) */}
                                     {(recommendations.topROI.length > 0) && (
@@ -142,7 +211,12 @@ export function PriceListPdfTemplate({
                         {pageIndex > 0 && (
                             <div className="bg-white border-b border-slate-100 p-6 mb-6 relative shrink-0 flex justify-between items-center">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src="/logo.png" alt="Segments Cloud" className="h-[40px] w-auto object-contain opacity-80" />
+                                <img
+                                    src={logoSrc}
+                                    alt={footerCompany}
+                                    className="h-[40px] w-auto object-contain opacity-80"
+                                // crossOrigin="anonymous" // Base64 doesn't need this
+                                />
                                 <div className="text-right">
                                     <span className="text-xs font-bold text-slate-400 uppercase">Inventory Continued</span>
                                     <span className="text-xs text-slate-300 ml-2">| Page {pageIndex + 1}</span>
@@ -248,18 +322,18 @@ export function PriceListPdfTemplate({
                                         <p className="text-xs text-slate-400">Secure your hardware before the next batch sells out.</p>
                                     </div>
                                     <div className="text-right">
-                                        <p className="text-sm font-bold text-orange-500">sales@segments.ae</p>
+                                        <p className="text-sm font-bold text-orange-500">{footerEmail}</p>
                                         <p className="text-xs text-slate-400">Inventory Reserved for 24h</p>
                                     </div>
                                 </div>
                             )}
                             <div className="border-t border-slate-200 pt-3 flex justify-between items-end text-[10px] text-slate-400">
                                 <div>
-                                    <h4 className="font-bold text-slate-600 mb-1">SEGMENTS CLOUD</h4>
+                                    <h4 className="font-bold text-slate-600 mb-1 uppercase">{footerCompany}</h4>
                                     <p>Enterprise Mining Solutions</p>
                                 </div>
                                 <div className="text-right">
-                                    <p>www.segments.ae</p>
+                                    <p>{isReseller ? '' : 'www.segments.ae'}</p>
                                     <p className="text-slate-400">Generated: {currentDate}</p>
                                 </div>
                             </div>
@@ -270,4 +344,3 @@ export function PriceListPdfTemplate({
         </div>
     );
 }
-

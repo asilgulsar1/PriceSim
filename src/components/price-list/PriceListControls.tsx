@@ -33,8 +33,15 @@ export function PriceListControls({
     loading,
     onRefresh,
     onExportCSV,
-    onDownloadPDF
-}: PriceListControlsProps) {
+    onDownloadPDF,
+    userRole,
+    branding,
+    setBranding
+}: PriceListControlsProps & {
+    userRole?: string;
+    branding?: { companyName: string; logoUrl: string; footerText: string };
+    setBranding?: (val: any) => void;
+}) {
 
     return (
         <div className="bg-white p-6 rounded-lg border shadow-sm space-y-4">
@@ -42,6 +49,24 @@ export function PriceListControls({
                 <h2 className="text-lg font-semibold">Price List Configuration</h2>
                 {lastUpdated && <span className="text-xs text-muted-foreground">Updated: {lastUpdated}</span>}
             </div>
+
+            {/* Branding Section (Resellers Only) */}
+            {/* Branding Section (Resellers Only) */}
+            {userRole === 'reseller' && (
+                <div className="bg-orange-50 border border-orange-200 rounded p-4 mb-4 flex justify-between items-center">
+                    <div>
+                        <h3 className="text-sm font-bold text-orange-900">Reseller Branding</h3>
+                        {branding && branding.companyName ? (
+                            <p className="text-xs text-orange-700 mt-1">Configured as: <span className="font-semibold">{branding.companyName}</span></p>
+                        ) : (
+                            <p className="text-xs text-orange-700 mt-1">Customize your logo and company details.</p>
+                        )}
+                    </div>
+                    <Button variant="outline" size="sm" className="bg-white border-orange-200 hover:bg-orange-100 text-orange-900" asChild>
+                        <a href="/profile">Edit Profile</a>
+                    </Button>
+                </div>
+            )}
 
             <div className="flex flex-col md:flex-row gap-6 items-end">
                 <div className="space-y-2 flex-1">
@@ -52,7 +77,7 @@ export function PriceListControls({
                         placeholder="Enter Client Name"
                     />
                 </div>
-
+                {/* ... rest of existing controls */}
                 <div className="space-y-2 w-full md:w-64">
                     <Label>Additional Sales Margin</Label>
                     <div className="flex gap-2">

@@ -33,7 +33,6 @@ function findMatchingMarketMiner(simMiner: { name: string, hashrateTH: number },
     if (exact && exact.stats.middlePrice > 0) return exact.stats.middlePrice;
 
     // Filter candidates by Hashrate Proximity (within 5% or 2 TH for small items)
-    // 5% of 200 is 10. 5% of 1000 is 50.
     const candidates = marketMiners.filter(m => {
         const mHash = m.specs.hashrateTH;
         if (!mHash) return false;
@@ -44,14 +43,10 @@ function findMatchingMarketMiner(simMiner: { name: string, hashrateTH: number },
     });
 
     if (candidates.length === 0) {
-        // Fallback: If no hashrate match, maybe just name overlap? 
-        // Only if fuzzy score is VERY high.
         return findBestNameMatch(simMiner.name, marketMiners);
     }
 
     // Among candidates (Hashrate matched), find best Name match
-    // We look for critical Series Identifiers
-    // e.g. "S21", "S19", "Hydro", "XP", "Pro"
     const identifiers = ["s21", "s23", "s19", "l7", "k7", "e9", "hydro", "xp", "pro", "mix", "k", "j", "plus", "+"];
     const simTokens = getTokens(simSlug, identifiers);
 
@@ -62,34 +57,22 @@ function findMatchingMarketMiner(simMiner: { name: string, hashrateTH: number },
         const markSlug = slugify(cand.name);
         if (cand.stats.middlePrice <= 0) continue;
 
-        const markTokens = getTokens(markSlug, identifiers);
-
-        // Score based on matching critical identifiers
-        // 1. Must match Series (S21, S23, etc)
-        // 2. Bonus for XP, Pro, Hydro
-
         let score = 0;
 
         // Critical: Series Match
-        // If Sim has "S23" and Cand doesn't, it's bad.
-        // We iterate simplified series keys
         const seriesKeys = ["s23", "s21", "s19", "l7", "k7", "e9", "m50", "m60"];
         const simSeries = seriesKeys.find(k => simSlug.includes(k));
         const markSeries = seriesKeys.find(k => markSlug.includes(k));
 
         if (simSeries !== markSeries) {
-            // Major mismatch (e.g. S19 vs S21 with same hashrate? Unlikely but possible)
-            // Penalize heavily
             score -= 100;
         } else {
-            score += 50; // Base score for series match
+            score += 50;
         }
 
         // Feature Match (Hydro, XP, Pro)
-        const features = ["hydro", "hyd", "xp", "pro", "plus", "+"]; // normalize hyd->hydro?
-        // Let's just check presence
+        const features = ["hydro", "hyd", "xp", "pro", "plus", "+"];
         for (const f of features) {
-            // handle hyd/hydro alias
             const simHas = hasFeature(simSlug, f);
             const markHas = hasFeature(markSlug, f);
             if (simHas === markHas) score += 10;
@@ -120,7 +103,6 @@ function getTokens(slug: string, important: string[]): string[] {
 }
 
 function findBestNameMatch(simName: string, marketMiners: SimpleMarketMiner[]): number {
-    // Original fuzzy logic adapted for array
     const simSlug = slugify(simName);
     const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
     const simNorm = normalize(simName);
@@ -128,7 +110,6 @@ function findBestNameMatch(simName: string, marketMiners: SimpleMarketMiner[]): 
     for (const m of marketMiners) {
         const markNorm = normalize(m.name);
         if (markNorm.includes(simNorm) || simNorm.includes(markNorm)) {
-            // Token check
             const simTokens = simName.toLowerCase().split(/[\s-]+/);
             const markTokens = m.name.toLowerCase().split(/[\s-]+/);
             const matches = simTokens.filter(t => markTokens.includes(t));
@@ -139,7 +120,22 @@ function findBestNameMatch(simName: string, marketMiners: SimpleMarketMiner[]): 
     return 0;
 }
 
-export function PriceListGenerator() {
+interface PriceListGeneratorProps {
+    userRole?: string;
+    resellerMargin?: number;
+    branding?: {
+        companyName?: string;
+        logoUrl?: string;
+        footerText?: string;
+    };
+}
+
+import { urlToBase64 } from "@/lib/image-utils";
+import { Skeleton } from "@/components/ui/skeleton";
+
+// ... (existing imports)
+
+export function PriceListGenerator({ userRole, resellerMargin, branding }: PriceListGeneratorProps) {
     // --- State ---
     const [clientName, setClientName] = useState('Valued Client');
     const [salesMargin, setSalesMargin] = useState<number>(0);
@@ -147,92 +143,73 @@ export function PriceListGenerator() {
 
     // Market Hook
     const { market, setMarket } = useMarketData();
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true); // Start loading
+    const [isReady, setIsReady] = useState(false); // Prevents flicker
     const [lastUpdated, setLastUpdated] = useState<string | null>(null);
     const [marketDataList, setMarketDataList] = useState<SimpleMarketMiner[]>([]);
 
-    // Results
-    const [baseResults, setBaseResults] = useState<MinerScoreDetail[]>([]); // Store raw data synced from Simulator
-    const [results, setResults] = useState<MinerScoreDetail[]>([]); // Displayed data (with margin)
+    // PDF Images State (Base64)
+    const [pdfImages, setPdfImages] = useState<{ logo: string }>({ logo: "" });
 
-    // Filter & Sort State
+    // Results
+    const [baseResults, setBaseResults] = useState<MinerScoreDetail[]>([]);
+
+    // ... (Filter & Sort State remains same) ...
     const [searchTerm, setSearchTerm] = useState('');
     const [sortBy, setSortBy] = useState<SortField>('score');
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
-
     const documentRef = useRef<HTMLDivElement>(null);
 
-    // --- Derived State: Apply Market Price Max Logic + Margin ---
-    useEffect(() => {
-        if (baseResults.length === 0) {
-            setResults([]); // Clear results if baseResults is empty
-            return;
-        }
+    // ... (Derived State: results, filteredResults, recommendations remain same) ...
+    const results = React.useMemo(() => {
+        if (baseResults.length === 0) return [];
 
         const updated = baseResults.map(item => {
-            const rawMiner = { ...item.miner }; // Shallow clone
+            const rawMiner = { ...item.miner };
 
             // STEP 1: Apply Max(Simulator Price, Market Middle Price) Logic
-            // Get market middle price for this miner (using ROBUST matching)
             const marketMiddlePrice = findMatchingMarketMiner(rawMiner, marketDataList);
+            let basePrice = Math.max(rawMiner.calculatedPrice, marketMiddlePrice);
 
-            // Debug Log
-            if (marketMiddlePrice > 0) {
-                console.log(`Matched ${rawMiner.name} (${rawMiner.hashrateTH}T): Sim=$${rawMiner.calculatedPrice.toFixed(0)} vs Market=$${marketMiddlePrice.toLocaleString()} -> Using $${Math.max(rawMiner.calculatedPrice, marketMiddlePrice).toLocaleString()}`);
-            } else {
-                console.log(`No market match for ${rawMiner.name} (${rawMiner.hashrateTH}T)`);
+            // RESELLER MARKUP LOGIC
+            if (userRole === 'reseller') {
+                const markup = typeof resellerMargin === 'number' ? resellerMargin : 500;
+                basePrice += markup;
             }
 
-            // Use the higher of the two prices as the base price
-            const basePrice = Math.max(rawMiner.calculatedPrice, marketMiddlePrice);
-
-            // Update to base price (before margin)
             rawMiner.calculatedPrice = basePrice;
 
-            // STEP 2: Apply Margin on top of the base price
+            // STEP 2: Apply Margin
             let marginAmount = 0;
             if (salesMarginType === 'usd') {
                 marginAmount = salesMargin;
             } else {
                 marginAmount = rawMiner.calculatedPrice * (salesMargin / 100);
             }
-
             rawMiner.calculatedPrice = rawMiner.calculatedPrice + marginAmount;
 
-            // STEP 3: Recalculate ROI (Client Profitability)
-            const totalRevenue = rawMiner.dailyRevenueUSD * rawMiner.projectLifeDays;
-            const totalCost = rawMiner.dailyExpenseUSD * rawMiner.projectLifeDays;
-            const netOperatingProfit = totalRevenue - totalCost;
-
-            // Gross Annualized Revenue ROI (Used for Sorting & Scoring)
+            // STEP 3: Recalculate ROI
             if (rawMiner.calculatedPrice > 0 && rawMiner.dailyRevenueUSD > 0) {
                 rawMiner.clientProfitabilityPercent = ((rawMiner.dailyRevenueUSD * 365) / rawMiner.calculatedPrice) * 100;
             } else {
                 rawMiner.clientProfitabilityPercent = 0;
             }
 
-            return {
-                ...item,
-                miner: rawMiner
-            };
+            return { ...item, miner: rawMiner };
         });
 
-        // Re-Rank miners with updated prices
         const minersOnly = updated.map(u => u.miner);
-        const reRanked = rankMiners(minersOnly);
-        setResults(reRanked);
+        return rankMiners(minersOnly);
 
-    }, [baseResults, salesMargin, salesMarginType, marketDataList]);
+    }, [baseResults, salesMargin, salesMarginType, marketDataList, userRole, resellerMargin]);
 
-
-    // --- Derived State ---
-    const filteredResults = React.useMemo(() => {
+    // ... (filteredResults & recommendations remain same) ...
+    const filteredResults = React.useMemo(() => { // ... same logic ...
         return results
             .filter(r => r.miner.name.toLowerCase().includes(searchTerm.toLowerCase()))
-            .sort((a, b) => {
+            .sort((a, b) => { // ... same sort logic ...
                 let valA = 0, valB = 0;
                 const direction = sortOrder === 'asc' ? 1 : -1;
-
                 switch (sortBy) {
                     case 'score': valA = a.score; valB = b.score; break;
                     case 'price': valA = a.miner.calculatedPrice; valB = b.miner.calculatedPrice; break;
@@ -247,7 +224,7 @@ export function PriceListGenerator() {
                                     if (cumulative >= m.calculatedPrice) return day.dayIndex;
                                 }
                             }
-                            return 99999; // Never pays back
+                            return 99999;
                         };
                         valA = getPaybackDays(a.miner);
                         valB = getPaybackDays(b.miner);
@@ -263,63 +240,54 @@ export function PriceListGenerator() {
         if (results.length === 0) return { topROI: [], topRevenue: [], topEfficiency: [] };
         const byROI = [...results].sort((a, b) => b.raw.profitability - a.raw.profitability).slice(0, 2);
         const byRev = [...results].sort((a, b) => b.raw.revenue - a.raw.revenue).slice(0, 2);
-        const byEff = [...results].sort((a, b) => a.raw.efficiency - b.raw.efficiency).slice(0, 2); // Lower eff is better usually, but logic in scoring might have inverted standard? 
-        // In scoring, efficiencyScore is higher for lower J/TH. 
-        // But raw efficiency is J/TH. So sorting asc is correct for "Best Efficiency" (lowest J/TH).
-        // Let's verify sort logic from original:
-        // `byEff = [...results].sort((a, b) => a.raw.efficiency - b.raw.efficiency)` -> Ascending (Lower is better). Correct.
+        const byEff = [...results].sort((a, b) => a.raw.efficiency - b.raw.efficiency).slice(0, 2);
         return { topROI: byROI, topRevenue: byRev, topEfficiency: byEff };
     }, [results]);
 
 
-    // --- Effects ---
+    // --- Side Effects ---
 
-    // --- Effects ---
+    // 1. Pre-load PDF Images
+    useEffect(() => {
+        const loadImages = async () => {
+            const logoSrc = branding?.logoUrl || "/logo.png";
+            const base64Logo = await urlToBase64(logoSrc);
+            setPdfImages({ logo: base64Logo });
+        };
+        loadImages();
+    }, [branding?.logoUrl]);
 
-    // --- Effects ---
-
-    // Auto-load removed. Data is fetched only when 'Fresh Data' is clicked.
-
-
-    // ... (rest of effects) // Initial load only, refreshData depends on nothing reactive (except calculateLocal which is stable?) NO.
-    // refreshData depends on calculateLocal.
-    // But we only want to run ONCE on mount.
-    // So [] is fine, but linter will complain.
-    // Actually, refreshData changes if calculateLocal changes.
-    // And calculateLocal changes if market/margin changes.
-    // So this effect will re-run constantly if we include it.
-    // We want "On Mount".
-    // So let's disable the exhaustive-deps rule for this line or keep it empty.
-
-
-    // Trigger local calc when Margin changes
-    // Local auto-calc removed to prioritize Sync flow
-    // useEffect(() => { if (!loading && results.length > 0) calculateLocal(); }, [marginValue]);
-
-    // --- Actions ---
-
-    const calculateLocal = React.useCallback(() => {
-        setLoading(true);
-        // Small timeout for UI
-        setTimeout(() => {
-            const miners = INITIAL_MINERS;
-            const calculated = miners.map(miner => {
-                const contract: ContractTerms = DEFAULT_CONTRACT_TERMS;
-                // Note: marginValue is gone. What to use? Default 50?
-                return solveMinerPrice(miner, contract, market, DEFAULT_TARGET_MARGIN, false);
-            });
-
-            const ranked = rankMiners(calculated);
-            setBaseResults(ranked); // Update Base
-            setLastUpdated('Calculated Locally (Live)');
-            setLoading(false);
-        }, 50);
-    }, [market]); // Removed marginValue from deps, as it's now handled by the margin effect
+    // 2. Refresh Data
+    const fetchMarketPrices = async () => {
+        try {
+            console.log("Fetching market prices from API...");
+            const res = await fetch('/api/market/latest', { cache: 'no-store' });
+            if (res.ok) {
+                const data = await res.json();
+                if (data.miners && Array.isArray(data.miners)) {
+                    const list: SimpleMarketMiner[] = [];
+                    data.miners.forEach((miner: any) => {
+                        if (miner.name && miner.stats && miner.stats.middlePrice > 0) {
+                            list.push({
+                                name: miner.name,
+                                stats: { middlePrice: miner.stats.middlePrice },
+                                specs: { hashrateTH: miner.specs?.hashrateTH || 0 }
+                            });
+                        }
+                    });
+                    setMarketDataList(list);
+                }
+            }
+        } catch (e) {
+            console.warn("Failed to fetch market prices", e);
+        }
+    };
 
     const refreshData = async () => {
         setLoading(true);
+        setIsReady(false); // Hide table to prevent flicker
 
-        // Helper to normalize input data (unwrap if it's already ranked/wrapped)
+        // Helper to normalize input data
         const normalizeMiners = (list: any[]) => {
             if (list.length > 0 && list[0].miner) {
                 return list.map((x: any) => x.miner);
@@ -333,18 +301,15 @@ export function PriceListGenerator() {
             if (savedSim) {
                 const data = JSON.parse(savedSim);
                 if (data.miners && Array.isArray(data.miners)) {
-                    // Set BASE Results (Raw)
                     const rawMiners = normalizeMiners(data.miners);
                     const ranked = rankMiners(rawMiners);
                     setBaseResults(ranked);
-
                     if (data.updatedAt) setLastUpdated(`Synced from Simulator (${new Date(data.updatedAt).toLocaleTimeString()})`);
                     if (data.market) setMarket(data.market);
-
-                    // Fetch market prices
+                    // Fetch Market Prices BEFORE showing
                     await fetchMarketPrices();
-
                     setLoading(false);
+                    setIsReady(true); // Valid only after BOTH are ready
                     return;
                 }
             }
@@ -352,8 +317,7 @@ export function PriceListGenerator() {
             console.warn("Failed to fetch simulator data", e);
         }
 
-        // 2. Fallback: API or Local
-        // Use existing API fallback logic if local storage empty
+        // 2. Fallback: API
         try {
             const res = await fetch('/api/miners/latest');
             if (res.ok) {
@@ -364,61 +328,50 @@ export function PriceListGenerator() {
                     setBaseResults(ranked);
                     if (data.updatedAt) setLastUpdated(new Date(data.updatedAt).toLocaleString());
                     if (data.market) setMarket(data.market);
-
-                    // Fetch market prices
                     await fetchMarketPrices();
-
                     setLoading(false);
+                    setIsReady(true);
                     return;
                 }
             }
         } catch (e) {
-            console.warn("Failed to fetch cached data, falling back to local calculation", e);
+            console.warn("Failed to fetch cached data", e);
         }
 
-        // 3. Last Resort: Local
+        // 3. Fallback: Local
         calculateLocal();
-
-        // Still try to fetch market prices even for local calculation
         await fetchMarketPrices();
+        setIsReady(true);
     };
 
-    const fetchMarketPrices = async () => {
-        try {
-            console.log("Fetching market prices from API...");
-            const res = await fetch('/api/market/latest', { cache: 'no-store' });
-            if (res.ok) {
-                const data = await res.json();
-                if (data.miners && Array.isArray(data.miners)) {
-                    // Build list of market miners
-                    const list: SimpleMarketMiner[] = [];
-                    data.miners.forEach((miner: any) => {
-                        if (miner.name && miner.stats && miner.stats.middlePrice > 0) {
-                            list.push({
-                                name: miner.name,
-                                stats: { middlePrice: miner.stats.middlePrice },
-                                specs: { hashrateTH: miner.specs?.hashrateTH || 0 }
-                            });
-                        }
-                    });
-                    setMarketDataList(list);
-                    console.log(`Loaded market prices for ${list.length} miners (Hashrate Logic Active)`);
-                    console.log("Market Miners loaded sample:", list.slice(0, 3));
-                }
-            } else {
-                console.warn("Market API response not OK:", res.status);
-            }
-        } catch (e) {
-            console.warn("Failed to fetch market prices", e);
-        }
+    // Calculate Local (Callback refactored inline for simplicity or kept if existing)
+    const calculateLocal = () => {
+        setLoading(true);
+        setTimeout(() => {
+            const miners = INITIAL_MINERS;
+            const calculated = miners.map(miner => {
+                const contract: ContractTerms = DEFAULT_CONTRACT_TERMS;
+                return solveMinerPrice(miner, contract, market, DEFAULT_TARGET_MARGIN, false);
+            });
+            const ranked = rankMiners(calculated);
+            setBaseResults(ranked);
+            setLastUpdated('Calculated Locally (Live)');
+            setLoading(false);
+        }, 50);
     };
+
+    useEffect(() => {
+        refreshData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    // ... (Handlers handleExportCSV, handleDownloadPDF remain same) ...
     const handleExportCSV = () => {
+        // ... (existing export logic)
         const headers = ['Model', 'Score', 'Hashrate (TH/s)', 'Power (W)', 'Efficiency (J/TH)', 'Unit Price ($)', 'Daily Revenue ($)', 'Payback (Years)', 'ROI (%)'];
         const rows = filteredResults.map(r => {
             const m = r.miner;
             let paybackYears = 'N/A';
-
-            // Dynamic Payback Calculation
             if (m.calculatedPrice > 0 && m.projections) {
                 let cumulative = 0;
                 let foundDay = -1;
@@ -429,26 +382,16 @@ export function PriceListGenerator() {
                         break;
                     }
                 }
-                if (foundDay !== -1) {
-                    paybackYears = (foundDay / 365).toFixed(1);
-                } else {
-                    paybackYears = `>${(m.projectLifeDays / 365).toFixed(0)}`;
-                }
+                if (foundDay !== -1) paybackYears = (foundDay / 365).toFixed(1);
+                else paybackYears = `>${(m.projectLifeDays / 365).toFixed(0)}`;
             }
-
             return [
-                m.name,
-                r.score.toFixed(1),
-                m.hashrateTH,
-                m.powerWatts,
-                (m.powerWatts / m.hashrateTH).toFixed(1),
-                m.calculatedPrice.toFixed(0),
-                m.dailyRevenueUSD.toFixed(2),
-                paybackYears,
-                m.clientProfitabilityPercent.toFixed(0) + '%'
-            ]
+                m.name, r.score.toFixed(1), m.hashrateTH, m.powerWatts,
+                (m.powerWatts / m.hashrateTH).toFixed(1), m.calculatedPrice.toFixed(0),
+                m.dailyRevenueUSD.toFixed(2), paybackYears, m.clientProfitabilityPercent.toFixed(0) + '%'
+            ];
         });
-
+        // ... (csv download logic)
         const csvContent = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
         const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
         const link = document.createElement('a');
@@ -462,47 +405,51 @@ export function PriceListGenerator() {
 
     const handleDownloadPDF = async () => {
         if (!documentRef.current) return;
-
         try {
             const element = documentRef.current;
-            const imgData = await toPng(element, { backgroundColor: '#ffffff', pixelRatio: 2 });
-
-            const pdf = new jsPDF({
-                orientation: 'portrait',
-                unit: 'mm',
-                format: 'a4'
-            });
-
-            const imgWidth = 210; // A4 width in mm
-            const pageHeight = 297; // A4 height in mm
+            const imgData = await toPng(element, { backgroundColor: '#ffffff', pixelRatio: 2, cacheBust: true });
+            const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+            const imgWidth = 210;
+            const pageHeight = 297;
             const elementWidth = element.offsetWidth;
             const elementHeight = element.offsetHeight;
             const imgHeight = (elementHeight * imgWidth) / elementWidth;
-
             let heightLeft = imgHeight;
             let position = 0;
-
             pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
             heightLeft -= pageHeight;
-
             while (heightLeft >= 0) {
                 position = heightLeft - imgHeight;
                 pdf.addPage();
                 pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
                 heightLeft -= pageHeight;
             }
-
             pdf.save(`proposal_${clientName.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
         } catch (error) {
             console.error("Error generating PDF:", error);
-            if (confirm("PDF Generation failed. Would you like to print instead?")) {
-                window.print();
-            }
+            if (confirm("PDF Generation failed. Would you like to print instead?")) window.print();
         }
     };
 
+    if (!isReady) {
+        return (
+            <div className="space-y-8 p-4">
+                <div className="space-y-4">
+                    <Skeleton className="h-[120px] w-full rounded-lg" />
+                    <Skeleton className="h-[60px] w-full rounded-lg" />
+                    <div className="space-y-2">
+                        <Skeleton className="h-12 w-full" />
+                        <Skeleton className="h-12 w-full" />
+                        <Skeleton className="h-12 w-full" />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="space-y-8 p-4">
+            {/* Controls */}
             <PriceListControls
                 clientName={clientName}
                 setClientName={setClientName}
@@ -515,8 +462,12 @@ export function PriceListGenerator() {
                 onRefresh={refreshData}
                 onExportCSV={handleExportCSV}
                 onDownloadPDF={handleDownloadPDF}
+                userRole={userRole}
+                branding={branding as any}
+                setBranding={undefined}
             />
 
+            {/* Filter Bar */}
             <PriceListFilterBar
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
@@ -526,13 +477,20 @@ export function PriceListGenerator() {
                 toggleSortOrder={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}
             />
 
-            <PriceListTable miners={filteredResults} />
+            {/* Table */}
+            <div className="bg-white rounded-lg border shadow-sm overflow-hidden">
+                <PriceListTable miners={filteredResults} />
+            </div>
 
+            {/* Hidden PDF Template */}
             <PriceListPdfTemplate
                 documentRef={documentRef}
                 clientName={clientName}
                 recommendations={recommendations}
                 filteredResults={filteredResults}
+                branding={branding as any}
+                userRole={userRole}
+                pdfImages={pdfImages} // Pass Base64 images
             />
         </div>
     );

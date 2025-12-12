@@ -34,6 +34,7 @@ jest.mock('lucide-react', () => ({
     Server: () => <span>Server</span>,
     Info: () => <span>Info</span>,
     X: () => <span>X</span>,
+    ExternalLink: () => <span>ExternalLink</span>,
 }));
 
 jest.mock('@/components/StickyActionFooter', () => ({

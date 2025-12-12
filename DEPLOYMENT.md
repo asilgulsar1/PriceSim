@@ -9,14 +9,31 @@ This guide will help you deploy your Price Simulation application so friends and
 
 ---
 
-## ✅ Option 1: Deploy to Vercel (Recommended)
+## ✅ Option 1: Vercel CLI (Preferred & Most Reliable)
 
-### Why Vercel?
-- ✨ **Free tier** with generous limits
-- 🔒 **Automatic HTTPS**
-- 🌐 **Custom domains** supported
-- 🚀 **Auto-deploy** on every git push
-- ⚡ **Optimized for Next.js** (your framework)
+For this project, we recommend using the Vercel CLI to avoid git synchronization delays.
+
+### Step-by-Step Instructions
+
+1. **Deploy to Production**:
+   Open your terminal in the project folder and run:
+   ```bash
+   npx vercel deploy --prod
+   ```
+   
+2. **Confirm Settings**:
+   - If asked "Inspect?" -> `No`
+   - If asked "Link to existing project?" -> `Yes`
+   - Keep default settings for build command/directory.
+
+3. **Done!**
+   You will get a live URL immediately. This bypasses GitHub sync issues.
+
+---
+
+## 🔄 Option 2: Git Integration (Automatic)
+ 
+**Note**: If GitHub sync gets stuck (like "1d ago"), use Option 1.
 
 ### Step-by-Step Instructions
 

@@ -20,7 +20,7 @@ import { StickyActionFooter } from "@/components/StickyActionFooter";
 import { DEFAULT_CONTRACT_TERMS, DEFAULT_TARGET_MARGIN, DEFAULT_MARKET_CONDITIONS } from '@/lib/constants';
 import {
     Loader2, Zap, TrendingUp, ShieldCheck, Globe,
-    Check, Search, ArrowRight, Lock
+    Check, Search, ArrowRight, Lock, ExternalLink
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -282,29 +282,30 @@ export default function ProductPageClient({ miner }: { miner: MinerProfile & { l
                                                     region: 'All', // Scraper needs region enrichment, default to All for now
                                                     price: l.price,
                                                     moq: '1 Unit',
-                                                    status: l.stockStatus || 'Verify'
+                                                    status: l.stockStatus || 'Verify',
+                                                    url: l.url
                                                 }));
                                             }
                                             // 2. Fallback to Industry Standard Simulation if no scraped data
                                             else {
                                                 displayListings = [
                                                     // Asia
-                                                    { vendor: 'Bitmars', location: 'Shenzhen, CN', region: 'Asia', price: estimatedPrice * 1.015, moq: '5 Units', status: 'In Stock' },
-                                                    { vendor: 'Apexto Mining', location: 'Shenzhen, CN', region: 'Asia', price: estimatedPrice * 1.02, moq: '10 Units', status: 'Pre-order' },
-                                                    { vendor: 'AKMiner', location: 'China', region: 'Asia', price: estimatedPrice * 1.03, moq: '1 Unit', status: 'In Stock' },
+                                                    { vendor: 'Bitmars', location: 'Shenzhen, CN', region: 'Asia', price: estimatedPrice * 1.015, moq: '5 Units', status: 'In Stock', url: 'https://bitmars.io' },
+                                                    { vendor: 'Apexto Mining', location: 'Shenzhen, CN', region: 'Asia', price: estimatedPrice * 1.02, moq: '10 Units', status: 'Pre-order', url: 'https://apextomining.com' },
+                                                    { vendor: 'AKMiner', location: 'China', region: 'Asia', price: estimatedPrice * 1.03, moq: '1 Unit', status: 'In Stock', url: '#' },
 
                                                     // Americas
-                                                    { vendor: 'Compass Mining', location: 'USA', region: 'Americas', price: estimatedPrice * 1.15, moq: '1 Unit', status: 'Hosted' },
-                                                    { vendor: 'Kaboomracks', location: 'Telegram', region: 'Americas', price: estimatedPrice * 1.10, moq: '5 Units', status: 'Verify' },
-                                                    { vendor: 'BT-Miners', location: 'New York, USA', region: 'Americas', price: estimatedPrice * 1.12, moq: '1 Unit', status: 'In Stock' },
+                                                    { vendor: 'Compass Mining', location: 'USA', region: 'Americas', price: estimatedPrice * 1.15, moq: '1 Unit', status: 'Hosted', url: 'https://compassmining.io' },
+                                                    { vendor: 'Kaboomracks', location: 'Telegram', region: 'Americas', price: estimatedPrice * 1.10, moq: '5 Units', status: 'Verify', url: 'https://t.me/kaboomracks' },
+                                                    { vendor: 'BT-Miners', location: 'New York, USA', region: 'Americas', price: estimatedPrice * 1.12, moq: '1 Unit', status: 'In Stock', url: 'https://bt-miners.com' },
 
                                                     // Europe
-                                                    { vendor: 'MillionMiner', location: 'Germany', region: 'Europe', price: estimatedPrice * 1.14, moq: '1 Unit', status: 'In Stock' },
-                                                    { vendor: 'CoinMining Central', location: 'UK', region: 'Europe', price: estimatedPrice * 1.16, moq: '1 Unit', status: 'In Stock' },
+                                                    { vendor: 'MillionMiner', location: 'Germany', region: 'Europe', price: estimatedPrice * 1.14, moq: '1 Unit', status: 'In Stock', url: 'https://millionminer.com' },
+                                                    { vendor: 'CoinMining Central', location: 'UK', region: 'Europe', price: estimatedPrice * 1.16, moq: '1 Unit', status: 'In Stock', url: 'https://coinminingcentral.com' },
 
                                                     // GCC
-                                                    { vendor: 'Phoenix Technology', location: 'Abu Dhabi, UAE', region: 'GCC', price: estimatedPrice * 1.05, moq: '50 Units', status: 'Call' },
-                                                    { vendor: 'ExTech', location: 'Dubai, UAE', region: 'GCC', price: estimatedPrice * 1.06, moq: '10 Units', status: 'In Stock' }
+                                                    { vendor: 'Phoenix Technology', location: 'Abu Dhabi, UAE', region: 'GCC', price: estimatedPrice * 1.05, moq: '50 Units', status: 'Call', url: 'https://phoenixstore.com' },
+                                                    { vendor: 'ExTech', location: 'Dubai, UAE', region: 'GCC', price: estimatedPrice * 1.06, moq: '10 Units', status: 'In Stock', url: '#' }
                                                 ];
                                             }
 
@@ -315,17 +316,45 @@ export default function ProductPageClient({ miner }: { miner: MinerProfile & { l
                                                 // For now, let's just show All for scraped data to be safe.
                                                 return displayListings.map((item, i) => (
                                                     <TableRow key={i} className="hover:bg-slate-50/50">
-                                                        <TableCell className="font-medium text-slate-700">{item.vendor}</TableCell>
+                                                        <TableCell className="font-medium text-slate-700">
+                                                            {item.url ? (
+                                                                <a href={item.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-blue-600 hover:underline">
+                                                                    {item.vendor}
+                                                                    <ExternalLink className="w-3 h-3 opacity-50" />
+                                                                </a>
+                                                            ) : (
+                                                                item.vendor
+                                                            )}
+                                                        </TableCell>
                                                         <TableCell><span className="text-xs text-slate-500">{item.location}</span></TableCell>
                                                         <TableCell className="font-mono text-slate-600">${item.price.toLocaleString()}</TableCell>
                                                         <TableCell><span className="text-xs text-slate-400">{item.moq}</span></TableCell>
-                                                        <TableCell className="text-right"><Button size="sm" variant="ghost" disabled className="text-slate-400 h-8 text-xs">{item.status}</Button></TableCell>
+                                                        <TableCell className="text-right">
+                                                            {item.url ? (
+                                                                <a href={item.url} target="_blank" rel="noopener noreferrer">
+                                                                    <Button size="sm" variant="outline" className="h-8 text-xs border-blue-200 text-blue-600 hover:bg-blue-50">
+                                                                        Visit Site
+                                                                    </Button>
+                                                                </a>
+                                                            ) : (
+                                                                <Button size="sm" variant="ghost" disabled className="text-slate-400 h-8 text-xs">{item.status}</Button>
+                                                            )}
+                                                        </TableCell>
                                                     </TableRow>
                                                 ));
                                             } else {
                                                 return displayListings.filter(item => selectedRegion === 'All' || item.region === selectedRegion).map((item, i) => (
                                                     <TableRow key={i} className="hover:bg-slate-50/50">
-                                                        <TableCell className="font-medium text-slate-700">{item.vendor}</TableCell>
+                                                        <TableCell className="font-medium text-slate-700">
+                                                            {item.url && item.url !== '#' ? (
+                                                                <a href={item.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-blue-600 hover:underline">
+                                                                    {item.vendor}
+                                                                    <ExternalLink className="w-3 h-3 opacity-50" />
+                                                                </a>
+                                                            ) : (
+                                                                item.vendor
+                                                            )}
+                                                        </TableCell>
                                                         <TableCell>
                                                             <div className="flex items-center gap-1 text-xs text-slate-500">
                                                                 <span className="w-2 h-2 rounded-full bg-slate-200"></span>
@@ -335,9 +364,17 @@ export default function ProductPageClient({ miner }: { miner: MinerProfile & { l
                                                         <TableCell className="font-mono text-slate-600">${item.price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</TableCell>
                                                         <TableCell><span className="text-xs text-slate-400">{item.moq}</span></TableCell>
                                                         <TableCell className="text-right">
-                                                            <Button size="sm" variant="ghost" disabled className="text-slate-400 h-8 text-xs">
-                                                                {item.status === 'Hosted' ? 'Hosting Only' : 'Unverified'}
-                                                            </Button>
+                                                            {item.url && item.url !== '#' ? (
+                                                                <a href={item.url} target="_blank" rel="noopener noreferrer">
+                                                                    <Button size="sm" variant="outline" className="h-8 text-xs border-blue-200 text-blue-600 hover:bg-blue-50">
+                                                                        Visit Site
+                                                                    </Button>
+                                                                </a>
+                                                            ) : (
+                                                                <Button size="sm" variant="ghost" disabled className="text-slate-400 h-8 text-xs">
+                                                                    {item.status === 'Hosted' ? 'Hosting Only' : 'Unverified'}
+                                                                </Button>
+                                                            )}
                                                         </TableCell>
                                                     </TableRow>
                                                 ));

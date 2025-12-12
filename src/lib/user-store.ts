@@ -1,11 +1,41 @@
 import { list, put, del } from '@vercel/blob';
 
-export type UserRole = 'admin' | 'sales' | 'client';
+export type UserRole = 'admin' | 'sales' | 'client' | 'reseller';
+
+export interface BrandingConfig {
+    companyName?: string;
+    logoUrl?: string;
+    footerText?: string;
+    colors?: {
+        primary: string; // Hex
+        secondary: string;
+        accent: string;
+    };
+    customHeadings?: {
+        mainHeading?: string;
+        subHeading?: string;
+        contentText?: string; // Main body text (AI enhanced)
+    };
+    // Template Metadata (for saved templates)
+    id?: string;
+    templateName?: string;
+    createdAt?: string;
+}
+
+export interface AiUsage {
+    dailyLimit: number;
+    usedToday: number;
+    lastResetDate: string; // ISO Date String YYYY-MM-DD
+}
 
 export interface User {
     email: string;
     role: UserRole;
     name?: string;
+    resellerMargin?: number; // Markup in USD for Resellers
+    branding?: BrandingConfig;
+    savedTemplates?: BrandingConfig[]; // Max 10 templates
+    aiUsage?: AiUsage; // New field for AI usage tracking
 }
 
 const USERS_DIR = 'users/';
@@ -112,6 +142,28 @@ export async function getUserRole(email: string): Promise<UserRole | null> {
 
     } catch (error) {
         console.error('Error getting user role:', error);
+        return null;
+    }
+}
+
+export async function getUser(email: string): Promise<User | null> {
+    try {
+        const path = getUserPath(email);
+        const { blobs } = await list({ prefix: path, limit: 1 });
+        const blob = blobs.find(b => b.pathname === path);
+
+        if (!blob) {
+            if (process.env.ADMIN_EMAIL === email) {
+                return { email, role: 'admin', name: 'Admin' };
+            }
+            return null;
+        }
+
+        const response = await fetch(blob.url);
+        if (!response.ok) return null;
+        return (await response.json()) as User;
+    } catch (error) {
+        console.error('Error getting user:', error);
         return null;
     }
 }

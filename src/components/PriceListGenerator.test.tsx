@@ -22,14 +22,27 @@ jest.mock('./price-list/PriceListTable', () => ({
         </table>
     )
 }));
-jest.mock('./price-list/PriceListPdfTemplate', () => ({ PriceListPdfTemplate: () => <div>PDF</div> }));
+jest.mock('./price-list/PriceListPdfTemplate', () => ({
+    PriceListPdfTemplate: ({ userRole, branding }: any) => (
+        <div data-testid="pdf-template" data-role={userRole} data-branding={JSON.stringify(branding)}>PDF</div>
+    )
+}));
+jest.mock('next-auth/react', () => ({
+    useSession: jest.fn(() => ({ data: { user: { role: 'client' } }, status: 'authenticated' })),
+}));
+
+// Mock image-utils to avoid fetch/blob issues in JSDOM
+jest.mock('@/lib/image-utils', () => ({
+    urlToBase64: jest.fn().mockResolvedValue('data:image/png;base64,mocked'),
+}));
+
 jest.mock('html-to-image', () => ({}));
 jest.mock('jspdf', () => ({}));
 jest.mock('@/hooks/useMarketData', () => ({
-    useMarketData: () => ({
+    useMarketData: jest.fn(() => ({
         market: { btcPrice: 100000, networkDifficulty: 100 },
         setMarket: jest.fn()
-    })
+    }))
 }));
 
 describe('PriceListGenerator Sync Logic', () => {
@@ -65,6 +78,63 @@ describe('PriceListGenerator Sync Logic', () => {
         await waitFor(() => {
             expect(screen.getByText('Simulator Miner')).toBeInTheDocument();
             // Verify it didn't crash
+        });
+
+        // Verify Logic: Max(3500, 3200) = 3500. Margin applies to 3500.
+    });
+
+    it('applies reseller markup when userRole is reseller', async () => {
+        (global.fetch as any) = jest.fn(() =>
+            Promise.resolve({
+                ok: true,
+                json: async () => ({
+                    updatedAt: new Date().toISOString(),
+                    miners: [
+                        {
+                            miner: { // Nested
+                                name: 'S19 XP',
+                                hashrateTH: 140,
+                                powerWatts: 3010,
+                                calculatedPrice: 3500, // Base price from API
+                                dailyRevenueUSD: 12,
+                                dailyExpenseUSD: 6,
+                                projectLifeDays: 365,
+                                projections: []
+                            },
+                            score: 95
+                        }
+                    ]
+                }),
+                status: 200
+            })
+        );
+
+        // Mock props
+        const props = {
+            userRole: 'reseller',
+            resellerMargin: 500
+        };
+
+        await act(async () => {
+            render(<PriceListGenerator {...props} />);
+        });
+        fireEvent.click(screen.getByText('Fresh Data'));
+
+
+        // S19 XP: Sim Calculated = 3500. Market = 0 (mocked empty above or defaults?)
+        // wait, fetch is mocked to return marketPrices map.
+        // We need to ensure fetch returns something or matching logic works.
+
+        // Sim Miner S19 XP is $3500 base. 
+        // Reseller Margin: +500.
+        // Expected Base Price: $4000.
+
+        // Check for displayed price. 
+        // Note: Default margin is 0% / 0 USD in UI. 
+        // Just checking the table for "$4,000".
+
+        await waitFor(() => {
+            expect(screen.getByTestId('price-S19 XP')).toHaveTextContent('4000');
         });
     });
 
@@ -152,5 +222,26 @@ describe('PriceListGenerator Sync Logic', () => {
             // Note: The mocked PriceListTable displays price in a cell
             expect(screen.getByTestId('price-Sim S23 Mix 1160T')).toHaveTextContent('29000');
         });
+    });
+
+    it('propagates branding and userRole to PDF Template', async () => {
+        const branding = {
+            companyName: 'My Crypto',
+            logoUrl: 'https://example.com/logo.png',
+            footerText: 'Contact Us'
+        };
+        const props = {
+            userRole: 'reseller',
+            resellerMargin: 500,
+            branding
+        };
+
+        await act(async () => {
+            render(<PriceListGenerator {...props} />);
+        });
+
+        const pdf = screen.getByTestId('pdf-template');
+        expect(pdf).toHaveAttribute('data-role', 'reseller');
+        expect(pdf).toHaveAttribute('data-branding', JSON.stringify(branding));
     });
 });
