@@ -7,8 +7,8 @@ export default function LoginPage() {
         <div className="flex h-screen items-center justify-center bg-gray-50">
             <Card className="w-[350px]">
                 <CardHeader>
-                    <CardTitle>Sales Portal</CardTitle>
-                    <CardDescription>Sign in to access Market News</CardDescription>
+                    <CardTitle className="text-2xl font-bold text-slate-900">Sales Portal</CardTitle>
+                    <CardDescription className="text-slate-600">Sign in to access Market News</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <form
