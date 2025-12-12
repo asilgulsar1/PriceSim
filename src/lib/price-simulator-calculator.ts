@@ -10,7 +10,10 @@
 import { MinerProfile, ContractTerms, MarketConditions, SimulationConfig, DailyProjection, SimulationResult } from './calculator';
 
 // Re-exporting interfaces to keep imports clean in the component
+// Re-exporting interfaces to keep imports clean in the component
 export type { MinerProfile, ContractTerms, MarketConditions, SimulationConfig, DailyProjection, SimulationResult };
+
+import { calculateDailyGrossBTC } from './mining-math';
 
 export interface CalculatedMiner extends MinerProfile {
     calculatedPrice: number;
@@ -112,10 +115,10 @@ export class PriceSimulatorCalculator {
                 break;
             }
 
+
             // 3. Calculate Production
-            const hashrateH = miner.hashrateTH * 1e12;
             const difficulty = currentDifficulty;
-            const grossProductionBTC = (hashrateH * 86400 * currentBlockReward) / (difficulty * 4294967296);
+            const grossProductionBTC = calculateDailyGrossBTC(miner.hashrateTH, difficulty, currentBlockReward);
 
             const poolFeeBTC = grossProductionBTC * (contract.poolFee / 100);
             const netProductionBTC = grossProductionBTC - poolFeeBTC;

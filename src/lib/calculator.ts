@@ -100,6 +100,9 @@ export interface SimulationResult {
   };
 }
 
+
+import { calculateDailyGrossBTC } from './mining-math';
+
 export class MiningCalculator {
   private static BLOCKS_PER_DAY = 144; // Approx 10 mins per block
   private static DIFFICULTY_ADJUSTMENT_DAYS = 14;
@@ -155,10 +158,8 @@ export class MiningCalculator {
       }
 
       // 2. Calculate Production
-      const hashrateH = miner.hashrateTH * 1e12;
       const difficulty = currentDifficulty;
-      // 2^32 = 4294967296
-      const grossProductionBTC = (hashrateH * 86400 * currentBlockReward) / (difficulty * 4294967296);
+      const grossProductionBTC = calculateDailyGrossBTC(miner.hashrateTH, difficulty, currentBlockReward);
 
       const poolFeeBTC = grossProductionBTC * (contract.poolFee / 100);
       const netProductionBTC = grossProductionBTC - poolFeeBTC;

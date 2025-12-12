@@ -159,7 +159,7 @@ export async function getUser(email: string): Promise<User | null> {
             return null;
         }
 
-        const response = await fetch(blob.url);
+        const response = await fetch(blob.url, { cache: 'no-store' }); // Ensure fresh data
         if (!response.ok) return null;
         return (await response.json()) as User;
     } catch (error) {

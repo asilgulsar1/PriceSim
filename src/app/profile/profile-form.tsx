@@ -1,382 +1,388 @@
 "use client";
 
 import { useTransition, useState, useEffect, useRef } from "react";
-import { Button } from "@/components/ui/button"; // Keep for fallback or internal
+import { useRouter } from "next/navigation";
+import { BrandingConfig, AiUsage } from "@/lib/user-store";
+import { generateAiContent } from "@/app/actions";
+import { Loader2, Wand2, Save, Download, Upload, LayoutTemplate, Palette, Type, CheckCircle2 } from "lucide-react";
+import { updateBrandingAction } from "./actions";
+
+// UI Components
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
 
-import { BrandingConfig, AiUsage } from "@/lib/user-store";
-import { generateAiContent } from "@/app/actions";
-import { Loader2, Wand2, Save, Trash2, Mic, Box, Layers, Zap, Download } from "lucide-react";
-import { updateBrandingAction, saveTemplateAction, deleteTemplateAction } from "./actions";
-
-// Quantum & Logic
-import { QuantumInput, QuantumSelect, QuantumColorPicker, QuantumButton } from "@/components/profile/QuantumControls";
+// PDF & Data Logic
 import { toPng } from 'html-to-image';
 import jsPDF from 'jspdf';
 import { PriceListPdfTemplate } from "@/components/price-list/PriceListPdfTemplate";
-import { MinerScoreDetail } from "@/lib/miner-scoring";
+import { MinerScoreDetail, rankMiners } from "@/lib/miner-scoring";
+import { useMarketData } from "@/hooks/useMarketData";
+import { INITIAL_MINERS } from "@/lib/miner-data";
+import { solveMinerPrice } from "@/lib/pricing-solver";
+import { DEFAULT_CONTRACT_TERMS, DEFAULT_TARGET_MARGIN } from "@/lib/constants";
 
 interface ProfileFormProps {
     branding: BrandingConfig;
     aiUsage: AiUsage;
-    savedTemplates?: BrandingConfig[];
+    savedTemplates?: any[]; // Keep for prop compatibility but unused
+    successMessage?: string;
 }
 
-export function ProfileForm({ branding: initialBranding, aiUsage, savedTemplates = [] }: ProfileFormProps) {
+export function ProfileForm({ branding: initialBranding, aiUsage, successMessage }: ProfileFormProps) {
+    const router = useRouter();
     const [isPending, startTransition] = useTransition();
-    const [aiLoading, setAiLoading] = useState(false);
     const [isCompiling, setIsCompiling] = useState(false);
+    const [aiLoading, setAiLoading] = useState(false);
 
-    // Layout Logic State (The "AI Buttons" repurposed)
-    const [layoutMode, setLayoutMode] = useState<'corporate' | 'conversion' | 'schematic'>('corporate');
-
-    // Local State for Interactive Fields
+    // --- STATE ---
+    // Identity
     const [companyName, setCompanyName] = useState(initialBranding.companyName || "");
     const [footerText, setFooterText] = useState(initialBranding.footerText || "");
-    const [colorPrimary, setColorPrimary] = useState(initialBranding.colors?.primary || "#0f172a");
-    const [colorSecondary, setColorSecondary] = useState(initialBranding.colors?.secondary || "#334155");
-    const [colorAccent, setColorAccent] = useState(initialBranding.colors?.accent || "#f97316");
     const [logoUrl, setLogoUrl] = useState(initialBranding.logoUrl || "");
 
-    // Headings
+    // Colors
+    const [colorPrimary, setColorPrimary] = useState(initialBranding.colors?.primary || "#0f172a");
+    const [colorSecondary, setColorSecondary] = useState(initialBranding.colors?.secondary || "#334155");
+    const [colorAccent, setColorAccent] = useState(initialBranding.colors?.accent || "#0ea5e9");
+
+    // Content
     const [mainHeading, setMainHeading] = useState(initialBranding.customHeadings?.mainHeading || "Strategic Hardware Acquisition");
     const [subHeading, setSubHeading] = useState(initialBranding.customHeadings?.subHeading || "Prepared For");
     const [contentText, setContentText] = useState(initialBranding.customHeadings?.contentText || "");
+    const [aiTone, setAiTone] = useState<'professional' | 'persuasive' | 'technical'>('professional');
 
-    // Template State
-    const [templateNameInput, setTemplateNameInput] = useState("");
-    const [selectedTemplateId, setSelectedTemplateId] = useState<string>("none");
+    // --- DATA CALCULATION (For Preview) ---
+    const { market, loading: marketLoading } = useMarketData();
+    const [calculatedMiners, setCalculatedMiners] = useState<MinerScoreDetail[]>([]);
+    const [recommendations, setRecommendations] = useState<any>({ topROI: [], topRevenue: [], topEfficiency: [] });
 
-    const documentRef = useRef<HTMLDivElement>(null);
-
-    // --- LOGIC: AI Generation (Now a discrete "Magic Wand" action) ---
-    const handleAiGenerate = async (type: "professional" | "persuasive" | "technical") => {
-        setAiLoading(true);
-        try {
-            const current = contentText || "We provide top-tier mining hardware solutions.";
-            const result = await generateAiContent(type, current);
-            if (result.success && result.content) {
-                setContentText(result.content);
-            } else {
-                alert(result.error || "AI Generation failed.");
-            }
-        } catch (e: any) {
-            console.error(e);
-            alert(`An error occurred: ${e.message || "Unknown error"} `);
-        } finally {
-            setAiLoading(false);
-        }
-    };
-
-    // --- LOGIC: Templates ---
-    const handleLoadTemplate = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const templateId = e.target.value;
-        if (templateId === "none") return;
-        const template = savedTemplates.find(t => t.id === templateId);
-        if (template) {
-            if (template.companyName) setCompanyName(template.companyName);
-            if (template.footerText) setFooterText(template.footerText);
-            if (template.logoUrl) setLogoUrl(template.logoUrl);
-            if (template.colors?.primary) setColorPrimary(template.colors.primary);
-            if (template.colors?.secondary) setColorSecondary(template.colors.secondary);
-            if (template.colors?.accent) setColorAccent(template.colors.accent);
-            if (template.customHeadings?.mainHeading) setMainHeading(template.customHeadings.mainHeading);
-            if (template.customHeadings?.subHeading) setSubHeading(template.customHeadings.subHeading);
-            if (template.customHeadings?.contentText) setContentText(template.customHeadings.contentText);
-
-            setTemplateNameInput(template.templateName || "");
-            setSelectedTemplateId(templateId);
-        }
-    };
-
-    const handleDeleteTemplate = async () => {
-        if (selectedTemplateId === "none") return;
-        if (!confirm("Delete this template protocol?")) return;
-        startTransition(async () => {
-            await deleteTemplateAction(selectedTemplateId);
-            setSelectedTemplateId("none");
+    useEffect(() => {
+        if (!market.btcPrice) return;
+        const solved = INITIAL_MINERS.map(m => solveMinerPrice(m, DEFAULT_CONTRACT_TERMS, market, DEFAULT_TARGET_MARGIN, false));
+        const ranked = rankMiners(solved);
+        setCalculatedMiners(ranked);
+        setRecommendations({
+            topROI: [ranked.sort((a, b) => b.metrics.profitabilityScore - a.metrics.profitabilityScore)[0]],
+            topRevenue: [ranked.sort((a, b) => b.metrics.revenueScore - a.metrics.revenueScore)[0]],
+            topEfficiency: [ranked.sort((a, b) => b.metrics.efficiencyScore - a.metrics.efficiencyScore)[0]]
         });
+    }, [market]);
+
+    // --- HANDLERS ---
+
+    const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            if (file.size > 4 * 1024 * 1024) {
+                alert("File too large. Maximum size is 4MB.");
+                e.target.value = "";
+                return;
+            }
+            const reader = new FileReader();
+            reader.onloadend = () => setLogoUrl(reader.result as string);
+            reader.readAsDataURL(file);
+        }
     };
 
-    const handleSaveTemplate = (e: React.FormEvent) => {
+    const handleSave = (e: React.FormEvent) => {
         e.preventDefault();
-        startTransition(async () => {
-            const formData = new FormData();
-            formData.append('templateName', templateNameInput);
-            formData.append('companyName', companyName);
-            formData.append('footerText', footerText);
-            formData.append('color_primary', colorPrimary);
-            formData.append('color_secondary', colorSecondary);
-            formData.append('color_accent', colorAccent);
-            formData.append('mainHeading', mainHeading);
-            formData.append('subHeading', subHeading);
-            formData.append('contentText', contentText);
+        // Previous mock save logic removed
+    };
 
-            const res = await saveTemplateAction(formData);
+    // Improved Save Handler to include File
+    const fileInputRef = useRef<HTMLInputElement>(null);
+    const handleGlobalSave = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        // Safety Check
+        const file = fileInputRef.current?.files?.[0];
+        if (file && file.size > 4 * 1024 * 1024) {
+            alert("Logo file is too large (Max 4MB). Please use a smaller image.");
+            return;
+        }
+
+        // EXPLICIT FORM DATA CONSTRUCTION
+        // Ensures state is exactly what is sent, bypassing potentially buggy DOM extraction
+        const formData = new FormData();
+        formData.append('companyName', companyName);
+        formData.append('footerText', footerText);
+        formData.append('color_primary', colorPrimary);
+        formData.append('color_secondary', colorSecondary);
+        formData.append('color_accent', colorAccent);
+        formData.append('mainHeading', mainHeading);
+        formData.append('subHeading', subHeading);
+        formData.append('contentText', contentText);
+
+        if (file) {
+            formData.append('logoFile', file);
+        }
+
+        startTransition(async () => {
+            const res = await updateBrandingAction(formData);
             if (res.success) {
-                alert("Protocol Saved Successfully.");
+                router.refresh(); // Sync server state to trigger re-render
             } else {
                 alert(res.error || "Save Failed");
             }
         });
     };
 
-    // --- LOGIC: Compile Artifact (Test Export) ---
-    const handleCompileArtifact = async () => {
-        if (!documentRef.current) return;
-        setIsCompiling(true);
-
-        // Simulation of "Boot Up"
-        await new Promise(r => setTimeout(r, 1500));
-
+    const handleAiGenerate = async () => {
+        setAiLoading(true);
         try {
-            const element = documentRef.current;
-            const imgData = await toPng(element, { backgroundColor: '#ffffff', pixelRatio: 2, cacheBust: true });
-            const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-            const imgWidth = 210;
-            const pageHeight = 297;
-            const elementWidth = element.offsetWidth;
-            const elementHeight = element.offsetHeight;
-            const imgHeight = (elementHeight * imgWidth) / elementWidth;
+            const context = {
+                topMiners: calculatedMiners.slice(0, 3).map(m => m.miner.name),
+                totalRevenue: calculatedMiners[0]?.miner.dailyRevenueUSD || 0,
+                maxRoi: calculatedMiners[0]?.metrics.profitabilityScore * 10
+            };
+            const res = await generateAiContent(aiTone, contentText, context);
+            if (res.success && res.content) setContentText(res.content);
+        } catch (e) {
+            console.error(e);
+        } finally {
+            setAiLoading(false);
+        }
+    };
 
-            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-            pdf.save(`QUANTUM_ARTIFACT_${new Date().getTime()}.pdf`);
-        } catch (error) {
-            console.error("Compilation failed:", error);
-            alert("Artifact Compilation Failed.");
+    // PDF ENGINE
+    const printRef = useRef<HTMLDivElement>(null);
+    const handleCompile = async () => {
+        if (!printRef.current) return;
+        setIsCompiling(true);
+        await new Promise(r => setTimeout(r, 500)); // UX Delay
+        try {
+            const element = printRef.current;
+            const imgData = await toPng(element, {
+                backgroundColor: '#ffffff',
+                pixelRatio: 4,
+                width: 794,
+            });
+            const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+            pdf.addImage(imgData, 'PNG', 0, 0, 210, 297);
+            pdf.save(`DEAL_SHEET_${companyName.replace(/\s+/g, '_')}.pdf`);
+        } catch (e) {
+            console.error(e);
+            alert("PDF Generation Failed");
         } finally {
             setIsCompiling(false);
         }
     };
 
-    // --- LOGIC: General Save ---
-    const handleGlobalSave = (e: React.FormEvent) => {
-        e.preventDefault();
-        const formData = new FormData(e.target as HTMLFormElement);
-        startTransition(async () => {
-            const res = await updateBrandingAction(formData);
-            if (res.success) alert("System Core Updated.");
-            else alert(res.error || "Update Failed");
-        });
-    };
-
-
-    // Mock Data for Preview
-    const mockMiners: MinerScoreDetail[] = Array(5).fill(null).map((_, i) => ({
-        miner: {
-            id: `mk - ${i} `,
-            name: `Antminer S21 Pro`,
-            hashrateTH: 235,
-            powerWatts: 3500,
-            efficiency: 15.0,
-            price: 4500,
-            formattedPrice: "$4,500",
-            manufacturer: "Bitmain",
-            algorithm: "SHA-256",
-            model: "S21"
-        }
-    } as any));
-
-    const [mounted, setMounted] = useState(false);
-    useEffect(() => { setMounted(true); }, []);
-
-    if (!mounted) return null;
-
     return (
-        <div className="flex h-[calc(100vh-80px)] overflow-hidden bg-[#0a0a0a] text-slate-200 font-sans border border-white/10 rounded-xl shadow-2xl">
-            {/* --- LEFT PANEL: CONTROL DECK (40%) --- */}
-            <div className="w-[40%] flex flex-col border-r border-white/10 bg-[#0a0a0a] relative z-10">
-                <div className="p-6 border-b border-white/10 flex justify-between items-center bg-black/40 backdrop-blur-xl">
-                    <div>
-                        <h2 className="text-sm font-mono text-blue-400 tracking-[0.2em] uppercase">Control Deck</h2>
-                        <div className="text-[10px] text-slate-500 font-mono mt-1">v.3.0.1 // {aiUsage.usedToday}/{aiUsage.dailyLimit} AI GEN</div>
+        <div className="min-h-screen bg-slate-50/50 p-4 md:p-8 font-sans text-slate-900">
+            <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+                {/* --- LEFT: CONFIGURATION (4 Cols) --- */}
+                <div className="lg:col-span-4 space-y-6">
+
+                    {/* Header */}
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <h1 className="text-2xl font-bold tracking-tight text-slate-900">Reseller Profile</h1>
+                            <p className="text-sm text-slate-500">Configure your deal sheet branding.</p>
+                        </div>
+                        {successMessage && (
+                            <Badge variant="outline" className="bg-emerald-50 text-emerald-600 border-emerald-200 flex gap-1">
+                                <CheckCircle2 className="w-3 h-3" /> Saved
+                            </Badge>
+                        )}
                     </div>
-                    <div className="flex gap-2">
-                        {/* Status Lights */}
-                        <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)] animate-pulse" />
-                        <div className="text-[10px] text-green-400 font-mono">ONLINE</div>
+
+                    <form onSubmit={handleGlobalSave} className="space-y-6">
+                        {/* 1. Identity */}
+                        <Card>
+                            <CardHeader className="pb-3">
+                                <CardTitle className="text-sm font-medium uppercase tracking-wider text-slate-500 flex items-center gap-2">
+                                    <LayoutTemplate className="w-4 h-4" /> Identity
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-4">
+                                <div className="space-y-2">
+                                    <Label>Company Name</Label>
+                                    <Input name="companyName" value={companyName} onChange={e => setCompanyName(e.target.value)} placeholder="Your Brand Name" />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label>Footer / Contact</Label>
+                                    <Input name="footerText" value={footerText} onChange={e => setFooterText(e.target.value)} placeholder="Contact Info" />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label>Logo</Label>
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-12 h-12 bg-slate-100 rounded-lg border border-slate-200 flex items-center justify-center overflow-hidden shrink-0">
+                                            {logoUrl ? <img src={logoUrl} className="w-full h-full object-contain" alt="Logo" /> : <Upload className="w-4 h-4 text-slate-400" />}
+                                        </div>
+                                        <div className="flex-1">
+                                            <Input
+                                                ref={fileInputRef}
+                                                type="file"
+                                                name="logoFile"
+                                                accept="image/*"
+                                                onChange={handleLogoUpload}
+                                                className="text-xs"
+                                            />
+                                        </div>
+                                    </div>
+                                    {/* Hidden input to pass existing URL if no new file */}
+                                    {/* Actually, server action handles this check usually. If no file, it keeps old. */}
+                                </div>
+                            </CardContent>
+                        </Card>
+
+                        {/* 2. Theme */}
+                        <Card>
+                            <CardHeader className="pb-3">
+                                <CardTitle className="text-sm font-medium uppercase tracking-wider text-slate-500 flex items-center gap-2">
+                                    <Palette className="w-4 h-4" /> Theme
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-4">
+                                <div className="grid grid-cols-3 gap-4">
+                                    <div className="space-y-2">
+                                        <Label className="text-xs">Primary</Label>
+                                        <div className="flex gap-2">
+                                            <div className="w-6 h-6 rounded border shadow-sm shrink-0" style={{ background: colorPrimary }} />
+                                            <Input type="color" name="color_primary" value={colorPrimary} onChange={e => setColorPrimary(e.target.value)} className="w-full h-8 p-1" />
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label className="text-xs">Secondary</Label>
+                                        <div className="flex gap-2">
+                                            <div className="w-6 h-6 rounded border shadow-sm shrink-0" style={{ background: colorSecondary }} />
+                                            <Input type="color" name="color_secondary" value={colorSecondary} onChange={e => setColorSecondary(e.target.value)} className="w-full h-8 p-1" />
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label className="text-xs">Accent</Label>
+                                        <div className="flex gap-2">
+                                            <div className="w-6 h-6 rounded border shadow-sm shrink-0" style={{ background: colorAccent }} />
+                                            <Input type="color" name="color_accent" value={colorAccent} onChange={e => setColorAccent(e.target.value)} className="w-full h-8 p-1" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+
+                        {/* 3. Content */}
+                        <Card>
+                            <CardHeader className="pb-3">
+                                <CardTitle className="text-sm font-medium uppercase tracking-wider text-slate-500 flex items-center gap-2">
+                                    <Type className="w-4 h-4" /> Content
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-4">
+                                <div className="space-y-2">
+                                    <Label>Main Heading</Label>
+                                    <Input name="mainHeading" value={mainHeading} onChange={e => setMainHeading(e.target.value)} />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label>Subtitle</Label>
+                                    <Input name="subHeading" value={subHeading} onChange={e => setSubHeading(e.target.value)} />
+                                </div>
+                                <div className="space-y-2">
+                                    <div className="flex justify-between">
+                                        <Label>Executive Summary</Label>
+                                        <Button
+                                            type="button"
+                                            variant="ghost"
+                                            size="sm"
+                                            className="h-6 text-xs text-blue-600 hover:text-blue-700"
+                                            onClick={handleAiGenerate}
+                                            disabled={aiLoading}
+                                        >
+                                            {aiLoading ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <Wand2 className="w-3 h-3 mr-1" />}
+                                            AI Generate
+                                        </Button>
+                                    </div>
+                                    <Textarea
+                                        name="contentText"
+                                        value={contentText}
+                                        onChange={e => setContentText(e.target.value)}
+                                        className="min-h-[120px]"
+                                    />
+                                    <div className="flex justify-end">
+                                        <select
+                                            className="text-xs border rounded px-2 py-1 bg-white"
+                                            value={aiTone}
+                                            onChange={e => setAiTone(e.target.value as any)}
+                                        >
+                                            <option value="professional">Professional Tone</option>
+                                            <option value="persuasive">Persuasive Tone</option>
+                                            <option value="technical">Technical Tone</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </CardContent>
+                            <CardFooter className="pt-4 border-t bg-slate-50/50">
+                                <Button type="submit" disabled={isPending} className="w-full">
+                                    {isPending ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Save className="w-4 h-4 mr-2" />}
+                                    Save Configuration
+                                </Button>
+                            </CardFooter>
+                        </Card>
+                    </form>
+                </div>
+
+                {/* --- RIGHT: PREVIEW (8 Cols) --- */}
+                <div className="lg:col-span-8 space-y-6">
+                    <div className="flex items-center justify-between h-8">
+                        <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wide">Live Preview</h2>
+                        <Button variant="outline" size="sm" onClick={handleCompile} disabled={isCompiling}>
+                            {isCompiling ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Download className="w-4 h-4 mr-2" />}
+                            Export PDF
+                        </Button>
+                    </div>
+
+                    <div className="bg-slate-200/50 rounded-xl border border-slate-200 p-8 md:p-12 overflow-auto flex justify-center min-h-[800px]">
+                        {/* Scaled Preview Wrapper */}
+                        <div className="origin-top scale-[0.5] md:scale-[0.6] lg:scale-[0.8] xl:scale-[0.85] shadow-2xl">
+                            <div className="bg-white w-[210mm] h-[297mm] relative pointer-events-none select-none">
+                                <PriceListPdfTemplate
+                                    documentRef={undefined as any}
+                                    clientName="VALUED CLIENT"
+                                    recommendations={recommendations}
+                                    filteredResults={calculatedMiners}
+                                    branding={{
+                                        companyName,
+                                        footerText,
+                                        logoUrl: logoUrl || initialBranding.logoUrl,
+                                        colors: { primary: colorPrimary, secondary: colorSecondary, accent: colorAccent },
+                                        customHeadings: { mainHeading, subHeading, contentText }
+                                    }}
+                                    userRole="reseller"
+                                    pdfImages={{ logo: "" }}
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div className="flex-1 overflow-y-auto p-6 space-y-10 scrollbar-hide">
-
-                    {/* 1. Identity Matrix */}
-                    <section className="space-y-6">
-                        <h3 className="text-xs uppercase tracking-widest text-slate-500 font-mono border-l-2 border-blue-500 pl-3">Identity Matrix</h3>
-                        <QuantumInput
-                            label="Organization Designation"
-                            name="companyName"
-                            value={companyName}
-                            onChange={(e) => setCompanyName(e.target.value)}
-                        />
-                        <QuantumInput
-                            label="Comms Uplink (Footer)"
-                            name="footerText"
-                            value={footerText}
-                            onChange={(e) => setFooterText(e.target.value)}
-                        />
-                        {/* File Upload Redesign */}
-                        <div className="border border-dashed border-slate-700 rounded-lg p-4 text-center hover:border-blue-500/50 hover:bg-blue-500/5 transition-all group cursor-pointer relative">
-                            <input
-                                type="file"
-                                name="logoFile"
-                                accept="image/*"
-                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                            />
-                            <div className="flex flex-col items-center gap-2">
-                                <Box className="w-6 h-6 text-slate-600 group-hover:text-blue-400 transition-colors" />
-                                <span className="text-[10px] font-mono text-slate-500 group-hover:text-blue-300">INGEST LOGO ASSET</span>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* 2. Chromatic Variance */}
-                    <section className="space-y-6">
-                        <h3 className="text-xs uppercase tracking-widest text-slate-500 font-mono border-l-2 border-blue-500 pl-3">Chromatic Variance</h3>
-                        <div className="flex justify-between px-4">
-                            <QuantumColorPicker label="PRI" value={colorPrimary} onChange={setColorPrimary} />
-                            <QuantumColorPicker label="SEC" value={colorSecondary} onChange={setColorSecondary} />
-                            <QuantumColorPicker label="ACC" value={colorAccent} onChange={setColorAccent} />
-                        </div>
-                    </section>
-
-                    {/* 3. Narrative Core */}
-                    <section className="space-y-6">
-                        <h3 className="text-xs uppercase tracking-widest text-slate-500 font-mono border-l-2 border-blue-500 pl-3">Narrative Core</h3>
-
-                        <div className="relative group">
-                            <div className="absolute top-0 right-0 flex gap-1 z-10">
-                                <button type="button" onClick={() => handleAiGenerate('professional')} className="p-1 hover:text-blue-400 text-slate-600" title="Corporate"><Wand2 className="w-3 h-3" /></button>
-                            </div>
-                            <textarea
-                                className="w-full bg-slate-900/50 border border-slate-800 rounded p-3 text-xs font-mono text-slate-300 focus:outline-none focus:border-blue-500/50 h-32 resize-none"
-                                value={contentText}
-                                onChange={(e) => setContentText(e.target.value)}
-                                placeholder="// INSERT EXECUTIVE SUMMARY MATRIX..."
-                            />
-                            {aiLoading && <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm"><Loader2 className="w-4 h-4 animate-spin text-blue-500" /></div>}
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-4">
-                            <QuantumInput label="Header Alpha" value={mainHeading} onChange={(e) => setMainHeading(e.target.value)} />
-                            <QuantumInput label="Header Beta" value={subHeading} onChange={(e) => setSubHeading(e.target.value)} />
-                        </div>
-                    </section>
-
-                    {/* 4. Protocol Management (Templates) */}
-                    <section className="space-y-6 bg-slate-900/30 p-4 rounded border border-white/5">
-                        <div className="flex justify-between items-center">
-                            <h3 className="text-xs uppercase tracking-widest text-slate-500 font-mono">Protocol Storage</h3>
-                            <div className="flex gap-2">
-                                <button onClick={handleDeleteTemplate} className="text-slate-600 hover:text-red-500 transition-colors"><Trash2 className="w-3 h-3" /></button>
-                            </div>
-                        </div>
-                        <QuantumSelect
-                            options={[{ value: 'none', label: '-- LOAD PROTOCOL --' }, ...savedTemplates.map(t => ({ value: t.id!, label: t.templateName || 'Unnamed' }))]}
-                            value={selectedTemplateId}
-                            onChange={handleLoadTemplate}
-                        />
-                        <div className="flex gap-2 items-end">
-                            <QuantumInput
-                                placeholder="NEW PROTOCOL ID"
-                                className="flex-1"
-                                value={templateNameInput}
-                                onChange={(e) => setTemplateNameInput(e.target.value)}
-                            />
-                            <QuantumButton variant="secondary" onClick={handleSaveTemplate} className="h-9 w-20">SAVE</QuantumButton>
-                        </div>
-                    </section>
-                </div>
-
-                {/* Footer Actions */}
-                <form className="p-6 border-t border-white/10 bg-black/40 backdrop-blur-xl flex gap-4" onSubmit={handleGlobalSave}>
-                    <input type="hidden" name="companyName" value={companyName} />
-                    <input type="hidden" name="footerText" value={footerText} />
-                    <input type="hidden" name="color_primary" value={colorPrimary} />
-                    <input type="hidden" name="color_secondary" value={colorSecondary} />
-                    <input type="hidden" name="color_accent" value={colorAccent} />
-                    <input type="hidden" name="mainHeading" value={mainHeading} />
-                    <input type="hidden" name="subHeading" value={subHeading} />
-                    <input type="hidden" name="contentText" value={contentText} />
-                    {/* Logo file input is handled in upper section, this form submits mostly text updates unless file is re-selected */}
-                    {/* Note: The file input above was visual. To actually submit file, we need it here or linked. 
-                        For now, assuming user mostly updates text/colors. To support file, we'd need to sync the file input ref. 
-                        Let's simplify: Identity Matrix file input needs to be part of THIS form or we use JS submission.
-                        We'll use JS submission in updateBrandingAction wrapper usually, but here we used native form action.
-                        Let's add the file input here but hidden, and trigger it? No, simpler to just have Main Save button submit a real form.
-                    */}
-                    <QuantumButton type="submit" variant="primary" className="flex-1" isLoading={isPending}>
-                        UPDATE CORE SYSTEM
-                    </QuantumButton>
-                </form>
             </div>
 
-            {/* --- RIGHT PANEL: HOLOGRAPHIC PREVIEW (60%) --- */}
-            <div className="w-[60%] bg-[url('/grid-bg.png')] bg-cover relative flex flex-col">
-                <div className="absolute inset-0 bg-blue-900/5 pointer-events-none" />
-
-                {/* HUD Header */}
-                <div className="h-16 border-b border-white/5 flex justify-between items-center px-6 relative z-10">
-                    <div className="flex gap-4">
-                        <button
-                            onClick={() => setLayoutMode('corporate')}
-                            className={`px - 4 py - 2 text - [10px] font - mono uppercase tracking - widest border border - slate - 700 / 50 transition - all ${layoutMode === 'corporate' ? 'bg-blue-600 text-white border-blue-500 shadow-[0_0_15px_rgba(37,99,235,0.4)]' : 'text-slate-500 bg-slate-900/50 hover:text-slate-300'} `}
-                        >
-                            Corp. Structure
-                        </button>
-                        <button
-                            onClick={() => setLayoutMode('conversion')}
-                            className={`px - 4 py - 2 text - [10px] font - mono uppercase tracking - widest border border - slate - 700 / 50 transition - all ${layoutMode === 'conversion' ? 'bg-orange-600 text-white border-orange-500 shadow-[0_0_15px_rgba(234,88,12,0.4)]' : 'text-slate-500 bg-slate-900/50 hover:text-slate-300'} `}
-                        >
-                            Conversion Mode
-                        </button>
-                        <button
-                            onClick={() => setLayoutMode('schematic')}
-                            className={`px - 4 py - 2 text - [10px] font - mono uppercase tracking - widest border border - slate - 700 / 50 transition - all ${layoutMode === 'schematic' ? 'bg-emerald-600 text-white border-emerald-500 shadow-[0_0_15px_rgba(5,150,105,0.4)]' : 'text-slate-500 bg-slate-900/50 hover:text-slate-300'} `}
-                        >
-                            Schematic View
-                        </button>
-                    </div>
-
-                    <QuantumButton
-                        variant="ghost"
-                        onClick={handleCompileArtifact}
-                        isLoading={isCompiling}
-                        className="text-blue-400 hover:text-blue-300 hover:bg-blue-900/20"
-                        icon={<Download className="w-4 h-4" />}
-                    >
-                        {isCompiling ? "COMPILING..." : "COMPILE ARTIFACT"}
-                    </QuantumButton>
-                </div>
-
-                {/* Viewport */}
-                <div className="flex-1 overflow-auto p-8 flex items-center justify-center relative bg-[#050505]">
-                    {/* Scale Container to fit A4 in split view */}
-                    <div style={{ transform: 'scale(0.65)', transformOrigin: 'top center' }} className="shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-slate-800">
-                        <div ref={documentRef}>
-                            <PriceListPdfTemplate
-                                documentRef={undefined}
-                                clientName="PREVIEW CLIENT"
-                                recommendations={{ topROI: [], topRevenue: [], topEfficiency: [] }} // empty for now
-                                filteredResults={mockMiners}
-                                branding={{
-                                    companyName: companyName,
-                                    footerText: footerText,
-                                    logoUrl: logoUrl || initialBranding.logoUrl,
-                                    colors: { primary: colorPrimary, secondary: colorSecondary, accent: colorAccent },
-                                    customHeadings: { mainHeading, subHeading, contentText }
-                                }}
-                                userRole="reseller"
-                                pdfImages={{ logo: "" }}
-                            />
-                        </div>
-                    </div>
+            {/* --- HIDDEN PRINT STAGE --- */}
+            <div className="absolute top-0 left-0 overflow-hidden w-0 h-0 opacity-0 pointer-events-none">
+                <div ref={printRef} style={{ width: '210mm', minHeight: '297mm', background: 'white' }}>
+                    <PriceListPdfTemplate
+                        documentRef={undefined}
+                        clientName="VALUED CLIENT"
+                        recommendations={recommendations}
+                        filteredResults={calculatedMiners}
+                        branding={{
+                            companyName: companyName,
+                            footerText: footerText,
+                            logoUrl: logoUrl || initialBranding.logoUrl,
+                            colors: { primary: colorPrimary, secondary: colorSecondary, accent: colorAccent },
+                            customHeadings: { mainHeading, subHeading, contentText }
+                        }}
+                        userRole="reseller"
+                        pdfImages={{ logo: "" }}
+                    />
                 </div>
             </div>
         </div>
     );
 }
-
-// End of file

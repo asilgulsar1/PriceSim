@@ -1,4 +1,5 @@
 import { MinerProfile, ContractTerms, MarketConditions, SimulationConfig } from './calculator';
+import { calculateDailyGrossBTC } from './mining-math';
 
 export interface TreasuryProjection {
     date: Date;
@@ -130,10 +131,13 @@ export class TreasuryCalculatorLogic {
                 currentBlockReward = market.blockReward / 2;
             }
 
+            // ... (in loop) ...
+
             // 2. Calculate Payout (Client's Mining Yield)
-            const hashrateH = miner.hashrateTH * 1e12;
-            const dailyYieldBTC = (hashrateH * 86400 * currentBlockReward) / (currentDifficulty * 4294967296);
-            const netYieldBTC = dailyYieldBTC * (1 - contract.poolFee / 100);
+            const grossYieldBTC = calculateDailyGrossBTC(miner.hashrateTH, currentDifficulty, currentBlockReward);
+
+            // Note: Variable name refactor for clarity, but logic is same
+            const netYieldBTC = grossYieldBTC * (1 - contract.poolFee / 100);
             const dailyYieldUSD = netYieldBTC * currentBtcPrice;
 
             // 3. Calculate OpEx (Client pays us)

@@ -31,7 +31,7 @@ export function findMatchingMarketMiner(simMiner: { name: string, hashrateTH: nu
 
     // Among candidates (Hashrate matched), find best Name match
     const identifiers = ["s21", "s23", "s19", "l7", "k7", "e9", "hydro", "xp", "pro", "mix", "k", "j", "plus", "+"];
-    const simTokens = getTokens(simSlug, identifiers);
+    // const simTokens = getTokens(simSlug, identifiers); // Unused in original code, simplifying
 
     let bestMatch: SimpleMarketMiner | null = null;
     let maxScore = -1;
@@ -75,17 +75,17 @@ export function findMatchingMarketMiner(simMiner: { name: string, hashrateTH: nu
     return 0;
 }
 
-function hasFeature(slug: string, feature: string): boolean {
+export function hasFeature(slug: string, feature: string): boolean {
     if (feature === 'hyd' || feature === 'hydro') return slug.includes('hyd');
     if (feature === '+' || feature === 'plus') return slug.includes('plus') || slug.includes('s21+');
     return slug.includes(feature);
 }
 
-function getTokens(slug: string, important: string[]): string[] {
+export function getTokens(slug: string, important: string[]): string[] {
     return slug.split('-').filter(t => t.length > 0);
 }
 
-function findBestNameMatch(simName: string, marketMiners: SimpleMarketMiner[]): number {
+export function findBestNameMatch(simName: string, marketMiners: SimpleMarketMiner[]): number {
     const simSlug = slugify(simName);
     const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
     const simNorm = normalize(simName);

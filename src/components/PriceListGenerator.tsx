@@ -15,110 +15,9 @@ import { PriceListControls } from "./price-list/PriceListControls";
 import { PriceListFilterBar, SortField } from "./price-list/PriceListFilterBar";
 import { PriceListTable } from "./price-list/PriceListTable";
 import { PriceListPdfTemplate } from "./price-list/PriceListPdfTemplate";
-import { slugify } from "@/lib/slug-utils";
+import { findMatchingMarketMiner, SimpleMarketMiner } from "@/lib/market-matching";
 
-interface SimpleMarketMiner {
-    name: string;
-    stats: { middlePrice: number };
-    specs: { hashrateTH: number };
-}
 
-// Robust matching helper using Hashrate + Series
-function findMatchingMarketMiner(simMiner: { name: string, hashrateTH: number }, marketMiners: SimpleMarketMiner[]): number {
-    const simHash = simMiner.hashrateTH;
-    const simSlug = slugify(simMiner.name);
-
-    // 0. Exact Name Match (Optimization)
-    const exact = marketMiners.find(m => m.name === simMiner.name);
-    if (exact && exact.stats.middlePrice > 0) return exact.stats.middlePrice;
-
-    // Filter candidates by Hashrate Proximity (within 5% or 2 TH for small items)
-    const candidates = marketMiners.filter(m => {
-        const mHash = m.specs.hashrateTH;
-        if (!mHash) return false;
-
-        const diff = Math.abs(simHash - mHash);
-        const limit = Math.max(2, simHash * 0.05);
-        return diff <= limit;
-    });
-
-    if (candidates.length === 0) {
-        return findBestNameMatch(simMiner.name, marketMiners);
-    }
-
-    // Among candidates (Hashrate matched), find best Name match
-    const identifiers = ["s21", "s23", "s19", "l7", "k7", "e9", "hydro", "xp", "pro", "mix", "k", "j", "plus", "+"];
-    const simTokens = getTokens(simSlug, identifiers);
-
-    let bestMatch: SimpleMarketMiner | null = null;
-    let maxScore = -1;
-
-    for (const cand of candidates) {
-        const markSlug = slugify(cand.name);
-        if (cand.stats.middlePrice <= 0) continue;
-
-        let score = 0;
-
-        // Critical: Series Match
-        const seriesKeys = ["s23", "s21", "s19", "l7", "k7", "e9", "m50", "m60"];
-        const simSeries = seriesKeys.find(k => simSlug.includes(k));
-        const markSeries = seriesKeys.find(k => markSlug.includes(k));
-
-        if (simSeries !== markSeries) {
-            score -= 100;
-        } else {
-            score += 50;
-        }
-
-        // Feature Match (Hydro, XP, Pro)
-        const features = ["hydro", "hyd", "xp", "pro", "plus", "+"];
-        for (const f of features) {
-            const simHas = hasFeature(simSlug, f);
-            const markHas = hasFeature(markSlug, f);
-            if (simHas === markHas) score += 10;
-            else score -= 10;
-        }
-
-        if (score > maxScore) {
-            maxScore = score;
-            bestMatch = cand;
-        }
-    }
-
-    if (bestMatch && maxScore > 0) {
-        return bestMatch.stats.middlePrice;
-    }
-
-    return 0;
-}
-
-function hasFeature(slug: string, feature: string): boolean {
-    if (feature === 'hyd' || feature === 'hydro') return slug.includes('hyd');
-    if (feature === '+' || feature === 'plus') return slug.includes('plus') || slug.includes('s21+');
-    return slug.includes(feature);
-}
-
-function getTokens(slug: string, important: string[]): string[] {
-    return slug.split('-').filter(t => t.length > 0);
-}
-
-function findBestNameMatch(simName: string, marketMiners: SimpleMarketMiner[]): number {
-    const simSlug = slugify(simName);
-    const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
-    const simNorm = normalize(simName);
-
-    for (const m of marketMiners) {
-        const markNorm = normalize(m.name);
-        if (markNorm.includes(simNorm) || simNorm.includes(markNorm)) {
-            const simTokens = simName.toLowerCase().split(/[\s-]+/);
-            const markTokens = m.name.toLowerCase().split(/[\s-]+/);
-            const matches = simTokens.filter(t => markTokens.includes(t));
-            const score = matches.length / Math.max(simTokens.length, markTokens.length);
-            if (score > 0.8 && m.stats.middlePrice > 0) return m.stats.middlePrice;
-        }
-    }
-    return 0;
-}
 
 interface PriceListGeneratorProps {
     userRole?: string;
@@ -140,6 +39,7 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
     const [clientName, setClientName] = useState('Valued Client');
     const [salesMargin, setSalesMargin] = useState<number>(0);
     const [salesMarginType, setSalesMarginType] = useState<'usd' | 'percent'>('usd');
+    const [pdfStyle, setPdfStyle] = useState<string>('default');
 
     // Market Hook
     const { market, setMarket } = useMarketData();
@@ -164,8 +64,24 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
     const results = React.useMemo(() => {
         if (baseResults.length === 0) return [];
 
+        // HASHPRICE CALCULATION (Live) via Centralized Math
+        // This ensures consistent logic across the app.
+        const { calculateHashpriceUSD, calculateMinerRevenueUSD } = require('@/lib/mining-math');
+
+        let liveHashpriceUSD = 0;
+        if (market.networkDifficulty > 0 && market.btcPrice > 0) {
+            liveHashpriceUSD = calculateHashpriceUSD(market.networkDifficulty, market.blockReward, market.btcPrice);
+        }
+
         const updated = baseResults.map(item => {
             const rawMiner = { ...item.miner };
+
+            // FIX 1: UPDATE REVENUE WITH LIVE MARKET DATA
+            if (liveHashpriceUSD > 0) {
+                // Apply Pool Fee (Assume Standard 1% if not in miner, or use Default)
+                const poolFee = DEFAULT_CONTRACT_TERMS.poolFee || 1.0;
+                rawMiner.dailyRevenueUSD = calculateMinerRevenueUSD(rawMiner.hashrateTH, liveHashpriceUSD, poolFee);
+            }
 
             // STEP 1: Apply Max(Simulator Price, Market Middle Price) Logic
             const marketMiddlePrice = findMatchingMarketMiner(rawMiner, marketDataList);
@@ -173,6 +89,8 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
 
             // RESELLER MARKUP LOGIC
             if (userRole === 'reseller') {
+                // Fix 3 Clarification: Reseller adds margin on top of company price. 
+                // Here 'resellerMargin' acts as the Company's markup/floor.
                 const markup = typeof resellerMargin === 'number' ? resellerMargin : 500;
                 basePrice += markup;
             }
@@ -201,7 +119,7 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
         const minersOnly = updated.map(u => u.miner);
         return rankMiners(minersOnly);
 
-    }, [baseResults, salesMargin, salesMarginType, marketDataList, userRole, resellerMargin]);
+    }, [baseResults, salesMargin, salesMarginType, marketDataList, userRole, resellerMargin, market]);
 
     // ... (filteredResults & recommendations remain same) ...
     const filteredResults = React.useMemo(() => { // ... same logic ...
@@ -465,6 +383,8 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
                 userRole={userRole}
                 branding={branding as any}
                 setBranding={undefined}
+                pdfStyle={pdfStyle}
+                setPdfStyle={setPdfStyle}
             />
 
             {/* Filter Bar */}
@@ -491,6 +411,7 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
                 branding={branding as any}
                 userRole={userRole}
                 pdfImages={pdfImages} // Pass Base64 images
+                style={pdfStyle}
             />
         </div>
     );

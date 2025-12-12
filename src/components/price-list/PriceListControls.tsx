@@ -20,6 +20,8 @@ interface PriceListControlsProps {
     onRefresh: () => void;
     onExportCSV: () => void;
     onDownloadPDF: () => void;
+    pdfStyle: string;
+    setPdfStyle: (style: string) => void;
 }
 
 export function PriceListControls({
@@ -34,6 +36,8 @@ export function PriceListControls({
     onRefresh,
     onExportCSV,
     onDownloadPDF,
+    pdfStyle,
+    setPdfStyle,
     userRole,
     branding,
     setBranding
@@ -99,7 +103,25 @@ export function PriceListControls({
                     </div>
                 </div>
 
-                <div className="flex gap-2">
+            </div>
+
+            <div className="flex gap-2">
+                <div className="space-y-2 w-[180px]">
+                    <Label>PDF Style</Label>
+                    <Select value={pdfStyle} onValueChange={setPdfStyle}>
+                        <SelectTrigger>
+                            <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="default">Default</SelectItem>
+                            <SelectItem value="high-conversion">High-Conversion</SelectItem>
+                            <SelectItem value="banker">The Banker</SelectItem>
+                            <SelectItem value="engineer">The Engineer</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
+
+                <div className="flex gap-2 items-end">
                     <Button variant="outline" onClick={onRefresh} disabled={loading}>
                         {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <RefreshCw className="mr-2 h-4 w-4" />}
                         Fresh Data

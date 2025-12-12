@@ -52,8 +52,9 @@ export default function ProductPageClient({ miner }: { miner: MinerProfile & { l
     }, [miner, market, solverMarket]);
 
     // Derived Metrics
-    const hashrateH = (miner.hashrateTH || 100) * 1e12; // TH/s to H/s
-    const dailyBTC = (hashrateH * 86400 * blockReward) / (difficulty * 4294967296);
+    // Refactor to use centralized math
+    const { calculateDailyGrossBTC } = require('@/lib/mining-math');
+    const dailyBTC = calculateDailyGrossBTC(miner.hashrateTH, difficulty, blockReward);
     const dailyRevenue = dailyBTC * bitcoinPrice;
 
     // Market Context

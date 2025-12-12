@@ -55,6 +55,8 @@ interface SimulationResult {
     summary: any;
 }
 
+import { calculateDailyGrossBTC } from './mining-math';
+
 // Inlined PriceSimulatorCalculator
 class PriceSimulatorCalculator {
     static calculate(
@@ -102,9 +104,9 @@ class PriceSimulatorCalculator {
                 currentBlockReward = market.blockReward / 2;
             }
 
-            const hashrateH = miner.hashrateTH * 1e12;
-            const difficulty = currentDifficulty;
-            const grossProductionBTC = (hashrateH * 86400 * currentBlockReward) / (difficulty * 4294967296);
+            // 3. Calculate Production
+            const difficulty = currentDifficulty; // Keep difficulty variable for clarity
+            const grossProductionBTC = calculateDailyGrossBTC(miner.hashrateTH, difficulty, currentBlockReward);
 
             const poolFeeBTC = grossProductionBTC * (contract.poolFee / 100);
             const netProductionBTC = grossProductionBTC - poolFeeBTC;

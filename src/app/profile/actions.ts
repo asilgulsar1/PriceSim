@@ -30,6 +30,11 @@ export async function updateBrandingAction(formData: FormData) {
         const subHeading = formData.get('subHeading') as string;
         const contentText = formData.get('contentText') as string;
 
+        console.log("SERVER ACTION: Update Branding Received:", {
+            companyName, footerText, hasLogoFile: !!logoFile, logoSize: logoFile?.size,
+            colors: { colorPrimary, colorSecondary, colorAccent }
+        });
+
         let logoUrl = undefined;
 
         // 3. Handle File Upload (if provided)
@@ -61,18 +66,18 @@ export async function updateBrandingAction(formData: FormData) {
         // Merge Branding
         const newBranding = {
             ...currentUser.branding,
-            ...(companyName && { companyName }),
-            ...(footerText && { footerText }),
-            ...(logoUrl && { logoUrl }),
+            ...(companyName !== null && { companyName }),
+            ...(footerText !== null && { footerText }),
+            ...(logoUrl && { logoUrl }), // URL needs to be valid if present, but we might want to keep old if not provided? logic below handles file upload only if present.
             colors: {
                 primary: colorPrimary || currentUser.branding?.colors?.primary || '#0f172a',
                 secondary: colorSecondary || currentUser.branding?.colors?.secondary || '#334155',
                 accent: colorAccent || currentUser.branding?.colors?.accent || '#f97316'
             },
             customHeadings: {
-                mainHeading: mainHeading || currentUser.branding?.customHeadings?.mainHeading || 'Strategic Hardware Acquisition',
-                subHeading: subHeading || currentUser.branding?.customHeadings?.subHeading || 'Prepared For',
-                contentText: contentText || currentUser.branding?.customHeadings?.contentText || ''
+                mainHeading: mainHeading !== null ? mainHeading : (currentUser.branding?.customHeadings?.mainHeading || 'Strategic Hardware Acquisition'),
+                subHeading: subHeading !== null ? subHeading : (currentUser.branding?.customHeadings?.subHeading || 'Prepared For'),
+                contentText: contentText !== null ? contentText : (currentUser.branding?.customHeadings?.contentText || '')
             }
         };
 
