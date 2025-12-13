@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { toPng } from 'html-to-image';
+import { toJpeg } from 'html-to-image';
 import jsPDF from 'jspdf';
 import { solveMinerPrice } from "@/lib/pricing-solver";
 import { INITIAL_MINERS } from "@/lib/miner-data";
@@ -325,133 +325,140 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
     const handleDownloadPDF = async () => {
         if (!documentRef.current) return;
         try {
-            const element = documentRef.current;
-            // Add skipFonts to speed up and reduce errors if remote fonts fail.
-            // Also increase pixelRatio for quality.
-            const imgData = await toPng(element, {
-                backgroundColor: '#ffffff',
-                pixelRatio: 2,
-                cacheBust: true,
-                skipFonts: true
-            });
-            const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-            const imgWidth = 210;
-            const pageHeight = 297;
-            const elementWidth = element.offsetWidth;
-            const elementHeight = element.offsetHeight;
-            const imgHeight = (elementHeight * imgWidth) / elementWidth;
-            let heightLeft = imgHeight;
-            let position = 0;
-            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
-            while (heightLeft >= 0) {
-                position = heightLeft - imgHeight;
-                pdf.addPage();
-                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-                heightLeft -= pageHeight;
-            }
-            pdf.save(`proposal_${clientName.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
-        } catch (error) {
-            console.error("Error generating PDF:", error);
-            if (confirm("PDF Generation failed. Would you like to print instead?")) window.print();
-        }
-    };
+            try {
+                const element = documentRef.current;
+                // OPTIMIZATION: Use JPEG + 0.8 Quality + 1.5x Scale
+                // This reduces PDF size from ~15MB to ~1-2MB while keeping text readable.
+                const imgData = await toJpeg(element, {
+                    backgroundColor: '#ffffff',
+                    pixelRatio: 1.5,
+                    quality: 0.8,
+                    cacheBust: true,
+                    skipFonts: true
+                });
 
-    if (!isReady) {
-        return (
-            <div className="space-y-8 p-4">
-                <div className="space-y-4">
-                    <Skeleton className="h-[120px] w-full rounded-lg" />
-                    <Skeleton className="h-[60px] w-full rounded-lg" />
-                    <div className="space-y-2">
-                        <Skeleton className="h-12 w-full" />
-                        <Skeleton className="h-12 w-full" />
-                        <Skeleton className="h-12 w-full" />
+                // Create PDF with compression enabled (default is true, but explicit is good)
+                const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4', compress: true });
+
+                const imgWidth = 210;
+                const pageHeight = 297;
+                const elementWidth = element.offsetWidth;
+                const elementHeight = element.offsetHeight;
+                const imgHeight = (elementHeight * imgWidth) / elementWidth;
+                let heightLeft = imgHeight;
+                let position = 0;
+
+                // Use 'JPEG' format for addImage
+                pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+                while (heightLeft >= 0) {
+                    position = heightLeft - imgHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                }
+                pdf.save(`proposal_${clientName.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
+            } catch (error) {
+                console.error("Error generating PDF:", error);
+                if (confirm("PDF Generation failed. Would you like to print instead?")) window.print();
+            }
+        };
+
+        if (!isReady) {
+            return (
+                <div className="space-y-8 p-4">
+                    <div className="space-y-4">
+                        <Skeleton className="h-[120px] w-full rounded-lg" />
+                        <Skeleton className="h-[60px] w-full rounded-lg" />
+                        <div className="space-y-2">
+                            <Skeleton className="h-12 w-full" />
+                            <Skeleton className="h-12 w-full" />
+                            <Skeleton className="h-12 w-full" />
+                        </div>
                     </div>
                 </div>
-            </div>
-        );
-    }
+            );
+        }
 
-    return (
-        <div className="space-y-8 p-2 md:p-4">
-            {/* Controls */}
-            <PriceListControls
-                clientName={clientName}
-                setClientName={setClientName}
-                salesMargin={salesMargin}
-                setSalesMargin={setSalesMargin}
-                salesMarginType={salesMarginType}
-                setSalesMarginType={setSalesMarginType}
-                lastUpdated={lastUpdated}
-                loading={loading}
-
-                onRefresh={refreshData}
-                onReset={() => {
-                    if (confirm("Reset to Global Defaults?\nThis will clear your custom simulation data.")) {
-                        localStorage.removeItem('LATEST_SIMULATION_DATA');
-                        refreshData();
-                    }
-                }}
-                onExportCSV={handleExportCSV}
-                onDownloadPDF={handleDownloadPDF}
-                userRole={userRole}
-                branding={branding as any}
-                setBranding={undefined}
-                pdfStyle={pdfStyle}
-                setPdfStyle={setPdfStyle}
-            />
-
-            {/* Filter Bar */}
-            <PriceListFilterBar
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                sortBy={sortBy}
-                setSortBy={setSortBy}
-                sortOrder={sortOrder}
-                toggleSortOrder={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}
-            />
-
-            {/* Table */}
-            <div className="bg-white rounded-lg border shadow-sm overflow-hidden">
-                <PriceListTable miners={filteredResults} />
-            </div>
-
-            {/* Hidden PDF Template - Positioned absolute to ensure full A4 width regardless of parent container */}
-            <div style={{ position: 'absolute', top: -9999, left: -9999 }}>
-                <PriceListPdfTemplate
-                    documentRef={documentRef}
+        return (
+            <div className="space-y-8 p-2 md:p-4">
+                {/* Controls */}
+                <PriceListControls
                     clientName={clientName}
-                    recommendations={recommendations}
-                    filteredResults={filteredResults}
-                    branding={branding as any}
-                    userRole={userRole}
-                    pdfImages={pdfImages} // Pass Base64 images
-                    style={pdfStyle}
-                />
-            </div>
+                    setClientName={setClientName}
+                    salesMargin={salesMargin}
+                    setSalesMargin={setSalesMargin}
+                    salesMarginType={salesMarginType}
+                    setSalesMarginType={setSalesMarginType}
+                    lastUpdated={lastUpdated}
+                    loading={loading}
 
-            <StickyActionFooter>
-                <div className="flex gap-2 w-full">
-                    <Button variant="outline" onClick={() => {
+                    onRefresh={refreshData}
+                    onReset={() => {
                         if (confirm("Reset to Global Defaults?\nThis will clear your custom simulation data.")) {
                             localStorage.removeItem('LATEST_SIMULATION_DATA');
                             refreshData();
                         }
-                    }} disabled={loading} size="sm" className="flex-1">
-                        <RefreshCw className="mr-2 h-4 w-4" />
-                        Reset
-                    </Button>
-                    <Button variant="outline" onClick={refreshData} disabled={loading} size="sm" className="flex-1">
-                        {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <RefreshCw className="mr-2 h-4 w-4" />}
-                        Refresh
-                    </Button>
-                    <Button onClick={handleDownloadPDF} size="sm" className="flex-1">
-                        <FileText className="mr-2 h-4 w-4" />
-                        PDF
-                    </Button>
+                    }}
+                    onExportCSV={handleExportCSV}
+                    onDownloadPDF={handleDownloadPDF}
+                    userRole={userRole}
+                    branding={branding as any}
+                    setBranding={undefined}
+                    pdfStyle={pdfStyle}
+                    setPdfStyle={setPdfStyle}
+                />
+
+                {/* Filter Bar */}
+                <PriceListFilterBar
+                    searchTerm={searchTerm}
+                    setSearchTerm={setSearchTerm}
+                    sortBy={sortBy}
+                    setSortBy={setSortBy}
+                    sortOrder={sortOrder}
+                    toggleSortOrder={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}
+                />
+
+                {/* Table */}
+                <div className="bg-white rounded-lg border shadow-sm overflow-hidden">
+                    <PriceListTable miners={filteredResults} />
                 </div>
-            </StickyActionFooter>
-        </div>
-    );
-}
+
+                {/* Hidden PDF Template - Positioned absolute to ensure full A4 width regardless of parent container */}
+                <div style={{ position: 'absolute', top: -9999, left: -9999 }}>
+                    <PriceListPdfTemplate
+                        documentRef={documentRef}
+                        clientName={clientName}
+                        recommendations={recommendations}
+                        filteredResults={filteredResults}
+                        branding={branding as any}
+                        userRole={userRole}
+                        pdfImages={pdfImages} // Pass Base64 images
+                        style={pdfStyle}
+                    />
+                </div>
+
+                <StickyActionFooter>
+                    <div className="flex gap-2 w-full">
+                        <Button variant="outline" onClick={() => {
+                            if (confirm("Reset to Global Defaults?\nThis will clear your custom simulation data.")) {
+                                localStorage.removeItem('LATEST_SIMULATION_DATA');
+                                refreshData();
+                            }
+                        }} disabled={loading} size="sm" className="flex-1">
+                            <RefreshCw className="mr-2 h-4 w-4" />
+                            Reset
+                        </Button>
+                        <Button variant="outline" onClick={refreshData} disabled={loading} size="sm" className="flex-1">
+                            {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <RefreshCw className="mr-2 h-4 w-4" />}
+                            Refresh
+                        </Button>
+                        <Button onClick={handleDownloadPDF} size="sm" className="flex-1">
+                            <FileText className="mr-2 h-4 w-4" />
+                            PDF
+                        </Button>
+                    </div>
+                </StickyActionFooter>
+            </div>
+        );
+    }
