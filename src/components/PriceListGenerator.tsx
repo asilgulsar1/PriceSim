@@ -419,6 +419,15 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
 
             <StickyActionFooter>
                 <div className="flex gap-2 w-full">
+                    <Button variant="outline" onClick={() => {
+                        if (confirm("Reset to Global Defaults?\nThis will clear your custom simulation data.")) {
+                            localStorage.removeItem('LATEST_SIMULATION_DATA');
+                            refreshData();
+                        }
+                    }} disabled={loading} size="sm" className="flex-1">
+                        <RefreshCw className="mr-2 h-4 w-4" />
+                        Reset
+                    </Button>
                     <Button variant="outline" onClick={refreshData} disabled={loading} size="sm" className="flex-1">
                         {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <RefreshCw className="mr-2 h-4 w-4" />}
                         Refresh
