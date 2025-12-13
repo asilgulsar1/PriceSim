@@ -19,6 +19,7 @@ interface PriceListControlsProps {
     onRefresh: () => void;
     onExportCSV: () => void;
     onDownloadPDF: () => void;
+    onReset: () => void;
     pdfStyle: string;
     setPdfStyle: (style: string) => void;
 }
@@ -33,6 +34,7 @@ export function PriceListControls({
     lastUpdated,
     loading,
     onRefresh,
+    onReset,
     onExportCSV,
     onDownloadPDF,
     pdfStyle,
@@ -53,7 +55,6 @@ export function PriceListControls({
                 {lastUpdated && <span className="text-xs text-muted-foreground whitespace-nowrap">Updated: {lastUpdated}</span>}
             </div>
 
-            {/* Branding Section (Resellers Only) */}
             {/* Branding Section (Resellers Only) */}
             {userRole === 'reseller' && (
                 <div className="bg-orange-50 border border-orange-200 rounded p-4 mb-4 flex justify-between items-center">
@@ -121,6 +122,9 @@ export function PriceListControls({
                 </div>
 
                 <div className="hidden md:flex gap-2 items-end">
+                    <Button variant="outline" onClick={onReset} disabled={loading} className="border-red-200 hover:bg-red-50 text-red-700">
+                        Reset
+                    </Button>
                     <Button variant="outline" onClick={onRefresh} disabled={loading}>
                         {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <RefreshCw className="mr-2 h-4 w-4" />}
                         Fresh Data

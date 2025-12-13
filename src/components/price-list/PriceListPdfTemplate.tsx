@@ -184,7 +184,7 @@ export function PriceListPdfTemplate({
                                 <div className="flex justify-between items-center relative z-10">
                                     <div>
                                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img src={logoSrc} alt={footerCompany} className="h-[60px] w-auto object-contain" />
+                                        <img src={logoSrc} alt={footerCompany} className="h-[60px] w-auto object-contain" crossOrigin="anonymous" />
                                     </div>
                                     <div className="text-right">
                                         <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: colors.secondary }}>
@@ -291,7 +291,7 @@ export function PriceListPdfTemplate({
                     {pageIndex > 0 && (
                         <div className="bg-white border-b border-slate-100 p-6 mb-6 relative shrink-0 flex justify-between items-center">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={logoSrc} alt={footerCompany} className="h-[40px] w-auto object-contain opacity-80" />
+                            <img src={logoSrc} alt={footerCompany} className="h-[40px] w-auto object-contain opacity-80" crossOrigin="anonymous" />
                             <div className="text-right">
                                 <span className="text-xs font-bold text-slate-400 uppercase">Continued</span>
                                 <span className="text-xs text-slate-300 ml-2">| Page {pageIndex + 1}</span>

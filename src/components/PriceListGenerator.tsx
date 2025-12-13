@@ -326,7 +326,14 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
         if (!documentRef.current) return;
         try {
             const element = documentRef.current;
-            const imgData = await toPng(element, { backgroundColor: '#ffffff', pixelRatio: 2, cacheBust: true });
+            // Add skipFonts to speed up and reduce errors if remote fonts fail.
+            // Also increase pixelRatio for quality.
+            const imgData = await toPng(element, {
+                backgroundColor: '#ffffff',
+                pixelRatio: 2,
+                cacheBust: true,
+                skipFonts: true
+            });
             const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
             const imgWidth = 210;
             const pageHeight = 297;
@@ -378,7 +385,14 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
                 setSalesMarginType={setSalesMarginType}
                 lastUpdated={lastUpdated}
                 loading={loading}
+                loading={loading}
                 onRefresh={refreshData}
+                onReset={() => {
+                    if (confirm("Reset to Global Defaults?\nThis will clear your custom simulation data.")) {
+                        localStorage.removeItem('LATEST_SIMULATION_DATA');
+                        refreshData();
+                    }
+                }}
                 onExportCSV={handleExportCSV}
                 onDownloadPDF={handleDownloadPDF}
                 userRole={userRole}
