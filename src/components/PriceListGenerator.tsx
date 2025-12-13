@@ -385,7 +385,7 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
                 setSalesMarginType={setSalesMarginType}
                 lastUpdated={lastUpdated}
                 loading={loading}
-                loading={loading}
+
                 onRefresh={refreshData}
                 onReset={() => {
                     if (confirm("Reset to Global Defaults?\nThis will clear your custom simulation data.")) {
