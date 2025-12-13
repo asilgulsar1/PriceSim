@@ -39,27 +39,13 @@ export default auth((req) => {
 
         // Sales Logic
         if (role === 'sales') {
-            const isPriceList = nextUrl.pathname.startsWith('/price-list');
-            // Allow access to public pages even for sales? 
-            // Original logic forced them to price-list if not on price-list.
-            // But they should probably be able to see products too?
-            // "If they are on any other page, redirect to price-list" << this was strict.
-            // Let's keep it strict ONLY if it's not a public page?
-            // Actually, if sales logs in, they might want to use the calculator?
-            // "Sales staff can only view the Price List" -> Strict.
-            // But maybe allow them to logout? (Access to Profile/Logout UI?)
-            // For now, I'll stick to the strict logic but EXEMPT public pages if they want to browse?
-            // Let's keep it strict to match previous intent: "Sales -> Only Price List".
-            // BUT, if they navigate to /products/..., should we block?
-            // User requirement: "Product pages must be... SEO-friendly". Public.
-            // So Sales seeing public pages is fine.
-            // Only redirect if they try to go to PROTECTED pages that are not Price List?
-            // Actually, `nextUrl.pathname !== '/'` was the condition.
-
-            // Let's refine:
-            // If they are on root '/', send to price-list.
-            // If they are on a protected page that is NOT price-list, send to price-list.
-            // If they are on public page, let them be.
+            // Sales Restricted Routes
+            // Block /admin-dashboard, /price-simulator, /treasury
+            // Allow /price-list, /market-prices, /products
+            const blockedPrefixes = ['/admin-dashboard', '/price-simulator', '/treasury'];
+            if (blockedPrefixes.some(prefix => nextUrl.pathname.startsWith(prefix))) {
+                return Response.redirect(new URL('/price-list', nextUrl));
+            }
 
             if (nextUrl.pathname === '/') {
                 return Response.redirect(new URL('/price-list', nextUrl));

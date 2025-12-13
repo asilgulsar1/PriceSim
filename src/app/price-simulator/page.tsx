@@ -1,6 +1,15 @@
 import { PriceSimulator } from '@/components/PriceSimulator';
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
-export default function PriceSimulatorPage() {
+export default async function PriceSimulatorPage() {
+    const session = await auth();
+    const role = (session?.user as { role?: string })?.role;
+
+    if (role !== 'admin') {
+        redirect('/price-list');
+    }
+
     return (
         <main className="min-h-screen bg-background p-6">
             <div className="max-w-7xl mx-auto space-y-6">

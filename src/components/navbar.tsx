@@ -14,11 +14,17 @@ export function Navbar() {
     const { data: session, status } = useSession();
     const userRole = (session?.user as { role?: string } | undefined)?.role;
     const isReseller = userRole === 'reseller';
+    const isAdmin = userRole === 'admin';
     const isLoading = status === "loading";
 
-    // Default to Restricted view while loading to prevent flicker
-    // (Better to show less and add, than show all and remove)
-    const showAdvanced = !isLoading && !isReseller;
+    // Flicker Prevention: Default to hiding everything while loading.
+
+    // Simulator & Treasury: Admin Only
+    const showSimTreasury = !isLoading && isAdmin;
+
+    // Market Prices: Everyone except Resellers (as requested)
+    // "Sales users are also only supposed to see the Price List and Market Prices tab" -> Implies they CAN see Market Prices.
+    const showMarketPrices = !isLoading && !isReseller;
 
     if (pathname === '/login') return null;
 
@@ -45,7 +51,7 @@ export function Navbar() {
                                 >
                                     Home
                                 </Link>
-                                {showAdvanced && (
+                                {showSimTreasury && (
                                     <>
                                         <Link
                                             href="/price-simulator"
@@ -67,7 +73,7 @@ export function Navbar() {
                                 >
                                     Price List
                                 </Link>
-                                {showAdvanced && (
+                                {showMarketPrices && (
                                     <Link
                                         href="/market-prices"
                                         className="text-foreground/60 hover:text-foreground transition-colors"
@@ -87,7 +93,7 @@ export function Navbar() {
                     </Link>
 
                     <div className="hidden md:flex items-center space-x-6 text-sm font-medium">
-                        {showAdvanced && (
+                        {showSimTreasury && (
                             <>
                                 <Link
                                     href="/price-simulator"
@@ -115,7 +121,7 @@ export function Navbar() {
                         >
                             Price List
                         </Link>
-                        {showAdvanced && (
+                        {showMarketPrices && (
                             <Link
                                 href="/market-prices"
                                 className={cn(

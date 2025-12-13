@@ -1,8 +1,18 @@
 import { getUsers } from "@/lib/user-store";
 import { addUserAction, removeUserAction } from "./actions";
 import { UserMarginEditor } from "./UserMarginEditor";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 export default async function AdminDashboard() {
+    const session = await auth();
+    const role = (session?.user as { role?: string })?.role;
+
+    // Strict Role Enforcement
+    if (role !== 'admin') {
+        redirect('/price-list');
+    }
+
     const users = await getUsers();
 
     return (

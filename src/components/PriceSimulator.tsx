@@ -48,12 +48,12 @@ export function PriceSimulator() {
 
         const loadDynamicMiners = async () => {
             try {
-                const res = await fetch('/api/miners/latest');
+                // Use Market Prices API as the source of truth
+                const res = await fetch('/api/market/latest');
                 if (!res.ok) throw new Error('Failed to fetch miners');
 
                 const json = await res.json();
-                // Handle both { miners: [...] } and [...] formats
-                const data: any[] = Array.isArray(json) ? json : (Array.isArray(json.miners) ? json.miners : []);
+                const data: any[] = json.miners || [];
 
                 const dynamicMiners: MinerProfile[] = [];
 
@@ -62,30 +62,63 @@ export function PriceSimulator() {
                 const { getMinerReleaseYear } = await import('@/lib/miner-data');
 
                 for (const m of data) {
-                    // Filter: Only Post-2023 (>= 2023)
-                    const year = getMinerReleaseYear(m.name);
-                    if (year < 2023) continue;
+                    // Skip if specs are missing/invalid
+                    if (!m.specs || !m.specs.hashrateTH || !m.specs.powerW) continue;
 
-                    // Exclude duplications with INITIAL_MINERS if needed
-                    // For now, we trust the API might have better specs/pricing
-                    // But we want to avoid showing "Antminer S21" twice if it's in both.
-                    // Simple distinct check by name:
-                    if (INITIAL_MINERS.some(im => im.name === m.name)) continue;
+                    // Skip non-BTC miners (simple check on unit or heavy hash/power ratio if needed,
+                    // but usually market API handles this. For safety, we can check known non-BTC names if they exist)
+                    // For now, we assume market API returns BTC miners predominantly.
+
+                    // Logic: Keep INITIAL_MINERS (already in state), and ONLY add Market ones if >= 2023.
+                    // If a Market miner is ALSO in INITIAL_MINERS, we might want to prioritize it? 
+                    // No, existing logic keeps INITIAL_MINERS. 
+                    // If we want to ADD, we only add if it passes the filter.
+
+                    const year = getMinerReleaseYear(m.name);
+
+                    // Allow if explicit override exists (INITIAL_MINERS), otherwise require >= 2023
+                    // We check if it is in INITIAL_MINERS later (dedup), 
+                    // so here we just filter "Candidates"
+                    // BUT: If it's in INITIAL_MINERS, we shouldn't filter it out even if it's old (though right now INITIAL are new).
+                    // The safe bet: If it's NOT in INITIAL_MINERS, enforce year.
+                    const isInitial = INITIAL_MINERS.some(im => im.name === m.name);
+                    if (!isInitial && year < 2023) continue;
 
                     dynamicMiners.push({
                         name: m.name,
                         hashrateTH: m.specs.hashrateTH,
                         powerWatts: m.specs.powerW,
-                        price: m.stats.minPrice || 0 // Use market price as base cost
+                        price: 0 // Simulator will calculate this. Market price used in PriceList max() logic.
                     });
                 }
 
                 if (dynamicMiners.length > 0) {
                     setMiners(prev => {
                         // Merge and Dedup by name
-                        const existingNames = new Set(prev.map(p => p.name));
-                        const uniqueNew = dynamicMiners.filter(d => !existingNames.has(d.name));
-                        return [...prev, ...uniqueNew];
+                        // We prioritize INITIAL_MINERS for specs if they exist (cleaner names/specs),
+                        // but if Market has them, it's fine.
+                        // Actually, maybe we should Prioritize Market miners if we want "all available"?
+                        // Let's keep INITIAL_MINERS as base, and add any NEW ones from Market.
+
+                        // BUT: User said "Use models listed there [Market Prices]".
+                        // So maybe we should prioritize the Market list? 
+                        // However, INITIAL_MINERS might have nicer formatting.
+                        // Let's use a Map to dedup, keeping INITIAL_MINERS if name matches, else adding.
+
+                        const minerMap = new Map<string, MinerProfile>();
+
+                        // 1. Add Initial Miners
+                        prev.forEach(p => minerMap.set(p.name, p));
+
+                        // 2. Add/Override with Market Miners? 
+                        // No, let's just add ones that don't exist, to preserve any manual overrides in INITIAL_MINERS
+                        dynamicMiners.forEach(d => {
+                            if (!minerMap.has(d.name)) {
+                                minerMap.set(d.name, d);
+                            }
+                        });
+
+                        return Array.from(minerMap.values());
                     });
                 }
             } catch (err) {
