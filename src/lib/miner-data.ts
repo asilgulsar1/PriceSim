@@ -31,9 +31,6 @@ export const MINER_RELEASE_YEARS: Record<string, number> = {
     "S21 Pro": 2024,
     "S21": 2023,
     "T21": 2023,
-    "M60": 2023, // Duplicated above, but fine
-    "M63": 2023, // Duplicated above, but fine
-    "M66": 2023, // Duplicated above, but fine
     "S19 XP": 2022,
     "S19 k": 2023,
     "S19 j": 2021,
