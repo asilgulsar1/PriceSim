@@ -3,44 +3,45 @@ export type { MinerProfile };
 
 // Map of model substrings to release years.
 // Processed in order - specific matches should come first if needed, but usually we just look for the series.
-// Bitdeer
-"SEALMINER": 2024,
+export const MINER_RELEASE_YEARS: Record<string, number> = {
+    // Bitdeer
+    "SEALMINER": 2024,
     "BITDEER": 2024, // Fallback
 
-        // Avalon
-        "A15": 2024,
-            "A14": 2023,
-                "A13": 2022,
-                    "AVALON": 2023, // Fallback safe default for new ones?
+    // Avalon
+    "A15": 2024,
+    "A14": 2023,
+    "A13": 2022,
+    "AVALON": 2023, // Fallback safe default for new ones?
 
-                        // Whatsminer
-                        "M66S": 2023,
-                            "M66": 2023,
-                                "M63S": 2023,
-                                    "M63": 2023,
-                                        "M60S": 2023,
-                                            "M60": 2023,
-                                                "M50": 2022,
-                                                    "WHATSMINER": 2023, // Fallback - If it just says "Whatsminer something new" assume 2023?
+    // Whatsminer
+    "M66S": 2023,
+    "M66": 2023,
+    "M63S": 2023,
+    "M63": 2023,
+    "M60S": 2023,
+    "M60": 2023,
+    "M50": 2022,
+    "WHATSMINER": 2023, // Fallback - If it just says "Whatsminer something new" assume 2023?
 
-                                                        // Antminer
-                                                        "ANTMINER": 2023, // Fallback if it's a new Antminer? This is risky.
-                                                            // Better to rely on S21/S23 keys.
+    // Antminer
+    "ANTMINER": 2023, // Fallback if it's a new Antminer? This is risky.
+    // Better to rely on S21/S23 keys.
 
-                                                            // Bitmain
-                                                            "S23": 2025,
-                                                                "S21+": 2024,
-                                                                    "S21 XP": 2024,
-                                                                        "S21 Pro": 2024,
-                                                                            "S21": 2023,
-                                                                                "T21": 2023,
-                                                                                    "S19 XP": 2022,
-                                                                                        "S19 k": 2023,
-                                                                                            "S19 j": 2021,
-                                                                                                "S19": 2020,
-                                                                                                    "L7": 2021,
-                                                                                                        "K7": 2023,
-                                                                                                            "E9": 2022
+    // Bitmain
+    "S23": 2025,
+    "S21+": 2024,
+    "S21 XP": 2024,
+    "S21 Pro": 2024,
+    "S21": 2023,
+    "T21": 2023,
+    "S19 XP": 2022,
+    "S19 k": 2023,
+    "S19 j": 2021,
+    "S19": 2020,
+    "L7": 2021,
+    "K7": 2023,
+    "E9": 2022
 };
 
 export function getMinerReleaseYear(modelName: string): number {

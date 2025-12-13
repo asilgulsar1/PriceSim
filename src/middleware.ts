@@ -55,8 +55,8 @@ export default auth((req) => {
         // Reseller Logic (Strict)
         if (role === 'reseller') {
             // Unwanted Protected Routes for Resellers
-            // Allowed: /price-list, /market-prices, /products, /profile, /api
-            // Blocked: /price-simulator, /treasury, /admin-dashboard
+            // Allowed: /price-list, /products, /profile, /api
+            // Blocked: /price-simulator, /treasury, /admin-dashboard, /market-prices
 
             // Note: Public routes like /market-prices and /products are allowed by default logic above?
             // "if (!isLoggedIn) ... if (!isPublic) redirect login"
