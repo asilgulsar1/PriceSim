@@ -223,11 +223,11 @@ export function PriceListPdfTemplate({
                                                     <div className="bg-white px-3 py-2 rounded border border-red-100 flex flex-col items-start shrink-0">
                                                         <span className="text-[10px] text-slate-500 uppercase font-bold leading-none mb-1">Est. ROI</span>
                                                         <span className="text-lg font-bold text-red-600 leading-none">
-                                                            {((heroItem.miner.dailyRevenueUSD * 365 / heroItem.miner.calculatedPrice) * 100).toFixed(0)}%
+                                                            {heroItem?.miner ? ((heroItem.miner.dailyRevenueUSD * 365 / heroItem.miner.calculatedPrice) * 100).toFixed(0) : 0}%
                                                         </span>
                                                     </div>
                                                     <span className="text-sm font-medium text-slate-600">
-                                                        Pays for itself in just {((heroItem.miner.calculatedPrice / heroItem.miner.dailyRevenueUSD) / 30.4).toFixed(1)} Months
+                                                        Pays for itself in just {heroItem?.miner ? ((heroItem.miner.calculatedPrice / heroItem.miner.dailyRevenueUSD) / 30.4).toFixed(1) : 'N/A'} Months
                                                     </span>
                                                 </div>
                                             </div>
@@ -237,7 +237,7 @@ export function PriceListPdfTemplate({
                                                     LOW STOCK
                                                 </div>
                                                 <div className="text-2xl font-black text-slate-900">
-                                                    ${heroItem.miner.calculatedPrice.toLocaleString()}
+                                                    ${heroItem?.miner?.calculatedPrice.toLocaleString() || 0}
                                                 </div>
                                             </div>
                                         </div>
@@ -248,7 +248,7 @@ export function PriceListPdfTemplate({
                                     <div className="mb-6 bg-slate-100 border-l-4 border-slate-400 p-4 rounded-r">
                                         <h3 className="text-xs font-bold text-slate-600 uppercase mb-1">Executive Summary</h3>
                                         <p className="text-sm font-medium text-slate-800 leading-relaxed">
-                                            Strategic Recommendation: The <span className="font-bold">{recommendations.topROI[0]?.miner.name}</span> offers the optimal balance of CAPEX recovery ({((recommendations.topROI[0]?.miner.calculatedPrice / recommendations.topROI[0]?.miner.dailyRevenueUSD) / 30.4).toFixed(0)} months) and hashrate density.
+                                            Strategic Recommendation: The <span className="font-bold">{recommendations.topROI[0]?.miner?.name || 'Selection'}</span> offers the optimal balance of CAPEX recovery ({recommendations.topROI[0]?.miner ? ((recommendations.topROI[0].miner.calculatedPrice / recommendations.topROI[0].miner.dailyRevenueUSD) / 30.4).toFixed(0) : 'N/A'} months) and hashrate density.
                                         </p>
                                     </div>
                                 )}
@@ -262,23 +262,23 @@ export function PriceListPdfTemplate({
                                         <div className="grid grid-cols-3 divide-x divide-slate-200 bg-white">
                                             <div className="p-4">
                                                 <p className="text-[10px] uppercase font-bold text-slate-400 mb-2">Fastest Payback</p>
-                                                <p className="text-sm font-bold text-slate-900 mb-1 truncate">{recommendations.topROI[0]?.miner.name}</p>
+                                                <p className="text-sm font-bold text-slate-900 mb-1 truncate">{recommendations.topROI[0]?.miner?.name}</p>
                                                 <p className="text-xs text-emerald-700 font-semibold mt-auto">
-                                                    {((recommendations.topROI[0]?.miner.dailyRevenueUSD * 365 / recommendations.topROI[0]?.miner.calculatedPrice) * 100).toFixed(0)}% ROI
+                                                    {recommendations.topROI[0]?.miner ? ((recommendations.topROI[0].miner.dailyRevenueUSD * 365 / recommendations.topROI[0].miner.calculatedPrice) * 100).toFixed(0) : 0}% ROI
                                                 </p>
                                             </div>
                                             <div className="p-4">
                                                 <p className="text-[10px] uppercase font-bold text-slate-400 mb-2">Highest Revenue</p>
-                                                <p className="text-sm font-bold text-slate-900 mb-1 truncate">{recommendations.topRevenue[0]?.miner.name}</p>
+                                                <p className="text-sm font-bold text-slate-900 mb-1 truncate">{recommendations.topRevenue[0]?.miner?.name}</p>
                                                 <p className="text-xs text-blue-700 font-semibold mt-auto">
-                                                    ${recommendations.topRevenue[0]?.miner.dailyRevenueUSD.toFixed(2)} / day
+                                                    ${recommendations.topRevenue[0]?.miner?.dailyRevenueUSD.toFixed(2) || '0.00'} / day
                                                 </p>
                                             </div>
                                             <div className="p-4">
                                                 <p className="text-[10px] uppercase font-bold text-slate-400 mb-2">Best Efficiency</p>
-                                                <p className="text-sm font-bold text-slate-900 mb-1 truncate">{recommendations.topEfficiency[0]?.miner.name}</p>
+                                                <p className="text-sm font-bold text-slate-900 mb-1 truncate">{recommendations.topEfficiency[0]?.miner?.name}</p>
                                                 <p className="text-xs text-amber-700 font-semibold mt-auto">
-                                                    {(recommendations.topEfficiency[0]?.miner.powerWatts / recommendations.topEfficiency[0]?.miner.hashrateTH).toFixed(1)} J/TH
+                                                    {recommendations.topEfficiency[0]?.miner ? (recommendations.topEfficiency[0].miner.powerWatts / recommendations.topEfficiency[0].miner.hashrateTH).toFixed(1) : 0} J/TH
                                                 </p>
                                             </div>
                                         </div>
