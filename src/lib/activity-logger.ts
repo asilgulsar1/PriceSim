@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// import { createClient } from "@/utils/supabase/server"; // removed unused
 import { put, list } from '@vercel/blob';
 
 const ACTIVITY_LOG_DIR = 'activity-logs/';

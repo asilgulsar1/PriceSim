@@ -1,4 +1,5 @@
 import React from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, screen, waitFor, act, fireEvent } from '@testing-library/react';
 import { PriceListGenerator } from './PriceListGenerator';
 import '@testing-library/jest-dom';
@@ -73,7 +74,7 @@ describe('PriceListGenerator Sync Logic', () => {
         localStorage.setItem('LATEST_SIMULATION_DATA', JSON.stringify(mockSimData));
 
         await act(async () => { render(<PriceListGenerator />); });
-        fireEvent.click(screen.getByText('Fresh Data'));
+        fireEvent.click(screen.getByText('Refresh'));
 
         await waitFor(() => {
             expect(screen.getByText('Simulator Miner')).toBeInTheDocument();
@@ -118,7 +119,7 @@ describe('PriceListGenerator Sync Logic', () => {
         await act(async () => {
             render(<PriceListGenerator {...props} />);
         });
-        fireEvent.click(screen.getByText('Fresh Data'));
+        fireEvent.click(screen.getByText('Refresh'));
 
 
         // S19 XP: Sim Calculated = 3500. Market = 0 (mocked empty above or defaults?)
@@ -165,7 +166,7 @@ describe('PriceListGenerator Sync Logic', () => {
         );
 
         await act(async () => { render(<PriceListGenerator />); });
-        fireEvent.click(screen.getByText('Fresh Data'));
+        fireEvent.click(screen.getByText('Refresh'));
 
         await waitFor(() => {
             expect(screen.getByText('API Miner')).toBeInTheDocument();
@@ -175,7 +176,7 @@ describe('PriceListGenerator Sync Logic', () => {
     it('falls back to local calculation only if both fail', async () => {
         // Empty storage, Failed fetch
         await act(async () => { render(<PriceListGenerator />); });
-        fireEvent.click(screen.getByText('Fresh Data'));
+        fireEvent.click(screen.getByText('Refresh'));
 
         await waitFor(() => {
             // Should contain default miners from INITIAL_MINERS
@@ -215,7 +216,7 @@ describe('PriceListGenerator Sync Logic', () => {
         });
 
         await act(async () => { render(<PriceListGenerator />); });
-        fireEvent.click(screen.getByText('Fresh Data'));
+        fireEvent.click(screen.getByText('Refresh'));
 
         await waitFor(() => {
             // Expect 29000 (Market) > 19000 (Sim) because hashrate 1160 matches and "S23" matches

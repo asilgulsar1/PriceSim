@@ -4,12 +4,18 @@ export type { MinerProfile };
 // Map of model substrings to release years.
 // Processed in order - specific matches should come first if needed, but usually we just look for the series.
 export const MINER_RELEASE_YEARS: Record<string, number> = {
+    "SEALMINER": 2024,
+    "A15": 2024,
     "S23": 2025,
     "S21+": 2024,
     "S21 XP": 2024,
     "S21 Pro": 2024,
     "S21": 2023,
     "T21": 2023,
+    "M60": 2023,
+    "M63": 2023,
+    "M66": 2023,
+    "A14": 2023,
     "S19 XP": 2022,
     "S19 k": 2023,
     "S19 j": 2021,

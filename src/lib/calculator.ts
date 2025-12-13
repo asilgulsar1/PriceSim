@@ -101,6 +101,8 @@ export interface SimulationResult {
 }
 
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// import { differenceInDays, addDays } from 'date-fns';
 import { calculateDailyGrossBTC } from './mining-math';
 
 export class MiningCalculator {

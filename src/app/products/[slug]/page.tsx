@@ -2,6 +2,7 @@
 import { INITIAL_MINERS } from '@/lib/miner-data';
 import { slugify } from '@/lib/slug-utils';
 import { notFound } from 'next/navigation'; // Server component safe
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Metadata } from 'next';
 import ProductPageClient from '@/components/ProductPageClient';
 

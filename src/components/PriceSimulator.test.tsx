@@ -99,21 +99,22 @@ describe('PriceSimulator', () => {
         render(<PriceSimulator />);
         await waitFor(() => expect(screen.getByText('Market Assumptions')).toBeInTheDocument());
         // Wait for button to be enabled to ensure initial load is done
-        await waitFor(() => expect(screen.getByText('Calculate').closest('button')).not.toBeDisabled());
+        await waitFor(() => expect(screen.getAllByText('Calculate')[0].closest('button')).not.toBeDisabled());
     });
 
     it('calculates prices correctly', async () => {
         render(<PriceSimulator />);
 
         // Wait for loading to finish
-        await waitFor(() => expect(screen.getByText('Calculate').closest('button')).not.toBeDisabled());
+        await waitFor(() => expect(screen.getAllByText('Calculate')[0].closest('button')).not.toBeDisabled());
 
         // Click Calculate
-        fireEvent.click(screen.getByText('Calculate'));
+        fireEvent.click(screen.getAllByText('Calculate')[0]);
 
         // Wait for results
         // Check for calculated price
-        await screen.findByText('Antminer S21 XP', {}, { timeout: 3000 });
+        const results = await screen.findAllByText('Antminer S21 XP', {}, { timeout: 3000 });
+        expect(results.length).toBeGreaterThan(0);
         const daysElements = screen.getAllByText(/365 days/);
         expect(daysElements.length).toBeGreaterThan(0);
     });
@@ -133,13 +134,14 @@ describe('PriceSimulator', () => {
         fireEvent.click(screen.getByText('Add'));
 
         // Wait for loading to finish
-        await waitFor(() => expect(screen.getByText('Calculate').closest('button')).not.toBeDisabled());
+        await waitFor(() => expect(screen.getAllByText('Calculate')[0].closest('button')).not.toBeDisabled());
 
         // Click Calculate to refresh the list with the new miner
-        fireEvent.click(screen.getByText('Calculate'));
+        fireEvent.click(screen.getAllByText('Calculate')[0]);
 
         // Check if miner appears
         // Check if miner appears
-        await screen.findByText('TestMiner', {}, { timeout: 3000 });
+        const miners = await screen.findAllByText('TestMiner', {}, { timeout: 3000 });
+        expect(miners.length).toBeGreaterThan(0);
     });
 });

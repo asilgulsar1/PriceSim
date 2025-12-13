@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MarketPriceTable } from './MarketPriceTable';
 
@@ -66,14 +67,30 @@ describe('Market Price Link Clickability Bug', () => {
 
     it('renders with correct slug', () => {
         render(<MarketPriceTable initialData={bugData} />);
-        const ultraLink = screen.getByText('Ultra 1366');
-        expect(ultraLink).toHaveAttribute('href', '/products/ultra-1366');
+        // Might find multiple texts (table and card), pick one or verify all have link
+        const ultraLinks = screen.getAllByText('Ultra 1366');
+        expect(ultraLinks.length).toBeGreaterThan(0);
+        // Find the one that is a link directly or inside a link
+        // Usually getByText finds the text node, we look up for 'a' tag?
+        // Actually the link is checking href attribute. 
+        // In our mock, Link renders <a>. 
+
+        // Let's filter for link roles with that name
+        // Use findAllByText for async safety? No, render is sync here.
+
+        // We can check if any of them is contained in a link with correct href
+        const hasCorrectLink = ultraLinks.some(el => {
+            const link = el.closest('a');
+            return link && link.getAttribute('href') === '/products/ultra-1366';
+        });
+        expect(hasCorrectLink).toBe(true);
     });
 
     it('navigates when row is clicked', () => {
         render(<MarketPriceTable initialData={bugData} />);
-        const ultraText = screen.getByText('Ultra 1366');
-        const row = ultraText.closest('tr');
+        const ultraTexts = screen.getAllByText('Ultra 1366');
+        // Find the one inside a TR
+        const row = ultraTexts.map(el => el.closest('tr')).find(tr => tr !== null);
 
         expect(row).toBeInTheDocument();
         fireEvent.click(row!); // Click the row

@@ -1,5 +1,5 @@
 import { PriceSimulatorCalculator, MinerProfile, ContractTerms, MarketConditions, SimulationConfig, DailyProjection } from './price-simulator-calculator';
-import { calculateDailyGrossBTC, calculateHashpriceUSD, calculateMinerRevenueUSD } from './mining-math';
+
 
 export interface SolvedMiner extends MinerProfile {
     calculatedPrice: number;

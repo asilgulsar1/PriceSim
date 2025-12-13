@@ -15,6 +15,11 @@ import { PriceListControls } from "./price-list/PriceListControls";
 import { PriceListFilterBar, SortField } from "./price-list/PriceListFilterBar";
 import { PriceListTable } from "./price-list/PriceListTable";
 import { PriceListPdfTemplate } from "./price-list/PriceListPdfTemplate";
+import { StickyActionFooter } from "@/components/ui/sticky-action-footer";
+import { Button } from "@/components/ui/button";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { RefreshCw, FileText, Loader2 } from "lucide-react";
+import { calculateHashpriceUSD, calculateMinerRevenueUSD } from '@/lib/mining-math';
 import { findMatchingMarketMiner, SimpleMarketMiner } from "@/lib/market-matching";
 
 
@@ -66,7 +71,7 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
 
         // HASHPRICE CALCULATION (Live) via Centralized Math
         // This ensures consistent logic across the app.
-        const { calculateHashpriceUSD, calculateMinerRevenueUSD } = require('@/lib/mining-math');
+        // const { calculateHashpriceUSD, calculateMinerRevenueUSD } = require('@/lib/mining-math');
 
         let liveHashpriceUSD = 0;
         if (market.networkDifficulty > 0 && market.btcPrice > 0) {
@@ -366,7 +371,7 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
     }
 
     return (
-        <div className="space-y-8 p-4">
+        <div className="space-y-8 p-2 md:p-4">
             {/* Controls */}
             <PriceListControls
                 clientName={clientName}
@@ -402,17 +407,32 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
                 <PriceListTable miners={filteredResults} />
             </div>
 
-            {/* Hidden PDF Template */}
-            <PriceListPdfTemplate
-                documentRef={documentRef}
-                clientName={clientName}
-                recommendations={recommendations}
-                filteredResults={filteredResults}
-                branding={branding as any}
-                userRole={userRole}
-                pdfImages={pdfImages} // Pass Base64 images
-                style={pdfStyle}
-            />
+            {/* Hidden PDF Template - Positioned absolute to ensure full A4 width regardless of parent container */}
+            <div style={{ position: 'absolute', top: -9999, left: -9999 }}>
+                <PriceListPdfTemplate
+                    documentRef={documentRef}
+                    clientName={clientName}
+                    recommendations={recommendations}
+                    filteredResults={filteredResults}
+                    branding={branding as any}
+                    userRole={userRole}
+                    pdfImages={pdfImages} // Pass Base64 images
+                    style={pdfStyle}
+                />
+            </div>
+
+            <StickyActionFooter>
+                <div className="flex gap-2 w-full">
+                    <Button variant="outline" onClick={refreshData} disabled={loading} size="sm" className="flex-1">
+                        {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <RefreshCw className="mr-2 h-4 w-4" />}
+                        Refresh
+                    </Button>
+                    <Button onClick={handleDownloadPDF} size="sm" className="flex-1">
+                        <FileText className="mr-2 h-4 w-4" />
+                        PDF
+                    </Button>
+                </div>
+            </StickyActionFooter>
         </div>
     );
 }

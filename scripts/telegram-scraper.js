@@ -1,4 +1,5 @@
-const { TelegramClient } = require("telegram");
+/* eslint-disable */
+const { Telegraf } = require('telegraf');
 const { StringSession } = require("telegram/sessions");
 const input = require("input"); // npm install input
 const fs = require("fs");

@@ -1,4 +1,7 @@
 import '@testing-library/jest-dom';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @next/next/no-img-element */
 import { render, screen } from '@testing-library/react';
 import ProductPageClient from './ProductPageClient';
 import { useMarketData } from '@/hooks/useMarketData';

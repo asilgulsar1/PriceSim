@@ -1,4 +1,6 @@
 import { PriceListGenerator } from "@/components/PriceListGenerator";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React from 'react';
 import { auth } from "@/auth";
 import { getUser } from "@/lib/user-store";
 
@@ -9,15 +11,15 @@ export default async function PriceListPage() {
     // Fetch fresh user data to ensure branding is up-to-date
     // Session data can be stale (JWT strategy)
     let freshBranding = (session?.user as any)?.branding;
+    let resellerMargin = (session?.user as any)?.resellerMargin || 0;
+
     if (session?.user?.email) {
         const user = await getUser(session.user.email);
-        if (user?.branding) {
-            freshBranding = user.branding;
+        if (user) {
+            if (user.branding) freshBranding = user.branding;
+            if (user.resellerMargin !== undefined) resellerMargin = user.resellerMargin;
         }
     }
-
-    // Default Reseller Margin if not set
-    const resellerMargin = (session?.user as any)?.resellerMargin || 0;
 
     return (
         <div className="container mx-auto py-8">

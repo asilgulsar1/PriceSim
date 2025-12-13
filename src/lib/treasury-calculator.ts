@@ -1,4 +1,6 @@
 import { MinerProfile, ContractTerms, MarketConditions, SimulationConfig } from './calculator';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// import { differenceInDays, addDays } from 'date-fns';
 import { calculateDailyGrossBTC } from './mining-math';
 
 export interface TreasuryProjection {

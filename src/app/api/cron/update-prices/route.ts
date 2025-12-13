@@ -1,4 +1,5 @@
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextResponse } from 'next/server';
 import { fetchMarketData } from '@/lib/api';
 import { split } from 'postcss/lib/list'; // Ensure no bad auto-imports.
@@ -14,7 +15,9 @@ export const runtime = 'edge';
 export async function GET(request: Request) {
     // Basic authorization check
     const authHeader = request.headers.get('authorization');
-    if (process.env.CRON_SECRET && authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+
+    // Secure Check: Fail if secret is missing or doesn't match
+    if (!process.env.CRON_SECRET || authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 

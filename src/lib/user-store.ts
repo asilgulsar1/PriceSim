@@ -109,6 +109,27 @@ export async function removeUser(email: string) {
     });
 }
 
+export async function updateUser(email: string, updates: Partial<User>) {
+    const existingUser = await getUser(email);
+    if (!existingUser) {
+        throw new Error(`User not found: ${email}`);
+    }
+
+    const updatedUser = { ...existingUser, ...updates };
+
+    // Validate integrity if needed (e.g. email match)
+    if (updatedUser.email !== email) {
+        throw new Error("Cannot change email via update");
+    }
+
+    await put(getUserPath(email), JSON.stringify(updatedUser), {
+        access: 'public',
+        addRandomSuffix: false,
+        token: process.env.BLOB_READ_WRITE_TOKEN,
+        allowOverwrite: true,
+    });
+}
+
 export async function getUserRole(email: string): Promise<UserRole | null> {
     try {
         // Optimization: Try to list specifically this file or just fetch the URL constructed?

@@ -1,4 +1,7 @@
 import '@testing-library/jest-dom';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @next/next/no-img-element */
 import { render, screen } from '@testing-library/react';
 import ProductPageClient from './ProductPageClient';
 import { useMarketData } from '@/hooks/useMarketData';
@@ -52,12 +55,16 @@ const mockMarketData = {
 
 describe('All Product Pages Verification', () => {
     beforeEach(() => {
-        (useMarketData as jest.Mock).mockReturnValue(mockMarketData);
+        (useMarketData as jest.Mock).mockReturnValue({
+            market: mockMarketData.market,
+            loading: false,
+            error: null
+        });
         // We mock solveMinerPrice to return a realistic price based on hashrate to ensure strictness
         // Or simpler: just return a valid price > 0 so we confirm "not placeholder"
-        (solveMinerPrice as jest.Mock).Implementation = (miner: any) => ({
+        (solveMinerPrice as jest.Mock).mockImplementation((miner: any) => ({
             calculatedPrice: miner.hashrateTH * 15 // $15/TH arbitrary logic for test
-        });
+        }));
     });
 
     test.each(INITIAL_MINERS)('renders complete data for %s', (miner) => {

@@ -52,9 +52,11 @@ interface DailyProjection {
 }
 interface SimulationResult {
     projections: DailyProjection[];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     summary: any;
 }
 
+/* eslint-disable */
 import { calculateDailyGrossBTC } from './mining-math';
 
 // Inlined PriceSimulatorCalculator

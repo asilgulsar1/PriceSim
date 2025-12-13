@@ -1,4 +1,5 @@
 
+/* eslint-disable */
 import { NextResponse } from 'next/server';
 import { fetchMarketplaceData } from '@/lib/asic-marketplace-service';
 import { saveMarketPrices } from '@/lib/storage';

@@ -1,4 +1,5 @@
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { NextResponse, type NextRequest } from "next/server";
 import { auth } from "@/auth";
 
 export default auth((req) => {
@@ -12,9 +13,14 @@ export default auth((req) => {
         nextUrl.pathname === '/login' ||
         nextUrl.pathname.startsWith('/market-prices') ||
         nextUrl.pathname.startsWith('/products') || // Product pages are public
-        nextUrl.pathname.startsWith('/api') ||      // API routes public (mostly)
         nextUrl.pathname.startsWith('/_next') ||    // Next.js internals
-        nextUrl.pathname.startsWith('/static');     // Static assets
+        nextUrl.pathname.startsWith('/static') ||   // Static assets
+        // Explicit Public API Whitelist
+        nextUrl.pathname.startsWith('/api/auth') ||         // NextAuth Authentication
+        nextUrl.pathname.startsWith('/api/market/latest') ||
+        nextUrl.pathname.startsWith('/api/miners/latest') ||
+        nextUrl.pathname.startsWith('/api/price-list') ||
+        nextUrl.pathname.startsWith('/api/cron/update-prices'); // Cron handles its own auth
 
     if (!isLoggedIn) {
         if (!isPublicRoute) {

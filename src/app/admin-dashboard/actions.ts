@@ -1,6 +1,6 @@
 'use server'
 
-import { addUser, removeUser, UserRole } from "@/lib/user-store";
+import { addUser, removeUser, updateUser, UserRole } from "@/lib/user-store";
 import { revalidatePath } from "next/cache";
 
 export async function addUserAction(formData: FormData) {
@@ -30,5 +30,12 @@ export async function removeUserAction(formData: FormData) {
     if (!email) return;
 
     await removeUser(email);
+    revalidatePath('/admin-dashboard');
+}
+
+export async function updateUserMarginAction(email: string, margin: number) {
+    if (!email) throw new Error("Email is required");
+
+    await updateUser(email, { resellerMargin: margin });
     revalidatePath('/admin-dashboard');
 }

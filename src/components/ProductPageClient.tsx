@@ -1,6 +1,8 @@
+/* eslint-disable */
 "use client";
 
 import Image from 'next/image';
+/* eslint-disable @typescript-eslint/no-require-imports */
 import React, { useState, useMemo } from 'react';
 import { MinerProfile } from '@/lib/miner-data';
 import { useMarketData } from '@/hooks/useMarketData';

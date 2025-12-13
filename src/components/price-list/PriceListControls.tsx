@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -40,18 +39,18 @@ export function PriceListControls({
     setPdfStyle,
     userRole,
     branding,
-    setBranding
+    // setBranding unused
 }: PriceListControlsProps & {
     userRole?: string;
     branding?: { companyName: string; logoUrl: string; footerText: string };
-    setBranding?: (val: any) => void;
+    setBranding?: (val: { companyName: string; logoUrl: string; footerText: string }) => void;
 }) {
 
     return (
-        <div className="bg-white p-6 rounded-lg border shadow-sm space-y-4">
-            <div className="flex justify-between items-start">
+        <div className="bg-white p-4 md:p-6 rounded-lg border shadow-sm space-y-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start gap-2">
                 <h2 className="text-lg font-semibold">Price List Configuration</h2>
-                {lastUpdated && <span className="text-xs text-muted-foreground">Updated: {lastUpdated}</span>}
+                {lastUpdated && <span className="text-xs text-muted-foreground whitespace-nowrap">Updated: {lastUpdated}</span>}
             </div>
 
             {/* Branding Section (Resellers Only) */}
@@ -72,7 +71,7 @@ export function PriceListControls({
                 </div>
             )}
 
-            <div className="flex flex-col md:flex-row gap-6 items-end">
+            <div className="flex flex-col md:flex-row gap-6 w-full md:items-end">
                 <div className="space-y-2 flex-1">
                     <Label>Client Name</Label>
                     <Input
@@ -121,7 +120,7 @@ export function PriceListControls({
                     </Select>
                 </div>
 
-                <div className="flex gap-2 items-end">
+                <div className="hidden md:flex gap-2 items-end">
                     <Button variant="outline" onClick={onRefresh} disabled={loading}>
                         {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <RefreshCw className="mr-2 h-4 w-4" />}
                         Fresh Data

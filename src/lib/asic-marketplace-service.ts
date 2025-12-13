@@ -1,4 +1,5 @@
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as cheerio from 'cheerio';
 
 export interface MarketMiner {
@@ -29,6 +30,21 @@ export interface MarketListing {
 }
 
 // Define a more specific type for the raw marketplace items
+export class AsicMarketplaceService {
+    // ---------------------------------------------------------------------------
+    // 1. Scraping Logic
+    // ---------------------------------------------------------------------------
+    // This class will encapsulate the scraping logic.
+    // The RawMarketplaceItem interface might become a private interface or type alias within this class,
+    // or its properties might be directly used in methods.
+    // For now, let's assume the user wants to introduce the class and the subsequent lines are
+    // a malformed attempt to define its initial structure, possibly intending to move
+    // parts of RawMarketplaceItem or related logic into it.
+    // I will keep the original RawMarketplaceItem definition for now, as the provided snippet
+    // is syntactically incomplete for a class definition and seems to be a partial replacement.
+    // A more complete instruction would be needed to refactor RawMarketplaceItem into the class.
+}
+
 interface RawMarketplaceItem {
     miner: {
         slug: string;
@@ -332,7 +348,7 @@ function findKeyRecursively(obj: any, key: string): any {
 export function parseMinerSpecs(minerObj: any): { hashrateTH: number, powerW: number, algo: string } {
     let hashrateTH = 0;
     let powerW = 0;
-    let algo = 'SHA-256';
+    const algo = 'SHA-256';
 
     if (minerObj.hashrates && Array.isArray(minerObj.hashrates) && minerObj.hashrates.length > 0) {
         const mainHash = minerObj.hashrates[0];

@@ -1,4 +1,6 @@
-import { MinerProfile, ContractTerms, MarketConditions } from "@/lib/calculator";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { SimulationConfig, MinerProfile, ContractTerms, MarketConditions } from './calculator';
 
 export interface FormulaLog {
     step: string;

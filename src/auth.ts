@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import NextAuth from "next-auth"
 import Google from "next-auth/providers/google"
 import { getUserRole, addUser } from "@/lib/user-store"

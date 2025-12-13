@@ -14,7 +14,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Switch } from '@/components/ui/switch';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import {
@@ -141,6 +140,7 @@ export default function Dashboard() {
         if (!marketLoading) {
             runSimulation();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [marketLoading]);
 
     return (

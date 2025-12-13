@@ -1,5 +1,6 @@
 import { getUsers } from "@/lib/user-store";
 import { addUserAction, removeUserAction } from "./actions";
+import { UserMarginEditor } from "./UserMarginEditor";
 
 export default async function AdminDashboard() {
     const users = await getUsers();
@@ -82,14 +83,17 @@ export default async function AdminDashboard() {
                                     <td className="px-6 py-4 whitespace-nowrap">{user.email}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${user.role === 'admin' ? 'bg-purple-100 text-purple-800' :
-                                                user.role === 'reseller' ? 'bg-orange-100 text-orange-800' :
-                                                    'bg-green-100 text-green-800'
+                                            user.role === 'reseller' ? 'bg-orange-100 text-orange-800' :
+                                                'bg-green-100 text-green-800'
                                             }`}>
                                             {user.role}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {user.resellerMargin ? `$${user.resellerMargin}` : '-'}
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <UserMarginEditor
+                                            email={user.email}
+                                            initialMargin={user.resellerMargin || 0}
+                                        />
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <form action={removeUserAction}>

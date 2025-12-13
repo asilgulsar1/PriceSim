@@ -1,9 +1,10 @@
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
     calculateMiddlePrice,
     extractHashrateFromName,
     parseMinerSpecs
 } from './asic-marketplace-service';
+import { AsicMarketplaceService } from './asic-marketplace-service';
 
 // We need to export these functions from the service to test them isolatedly.
 // Mock cheerio to avoid ESM/Jest issues since we only test pure logic functions here

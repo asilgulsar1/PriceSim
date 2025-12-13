@@ -1,8 +1,9 @@
-
 'use client';
 
-import React, { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useState, useMemo } from 'react';
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -58,6 +59,7 @@ import { syncMarketplaceAction } from '@/app/market-prices/actions';
 
 export function MarketPriceTable({ initialData, lastUpdated }: MarketPriceTableProps) {
     const [data, setData] = useState<MarketMiner[]>(initialData);
+    const [lastUpdatedTime, setLastUpdatedTime] = useState<string | undefined>(lastUpdated);
     const [search, setSearch] = useState('');
     const [sortField, setSortField] = useState<SortField>('price');
     const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
@@ -85,6 +87,9 @@ export function MarketPriceTable({ initialData, lastUpdated }: MarketPriceTableP
             const json = await res.json();
             if (json.miners) {
                 setData(json.miners);
+            }
+            if (json.updatedAt) {
+                setLastUpdatedTime(json.updatedAt);
             }
         } catch (e) {
             console.error("Failed to refresh", e);
@@ -165,7 +170,7 @@ export function MarketPriceTable({ initialData, lastUpdated }: MarketPriceTableP
 
                 <div className="flex items-center gap-2">
                     <Badge variant="outline" className="text-xs text-muted-foreground mr-2">
-                        Last Updated: {mounted ? (lastUpdated ? new Date(lastUpdated).toLocaleString() : 'Never') : 'Loading...'}
+                        Last Updated: {mounted ? (lastUpdatedTime ? new Date(lastUpdatedTime).toLocaleString() : 'Never') : 'Loading...'}
                     </Badge>
                     <Button variant="secondary" size="sm" onClick={handleSync} disabled={syncing || loading}>
                         <RefreshCw className={`mr-2 h-4 w-4 ${syncing ? 'animate-spin' : ''}`} />
@@ -179,7 +184,44 @@ export function MarketPriceTable({ initialData, lastUpdated }: MarketPriceTableP
             </div>
 
             <div className="rounded-md border bg-card">
-                <Table>
+                {/* Mobile Card View */}
+                <div className="md:hidden space-y-4 p-4">
+                    {sortedData.length === 0 ? (
+                        <div className="text-center text-muted-foreground py-8">No miners found.</div>
+                    ) : (
+                        sortedData.map((miner) => (
+                            <Card key={miner.id} className="cursor-pointer" onClick={() => router.push(`/products/${slugify(miner.name)}`)}>
+                                <CardContent className="p-4 space-y-3">
+                                    <div className="flex justify-between items-start">
+                                        <div>
+                                            <div className="font-bold text-lg leading-tight text-primary">{miner.name}</div>
+                                            <div className="text-xs text-muted-foreground mt-1">
+                                                {miner.listings.length > 0 && miner.listings[0].stockStatus}
+                                            </div>
+                                        </div>
+                                        <Badge variant="secondary">{miner.specs.hashrateTH} TH/s</Badge>
+                                    </div>
+                                    <div className="flex justify-between items-center border-t pt-3">
+                                        <div>
+                                            <span className="text-xs text-muted-foreground block">Middle Price</span>
+                                            <span className="font-bold text-green-600 text-lg">${miner.stats.middlePrice.toLocaleString()}</span>
+                                        </div>
+                                        <div className="text-right">
+                                            <span className="text-xs text-muted-foreground block">Vendors</span>
+                                            <Badge variant="outline">{miner.stats.vendorCount}</Badge>
+                                        </div>
+                                    </div>
+                                    <div className="text-xs text-muted-foreground text-center bg-muted/30 p-1 rounded">
+                                        Range: ${miner.stats.minPrice.toLocaleString()} - ${miner.stats.maxPrice.toLocaleString()}
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        ))
+                    )}
+                </div>
+
+                {/* Desktop Table */}
+                <Table className="hidden md:table">
                     <TableHeader>
                         <TableRow>
                             <TableHead className="w-[300px] cursor-pointer" onClick={() => handleSort('name')}>
@@ -247,7 +289,7 @@ export function MarketPriceTable({ initialData, lastUpdated }: MarketPriceTableP
             </div>
 
             <div className="text-xs text-muted-foreground text-center">
-                Data sourced from AsicMinerValue Marketplace. "Middle Price" ignores outliers.
+                For miners not yet listed, we estimate pricing based on similar models&apos; price-per-TH. &quot;Middle Price&quot; is the median of active listings.
             </div>
         </div>
     );

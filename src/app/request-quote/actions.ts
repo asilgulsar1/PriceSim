@@ -17,7 +17,6 @@ export async function submitQuoteRequest(data: QuoteRequest) {
         await put(filename, JSON.stringify(data, null, 2), {
             access: 'public',
             addRandomSuffix: false,
-            // @ts-ignore
             token: process.env.BLOB_READ_WRITE_TOKEN
         });
 

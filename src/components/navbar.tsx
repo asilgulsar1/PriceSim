@@ -11,9 +11,14 @@ import { useSession } from 'next-auth/react';
 
 export function Navbar() {
     const pathname = usePathname();
-    const { data: session } = useSession();
-    const userRole = (session?.user as any)?.role;
+    const { data: session, status } = useSession();
+    const userRole = (session?.user as { role?: string } | undefined)?.role;
     const isReseller = userRole === 'reseller';
+    const isLoading = status === "loading";
+
+    // Default to Restricted view while loading to prevent flicker
+    // (Better to show less and add, than show all and remove)
+    const showAdvanced = !isLoading && !isReseller;
 
     if (pathname === '/login') return null;
 
@@ -40,7 +45,7 @@ export function Navbar() {
                                 >
                                     Home
                                 </Link>
-                                {!isReseller && (
+                                {showAdvanced && (
                                     <>
                                         <Link
                                             href="/price-simulator"
@@ -62,7 +67,7 @@ export function Navbar() {
                                 >
                                     Price List
                                 </Link>
-                                {!isReseller && (
+                                {showAdvanced && (
                                     <Link
                                         href="/market-prices"
                                         className="text-foreground/60 hover:text-foreground transition-colors"
@@ -82,7 +87,7 @@ export function Navbar() {
                     </Link>
 
                     <div className="hidden md:flex items-center space-x-6 text-sm font-medium">
-                        {!isReseller && (
+                        {showAdvanced && (
                             <>
                                 <Link
                                     href="/price-simulator"
@@ -110,7 +115,7 @@ export function Navbar() {
                         >
                             Price List
                         </Link>
-                        {!isReseller && (
+                        {showAdvanced && (
                             <Link
                                 href="/market-prices"
                                 className={cn(

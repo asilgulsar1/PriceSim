@@ -1,4 +1,7 @@
-"use client";
+
+'use client';
+
+import { cn } from "@/lib/utils";
 
 import React from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -150,11 +153,89 @@ export function PriceSimulatorTable({
 
             {/* Table */}
             <Card>
-                <CardHeader>
+                <CardHeader className="pb-3 border-b mb-2 md:mb-0 md:border-b-0">
                     <CardTitle>Miner Pricing Results</CardTitle>
                 </CardHeader>
-                <CardContent>
-                    <Table>
+                <CardContent className="p-0 md:p-6">
+                    {/* Mobile Card View */}
+                    <div className="md:hidden space-y-4 p-4">
+                        {filteredMiners.map((r, i) => (
+                            <div key={i} className="bg-white rounded-lg border shadow-sm p-4 space-y-3">
+                                <div className="flex justify-between items-start">
+                                    <div>
+                                        <h3 className="font-bold text-lg leading-tight">{r.name}</h3>
+                                        <div className="text-xs text-muted-foreground mt-1">
+                                            {r.hashrateTH} TH/s • {r.powerWatts} W • {(r.powerWatts / r.hashrateTH).toFixed(1)} J/T
+                                        </div>
+                                    </div>
+                                    <div className="text-right">
+                                        <div className="font-bold text-emerald-600 text-lg">
+                                            ${r.calculatedPrice.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                                        </div>
+                                        <div className="text-xs text-muted-foreground">Target Price</div>
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-2 text-sm pt-2 border-t">
+                                    <div>
+                                        <span className="text-muted-foreground text-xs block">Daily Rev</span>
+                                        <span className="font-medium text-emerald-600">${r.dailyRevenueUSD.toFixed(2)}</span>
+                                    </div>
+                                    <div>
+                                        <span className="text-muted-foreground text-xs block">Daily Exp</span>
+                                        <span className="font-medium text-amber-600">${r.dailyExpenseUSD.toFixed(2)}</span>
+                                    </div>
+                                    <div>
+                                        <span className="text-muted-foreground text-xs block">Profitability</span>
+                                        <span className="font-medium">{r.clientProfitabilityPercent.toFixed(0)}%</span>
+                                    </div>
+                                    <div>
+                                        <span className="text-muted-foreground text-xs block">Treasury</span>
+                                        <span className={cn("font-medium", r.finalTreasuryUSD >= 0 ? "text-green-600" : "text-red-600")}>
+                                            ${r.finalTreasuryUSD.toLocaleString(undefined, { notation: "compact" })}
+                                        </span>
+                                    </div>
+                                </div>
+                                <Dialog>
+                                    <DialogTrigger asChild>
+                                        <Button variant="outline" size="sm" className="w-full mt-2">View Analysis</Button>
+                                    </DialogTrigger>
+                                    <DialogContent className="max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+                                        <DialogHeader>
+                                            <DialogTitle>Daily Logs - {r.name}</DialogTitle>
+                                        </DialogHeader>
+                                        <div className="overflow-x-auto">
+                                            {/* Reuse table logic in dialog or simplified view */}
+                                            <Table className="min-w-[800px]">
+                                                {/* ... same logs header ... */}
+                                                <TableHeader>
+                                                    <TableRow>
+                                                        <TableHead>Day</TableHead>
+                                                        <TableHead>BTC Price</TableHead>
+                                                        <TableHead>Net Profit</TableHead>
+                                                        <TableHead>Treasury</TableHead>
+                                                    </TableRow>
+                                                </TableHeader>
+                                                <TableBody>
+                                                    {r.projections.slice(0, 50).map((day, j) => (
+                                                        <TableRow key={j}>
+                                                            <TableCell>{day.dayIndex + 1}</TableCell>
+                                                            <TableCell>${day.btcPrice.toFixed(0)}</TableCell>
+                                                            <TableCell className={day.dailyProfitUSD >= 0 ? "text-green-600" : "text-red-600"}>${day.dailyProfitUSD.toFixed(2)}</TableCell>
+                                                            <TableCell>${day.cashBalance.toFixed(0)}</TableCell>
+                                                        </TableRow>
+                                                    ))}
+                                                    {r.projections.length > 50 && <TableRow><TableCell colSpan={4}>... showing first 50 days only on mobile detail ...</TableCell></TableRow>}
+                                                </TableBody>
+                                            </Table>
+                                        </div>
+                                    </DialogContent>
+                                </Dialog>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Desktop Table View */}
+                    <Table className="hidden md:table">
                         <TableHeader>
                             <TableRow>
                                 <TableHead className="cursor-pointer hover:bg-muted/50" onClick={() => handleSort('name')}>

@@ -1,6 +1,8 @@
 "use client";
 
 import { useSession, signOut } from "next-auth/react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 
 export function UserMenu() {
@@ -29,7 +31,7 @@ export function UserMenu() {
                         className="w-8 h-8 rounded-full"
                     />
                 )}
-                <div className="text-sm">
+                <div className="text-sm hidden md:block">
                     <p className="font-medium leading-none">{session.user.name}</p>
                     <p className="text-xs text-muted-foreground">{session.user.email}</p>
                 </div>

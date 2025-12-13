@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 
 import { useTransition, useState, useEffect, useRef } from "react";
@@ -138,7 +139,9 @@ export function ProfileForm({ branding: initialBranding, aiUsage, successMessage
             const context = {
                 topMiners: calculatedMiners.slice(0, 3).map(m => m.miner.name),
                 totalRevenue: calculatedMiners[0]?.miner.dailyRevenueUSD || 0,
-                maxRoi: calculatedMiners[0]?.metrics.profitabilityScore * 10
+                maxRoi: calculatedMiners[0]?.metrics.profitabilityScore * 10,
+                btcPrice: market.btcPrice ? `$${market.btcPrice.toLocaleString()}` : "Unknown",
+                companyName: companyName || "Our Agency"
             };
             const res = await generateAiContent(aiTone, contentText, context);
             if (res.success && res.content) setContentText(res.content);

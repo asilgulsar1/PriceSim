@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -93,10 +93,10 @@ describe('PriceSimulator Scroll Fix', () => {
         render(<PriceSimulator />);
 
         // Wait for loading to finish (button enabled)
-        await waitFor(() => expect(screen.getByText('Calculate').closest('button')).not.toBeDisabled());
+        await waitFor(() => expect(screen.getAllByText('Calculate')[0].closest('button')).not.toBeDisabled());
 
         // Click Calculate to populate results
-        fireEvent.click(screen.getByText('Calculate'));
+        fireEvent.click(screen.getAllByText('Calculate')[0]);
 
         // Wait for results to render
         await waitFor(async () => {

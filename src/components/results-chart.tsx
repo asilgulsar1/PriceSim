@@ -1,18 +1,7 @@
 'use client';
 
 import React from 'react';
-import {
-    LineChart,
-    Line,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend,
-    ResponsiveContainer,
-    AreaChart,
-    Area
-} from 'recharts';
+import { ResponsiveContainer, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Area, AreaChart } from 'recharts';
 import { DailyProjection } from '@/lib/calculator';
 
 interface ResultsChartProps {

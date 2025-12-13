@@ -88,8 +88,8 @@ export function PriceListPdfTemplate({
     // --- Data Processing & Pagination ---
 
     // pagination limits
-    const PAGE_1_ITEMS = isHighConversion ? 5 : (isBanker ? 7 : 9);
-    const PAGE_N_ITEMS = 14;
+    const PAGE_1_ITEMS = 10;
+    const PAGE_N_ITEMS = 18;
 
     // Fix hydration
     const [currentDate, setCurrentDate] = useState("");
@@ -101,7 +101,7 @@ export function PriceListPdfTemplate({
     // Helper types
     type DisplayItem = { type: 'miner', data: MinerScoreDetail } | { type: 'header', title: string };
 
-    let displayItems: DisplayItem[] = [];
+    const displayItems: DisplayItem[] = [];
     let heroItem: MinerScoreDetail | null = null;
 
     if (isHighConversion) {
@@ -170,7 +170,7 @@ export function PriceListPdfTemplate({
     }
 
     return (
-        <div ref={documentRef} className="origin-top-left bg-transparent">
+        <div ref={documentRef} className="origin-top-left bg-white" style={{ width: '210mm' }}>
             {chunks.map((chunk, pageIndex) => (
                 <div
                     key={pageIndex}
@@ -180,11 +180,11 @@ export function PriceListPdfTemplate({
                     {/* --- Header Section --- */}
                     {pageIndex === 0 && (
                         <>
-                            <div className="bg-white p-8 mb-4 border-b relative shrink-0" style={{ borderColor: `${colors.accent}33` }}>
+                            <div className="bg-white p-6 mb-2 border-b relative shrink-0" style={{ borderColor: `${colors.accent}33` }}>
                                 <div className="flex justify-between items-center relative z-10">
                                     <div>
                                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img src={logoSrc} alt={footerCompany} className="h-[75px] w-auto object-contain" />
+                                        <img src={logoSrc} alt={footerCompany} className="h-[60px] w-auto object-contain" />
                                     </div>
                                     <div className="text-right">
                                         <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: colors.secondary }}>
@@ -212,7 +212,7 @@ export function PriceListPdfTemplate({
 
                                 {/* STYLE SPECIFIC HERO BLOCKS */}
                                 {isHighConversion && heroItem && (
-                                    <div className="mb-6 bg-red-50 border border-red-100 rounded-lg p-5 shadow-sm relative overflow-hidden">
+                                    <div className="mb-4 bg-red-50 border border-red-100 rounded-lg p-4 shadow-sm relative overflow-hidden">
                                         <div className="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl">
                                             DEAL OF THE DAY
                                         </div>
@@ -220,9 +220,9 @@ export function PriceListPdfTemplate({
                                             <div>
                                                 <h3 className="text-lg font-extrabold text-slate-900">{heroItem.miner.name}</h3>
                                                 <div className="flex items-center gap-4 mt-2">
-                                                    <div className="bg-white px-3 py-1 rounded border border-red-100">
-                                                        <span className="text-xs text-slate-500 uppercase font-bold mr-2">Est. ROI</span>
-                                                        <span className="text-lg font-bold text-red-600">
+                                                    <div className="bg-white px-3 py-2 rounded border border-red-100 flex flex-col items-start shrink-0">
+                                                        <span className="text-[10px] text-slate-500 uppercase font-bold leading-none mb-1">Est. ROI</span>
+                                                        <span className="text-lg font-bold text-red-600 leading-none">
                                                             {((heroItem.miner.dailyRevenueUSD * 365 / heroItem.miner.calculatedPrice) * 100).toFixed(0)}%
                                                         </span>
                                                     </div>
@@ -444,7 +444,7 @@ export function PriceListPdfTemplate({
 
                     {/* --- Footer Section --- */}
                     <div className="px-8 pb-8 pt-4 shrink-0">
-                        {pageIndex === chunks.length - 1 && (
+                        {(pageIndex > 0 || pageIndex === chunks.length - 1) && ( // Footer on Page 2+ or Last Page
                             <div className="mb-6 bg-slate-900 p-4 rounded-sm flex justify-between items-center text-white">
                                 <div>
                                     <h4 className="font-bold text-sm">Ready to Deploy?</h4>

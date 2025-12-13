@@ -1,16 +1,16 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { TrendingUp, TrendingDown, AlertTriangle, CheckCircle, XCircle, Save, Play, RefreshCw, Loader2, Download } from "lucide-react";
+import { AlertTriangle, CheckCircle, XCircle, Save, Play, RefreshCw, Loader2, Download, TrendingUp } from "lucide-react";
 import { jsPDF } from 'jspdf';
-import { toPng, toJpeg } from 'html-to-image';
+import { toJpeg } from 'html-to-image';
 import autoTable from 'jspdf-autotable';
 import { TreasuryChart } from "@/components/treasury-chart";
 import { TreasuryCalculatorLogic, TreasuryResult } from "@/lib/treasury-calculator";
@@ -28,8 +28,8 @@ const defaultMiner: MinerProfile = {
 const defaultContract: ContractTerms = {
     electricityRate: 0.06,
     opexRate: 0.00,
-    poolFee: 1.0,
     contractDurationYears: 5,
+    poolFee: 1.0,
     advancePaymentYears: 0,
     setupFeeUSD: 0,
     setupFeeToBTCPercent: 0,
@@ -136,8 +136,15 @@ export function TreasuryCalculator() {
     // Auto-run when market data loads
     useEffect(() => {
         if (!marketLoading) {
-            runSimulation();
+            // runSimulation logic inline to satisfy lint or add deps
+            setLoading(true);
+            setTimeout(() => {
+                const res = TreasuryCalculatorLogic.calculate(miner, contract, market, config);
+                setResult(res);
+                setLoading(false);
+            }, 100);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [marketLoading]);
 
     const markup = Math.max(0, miner.price - (contract.hardwareCostUSD || 0));
@@ -365,7 +372,7 @@ export function TreasuryCalculator() {
                                 <Label>Miner Name</Label>
                                 <Input value={miner.name} onChange={e => setMiner({ ...miner, name: e.target.value })} />
                             </div>
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <Label>Sale Price ($)</Label>
                                     <Input type="number" value={miner.price} onChange={e => setMiner({ ...miner, price: Number(e.target.value) })} />
@@ -392,7 +399,7 @@ export function TreasuryCalculator() {
                                     onValueChange={([val]) => setContract({ ...contract, markupToBTCPercent: val })}
                                 />
                             </div>
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <Label>Hashrate (TH/s)</Label>
                                     <Input type="number" value={miner.hashrateTH} onChange={e => setMiner({ ...miner, hashrateTH: Number(e.target.value) })} />
@@ -410,7 +417,7 @@ export function TreasuryCalculator() {
                             <CardTitle>Contract & Fees</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <Label>Elec Rate ($/kWh)</Label>
                                     <Input type="number" step="0.01" value={contract.electricityRate} onChange={e => setContract({ ...contract, electricityRate: Number(e.target.value) })} />
@@ -459,13 +466,13 @@ export function TreasuryCalculator() {
 
                             <div className="space-y-2 border-t pt-2">
                                 <Label className="text-base font-semibold">Advisory Settings</Label>
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div className="space-y-2">
                                         <Label>Min Profit Type</Label>
                                         <select
                                             className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                                             value={contract.minProfitType || 'USD'}
-                                            onChange={e => setContract({ ...contract, minProfitType: e.target.value as any })}
+                                            onChange={e => setContract({ ...contract, minProfitType: e.target.value as 'USD' | 'BTC' | 'percent_sales' })}
                                         >
                                             <option value="USD">Net Profit ($)</option>
                                             <option value="BTC">Treasury (BTC)</option>
@@ -498,7 +505,7 @@ export function TreasuryCalculator() {
                                 <Label>Network Difficulty</Label>
                                 <Input type="number" value={market.networkDifficulty} onChange={e => setMarket({ ...market, networkDifficulty: Number(e.target.value) })} />
                             </div>
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <Label>Diff Growth (%/mo)</Label>
                                     <Input type="number" step="0.1" value={market.difficultyGrowthMonthly} onChange={e => setMarket({ ...market, difficultyGrowthMonthly: Number(e.target.value) })} />
@@ -555,7 +562,7 @@ export function TreasuryCalculator() {
                             </div>
 
                             {/* Key Metrics */}
-                            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                                 <Card>
                                     <CardContent className="pt-6">
                                         <div className={`text-2xl font-bold ${result.summary.finalTreasuryUSD < 0 ? 'text-red-500' : 'text-emerald-500'}`}>
@@ -603,7 +610,7 @@ export function TreasuryCalculator() {
                                         </DialogHeader>
                                         <ScrollArea className="flex-1 mt-4 -mx-6 px-6 min-h-0">
                                             <div className="overflow-x-auto">
-                                                <table className="w-max min-w-full text-sm text-left whitespace-nowrap">
+                                                <table className="w-full text-sm text-left whitespace-nowrap">
                                                     <thead className="text-xs uppercase bg-muted sticky top-0 z-10">
                                                         <tr>
                                                             <th className="px-4 py-2">Day</th>

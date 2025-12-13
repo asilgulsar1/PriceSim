@@ -13,6 +13,8 @@ import { MinerProfile, ContractTerms, MarketConditions, SimulationConfig, DailyP
 // Re-exporting interfaces to keep imports clean in the component
 export type { MinerProfile, ContractTerms, MarketConditions, SimulationConfig, DailyProjection, SimulationResult };
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// import { differenceInDays, addDays } from 'date-fns';
 import { calculateDailyGrossBTC } from './mining-math';
 
 export interface CalculatedMiner extends MinerProfile {

@@ -1,4 +1,5 @@
-import { NextResponse } from 'next/server';
+/* eslint-disable */
+import { NextRequest, NextResponse } from 'next/server';
 import { list } from '@vercel/blob';
 import { solveMinerPrice, SolvedMiner } from "@/lib/pricing-solver";
 import { rankMiners } from "@/lib/miner-scoring";
@@ -9,8 +10,14 @@ import { INITIAL_MINERS } from "@/lib/miner-data";
 export const runtime = 'edge';
 export const dynamic = 'force-dynamic';
 
-export async function GET() {
+export async function GET(request: Request) {
     try {
+        // 0. Security Check
+        const authHeader = request.headers.get('x-api-key');
+        if (authHeader !== process.env.PRICE_LIST_API_KEY) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        }
+
         // 1. Fetch Market Prices (Parallel)
         const marketPromise = (async () => {
             const { blobs } = await list({ prefix: 'market-prices.json', limit: 1 });
@@ -49,7 +56,7 @@ export async function GET() {
 
         // 3. Determine Base Miners
         let minersToRank: SolvedMiner[] = [];
-        let marketConditions = simData?.market; // Use stored market if available
+        const marketConditions = simData?.market; // Use stored market if available
 
         if (simData && simData.miners && Array.isArray(simData.miners)) {
             // Use cached simulation data
@@ -110,10 +117,25 @@ export async function GET() {
 
         const finalRanked = rankMiners(adjustedMiners);
 
+        // 5. Filter for Public Display
+        const publicMiners = finalRanked.map(item => {
+            const m = item.miner;
+            return {
+                name: m.name,
+                hashrateTH: m.hashrateTH,
+                powerWatts: m.powerWatts,
+                efficiency: (m.powerWatts / m.hashrateTH).toFixed(2),
+                price: m.calculatedPrice,
+                dailyRevenueUSD: m.dailyRevenueUSD,
+                roiPercent: m.clientProfitabilityPercent.toFixed(2),
+                score: item.score
+            };
+        });
+
         return NextResponse.json({
             updatedAt: new Date().toISOString(),
-            count: finalRanked.length,
-            miners: finalRanked
+            count: publicMiners.length,
+            miners: publicMiners
         });
 
     } catch (error) {

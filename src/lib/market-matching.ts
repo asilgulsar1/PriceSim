@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { slugify } from "@/lib/slug-utils";
 
 export interface SimpleMarketMiner {

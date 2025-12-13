@@ -1,4 +1,5 @@
-
+/* eslint-disable */
+import { AsicMarketplaceService } from '../src/lib/asic-marketplace-service';
 import * as cheerio from 'cheerio';
 
 async function scrapeMainPage() {

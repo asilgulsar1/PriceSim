@@ -4,7 +4,7 @@ import React, { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { CheckCircle2, Calendar, FileText, ArrowRight, Loader2 } from 'lucide-react';
+import { CheckCircle2, Calendar, FileText, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -47,7 +47,7 @@ function RequestQuoteContent() {
                         </div>
                         <CardTitle className="text-2xl text-green-800">Invoice Sent!</CardTitle>
                         <CardDescription className="text-green-700">
-                            We've sent a proforma invoice to your email address.
+                            We&apos;ll get back to you within 24 hours. email address.
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-6">

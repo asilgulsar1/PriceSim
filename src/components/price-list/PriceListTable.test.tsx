@@ -36,25 +36,29 @@ const mockMiners: MinerScoreDetail[] = [
 ]
 
 describe('PriceListTable', () => {
-    it('renders miner name as a link to the product page', () => {
+    it('renders miner name as plain text (not a link)', () => {
         render(<PriceListTable miners={mockMiners} />)
 
-        // precise regex or string match
-        const link = screen.getByRole('link', { name: /Antminer S21 Test/i })
+        // precise regex or string match - might find multiple due to mobile/desktop views
+        const textElements = screen.getAllByText(/Antminer S21 Test/i)
 
-        expect(link).toBeInTheDocument()
-        expect(link).toHaveAttribute('href', '/products/antminer-s21-test')
+        // Verify it exists
+        expect(textElements.length).toBeGreaterThan(0)
+
+        // Verify it is NOT a link
+        const link = screen.queryByRole('link', { name: /Antminer S21 Test/i })
+        expect(link).not.toBeInTheDocument()
     })
 
     it('displays correct hashrate and power', () => {
         render(<PriceListTable miners={mockMiners} />)
-        expect(screen.getByText('200 T')).toBeInTheDocument()
-        expect(screen.getByText('3500 W')).toBeInTheDocument()
+        expect(screen.getAllByText('200 T').length).toBeGreaterThan(0)
+        expect(screen.getAllByText('3500 W').length).toBeGreaterThan(0)
     })
 
     it('calculates efficiency correctly', () => {
         render(<PriceListTable miners={mockMiners} />)
         // 3500 / 200 = 17.5
-        expect(screen.getByText('17.5 J/T')).toBeInTheDocument()
+        expect(screen.getAllByText('17.5 J/T').length).toBeGreaterThan(0)
     })
 })
