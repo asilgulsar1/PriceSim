@@ -131,28 +131,18 @@ export async function updateUser(email: string, updates: Partial<User>) {
 }
 
 export async function getUserRole(email: string): Promise<UserRole | null> {
+    // SUPERUSER OVERRIDE: Always force Admin for the bootstrap email
+    if (process.env.ADMIN_EMAIL && email.toLowerCase() === process.env.ADMIN_EMAIL.toLowerCase()) {
+        return 'admin';
+    }
+
     try {
-        // Optimization: Try to list specifically this file or just fetch the URL constructed?
-        // Since Vercel Blob URLs are predictable if we know the store ID... 
-        // But we don't know the store ID easily without listing or caching it.
-        // `list` is consistent. listing with prefix match is safest.
-
-        // Actually, just calling getUsers() is fine for N < 100.
-        // But for "best practice", let's try to find just this one.
-        // We can't easily construct the full URL without the random store-id part unless we store it.
-        // So listing with a specific prefix filter is the way.
-
-        // Wait, `getUserPath` gives us the pathname, but `list` gives us the full `url`.
-        // To generic fetch, we need the `url`. 
-        // We can list with prefix = `users/<email>.json`? 
         const path = getUserPath(email);
         const { blobs } = await list({ prefix: path, limit: 1 });
 
         const blob = blobs.find(b => b.pathname === path);
 
         if (!blob) {
-            // Fallback for bootstrap admin
-            if (process.env.ADMIN_EMAIL === email) return 'admin';
             return null;
         }
 
@@ -174,7 +164,7 @@ export async function getUser(email: string): Promise<User | null> {
         const blob = blobs.find(b => b.pathname === path);
 
         if (!blob) {
-            if (process.env.ADMIN_EMAIL === email) {
+            if (process.env.ADMIN_EMAIL && email.toLowerCase() === process.env.ADMIN_EMAIL.toLowerCase()) {
                 return { email, role: 'admin', name: 'Admin' };
             }
             return null;
@@ -182,7 +172,14 @@ export async function getUser(email: string): Promise<User | null> {
 
         const response = await fetch(blob.url, { cache: 'no-store' }); // Ensure fresh data
         if (!response.ok) return null;
-        return (await response.json()) as User;
+        const user = (await response.json()) as User;
+
+        // SUPERUSER OVERRIDE: If this is the admin email, FORCE the role to admin
+        if (process.env.ADMIN_EMAIL && email.toLowerCase() === process.env.ADMIN_EMAIL.toLowerCase()) {
+            return { ...user, role: 'admin' };
+        }
+
+        return user;
     } catch (error) {
         console.error('Error getting user:', error);
         return null;
