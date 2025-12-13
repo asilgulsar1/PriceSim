@@ -138,19 +138,15 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
                     case 'price': valA = a.miner.calculatedPrice; valB = b.miner.calculatedPrice; break;
                     case 'roi': valA = a.miner.clientProfitabilityPercent; valB = b.miner.clientProfitabilityPercent; break;
                     case 'payback':
-                        const getPaybackDays = (m: any) => {
-                            if (m.calculatedPrice <= 0) return 0;
-                            let cumulative = 0;
-                            if (m.projections) {
-                                for (const day of m.projections) {
-                                    cumulative += (day.dailyRevenueUSD - day.totalDailyCostUSD);
-                                    if (cumulative >= m.calculatedPrice) return day.dayIndex;
-                                }
-                            }
-                            return 99999;
+                    case 'payback':
+                        const getPaybackVal = (m: any) => {
+                            // Let's just use the inverse of profitability.
+                            if (m.clientProfitabilityPercent <= 0) return 99999;
+                            return 36500 / m.clientProfitabilityPercent;
                         };
-                        valA = getPaybackDays(a.miner);
-                        valB = getPaybackDays(b.miner);
+                        valA = getPaybackVal(a.miner);
+                        valB = getPaybackVal(b.miner);
+                        break;
                         break;
                     case 'efficiency': valA = a.miner.powerWatts / a.miner.hashrateTH; valB = b.miner.powerWatts / b.miner.hashrateTH; break;
                     case 'revenue': valA = a.miner.dailyRevenueUSD; valB = b.miner.dailyRevenueUSD; break;

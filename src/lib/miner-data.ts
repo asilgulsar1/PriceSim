@@ -65,6 +65,109 @@ export function getMinerReleaseYear(modelName: string): number {
     return defaultYear;
 }
 
+
+export function processAndSelectMiners(marketMiners: any[]): MinerProfile[] {
+    // 1. Convert to Profile & Filter Year
+    let candidates: MinerProfile[] = [];
+
+    // Safety check
+    if (!marketMiners || !Array.isArray(marketMiners)) return [];
+
+    for (const m of marketMiners) {
+        // Basic Validations
+        if (!m.specs?.hashrateTH || !m.specs?.powerW) continue;
+
+        const year = getMinerReleaseYear(m.name);
+        if (year < 2023) continue;
+
+        candidates.push({
+            name: m.name,
+            hashrateTH: m.specs.hashrateTH,
+            powerWatts: m.specs.powerW,
+            price: 0
+        });
+    }
+
+    // 2. Deduplicate by Specs (Hash/Power)
+    // Key: "Hash-Power"
+    const uniqueMap = new Map<string, MinerProfile>();
+    candidates.forEach(c => {
+        const key = `${c.hashrateTH}-${c.powerWatts}`;
+        if (!uniqueMap.has(key)) {
+            uniqueMap.set(key, c);
+        } else {
+            // Keep the "Cleaner" name (shorter is usually cleaner, e.g. "S21 XP" vs "Antminer S21 XP ...")
+            const existing = uniqueMap.get(key)!;
+            // Heuristic: Prefer names WITHOUT "Mix" or "Tech" if dup
+            // Also prefer shorter names
+            if (c.name.length < existing.name.length) {
+                uniqueMap.set(key, c);
+            }
+        }
+    });
+    candidates = Array.from(uniqueMap.values());
+
+    // 3. Group by Brand
+    const byBrand: Record<string, MinerProfile[]> = {
+        'Bitmain': [],
+        'Whatsminer': [],
+        'Bitdeer': [],
+        'Avalon': [],
+        'Other': []
+    };
+
+    candidates.forEach(c => {
+        const up = c.name.toUpperCase();
+        if (up.includes('ANTMINER') || up.includes('S19') || up.includes('S21') || up.includes('T21') || up.includes('S23')) byBrand['Bitmain'].push(c);
+        else if (up.includes('WHATSMINER') || up.includes('M3') || up.includes('M5') || up.includes('M6')) byBrand['Whatsminer'].push(c);
+        else if (up.includes('SEAL') || up.includes('BITDEER')) byBrand['Bitdeer'].push(c);
+        else if (up.includes('AVALON') || up.includes('A1')) byBrand['Avalon'].push(c);
+        else byBrand['Other'].push(c);
+    });
+
+    // 4. Sort each group (Hashrate Descending = Best Specs first)
+    const sortFn = (a: MinerProfile, b: MinerProfile) => b.hashrateTH - a.hashrateTH;
+    Object.values(byBrand).forEach(list => list.sort(sortFn));
+
+    // 5. Selection (Target ~30 Total)
+    // Distribution Targets:
+    // Bitmain: 12
+    // Whatsminer: 8
+    // Bitdeer: 5
+    // Avalon: 5
+    const final: MinerProfile[] = [];
+
+    const pushTop = (brand: string, count: number) => {
+        const list = byBrand[brand];
+        const taken = list.slice(0, count);
+        final.push(...taken);
+        // Remove taken from pool
+        byBrand[brand] = list.slice(count);
+    };
+
+    pushTop('Bitmain', 12);
+    pushTop('Whatsminer', 8);
+    pushTop('Bitdeer', 5);
+    pushTop('Avalon', 5);
+
+    // If we haven't reached 30 yet, fill with next best from any brand
+    // (Prioritizing Bitmain/Whatsminer leftovers)
+    const remainingCount = 30 - final.length;
+    if (remainingCount > 0) {
+        const leftovers = [
+            ...byBrand['Bitmain'],
+            ...byBrand['Whatsminer'],
+            ...byBrand['Bitdeer'],
+            ...byBrand['Avalon'],
+            ...byBrand['Other']
+        ].sort(sortFn);
+        final.push(...leftovers.slice(0, remainingCount));
+    }
+
+    // Final Sort by Hashrate globally for neatness
+    return final.sort((a, b) => b.hashrateTH - a.hashrateTH);
+}
+
 export const INITIAL_MINERS: MinerProfile[] = [
     // Hydro - S23 Series
     { name: 'Antminer S23 Hydro Mix 1160T', hashrateTH: 1160, powerWatts: 11020, price: 0 }, // 1.16 P

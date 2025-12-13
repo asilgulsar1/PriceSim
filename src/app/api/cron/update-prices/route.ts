@@ -54,29 +54,17 @@ export async function GET(request: Request) {
             console.error("Failed to fetch market miners in cron", e);
         }
 
-        // 5. Merge & Filter Miners
-        const { getMinerReleaseYear } = await import('@/lib/miner-data');
+        // 5. Merge & Filter Miners (Smart Selection)
+        const { processAndSelectMiners } = await import('@/lib/miner-data');
 
-        const combinedMiners = [...INITIAL_MINERS];
-        const existingNames = new Set(INITIAL_MINERS.map(m => m.name));
+        let combinedMiners: any[] = [];
 
-        for (const m of marketMiners) {
-            if (existingNames.has(m.name)) continue;
-
-            // Specs Check
-            if (!m.specs || !m.specs.hashrateTH || !m.specs.powerW) continue;
-
-            // Year Filter (Same as PriceSimulator)
-            // We allow INITIAL_MINERS always, but for NEW ones, enforcing 2023+
-            const year = getMinerReleaseYear(m.name);
-            if (year < 2023) continue;
-
-            combinedMiners.push({
-                name: m.name,
-                hashrateTH: m.specs.hashrateTH,
-                powerWatts: m.specs.powerW,
-                price: 0 // Will be solved below
-            });
+        if (marketMiners.length > 0) {
+            // Dynamic Mode: Use ONLY market miners (filtered & selected)
+            combinedMiners = processAndSelectMiners(marketMiners);
+        } else {
+            // Fallback: Use Manual List if API fails
+            combinedMiners = [...INITIAL_MINERS];
         }
 
         // 6. Calculate for ALL miners
