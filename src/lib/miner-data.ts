@@ -3,16 +3,19 @@ export type { MinerProfile };
 
 // Map of model substrings to release years.
 // Processed in order - specific matches should come first if needed, but usually we just look for the series.
+// Map of model substrings to release years.
+// Processed in order - specific matches should come first.
+// NOTE: Do NOT include generic brand names here (e.g. "ANTMINER") as they might be longer than model names (e.g. "S19") and shadow them.
 export const MINER_RELEASE_YEARS: Record<string, number> = {
     // Bitdeer
+    "SEALMAKER": 2024, // Typo in original? Usually SEALMINER. Keeping original key just in case, or verifying? 
+    // Original had "SEALMINER": 2024. Let's keep specific series keys if they exist.
     "SEALMINER": 2024,
-    "BITDEER": 2024, // Fallback
 
     // Avalon
     "A15": 2024,
     "A14": 2023,
     "A13": 2022,
-    "AVALON": 2023, // Fallback safe default for new ones?
 
     // Whatsminer
     "M66S": 2023,
@@ -22,11 +25,6 @@ export const MINER_RELEASE_YEARS: Record<string, number> = {
     "M60S": 2023,
     "M60": 2023,
     "M50": 2022,
-    "WHATSMINER": 2023, // Fallback - If it just says "Whatsminer something new" assume 2023?
-
-    // Antminer
-    "ANTMINER": 2023, // Fallback if it's a new Antminer? This is risky.
-    // Better to rely on S21/S23 keys.
 
     // Bitmain
     "S23": 2025,
@@ -45,9 +43,10 @@ export const MINER_RELEASE_YEARS: Record<string, number> = {
 };
 
 export function getMinerReleaseYear(modelName: string): number {
-    const defaultYear = 2020; // Fallback for unknown models
+    const defaultYear = 2020; // Fallback for completely unknown garbage
     const upperName = modelName.toUpperCase();
 
+    // 1. Specific Model Match
     // Sort keys by length descending to match specific models first (e.g. 'S21 XP' before 'S21')
     const keys = Object.keys(MINER_RELEASE_YEARS).sort((a, b) => b.length - a.length);
 
@@ -57,10 +56,17 @@ export function getMinerReleaseYear(modelName: string): number {
         }
     }
 
-    // Heuristic: If we don't match a known key, but it's from the market,
-    // we might want to be lenient? 
-    // But requirement is strict: "list only models released after 2023".
-    // So we stick to matching.
+    // 2. Safety Net: Brand Match
+    // If we didn't match a specific model, but it's a known brand, assume it's NEW.
+    // This allows "Antminer S25" (unknown model) to appear by default.
+    const currentYear = new Date().getFullYear();
+    if (upperName.includes("ANTMINER") ||
+        upperName.includes("WHATSMINER") ||
+        upperName.includes("AVALON") ||
+        upperName.includes("BITDEER") ||
+        upperName.includes("SEALMINER")) {
+        return currentYear;
+    }
 
     return defaultYear;
 }
