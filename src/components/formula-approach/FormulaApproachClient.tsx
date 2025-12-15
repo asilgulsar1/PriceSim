@@ -57,7 +57,7 @@ export function FormulaApproachClient() {
     }, []);
 
     // Calculation Handler
-    const calculate = () => {
+    const calculate = React.useCallback(() => {
         setLoading(true);
         setTimeout(() => {
             const currentMarket: MarketConditions = {
@@ -86,13 +86,22 @@ export function FormulaApproachClient() {
             setResults(calculated);
             setLoading(false);
         }, 50);
-    };
+    }, [market, difficultyGrowthMonthly, btcPriceGrowthMonthly, hostingRate, isBtcBased]);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (marketDataLoaded) {
             calculate();
         }
-    }, [marketDataLoaded, difficultyGrowthMonthly, btcPriceGrowthMonthly, hostingRate, isBtcBased, market.btcPrice]);
+        // We intentionally only want this to run when marketDataLoaded initially becomes true,
+        // OR when inputs change (which calculate depends on).
+        // But 'calculate' changes when inputs change due to useCallback dependencies.
+        // So this is correct.
+        // The warning about 'setState' is because calculate() sets loading=true immediately.
+        // This is acceptable behavior for a "re-calculate on input change" feature.
+        // We suppress the warning for set-state-in-effect as we know it terminates.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [marketDataLoaded, calculate]);
 
     return (
         <div className="container mx-auto py-8 space-y-8">

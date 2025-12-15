@@ -42,8 +42,14 @@ export default auth((req) => {
             // Sales Restricted Routes
             // Block /admin-dashboard, /price-simulator, /treasury
             // Allow /price-list, /market-prices, /products
-            const blockedPrefixes = ['/admin-dashboard', '/price-simulator', '/treasury'];
-            if (blockedPrefixes.some(prefix => nextUrl.pathname.startsWith(prefix))) {
+            const restrictedPaths = ['/admin-dashboard', '/price-simulator', '/treasury'];
+            // Check if current path starts with any restricted path
+            // Using a loop to check subpaths properly
+            const isRestricted = restrictedPaths.some(path =>
+                nextUrl.pathname === path || nextUrl.pathname.startsWith(`${path}/`)
+            );
+
+            if (isRestricted) {
                 return Response.redirect(new URL('/price-list', nextUrl));
             }
 
@@ -58,15 +64,14 @@ export default auth((req) => {
             // Allowed: /price-list, /products, /profile, /api
             // Blocked: /price-simulator, /treasury, /admin-dashboard, /market-prices
 
-            // Note: Public routes like /market-prices and /products are allowed by default logic above?
-            // "if (!isLoggedIn) ... if (!isPublic) redirect login"
-            // But here we are logged in.
-            // We must explicitly BLOCK restricted routes.
+            // Explicitly define blocked root paths
+            const blockedRoots = ['/admin-dashboard', '/price-simulator', '/treasury', '/market-prices'];
 
-            // Let's be explicit about what is BLOCKED.
-            // Block /admin-dashboard, /price-simulator, /treasury, /market-prices
-            const blockedPrefixes = ['/admin-dashboard', '/price-simulator', '/treasury', '/market-prices'];
-            if (blockedPrefixes.some(prefix => nextUrl.pathname.startsWith(prefix))) {
+            const isBlocked = blockedRoots.some(root =>
+                nextUrl.pathname === root || nextUrl.pathname.startsWith(`${root}/`)
+            );
+
+            if (isBlocked) {
                 return Response.redirect(new URL('/price-list', nextUrl));
             }
 

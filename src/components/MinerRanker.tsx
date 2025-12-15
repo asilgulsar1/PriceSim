@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { RefreshCw, Trophy, Zap, TrendingUp, Calendar, DollarSign } from "lucide-react";
 import { fetchMarketData } from "@/lib/api";
 import { solveMinerPrice } from "@/lib/pricing-solver";
-import { INITIAL_MINERS } from "@/lib/miner-data";
+import { useMiners } from "@/hooks/useMiners";
 import { rankMiners, MinerScoreDetail } from "@/lib/miner-scoring";
 import { ContractTerms } from "@/lib/price-simulator-calculator";
 
@@ -19,25 +19,26 @@ export function MinerRanker() {
     const [lastUpdated, setLastUpdated] = useState<number | null>(null);
     const [loading, setLoading] = useState(false);
 
-    const loadData = React.useCallback(async (forceRefresh = false) => {
-        setLoading(true);
-        try {
-            // Check Cache
-            if (!forceRefresh) {
-                const cached = localStorage.getItem(CACHE_KEY);
-                if (cached) {
-                    const parsed = JSON.parse(cached);
-                    const age = Date.now() - parsed.timestamp;
-                    if (age < CACHE_DURATION_MS) {
-                        setRankings(parsed.data);
-                        setLastUpdated(parsed.timestamp);
-                        setLoading(false);
-                        return;
-                    }
-                }
-            }
+    // --- Hooks ---
+    const { miners, loading: minersLoading, refresh: refreshMiners } = useMiners();
 
-            // Calculate Fresh
+    // Convert miners to score details
+    useEffect(() => {
+        if (!minersLoading && miners.length > 0) {
+            calculateScores(miners);
+        }
+    }, [miners, minersLoading]);
+
+    // Also support manual refresh
+    const handleRefresh = async () => {
+        setLoading(true);
+        await refreshMiners();
+        setLoading(false);
+    };
+
+    const calculateScores = async (currentMiners: any[]) => {
+        try {
+            setLoading(true);
             const marketData = await fetchMarketData();
 
             // Re-construct market object compatible with solver
@@ -58,30 +59,23 @@ export function MinerRanker() {
                 contractDurationYears: 4
             };
 
-            // Assume 50% ROI for base pricing to get consistent comparison
+            // Assume 50% ROI for base pricing
             const targetProfit = 50;
 
-            const solved = INITIAL_MINERS.map(m => solveMinerPrice(m, contract, marketObj, targetProfit, false));
-
+            const solved = currentMiners.map(m => solveMinerPrice(m, contract, marketObj, targetProfit, false));
             const ranked = rankMiners(solved);
 
             setRankings(ranked);
             setLastUpdated(Date.now());
-
-            localStorage.setItem(CACHE_KEY, JSON.stringify({
-                timestamp: Date.now(),
-                data: ranked
-            }));
-
         } catch (e) {
-            console.error("Failed to update rankings", e);
+            console.error("Failed to calculate rankings", e);
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
-    }, []);
+    };
 
-    useEffect(() => {
-        loadData();
-    }, [loadData]);
+
+
 
     const getScoreColor = (score: number) => {
         if (score >= 90) return "text-emerald-600 bg-emerald-100";
@@ -104,7 +98,7 @@ export function MinerRanker() {
                 </div>
                 <div className="flex items-center gap-4 text-sm text-muted-foreground">
                     {lastUpdated && <span>Updated: {new Date(lastUpdated).toLocaleString()}</span>}
-                    <Button variant="outline" size="sm" onClick={() => loadData(true)} disabled={loading}>
+                    <Button variant="outline" size="sm" onClick={handleRefresh} disabled={loading}>
                         {loading ? <RefreshCw className="mr-2 h-4 w-4 animate-spin" /> : <RefreshCw className="mr-2 h-4 w-4" />}
                         Refresh Scores
                     </Button>

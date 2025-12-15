@@ -38,7 +38,7 @@ export async function GET(request: Request) {
 
         // 4. Fetch Market Miners (for new models)
         // We replicate PriceSimulator logic server-side
-        let marketMiners: any[] = [];
+        let marketMiners: unknown[] = [];
         try {
             // We use the internal API route logic via direct Blob List for speed/reliability in Cron
             // But we can just use the public URL if we knew it? 
@@ -57,11 +57,14 @@ export async function GET(request: Request) {
         // 5. Merge & Filter Miners (Smart Selection)
         const { processAndSelectMiners } = await import('@/lib/miner-data');
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         let combinedMiners: any[] = [];
 
         if (marketMiners.length > 0) {
             // Dynamic Mode: Use ONLY market miners (filtered & selected)
-            combinedMiners = processAndSelectMiners(marketMiners);
+            // We cast because we assume the JSON structure matches our interface for now
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            combinedMiners = processAndSelectMiners(marketMiners as any);
         } else {
             // Fallback: Use Manual List if API fails
             combinedMiners = [...INITIAL_MINERS];

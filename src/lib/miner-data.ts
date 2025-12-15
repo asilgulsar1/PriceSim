@@ -66,7 +66,16 @@ export function getMinerReleaseYear(modelName: string): number {
 }
 
 
-export function processAndSelectMiners(marketMiners: any[]): MinerProfile[] {
+interface MarketMinerRaw {
+    name: string;
+    specs?: {
+        hashrateTH?: number;
+        powerW?: number;
+    };
+    [key: string]: unknown;
+}
+
+export function processAndSelectMiners(marketMiners: MarketMinerRaw[]): MinerProfile[] {
     // 1. Convert to Profile & Filter Year
     let candidates: MinerProfile[] = [];
 

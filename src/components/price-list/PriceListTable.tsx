@@ -3,9 +3,7 @@
 import React from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { MinerScoreDetail } from "@/lib/miner-scoring";
-import Link from "next/link";
-import { slugify } from "@/lib/slug-utils";
-
+import { Badge } from "@/components/ui/badge";
 interface PriceListTableProps {
     miners: MinerScoreDetail[];
 }

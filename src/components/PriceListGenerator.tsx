@@ -1,14 +1,15 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { toJpeg } from 'html-to-image';
 import jsPDF from 'jspdf';
 import { solveMinerPrice } from "@/lib/pricing-solver";
-import { INITIAL_MINERS } from "@/lib/miner-data";
+// import { INITIAL_MINERS } from "@/lib/miner-data"; // Removed
 import { ContractTerms } from "@/lib/price-simulator-calculator";
 import { rankMiners, MinerScoreDetail } from "@/lib/miner-scoring";
 import { DEFAULT_CONTRACT_TERMS, DEFAULT_TARGET_MARGIN } from "@/lib/constants";
 import { useMarketData } from "@/hooks/useMarketData";
+import { useMiners } from "@/hooks/useMiners";
 
 // Sub-components
 import { PriceListControls } from "./price-list/PriceListControls";
@@ -21,8 +22,6 @@ import { Button } from "@/components/ui/button";
 import { RefreshCw, FileText, Loader2 } from "lucide-react";
 import { calculateHashpriceUSD, calculateMinerRevenueUSD } from '@/lib/mining-math';
 import { findMatchingMarketMiner, SimpleMarketMiner } from "@/lib/market-matching";
-
-
 
 interface PriceListGeneratorProps {
     userRole?: string;
@@ -37,8 +36,6 @@ interface PriceListGeneratorProps {
 import { urlToBase64 } from "@/lib/image-utils";
 import { Skeleton } from "@/components/ui/skeleton";
 
-// ... (existing imports)
-
 export function PriceListGenerator({ userRole, resellerMargin, branding }: PriceListGeneratorProps) {
     // --- State ---
     const [clientName, setClientName] = useState('Valued Client');
@@ -48,6 +45,9 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
 
     // Market Hook
     const { market, setMarket } = useMarketData();
+    // Miner Hook
+    const { miners, loading: minersLoading, refresh: refreshMiners } = useMiners();
+
     const [loading, setLoading] = useState(true); // Start loading
     const [isReady, setIsReady] = useState(false); // Prevents flicker
     const [lastUpdated, setLastUpdated] = useState<string | null>(null);
@@ -59,19 +59,124 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
     // Results
     const [baseResults, setBaseResults] = useState<MinerScoreDetail[]>([]);
 
-    // ... (Filter & Sort State remains same) ...
+    // Filter & Sort
     const [searchTerm, setSearchTerm] = useState('');
     const [sortBy, setSortBy] = useState<SortField>('score');
-    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
+    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc'); // Default asc? previously desc
     const documentRef = useRef<HTMLDivElement>(null);
 
-    // ... (Derived State: results, filteredResults, recommendations remain same) ...
-    const results = React.useMemo(() => {
-        if (baseResults.length === 0) return [];
+    // --- Helpers ---
+    const fetchMarketPrices = async () => {
+        try {
+            console.log("Fetching market prices from API...");
+            const res = await fetch('/api/market/latest', { cache: 'no-store' });
+            if (res.ok) {
+                const data = await res.json();
+                if (data.miners && Array.isArray(data.miners)) {
+                    const list: SimpleMarketMiner[] = [];
+                    data.miners.forEach((miner: any) => {
+                        if (miner.name && miner.stats && miner.stats.middlePrice > 0) {
+                            list.push({
+                                name: miner.name,
+                                stats: { middlePrice: miner.stats.middlePrice },
+                                specs: { hashrateTH: miner.specs?.hashrateTH || 0 }
+                            });
+                        }
+                    });
+                    setMarketDataList(list);
+                }
+            }
+        } catch (e) {
+            console.warn("Failed to fetch market prices", e);
+        }
+    };
 
-        // HASHPRICE CALCULATION (Live) via Centralized Math
-        // This ensures consistent logic across the app.
-        // const { calculateHashpriceUSD, calculateMinerRevenueUSD } = require('@/lib/mining-math');
+    const processMiners = useCallback((minersToProcess: any[], source: string) => {
+        const contract: ContractTerms = DEFAULT_CONTRACT_TERMS;
+        const calculated = minersToProcess.map(miner => {
+            return solveMinerPrice(miner, contract, market, DEFAULT_TARGET_MARGIN, false);
+        });
+        const ranked = rankMiners(calculated);
+        setBaseResults(ranked);
+        setLastUpdated(source);
+        setIsReady(true);
+        setLoading(false);
+    }, [market]);
+
+    const refreshData = async () => {
+        setLoading(true);
+        setIsReady(false);
+
+        // 1. Try to fetch LATEST from Price Simulator (LocalStorage)
+        try {
+            const savedSim = localStorage.getItem('LATEST_SIMULATION_DATA');
+            if (savedSim) {
+                const data = JSON.parse(savedSim);
+                if (data.miners && Array.isArray(data.miners)) {
+                    const rawMiners = data.miners.length > 0 && data.miners[0].miner
+                        ? data.miners.map((x: any) => x.miner)
+                        : data.miners;
+
+                    const ranked = rankMiners(rawMiners);
+                    setBaseResults(ranked);
+                    if (data.updatedAt) setLastUpdated(`Synced from Simulator (${new Date(data.updatedAt).toLocaleTimeString()})`);
+                    if (data.market) setMarket(data.market);
+
+                    await fetchMarketPrices();
+                    setLoading(false);
+                    setIsReady(true);
+                    return;
+                }
+            }
+        } catch (e) {
+            console.warn("Failed to fetch simulator data", e);
+        }
+
+        // 2. Default: Use Miners from Hook (Live Market Source)
+        await refreshMiners();
+        await fetchMarketPrices();
+
+        // Ensure processing happens even if miners reference didn't change
+        if (miners.length > 0) {
+            processMiners(miners, 'Live Market Data');
+        } else {
+            setLoading(false);
+            setIsReady(true);
+        }
+    };
+
+    // --- Side Effects ---
+
+    // 1. Pre-load PDF Images
+    useEffect(() => {
+        const loadImages = async () => {
+            const logoSrc = branding?.logoUrl || "/logo.png";
+            const base64Logo = await urlToBase64(logoSrc);
+            setPdfImages({ logo: base64Logo });
+        };
+        loadImages();
+    }, [branding?.logoUrl]);
+
+    // 2. React to hook loading
+    useEffect(() => {
+        if (!minersLoading && miners.length > 0 && !loading) {
+            // Check if we are using LocalStorage override (Manual Sim)
+            const savedSim = localStorage.getItem('LATEST_SIMULATION_DATA');
+            if (!savedSim) {
+                processMiners(miners, 'Live Market Data');
+            }
+        }
+    }, [miners, minersLoading, loading, processMiners]);
+
+    // 3. Initial Load
+    useEffect(() => {
+        refreshData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    // --- Derived State ---
+    const results = useMemo(() => {
+        if (baseResults.length === 0) return [];
 
         let liveHashpriceUSD = 0;
         if (market.networkDifficulty > 0 && market.btcPrice > 0) {
@@ -94,8 +199,6 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
 
             // RESELLER MARKUP LOGIC
             if (userRole === 'reseller') {
-                // Fix 3 Clarification: Reseller adds margin on top of company price. 
-                // Here 'resellerMargin' acts as the Company's markup/floor.
                 const markup = typeof resellerMargin === 'number' ? resellerMargin : 500;
                 basePrice += markup;
             }
@@ -126,167 +229,39 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
 
     }, [baseResults, salesMargin, salesMarginType, marketDataList, userRole, resellerMargin, market]);
 
-    // ... (filteredResults & recommendations remain same) ...
-    const filteredResults = React.useMemo(() => { // ... same logic ...
+    const filteredResults = useMemo(() => {
         return results
             .filter(r => r.miner.name.toLowerCase().includes(searchTerm.toLowerCase()))
-            .sort((a, b) => { // ... same sort logic ...
-                let valA = 0, valB = 0;
+            .sort((a, b) => {
                 const direction = sortOrder === 'asc' ? 1 : -1;
-                switch (sortBy) {
-                    case 'score': valA = a.score; valB = b.score; break;
-                    case 'price': valA = a.miner.calculatedPrice; valB = b.miner.calculatedPrice; break;
-                    case 'roi': valA = a.miner.clientProfitabilityPercent; valB = b.miner.clientProfitabilityPercent; break;
-                    case 'payback':
-                    case 'payback':
-                        const getPaybackVal = (m: any) => {
-                            // Let's just use the inverse of profitability.
-                            if (m.clientProfitabilityPercent <= 0) return 99999;
-                            return 36500 / m.clientProfitabilityPercent;
-                        };
-                        valA = getPaybackVal(a.miner);
-                        valB = getPaybackVal(b.miner);
-                        break;
-                        break;
-                    case 'efficiency': valA = a.miner.powerWatts / a.miner.hashrateTH; valB = b.miner.powerWatts / b.miner.hashrateTH; break;
-                    case 'revenue': valA = a.miner.dailyRevenueUSD; valB = b.miner.dailyRevenueUSD; break;
+                if (sortBy === 'score') return (a.score - b.score) * direction;
+                if (sortBy === 'price') return (a.miner.calculatedPrice - b.miner.calculatedPrice) * direction;
+                if (sortBy === 'roi') return (a.miner.clientProfitabilityPercent - b.miner.clientProfitabilityPercent) * direction;
+                if (sortBy === 'revenue') return (a.miner.dailyRevenueUSD - b.miner.dailyRevenueUSD) * direction;
+                if (sortBy === 'efficiency') return ((a.miner.powerWatts / a.miner.hashrateTH) - (b.miner.powerWatts / b.miner.hashrateTH)) * direction;
+
+                // Payback (Inverse of ROI approx)
+                if (sortBy === 'payback') {
+                    const pbA = a.miner.clientProfitabilityPercent > 0 ? 36500 / a.miner.clientProfitabilityPercent : 99999;
+                    const pbB = b.miner.clientProfitabilityPercent > 0 ? 36500 / b.miner.clientProfitabilityPercent : 99999;
+                    return (pbA - pbB) * direction;
                 }
-                return (valA - valB) * direction;
+
+                return 0;
             });
     }, [results, searchTerm, sortBy, sortOrder]);
 
-    const recommendations = React.useMemo(() => {
+    const recommendations = useMemo(() => {
         if (results.length === 0) return { topROI: [], topRevenue: [], topEfficiency: [] };
-        const byROI = [...results].sort((a, b) => b.raw.profitability - a.raw.profitability).slice(0, 2);
-        const byRev = [...results].sort((a, b) => b.raw.revenue - a.raw.revenue).slice(0, 2);
-        const byEff = [...results].sort((a, b) => a.raw.efficiency - b.raw.efficiency).slice(0, 2);
+
+        const byROI = [...results].sort((a, b) => b.miner.clientProfitabilityPercent - a.miner.clientProfitabilityPercent).slice(0, 2);
+        const byRev = [...results].sort((a, b) => b.miner.dailyRevenueUSD - a.miner.dailyRevenueUSD).slice(0, 2);
+        const byEff = [...results].sort((a, b) => (a.miner.powerWatts / a.miner.hashrateTH) - (b.miner.powerWatts / b.miner.hashrateTH)).slice(0, 2);
         return { topROI: byROI, topRevenue: byRev, topEfficiency: byEff };
     }, [results]);
 
-
-    // --- Side Effects ---
-
-    // 1. Pre-load PDF Images
-    useEffect(() => {
-        const loadImages = async () => {
-            const logoSrc = branding?.logoUrl || "/logo.png";
-            const base64Logo = await urlToBase64(logoSrc);
-            setPdfImages({ logo: base64Logo });
-        };
-        loadImages();
-    }, [branding?.logoUrl]);
-
-    // 2. Refresh Data
-    const fetchMarketPrices = async () => {
-        try {
-            console.log("Fetching market prices from API...");
-            const res = await fetch('/api/market/latest', { cache: 'no-store' });
-            if (res.ok) {
-                const data = await res.json();
-                if (data.miners && Array.isArray(data.miners)) {
-                    const list: SimpleMarketMiner[] = [];
-                    data.miners.forEach((miner: any) => {
-                        if (miner.name && miner.stats && miner.stats.middlePrice > 0) {
-                            list.push({
-                                name: miner.name,
-                                stats: { middlePrice: miner.stats.middlePrice },
-                                specs: { hashrateTH: miner.specs?.hashrateTH || 0 }
-                            });
-                        }
-                    });
-                    setMarketDataList(list);
-                }
-            }
-        } catch (e) {
-            console.warn("Failed to fetch market prices", e);
-        }
-    };
-
-    const refreshData = async () => {
-        setLoading(true);
-        setIsReady(false); // Hide table to prevent flicker
-
-        // Helper to normalize input data
-        const normalizeMiners = (list: any[]) => {
-            if (list.length > 0 && list[0].miner) {
-                return list.map((x: any) => x.miner);
-            }
-            return list;
-        };
-
-        try {
-            // 1. Try to fetch LATEST from Price Simulator (LocalStorage)
-            const savedSim = localStorage.getItem('LATEST_SIMULATION_DATA');
-            if (savedSim) {
-                const data = JSON.parse(savedSim);
-                if (data.miners && Array.isArray(data.miners)) {
-                    const rawMiners = normalizeMiners(data.miners);
-                    const ranked = rankMiners(rawMiners);
-                    setBaseResults(ranked);
-                    if (data.updatedAt) setLastUpdated(`Synced from Simulator (${new Date(data.updatedAt).toLocaleTimeString()})`);
-                    if (data.market) setMarket(data.market);
-                    // Fetch Market Prices BEFORE showing
-                    await fetchMarketPrices();
-                    setLoading(false);
-                    setIsReady(true); // Valid only after BOTH are ready
-                    return;
-                }
-            }
-        } catch (e) {
-            console.warn("Failed to fetch simulator data", e);
-        }
-
-        // 2. Fallback: API
-        try {
-            const res = await fetch('/api/miners/latest');
-            if (res.ok) {
-                const data = await res.json();
-                if (data.miners && Array.isArray(data.miners)) {
-                    const rawMiners = normalizeMiners(data.miners);
-                    const ranked = rankMiners(rawMiners);
-                    setBaseResults(ranked);
-                    if (data.updatedAt) setLastUpdated(new Date(data.updatedAt).toLocaleString());
-                    if (data.market) setMarket(data.market);
-                    await fetchMarketPrices();
-                    setLoading(false);
-                    setIsReady(true);
-                    return;
-                }
-            }
-        } catch (e) {
-            console.warn("Failed to fetch cached data", e);
-        }
-
-        // 3. Fallback: Local
-        calculateLocal();
-        await fetchMarketPrices();
-        setIsReady(true);
-    };
-
-    // Calculate Local (Callback refactored inline for simplicity or kept if existing)
-    const calculateLocal = () => {
-        setLoading(true);
-        setTimeout(() => {
-            const miners = INITIAL_MINERS;
-            const calculated = miners.map(miner => {
-                const contract: ContractTerms = DEFAULT_CONTRACT_TERMS;
-                return solveMinerPrice(miner, contract, market, DEFAULT_TARGET_MARGIN, false);
-            });
-            const ranked = rankMiners(calculated);
-            setBaseResults(ranked);
-            setLastUpdated('Calculated Locally (Live)');
-            setLoading(false);
-        }, 50);
-    };
-
-    useEffect(() => {
-        refreshData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    // ... (Handlers handleExportCSV, handleDownloadPDF remain same) ...
+    // --- Handlers ---
     const handleExportCSV = () => {
-        // ... (existing export logic)
         const headers = ['Model', 'Score', 'Hashrate (TH/s)', 'Power (W)', 'Efficiency (J/TH)', 'Unit Price ($)', 'Daily Revenue ($)', 'Payback (Years)', 'ROI (%)'];
         const rows = filteredResults.map(r => {
             const m = r.miner;
@@ -310,7 +285,6 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
                 m.dailyRevenueUSD.toFixed(2), paybackYears, m.clientProfitabilityPercent.toFixed(0) + '%'
             ];
         });
-        // ... (csv download logic)
         const csvContent = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
         const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
         const link = document.createElement('a');
@@ -326,8 +300,6 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
         if (!documentRef.current) return;
         try {
             const element = documentRef.current;
-            // OPTIMIZATION: Use JPEG + 0.8 Quality + 1.5x Scale
-            // This reduces PDF size from ~15MB to ~1-2MB while keeping text readable.
             const imgData = await toJpeg(element, {
                 backgroundColor: '#ffffff',
                 pixelRatio: 1.5,
@@ -336,7 +308,6 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
                 skipFonts: true
             });
 
-            // Create PDF with compression enabled (default is true, but explicit is good)
             const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4', compress: true });
 
             const imgWidth = 210;
@@ -347,7 +318,6 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
             let heightLeft = imgHeight;
             let position = 0;
 
-            // Use 'JPEG' format for addImage
             pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
             heightLeft -= pageHeight;
             while (heightLeft >= 0) {
@@ -423,7 +393,7 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
                 <PriceListTable miners={filteredResults} />
             </div>
 
-            {/* Hidden PDF Template - Positioned absolute to ensure full A4 width regardless of parent container */}
+            {/* Hidden PDF Template */}
             <div style={{ position: 'absolute', top: -9999, left: -9999 }}>
                 <PriceListPdfTemplate
                     documentRef={documentRef}
@@ -432,7 +402,7 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
                     filteredResults={filteredResults}
                     branding={branding as any}
                     userRole={userRole}
-                    pdfImages={pdfImages} // Pass Base64 images
+                    pdfImages={pdfImages}
                     style={pdfStyle}
                 />
             </div>

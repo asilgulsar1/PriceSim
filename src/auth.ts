@@ -40,9 +40,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
                 // I will add a `getUser` function to `user-store.ts`?
                 // actually, I will just import `getUsers` and filter, it's <100 users.
-                const { getUsers } = await import("@/lib/user-store");
-                const allUsers = await getUsers();
-                const found = allUsers.find(u => u.email === user.email);
+                const { getUser } = await import("@/lib/user-store");
+                const found = await getUser(user.email);
                 if (found) {
                     token.role = found.role;
                     token.resellerMargin = found.resellerMargin;

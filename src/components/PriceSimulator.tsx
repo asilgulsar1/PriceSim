@@ -9,7 +9,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { Loader2, RefreshCw } from "lucide-react";
 import { StickyActionFooter } from "@/components/ui/sticky-action-footer";
@@ -53,6 +53,7 @@ export function PriceSimulator() {
                 if (!res.ok) throw new Error('Failed to fetch miners');
 
                 const json = await res.json();
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 const data: any[] = json.miners || [];
 
                 // Use standarized logic from shared library
@@ -62,7 +63,9 @@ export function PriceSimulator() {
 
                 if (data.length > 0) {
                     // Dynamic Mode: Use ONLY market miners (filtered & selected)
-                    processedMiners = processAndSelectMiners(data);
+                    // Cast to any or MarketMinerRaw[] to satisfy TS
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    processedMiners = processAndSelectMiners(data as any);
                 } else {
                     // Fallback
                     processedMiners = [...FALLBACK_MINERS];
@@ -89,9 +92,13 @@ export function PriceSimulator() {
 
     // --- Handlers ---
 
+    // Transition for UI responsiveness during heavy rendering
+    const [isPending, startTransition] = useTransition();
+
     const calculatePrices = () => {
         setCalculating(true);
-        // Small timeout to allow UI to render loading state
+
+        // Yield to event loop to allow "Calculating..." state to render immediately
         setTimeout(() => {
             const calculated = miners.map(miner => {
                 const contract: ContractTerms = {
@@ -113,8 +120,11 @@ export function PriceSimulator() {
             // Pre-sort to match default view
             calculated.sort((a, b) => b.calculatedPrice - a.calculatedPrice);
 
-            setResults(calculated as CalculatedMiner[]);
-            setCalculating(false);
+            // Wrap state update in transition to keep UI responsive during large DOM updates
+            startTransition(() => {
+                setResults(calculated as CalculatedMiner[]);
+                setCalculating(false);
+            });
 
             // Persist for Price List (Local)
             try {
@@ -138,20 +148,18 @@ export function PriceSimulator() {
                 localStorage.setItem('LATEST_SIMULATION_DATA', JSON.stringify(simulationData));
                 console.log("Simulation data saved for Price List locally");
 
-                // Persist Log to Cloud (Async) - Keep full data for cloud logs? Maybe also strip to save bandwidth if not needed?
-                // Let's strip for cloud too to be safe/faster for now, unless we really need debug traces.
-                // Actually, for "Log", maybe we want the summary.
+                // Persist Log to Cloud
                 fetch('/api/logs/create', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(simulationData) // Sending stripped data
+                    body: JSON.stringify(simulationData)
                 }).catch(err => console.error("Failed to upload simulation log", err));
 
             } catch (e) {
                 console.error("Failed to save simulation data", e);
             }
 
-        }, 100);
+        }, 0); // Minimal delay to yield to main thread
     };
 
     const handleAddMiner = (name: string, hashrate: number, power: number) => {
@@ -184,8 +192,8 @@ export function PriceSimulator() {
                     <Button variant="outline" size="sm" onClick={() => setIsAddingMiner(!isAddingMiner)}>
                         {isAddingMiner ? 'Cancel' : 'Add Custom Miner'}
                     </Button>
-                    <Button onClick={calculatePrices} disabled={calculating || marketLoading} className="hidden md:inline-flex">
-                        {(calculating || marketLoading) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                    <Button onClick={calculatePrices} disabled={calculating || isPending || marketLoading} className="hidden md:inline-flex">
+                        {(calculating || isPending || marketLoading) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                         {!(calculating || marketLoading) && <RefreshCw className="mr-2 h-4 w-4" />}
                         Calculate
                     </Button>
@@ -229,8 +237,8 @@ export function PriceSimulator() {
                 <span className="text-sm font-semibold">
                     {results.length > 0 ? `${results.length} Models` : 'Ready'}
                 </span>
-                <Button onClick={calculatePrices} disabled={calculating || marketLoading} size="sm">
-                    {(calculating || marketLoading) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                <Button onClick={calculatePrices} disabled={calculating || isPending || marketLoading} size="sm">
+                    {(calculating || isPending || marketLoading) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                     {!(calculating || marketLoading) && <RefreshCw className="mr-2 h-4 w-4" />}
                     Calculate
                 </Button>

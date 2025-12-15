@@ -36,7 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // 2. Product Pages (Public)
     // Core miners from static data
-    let miners = [...INITIAL_MINERS];
+    const miners = [...INITIAL_MINERS];
 
     // Try to fetch dynamic miners from the blob storage (same as simulator)
     // The exact URL or method to fetch blob server-side here might be tricky without full request context,
