@@ -176,14 +176,19 @@ export class TelegramService {
                 const lowerMsg = msg.message.toLowerCase();
 
                 // 1. Positive Keywords (BTC Only)
+                // We keep this at Message level to avoid scanning irrelevant chats, 
+                // BUT we must be careful. If a list has "Antminer S21", it passes.
+                // If it has "New Stock", it fails?
+                // Re-adding generic tokens "Antminer", "Whatsminer" to safe-guard.
+                // For now, let's trust the series keys.
                 if (!KEYWORDS.some(k => lowerMsg.includes(k.toLowerCase()))) {
                     continue;
                 }
 
-                // 2. Negative Keywords (No Futures, No Alts)
-                if (NEGATIVE_KEYWORDS.some(nk => lowerMsg.includes(nk.toLowerCase()))) {
-                    continue;
-                }
+                // 2. Message-Level Negative Check?
+                // NO. If we block "Jan" here, we lose mixed lists.
+                // specific "Post-wide" bans (like "WTB" - Want To Buy) could be here.
+                if (lowerMsg.includes("wtb") || lowerMsg.includes("want to buy")) continue;
 
                 // Check Region
                 // If message has specific filtered region (HK)
@@ -193,6 +198,13 @@ export class TelegramService {
                 // Parse
                 const lines = msg.message.split('\n');
                 for (const line of lines) {
+                    const lowerLine = line.toLowerCase();
+
+                    // Line-Level Negative Filter (Futures/Alts)
+                    if (NEGATIVE_KEYWORDS.some(nk => lowerLine.includes(nk.toLowerCase()))) {
+                        continue;
+                    }
+
                     const miner = parseLine(line);
                     if (miner) {
                         miner.source = dialog.title || "Telegram";
