@@ -316,16 +316,40 @@ export class TelegramService {
                                 .replace(/\b(est\.?|date)\b/gi, '') // Remove "Est." "Date" artifacts
                                 .replace(/ex\s*factory/gi, '')
                                 .replace(/mix/gi, '') // Remove "MIX" noise
-                                .replace(/([A-Z]\d+)hyd/gi, '$1 Hyd') // Fix "S23hyd" -> "S23 Hyd"
+                                .replace(/([A-Z]\d+)hyd/gi, '$1 Hydro') // Fix "S23hyd" -> "S23 Hydro"
                                 .replace(/U3S21/gi, 'U3 S21') // Fix concatenated model U3 + S21
-                                .replace(/\b(GTD|RB|HK\/SZ)\b/gi, '') // Remove trade terms
-                                .replace(/\/T\b/gi, '') // Remove "/T" suffix
-                                .replace(/\/8T\b/gi, '') // Remove specific debris like "/8T"
-                                .replace(/\(\s*\)/g, '') // Remove empty brackets ( )
-                                .replace(/\b\d{1,2}(days|weeks|months)\b/gi, '') // Remove duration debris "7days"
-                                .replace(/\b\d{2,3}\b$/g, '') // Remove trailing 2-3 digit numbers
-                                .replace(/\s+/g, ' ') // Collapse spaces
+                                .replace(/\b(GTD|RB|HK\/SZ|RF|Refurb|Used|New|Brand New)\b/gi, '') // Remove trade terms
+                                .replace(/\b(nits|nit|units|pcs|qty)\b/gi, '')
+                                .replace(/\b(in transit|arriving|coming)\b/gi, '')
+                                .replace(/s19\s*xp\s*xp/gi, 'S19 XP') // Fix double XP from previous replace
+                                .replace(/xphyd/gi, 'XP Hydro') // "XPhyd" -> "XP Hydro" 
+                                .replace(/exp\s*hyd/gi, 'XP Hydro')
+                                .replace(/exp\b/gi, ' XP') // Generic "exp" -> "XP"
+                                .replace(/xp\+/gi, ' XP')
+                                .replace(/s19\s*k/gi, 'S19k')
+                                .replace(/s19\s*j/gi, 'S19j')
+                                .replace(/s19\s*xp/gi, 'S19 XP')
+                                .replace(/s19exp/gi, 'S19 XP')
+                                .replace(/hyd\b/gi, 'Hydro')
+                                .replace(/jpro/gi, 'j Pro') // Fix "jpro"
+                                .replace(/\/T\b/gi, '')
+                                .replace(/\/8T\b/gi, '')
+                                .replace(/\/\d+(\.\d+)?\//g, '')
+                                .replace(/[\(\[\{（].*?[\)\]\}）]/g, '') // Remove short bracketed info
+                                .replace(/[\(\[\{（].*[\)\]\}）]$/g, '') // Remove trailing bracketed info
+                                .replace(/[⬇️↓]/g, '')
+                                .replace(/\b\d{1,2}(days|weeks|months)\b/gi, '')
+                                .replace(/\b\d{2,3}\b$/g, '')
+                                .replace(/\s+/g, ' ')
+                                .replace(/\bXP\s+XP\b/gi, 'XP') // Dedup XP
                                 .trim();
+
+                            // Post-Clean Fixes for Casing (Prettify)
+                            miner.name = miner.name
+                                .replace(/\bpro\b/gi, 'Pro')
+                                .replace(/\bhydro\b/gi, 'Hydro')
+                                .replace(/\bxp\b/gi, 'XP')
+                                .replace(/\bplus\b/gi, '+'); // Normalize "Plus" -> "+"
 
                             miner.date = new Date(msg.date * 1000);
                             results.push(miner);

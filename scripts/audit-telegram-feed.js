@@ -273,19 +273,44 @@ class TelegramService {
                             // Enhanced Cleanup
                             miner.name = miner.name.replace(/^#/, '')
                                 .replace(/\/s\b/gi, '') // Remove "/s" suffix
-                                .replace(/\b(est\.?|date)\b/gi, '') // Remove "Est." "Date"
+                                .replace(/\b(est\.?|date)\b/gi, '') // Remove "Est." "Date" artifacts
                                 .replace(/ex\s*factory/gi, '')
                                 .replace(/mix/gi, '') // Remove "MIX" noise
-                                .replace(/([A-Z]\d+)hyd/gi, '$1 Hyd') // Fix "S23hyd" -> "S23 Hyd"
-                                .replace(/U3S21/gi, 'U3 S21') // Fix concatenated model
-                                .replace(/\b(GTD|RB|HK\/SZ)\b/gi, '') // Remove trade terms
-                                .replace(/\/T\b/gi, '') // Remove "/T" suffix
-                                .replace(/\/8T\b/gi, '') // Remove specific debris like "/8T"
-                                .replace(/\(\s*\)/g, '') // Remove empty brackets ( )
-                                .replace(/\b\d{1,2}(days|weeks|months)\b/gi, '') // Remove duration debris "7days"
-                                .replace(/\b\d{2,3}\b$/g, '') // Remove trailing 2-3 digit numbers
-                                .replace(/\s+/g, ' ') // Collapse spaces
+                                .replace(/([A-Z]\d+)hyd/gi, '$1 Hydro')
+                                .replace(/U3S21/gi, 'U3 S21')
+                                .replace(/\b(GTD|RB|HK\/SZ|RF|Refurb|Used|New|Brand New)\b/gi, '')
+                                .replace(/\b(nits|nit|units|pcs|qty)\b/gi, '')
+                                .replace(/\b(in transit|arriving|coming)\b/gi, '')
+                                .replace(/jpro/gi, 'j Pro') // Fix "jpro"
+                                .replace(/xphyd/gi, 'XP Hydro') // "XPhyd" -> "XP Hydro" 
+                                .replace(/exp\s*hyd/gi, 'XP Hydro')
+                                .replace(/exp\b/gi, ' XP')
+                                .replace(/xp\+/gi, ' XP')
+                                .replace(/s19\s*k/gi, 'S19k')
+                                .replace(/s19\s*j/gi, 'S19j')
+                                .replace(/s19\s*xp/gi, 'S19 XP')
+                                .replace(/s19exp/gi, 'S19 XP')
+                                .replace(/hyd\b/gi, 'Hydro')
+                                .replace(/\/T\b/gi, '')
+                                .replace(/\/8T\b/gi, '')
+                                .replace(/\/\d+(\.\d+)?\//g, '')
+                                .replace(/[\(\[\{（].*?[\)\]\}）]/g, '') // Remove content inside brackets if short? No, just remove brackets themselves if they look like artifacts
+                                // User showed "S19 XP Hydro (）". The content inside might be invisible or empty.
+                                // Let's just remove any brackets at the END of the string?
+                                .replace(/[\(\[\{（].*[\)\]\}）]$/g, '') // Remove trailing bracketed info (often noise like date or vendor code)
+                                .replace(/[⬇️↓]/g, '')
+                                .replace(/\b\d{1,2}(days|weeks|months)\b/gi, '')
+                                .replace(/\b\d{2,3}\b$/g, '')
+                                .replace(/\s+/g, ' ')
+                                .replace(/\bXP\s+XP\b/gi, 'XP') // Dedup XP
                                 .trim();
+
+                            // Post-Clean Fixes for Casing (Prettify)
+                            miner.name = miner.name
+                                .replace(/\bpro\b/gi, 'Pro')
+                                .replace(/\bhydro\b/gi, 'Hydro')
+                                .replace(/\bxp\b/gi, 'XP')
+                                .replace(/\bplus\b/gi, '+'); // Normalize "Plus" -> "+"
 
                             miner.date = new Date(msg.date * 1000);
                             results.push(miner);
