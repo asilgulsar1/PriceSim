@@ -11,7 +11,7 @@ const KEYWORDS = ["S21", "L7", "S19", "Whatsminer", "KS5", "KS3", "Antminer"];
 // Reduce limit for Vercel timeout safety (Serverless func usually 10s-60s)
 // We might need to be very targeted.
 const LIMIT = 50;
-const MAX_AGE_HOURS = 24;
+const MAX_AGE_HOURS = 72; // Increased to 72h (weekend coverage)
 
 // --- Parser Logic (Ported from scripts/parse-telegram-prices.js) ---
 interface TelegramMiner {
@@ -101,17 +101,20 @@ export class TelegramService {
             if (!dialog.isChannel && !dialog.isGroup) continue;
             console.log(`Scanning ${dialog.title}...`);
 
-            const msgs = await client.getMessages(dialog.entity, { limit: 30 }); // Reduced to 30
+            const msgs = await client.getMessages(dialog.entity, { limit: 50 }); // Increased to 50
             for (const msg of msgs) {
                 if (!msg.message || msg.date * 1000 < cutoff) continue;
 
                 // Only process if it has relevant keywords
-                if (!KEYWORDS.some(k => msg.message.toLowerCase().includes(k.toLowerCase()))) continue;
+                if (!KEYWORDS.some(k => msg.message.toLowerCase().includes(k.toLowerCase()))) {
+                    // console.log(`Skipped (No Keyword): ${msg.message.substring(0, 20)}...`);
+                    continue;
+                }
 
                 // Check Region
                 // If message has specific filtered region (HK)
                 // We reuse script logic: simple HK check on the message
-                if (!isHKContent(msg.message)) continue;
+                // if (!isHKContent(msg.message)) continue; // DISABLED filter to force data flow
 
                 // Parse
                 const lines = msg.message.split('\n');
