@@ -318,9 +318,11 @@ export class TelegramService {
                                 .replace(/mix/gi, '') // Remove "MIX" noise
                                 .replace(/([A-Z]\d+)hyd/gi, '$1 Hydro') // Fix "S23hyd" -> "S23 Hydro"
                                 .replace(/U3S21/gi, 'U3 S21') // Fix concatenated model U3 + S21
+                                .replace(/EXPH\b/gi, 'XP Hydro')
                                 .replace(/\b(GTD|RB|HK\/SZ|RF|Refurb|Used|New|Brand New)\b/gi, '') // Remove trade terms
-                                .replace(/\b(nits|nit|units|pcs|qty)\b/gi, '')
+                                .replace(/\b(nits|nit|units|pcs|pieces|qty|moq|mqo)\b/gi, '')
                                 .replace(/\b(in transit|arriving|coming)\b/gi, '')
+                                .replace(/\b(DE|US|HK|CN|MY|RU|PY)\b/g, '')
                                 .replace(/s19\s*xp\s*xp/gi, 'S19 XP') // Fix double XP from previous replace
                                 .replace(/xphyd/gi, 'XP Hydro') // "XPhyd" -> "XP Hydro" 
                                 .replace(/exp\s*hyd/gi, 'XP Hydro')
@@ -337,11 +339,12 @@ export class TelegramService {
                                 .replace(/\/\d+(\.\d+)?\//g, '')
                                 .replace(/[\(\[\{（].*?[\)\]\}）]/g, '') // Remove short bracketed info
                                 .replace(/[\(\[\{（].*[\)\]\}）]$/g, '') // Remove trailing bracketed info
-                                .replace(/[⬇️↓]/g, '')
-                                .replace(/\b\d{1,2}(days|weeks|months)\b/gi, '')
+                                .replace(/[⬇️↓⬆↑\/]/g, '')
+                                .replace(/\b\d+(\s*-\s*\d+)?\s*(days|weeks|months)\b/gi, '')
                                 .replace(/\b\d{2,3}\b$/g, '')
                                 .replace(/\s+/g, ' ')
                                 .replace(/\bXP\s+XP\b/gi, 'XP') // Dedup XP
+                                .replace(/\bS21\s+Pro\s+H\b/gi, 'S21 Pro')
                                 .trim();
 
                             // Post-Clean Fixes for Casing (Prettify)

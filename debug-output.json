@@ -749,14 +749,14 @@
     ]
   },
   {
-    "name": "Antminer S21 Pro /",
+    "name": "Antminer S21PRO ⬆",
     "hashrateTH": 220,
     "price": 11,
     "stats": {
       "min": 11,
       "max": 2930,
-      "count": 20,
-      "middle": 2692
+      "count": 21,
+      "middle": 2772
     },
     "listings": [
       {
@@ -857,6 +857,11 @@
       {
         "source": "BITMARS _Leila~",
         "price": 2464,
+        "date": "2025-12-19T06:11:49.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 2772,
         "date": "2025-12-19T06:11:49.000Z"
       }
     ]
@@ -1375,7 +1380,7 @@
     ]
   },
   {
-    "name": "Antminer S21+ HK",
+    "name": "Antminer S21 +",
     "hashrateTH": 225,
     "price": 10,
     "stats": {
@@ -1493,7 +1498,7 @@
     ]
   },
   {
-    "name": "Antminer S21+ HK",
+    "name": "Antminer S21 +",
     "hashrateTH": 235,
     "price": 11,
     "stats": {
@@ -1991,7 +1996,7 @@
     ]
   },
   {
-    "name": "Antminer S21 Pro /",
+    "name": "Antminer S21 Pro",
     "hashrateTH": 234,
     "price": 12,
     "stats": {
@@ -2104,7 +2109,7 @@
     ]
   },
   {
-    "name": "Antminer S21+ /",
+    "name": "Antminer S21 +",
     "hashrateTH": 216,
     "price": 10,
     "stats": {
@@ -2195,7 +2200,7 @@
     ]
   },
   {
-    "name": "Antminer U3 S21EXPH",
+    "name": "Antminer U3 S21XP Hydro",
     "hashrateTH": 860,
     "price": 11550,
     "stats": {
@@ -2374,14 +2379,19 @@
     "stats": {
       "min": 11,
       "max": 2952,
-      "count": 4,
-      "middle": 2580
+      "count": 5,
+      "middle": 2736
     },
     "listings": [
       {
         "source": "Mining Resell",
         "price": 2376,
         "date": "2025-12-21T13:57:27.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 2736,
+        "date": "2025-12-20T11:31:17.000Z"
       },
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
@@ -2642,7 +2652,7 @@
     ]
   },
   {
-    "name": "Avalon A15Pro HK",
+    "name": "Avalon A15 Pro",
     "hashrateTH": 221,
     "price": 2210,
     "stats": {
@@ -2680,7 +2690,7 @@
     ]
   },
   {
-    "name": "Antminer S21 Pro H MQO 6pcs",
+    "name": "Antminer S21 Pro H 6pcs",
     "hashrateTH": 234,
     "price": 2504,
     "stats": {
@@ -4520,7 +4530,7 @@
     ]
   },
   {
-    "name": "Whatsminer M61S+/240T",
+    "name": "Whatsminer M61S+240T",
     "hashrateTH": 238,
     "price": 2689,
     "stats": {
@@ -4861,24 +4871,6 @@
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
         "price": 3367,
-        "date": "2025-12-20T11:31:17.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M61S+238/",
-    "hashrateTH": 240,
-    "price": 2736,
-    "stats": {
-      "min": 2736,
-      "max": 2736,
-      "count": 1,
-      "middle": 2736
-    },
-    "listings": [
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2736,
         "date": "2025-12-20T11:31:17.000Z"
       }
     ]
@@ -5411,7 +5403,7 @@
     ]
   },
   {
-    "name": "Antminer S21 Pro DE 7 10 Days",
+    "name": "Antminer S21 Pro 7",
     "hashrateTH": 220,
     "price": 2772,
     "stats": {
@@ -5555,24 +5547,6 @@
       {
         "source": "BITMARS _Leila~",
         "price": 11,
-        "date": "2025-12-19T06:11:49.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Antminer S21 Pro DE",
-    "hashrateTH": 220,
-    "price": 2772,
-    "stats": {
-      "min": 2772,
-      "max": 2772,
-      "count": 1,
-      "middle": 2772
-    },
-    "listings": [
-      {
-        "source": "BITMARS _Leila~",
-        "price": 2772,
         "date": "2025-12-19T06:11:49.000Z"
       }
     ]

@@ -278,11 +278,13 @@ class TelegramService {
                                 .replace(/mix/gi, '') // Remove "MIX" noise
                                 .replace(/([A-Z]\d+)hyd/gi, '$1 Hydro')
                                 .replace(/U3S21/gi, 'U3 S21')
+                                .replace(/EXPH\b/gi, 'XP Hydro') // Fix "EXPH" -> "XP Hydro"
                                 .replace(/\b(GTD|RB|HK\/SZ|RF|Refurb|Used|New|Brand New)\b/gi, '')
-                                .replace(/\b(nits|nit|units|pcs|qty)\b/gi, '')
+                                .replace(/\b(nits|nit|units|pcs|pieces|qty|moq|mqo)\b/gi, '') // Added pieces
                                 .replace(/\b(in transit|arriving|coming)\b/gi, '')
-                                .replace(/jpro/gi, 'j Pro') // Fix "jpro"
-                                .replace(/xphyd/gi, 'XP Hydro') // "XPhyd" -> "XP Hydro" 
+                                .replace(/\b(DE|US|HK|CN|MY|RU|PY)\b/g, '') // Remove 2-letter Country Codes (DE=Germany) if uppercase
+                                .replace(/jpro/gi, 'j Pro')
+                                .replace(/xphyd/gi, 'XP Hydro')
                                 .replace(/exp\s*hyd/gi, 'XP Hydro')
                                 .replace(/exp\b/gi, ' XP')
                                 .replace(/xp\+/gi, ' XP')
@@ -294,15 +296,14 @@ class TelegramService {
                                 .replace(/\/T\b/gi, '')
                                 .replace(/\/8T\b/gi, '')
                                 .replace(/\/\d+(\.\d+)?\//g, '')
-                                .replace(/[\(\[\{（].*?[\)\]\}）]/g, '') // Remove content inside brackets if short? No, just remove brackets themselves if they look like artifacts
-                                // User showed "S19 XP Hydro (）". The content inside might be invisible or empty.
-                                // Let's just remove any brackets at the END of the string?
-                                .replace(/[\(\[\{（].*[\)\]\}）]$/g, '') // Remove trailing bracketed info (often noise like date or vendor code)
-                                .replace(/[⬇️↓]/g, '')
-                                .replace(/\b\d{1,2}(days|weeks|months)\b/gi, '')
+                                .replace(/[\(\[\{（].*?[\)\]\}）]/g, '')
+                                .replace(/[\(\[\{（].*[\)\]\}）]$/g, '')
+                                .replace(/[⬇️↓⬆↑\/]/g, '') // Added Up Arrow
+                                .replace(/\b\d+(\s*-\s*\d+)?\s*(days|weeks|months)\b/gi, '') // Enhanced duration regex (7-10 days)
                                 .replace(/\b\d{2,3}\b$/g, '')
                                 .replace(/\s+/g, ' ')
                                 .replace(/\bXP\s+XP\b/gi, 'XP') // Dedup XP
+                                .replace(/\bS21\s+Pro\s+H\b/gi, 'S21 Pro') // Specific noise "Pro H"
                                 .trim();
 
                             // Post-Clean Fixes for Casing (Prettify)
