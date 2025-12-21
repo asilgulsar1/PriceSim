@@ -40,8 +40,10 @@ export async function GET(request: Request) {
         // Upload to Blob
         const blob = await put('miners-latest.json', JSON.stringify(output), {
             access: 'public',
-            addRandomSuffix: false, // Overwrite
-            contentType: 'application/json'
+            addRandomSuffix: false, // Overwrite (Legacy)
+            contentType: 'application/json',
+            // @ts-ignore - Vercel Blob types might be outdated in old versions, but runtime supports it
+            token: process.env.BLOB_READ_WRITE_TOKEN
         });
 
         console.log("Cron Scrape Complete. Uploaded to:", blob.url);
