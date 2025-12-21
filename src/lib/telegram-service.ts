@@ -102,68 +102,69 @@ export class TelegramService {
             console.log(`Scanning ${dialog.title}...`);
 
             const msgs = await client.getMessages(dialog.entity, { limit: 30 }); // Reduced to 30
-            if (!msg.message || msg.date * 1000 < cutoff) continue;
+            for (const msg of msgs) {
+                if (!msg.message || msg.date * 1000 < cutoff) continue;
 
-            // Only process if it has relevant keywords
-            if (!KEYWORDS.some(k => msg.message.toLowerCase().includes(k.toLowerCase()))) continue;
+                // Only process if it has relevant keywords
+                if (!KEYWORDS.some(k => msg.message.toLowerCase().includes(k.toLowerCase()))) continue;
 
-            // Check Region
-            // If message has specific filtered region (HK)
-            // We reuse script logic: simple HK check on the message
-            if (!isHKContent(msg.message)) continue;
+                // Check Region
+                // If message has specific filtered region (HK)
+                // We reuse script logic: simple HK check on the message
+                if (!isHKContent(msg.message)) continue;
 
-            // Parse
-            const lines = msg.message.split('\n');
-            for (const line of lines) {
-                const miner = parseLine(line);
-                if (miner) {
-                    miner.source = dialog.title || "Telegram";
-                    miner.date = new Date(msg.date * 1000);
-                    results.push(miner);
+                // Parse
+                const lines = msg.message.split('\n');
+                for (const line of lines) {
+                    const miner = parseLine(line);
+                    if (miner) {
+                        miner.source = dialog.title || "Telegram";
+                        miner.date = new Date(msg.date * 1000);
+                        results.push(miner);
+                    }
                 }
             }
         }
-    }
 
         return this.aggregate(results);
     }
 
-aggregate(listings: TelegramMiner[]) {
-    const groups: Record<string, any> = {};
+    aggregate(listings: TelegramMiner[]) {
+        const groups: Record<string, any> = {};
 
-    for (const l of listings) {
-        // Key: s21xp-270
-        const clean = l.name.toLowerCase().replace(/antminer|whatsminer|spot|hk|stock|\(.*\)|[^a-z0-9]/g, '');
-        const key = `${clean}-${Math.round(l.hashrateTH)}`;
+        for (const l of listings) {
+            // Key: s21xp-270
+            const clean = l.name.toLowerCase().replace(/antminer|whatsminer|spot|hk|stock|\(.*\)|[^a-z0-9]/g, '');
+            const key = `${clean}-${Math.round(l.hashrateTH)}`;
 
-        if (!groups[key]) {
-            groups[key] = { candidate: l.name, hashrate: l.hashrateTH, listings: [] };
+            if (!groups[key]) {
+                groups[key] = { candidate: l.name, hashrate: l.hashrateTH, listings: [] };
+            }
+            groups[key].listings.push(l);
+            if (l.name.length > groups[key].candidate.length) groups[key].candidate = l.name;
         }
-        groups[key].listings.push(l);
-        if (l.name.length > groups[key].candidate.length) groups[key].candidate = l.name;
+
+        return Object.values(groups).map(g => {
+            const prices = g.listings.map((x: any) => x.price).sort((a: number, b: number) => a - b);
+            const midIdx = Math.floor(prices.length / 2);
+            const middle = prices.length % 2 === 0 ? (prices[midIdx - 1] + prices[midIdx]) / 2 : prices[midIdx];
+
+            return {
+                name: g.candidate,
+                hashrateTH: g.hashrate,
+                price: Math.round(middle),
+                stats: {
+                    min: prices[0],
+                    max: prices[prices.length - 1],
+                    count: prices.length,
+                    middle: Math.round(middle)
+                },
+                listings: g.listings
+            };
+        });
     }
 
-    return Object.values(groups).map(g => {
-        const prices = g.listings.map((x: any) => x.price).sort((a: number, b: number) => a - b);
-        const midIdx = Math.floor(prices.length / 2);
-        const middle = prices.length % 2 === 0 ? (prices[midIdx - 1] + prices[midIdx]) / 2 : prices[midIdx];
-
-        return {
-            name: g.candidate,
-            hashrateTH: g.hashrate,
-            price: Math.round(middle),
-            stats: {
-                min: prices[0],
-                max: prices[prices.length - 1],
-                count: prices.length,
-                middle: Math.round(middle)
-            },
-            listings: g.listings
-        };
-    });
-}
-
     async disconnect() {
-    if (this.client) await this.client.disconnect();
-}
+        if (this.client) await this.client.disconnect();
+    }
 }
