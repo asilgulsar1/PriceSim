@@ -25,7 +25,11 @@ export async function GET(request: Request) {
             source: 'Telegram Cron',
             miners: results.map(r => ({
                 name: r.name,
-                specs: { hashrateTH: r.hashrateTH },
+                specs: {
+                    hashrateTH: r.hashrateTH,
+                    powerW: r.powerW // New Field
+                },
+                price: r.price, // New Field (Top level)
                 stats: {
                     minPrice: r.stats.min,
                     maxPrice: r.stats.max,
@@ -33,7 +37,8 @@ export async function GET(request: Request) {
                     avgPrice: r.stats.middle, // redundancy
                     vendorCount: r.stats.count
                 },
-                source: "Telegram Spot"
+                source: "Telegram Spot",
+                listings: r.listings // New Field (Source Breakdown)
             }))
         };
 

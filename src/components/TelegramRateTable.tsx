@@ -16,7 +16,7 @@ interface TelegramRateTableProps {
 export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
     const { market } = useMarketData();
 
-    // Enrich Data
+    // Enrich Data logic... (unchanged, just ensuring variable scope)
     const enrichedData = useMemo(() => {
         if (!telegramMiners || !Array.isArray(telegramMiners)) return [];
 
@@ -27,6 +27,7 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
 
         return telegramMiners.filter(tg => tg.name).map(tg => {
             // 1. Find Specs (Power)
+            // ... (keep existing logic)
             const normTg = normalizeMinerName(tg.name);
             const match = INITIAL_MINERS.find(m => normalizeMinerName(m.name).includes(normTg) || normTg.includes(normalizeMinerName(m.name)));
 
@@ -35,6 +36,8 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
                 powerW = match.powerWatts;
             } else if (tg.specs?.powerW > 0) {
                 powerW = tg.specs.powerW;
+            } else if (tg.powerW > 0) {
+                powerW = tg.powerW; // Use parsed power
             } else {
                 // Estimator
                 if (tg.hashrateTH > 300) powerW = tg.hashrateTH * 16; // S21-class
@@ -45,7 +48,7 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
             // 2. Calculate Financials
             let dailyRevenueUSD = 0;
             if (liveHashpriceUSD > 0 && tg.hashrateTH > 0) {
-                dailyRevenueUSD = calculateMinerRevenueUSD(tg.hashrateTH, liveHashpriceUSD, 1.0); // 1% pool fee assumed
+                dailyRevenueUSD = calculateMinerRevenueUSD(tg.hashrateTH, liveHashpriceUSD, 1.0);
             }
 
             const kwhPrice = DEFAULT_CONTRACT_TERMS.electricityRate || 0.055;
@@ -55,10 +58,6 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
             // 3. ROI (Annual)
             let roi = 0;
             if (tg.price > 0 && dailyRevenueUSD > 0) {
-                roi = ((dailyRevenueUSD * 365) / tg.price) * 100; // Gross Revenue ROI? Or Net?
-                // Price List usually shows "Client Profitability" on Revenue basis for specific formula, 
-                // OR Net ROI. 
-                // Let's use standard: (Net Annual / Price) * 100
                 if (dailyNet > 0) {
                     roi = ((dailyNet * 365) / tg.price) * 100;
                 } else {
@@ -75,7 +74,7 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
                 roi,
                 matchName: match ? match.name : 'Estimated'
             };
-        }).sort((a, b) => b.hashrateTH - a.hashrateTH); // Default sort by hashrate
+        }).sort((a, b) => b.hashrateTH - a.hashrateTH);
     }, [telegramMiners, market]);
 
     if (!telegramMiners || !Array.isArray(telegramMiners) || telegramMiners.length === 0) {
@@ -94,42 +93,69 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
                         <TableHead className="text-right">Daily Exp</TableHead>
                         <TableHead className="text-right">Daily Net</TableHead>
                         <TableHead className="text-right">ROI (Net)</TableHead>
-                        <TableHead className="text-right">Telegram Price</TableHead>
+                        <TableHead className="text-right">Lowest Price</TableHead>
                         <TableHead className="text-right">Source</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     {enrichedData.map((m: any, i: number) => (
-                        <TableRow key={i} className="hover:bg-muted/50">
-                            <TableCell className="font-medium">
-                                {m.name}
-                                {m.matchName === 'Estimated' && <span className="ml-2 text-[10px] text-amber-500">(Est. Power)</span>}
-                            </TableCell>
-                            <TableCell className="text-right">{m.hashrateTH} TH</TableCell>
-                            <TableCell className="text-right">{(m.powerW || 0).toFixed(0)} W</TableCell>
-                            <TableCell className="text-right text-green-600">${(m.dailyRevenueUSD || 0).toFixed(2)}</TableCell>
-                            <TableCell className="text-right text-red-500">-${(m.dailyExpenseUSD || 0).toFixed(2)}</TableCell>
-                            <TableCell className="text-right font-bold text-green-700">${(m.dailyNet || 0).toFixed(2)}</TableCell>
-                            <TableCell className="text-right font-mono text-blue-600">{(m.roi || 0).toFixed(1)}%</TableCell>
-                            <TableCell className="text-right font-bold text-lg">${(m.price || 0).toLocaleString()}</TableCell>
-                            <TableCell className="text-right text-xs text-muted-foreground">
-                                {m.listings && m.listings.length > 0 ? (
-                                    <div className="flex flex-col items-end">
-                                        {m.listings.map((l: any, idx: number) => (
-                                            <span key={idx}>{l.source}</span>
-                                        ))}
-                                    </div>
-                                ) : (
-                                    "Telegram"
-                                )}
-                            </TableCell>
-                        </TableRow>
+                        <Row key={i} m={m} />
                     ))}
                 </TableBody>
             </Table>
             <div className="p-4 text-xs text-muted-foreground bg-muted/20 border-t">
                 * ROI calculated based on Net Daily Profit (Rev - Exp) using ${(market.btcPrice || 0).toLocaleString()} BTC and ${DEFAULT_CONTRACT_TERMS.electricityRate}/kWh.
+                <br />
+                * Power estimated unless parsed from message text.
             </div>
         </div>
+    );
+}
+
+function Row({ m }: { m: any }) {
+    const [open, setOpen] = React.useState(false);
+    const hasListings = m.listings && m.listings.length > 0;
+
+    return (
+        <>
+            <TableRow className="hover:bg-muted/50 cursor-pointer" onClick={() => hasListings && setOpen(!open)}>
+                <TableCell className="font-medium">
+                    <div className="flex items-center gap-2">
+                        {hasListings && (
+                            <span className="text-xs text-muted-foreground">{open ? '▼' : '▶'}</span>
+                        )}
+                        {m.name}
+                        {m.matchName === 'Estimated' && !m.powerW && <span className="ml-2 text-[10px] text-amber-500">(Est. Power)</span>}
+                    </div>
+                </TableCell>
+                <TableCell className="text-right">{m.hashrateTH} TH</TableCell>
+                <TableCell className="text-right">{(m.powerW || 0).toFixed(0)} W</TableCell>
+                <TableCell className="text-right text-green-600">${(m.dailyRevenueUSD || 0).toFixed(2)}</TableCell>
+                <TableCell className="text-right text-red-500">-${(m.dailyExpenseUSD || 0).toFixed(2)}</TableCell>
+                <TableCell className="text-right font-bold text-green-700">${(m.dailyNet || 0).toFixed(2)}</TableCell>
+                <TableCell className="text-right font-mono text-blue-600">{(m.roi || 0).toFixed(1)}%</TableCell>
+                <TableCell className="text-right font-bold text-lg">${(m.price || 0).toLocaleString()}</TableCell>
+                <TableCell className="text-right text-xs text-muted-foreground">
+                    {hasListings ? `${m.listings.length} Vendors` : "Telegram"}
+                </TableCell>
+            </TableRow>
+            {open && hasListings && (
+                <TableRow className="bg-muted/10">
+                    <TableCell colSpan={9} className="p-0">
+                        <div className="p-4 bg-muted/20 border-b">
+                            <h4 className="text-xs font-semibold uppercase text-muted-foreground mb-2">Vendor Listings</h4>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                                {m.listings.map((l: any, idx: number) => (
+                                    <div key={idx} className="flex justify-between items-center text-sm p-2 bg-card border rounded shadow-sm">
+                                        <span className="font-medium">{l.source || 'Unknown'}</span>
+                                        <span className="font-bold font-mono">${(l.price || 0).toLocaleString()}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </TableCell>
+                </TableRow>
+            )}
+        </>
     );
 }

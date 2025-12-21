@@ -20,15 +20,16 @@ interface TelegramMiner {
     price: number;
     source: string;
     date: Date;
+    powerW?: number;
 }
 
 function parseLine(line: string): TelegramMiner | null {
-    // 1. Clean
-    line = line.replace(/^[-\*•]\s*/, '').trim();
+    // 1. Clean basic bullets
+    let cleanLine = line.replace(/^[-\*•]\s*/, '').trim();
 
     // 2. Hashrate
-    const hashrateRegex = /(\d+(?:\.\d+)?)\s*(T|Th|G|Gh|M|Mh)/i;
-    const hashrateMatch = line.match(hashrateRegex);
+    const hashrateRegex = /(\d+(?:\.\d+)?)\s*(T|Th|G|Gh|M|Mh)(?![a-z])/i;
+    const hashrateMatch = cleanLine.match(hashrateRegex);
     let hashrateTH = 0;
 
     if (hashrateMatch) {
@@ -39,13 +40,33 @@ function parseLine(line: string): TelegramMiner | null {
         else if (unit.startsWith('M')) hashrateTH = val / 1000000;
     }
 
-    // 3. Price
+    // 3. Efficiency / Power
+    // Format: "3000W" or "20J/T"
+    const powerRegex = /(\d+(?:\.\d+)?)\s*W(?![a-z])/i;
+    const effRegex = /(\d+(?:\.\d+)?)\s*J\/T/i;
+
+    let powerW = 0;
+    const powerMatch = cleanLine.match(powerRegex);
+    const effMatch = cleanLine.match(effRegex);
+
+    if (powerMatch) {
+        powerW = parseFloat(powerMatch[1]);
+    } else if (effMatch && hashrateTH > 0) {
+        // J/T * TH = Seconds * Watts? No.
+        // 1 J = 1 Watt-Second.
+        // Efficiency J/TH is Joules per Terahash.
+        // Power (W) = H (TH/s) * Eff (J/TH).
+        // Example: 29.5 J/T * 100 TH = 2950 W.
+        powerW = parseFloat(effMatch[1]) * hashrateTH;
+    }
+
+    // 4. Price
     const unitPriceRegex = /(?:[\$u]\s*)?(\d+(?:\.\d+)?)\s*(?:[u\$]|usd)?\s*\/\s*(?:t|th)/i;
     const flatPriceRegex = /(?:\$|usd)\s*(\d+(?:\.\d+)?)|(\d+(?:\.\d+)?)\s*(?:u|usd)(?!\/)/i;
 
     let price = 0;
-    const unitMatch = line.match(unitPriceRegex);
-    const flatMatch = line.match(flatPriceRegex);
+    const unitMatch = cleanLine.match(unitPriceRegex);
+    const flatMatch = cleanLine.match(flatPriceRegex);
 
     if (unitMatch && hashrateTH > 0) {
         price = parseFloat(unitMatch[1]) * hashrateTH;
@@ -53,16 +74,23 @@ function parseLine(line: string): TelegramMiner | null {
         price = parseFloat(flatMatch[1] || flatMatch[2]);
     }
 
-    // 4. Name
-    let namePart = line;
-    if (line.includes(':')) namePart = line.split(':')[0];
-    else if (line.includes('—')) namePart = line.split('—')[0];
-    else if (line.includes(' - ')) namePart = line.split(' - ')[0];
+    // 5. Name Cleaning
+    // Remove the parts we matched to leave just the model name
+    let name = cleanLine;
+    if (hashrateMatch) name = name.replace(hashrateMatch[0], '');
+    if (powerMatch) name = name.replace(powerMatch[0], '');
+    if (effMatch) name = name.replace(effMatch[0], '');
+    if (unitMatch) name = name.replace(unitMatch[0], '');
+    if (flatMatch) name = name.replace(flatMatch[0], '');
 
-    const name = namePart.replace(/\*\*/g, '').trim();
+    // Remove cleanups
+    name = name.replace(/@\w+/g, '') // Mentions
+        .replace(/http\S+/g, '') // Links
+        .replace(/[:|\-—,]/g, ' ') // Punctuation key chars
+        .replace(/\s+/g, ' ').trim();
 
     if (price > 0 && hashrateTH > 0) {
-        return { name, hashrateTH, price: Math.round(price), source: '', date: new Date() };
+        return { name, hashrateTH, price: Math.round(price), source: '', date: new Date(), powerW: Math.round(powerW) };
     }
     return null;
 }
@@ -155,14 +183,18 @@ export class TelegramService {
             return {
                 name: g.candidate,
                 hashrateTH: g.hashrate,
-                price: Math.round(middle),
+                price: Math.round(prices[0]), // Use Lowest Price as primary
                 stats: {
                     min: prices[0],
                     max: prices[prices.length - 1],
                     count: prices.length,
                     middle: Math.round(middle)
                 },
-                listings: g.listings
+                listings: g.listings.map((l: any) => ({
+                    source: l.source,
+                    price: l.price,
+                    date: l.date
+                }))
             };
         });
     }
