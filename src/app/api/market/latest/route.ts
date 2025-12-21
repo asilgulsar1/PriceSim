@@ -1,6 +1,7 @@
 
 import { NextResponse } from 'next/server';
 import { list } from '@vercel/blob';
+import { normalizeMinerName } from '@/lib/market-matching';
 
 export const runtime = 'edge';
 export const dynamic = 'force-dynamic'; // Ensure no caching
@@ -156,21 +157,4 @@ function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
     return result;
 }
 
-function normalizeMinerName(name: string): string {
-    let lower = name.toLowerCase();
 
-    // 1. Remove Brands
-    lower = lower.replace(/antminer|whatsminer|bitmain|microbt|avalon|canaan/g, '');
-
-    // 2. Standardize Series/Terms
-    lower = lower.replace(/\bhydro\b/g, 'hyd'); // Hydro -> hyd
-    // lower = lower.replace(/\bhyd\b/g, 'hyd'); // already hyd
-    lower = lower.replace(/\bplus\b/g, '+');    // Plus -> +
-    lower = lower.replace(/\bpro\b/g, 'pro');
-    lower = lower.replace(/\bxp\b/g, 'xp');
-
-    // 3. Cleanup
-    // Remove all non-alphanumeric characters (including spaces, dashes)
-    // allowing us to match "s21+hyd" with "s21hyd" easily if separators differ
-    return lower.replace(/[^a-z0-9+]/g, '');
-}

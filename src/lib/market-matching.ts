@@ -106,3 +106,22 @@ export function findBestNameMatch(simName: string, marketMiners: SimpleMarketMin
     }
     return { price: 0 };
 }
+
+export function normalizeMinerName(name: string): string {
+    let lower = name.toLowerCase();
+
+    // 1. Remove Brands
+    lower = lower.replace(/antminer|whatsminer|bitmain|microbt|avalon|canaan/g, '');
+
+    // 2. Standardize Series/Terms
+    lower = lower.replace(/\bhydro\b/g, 'hyd'); // Hydro -> hyd
+    // lower = lower.replace(/\bhyd\b/g, 'hyd'); // already hyd
+    lower = lower.replace(/\bplus\b/g, '+');    // Plus -> +
+    lower = lower.replace(/\bpro\b/g, 'pro');
+    lower = lower.replace(/\bxp\b/g, 'xp');
+
+    // 3. Cleanup
+    // Remove all non-alphanumeric characters (including spaces, dashes)
+    // allowing us to match "s21+hyd" with "s21hyd" easily if separators differ
+    return lower.replace(/[^a-z0-9+]/g, '');
+}
