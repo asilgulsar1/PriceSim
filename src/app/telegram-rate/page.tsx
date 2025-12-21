@@ -79,16 +79,10 @@ export default async function TelegramRatePage() {
                         {isDev ? 'DEV MODE (Auth Bypassed)' : 'Admin Only'}
                     </span>
                 </p>
-                {/* Show Errors in Prod too now */}
-                {errorMsg && (
-                    <div className="p-4 bg-red-50 text-red-800 text-sm rounded border border-red-200">
-                        <strong>Data Error:</strong> {errorMsg}
-                        <div className="mt-1 text-xs">If "No Data Blob", try running the Cron Manually: <code>/api/cron/telegram-scrape</code></div>
-                    </div>
-                )}
-                {isDev && !errorMsg && (
+                {isDev && (
                     <div className="p-2 bg-yellow-50 text-yellow-800 text-sm rounded border border-yellow-200">
                         Reading from generic local file: <code>debug-output.json</code>
+                        {errorMsg && <div className="text-red-600 font-bold mt-1">Error: {errorMsg}</div>}
                     </div>
                 )}
             </div>

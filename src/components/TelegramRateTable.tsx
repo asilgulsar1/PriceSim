@@ -247,8 +247,8 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
 function GroupRow({ group }: { group: any }) {
     const [open, setOpen] = React.useState(false);
 
-    // Sort children by Hashrate Desc
-    const children = group.children.sort((a: any, b: any) => b.hashrateTH - a.hashrateTH);
+    // Use pre-sorted children from parent useMemo
+    const children = group.children;
     const topVariant = children[0]; // Representative for columns if needed
 
     // Logic: If only 1 child, just render the child row directly? 
