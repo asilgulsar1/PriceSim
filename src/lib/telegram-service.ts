@@ -36,8 +36,9 @@ function parseLine(line: string): TelegramMiner[] | null {
     // 1. Clean basic bullets
     let cleanLine = line.replace(/^[-\*•]\s*/, '').trim();
 
-    // Check for Slash-Separated Hashrates (e.g., 434/436/440T or 434-436T)
-    const multiHashRegex = /((?:\d{3}[/\-]){1,4}\d{3})\s*(T|Th)/i;
+    // Check for Slash-Separated Hashrates (e.g., 434/436/440T or /440/442T)
+    // Updated to handle optional leading slash/dash
+    const multiHashRegex = /[/\-]?\b((?:\d{3}[/\-]){1,4}\d{3})\s*(T|Th)\b/i;
     const multiMatch = cleanLine.match(multiHashRegex);
     let multiHashrates: number[] = [];
     let usedMultiMatch = false;
