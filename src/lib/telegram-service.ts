@@ -83,6 +83,30 @@ function parseLine(line: string): TelegramMiner | null {
         price = parseFloat(flatMatch[1] || flatMatch[2]);
     }
 
+    // 4b. Quantity / Lot Logic
+    // Detect "100pcs", "100x", "100 units"
+    const qtyRegex = /(\d+)\s*(?:pcs|units|x\s|pieces)/i;
+    const qtyMatch = cleanLine.match(qtyRegex);
+    let quantity = 1;
+
+    if (qtyMatch) {
+        quantity = parseInt(qtyMatch[1], 10);
+    }
+
+    // Heuristic: If Price is very high (> $10,000) and Quantity > 1, it's likely a Lot Price.
+    // e.g. "100pcs S19j Pro $21500" -> $215/unit.
+    // However, S21 Hyros are ~$6k-8k. 10 units = $60k.
+    // If Price > $8000 and Quantity > 1...
+    // But check hash/model. S21 Hydro (2024) might be $5k.
+    // L7 is $4k.
+    // Let's safe-guard: If Price / Quantity is within reasonable range ($100 - $15,000), use it.
+    if (quantity > 1 && price > 5000) {
+        const impliedUnit = price / quantity;
+        if (impliedUnit > 50 && impliedUnit < 15000) {
+            price = impliedUnit;
+        }
+    }
+
     // 5. Name Cleaning
     // Remove the parts we matched to leave just the model name
     let name = cleanLine;
@@ -91,12 +115,19 @@ function parseLine(line: string): TelegramMiner | null {
     if (effMatch) name = name.replace(effMatch[0], '');
     if (unitMatch) name = name.replace(unitMatch[0], '');
     if (flatMatch) name = name.replace(flatMatch[0], '');
+    if (qtyMatch) name = name.replace(qtyMatch[0], ''); // Remove "100pcs"
 
-    // Remove cleanups
+    // Aggressive Cleanup (Stop words)
     name = name.replace(/@\w+/g, '') // Mentions
         .replace(/http\S+/g, '') // Links
         .replace(/[:|\-—,]/g, ' ') // Punctuation key chars
+        .replace(/\b(?:moq|doa|warranty|working|condition|lot|batch|stock|spot|new|used|refurb|refurbished|for sale|selling|available|now)\b/gi, ' ')
+        .replace(/\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\b/gi, '') // Month frags
         .replace(/\s+/g, ' ').trim();
+
+    // Final Shortening
+    // "S21+ HYD /H" -> "S21+ HYD"
+    name = name.replace(/\/h\b/i, '');
 
     if (price > 0 && hashrateTH > 0) {
         return { name, hashrateTH, price: Math.round(price), source: '', date: new Date(), powerW: Math.round(powerW) };
