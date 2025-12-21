@@ -749,13 +749,13 @@
     ]
   },
   {
-    "name": "Antminer S21PRO ⬆",
+    "name": "Antminer S21 Pro",
     "hashrateTH": 220,
     "price": 11,
     "stats": {
       "min": 11,
       "max": 2930,
-      "count": 21,
+      "count": 22,
       "middle": 2772
     },
     "listings": [
@@ -843,6 +843,11 @@
         "source": "SCminer (Russia)",
         "price": 2930,
         "date": "2025-12-19T03:48:15.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (USA)",
+        "price": 2772,
+        "date": "2025-12-19T09:15:50.000Z"
       },
       {
         "source": "AsicArk Official Channel (HK)",
@@ -1380,7 +1385,7 @@
     ]
   },
   {
-    "name": "Antminer S21 +",
+    "name": "Antminer S21+",
     "hashrateTH": 225,
     "price": 10,
     "stats": {
@@ -1498,7 +1503,7 @@
     ]
   },
   {
-    "name": "Antminer S21 +",
+    "name": "Antminer S21+",
     "hashrateTH": 235,
     "price": 11,
     "stats": {
@@ -2002,8 +2007,8 @@
     "stats": {
       "min": 12,
       "max": 3300,
-      "count": 20,
-      "middle": 2875
+      "count": 22,
+      "middle": 2780
     },
     "listings": [
       {
@@ -2028,6 +2033,11 @@
       },
       {
         "source": "ASICXchange Market Place",
+        "price": 2504,
+        "date": "2025-12-19T16:10:08.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
         "price": 2970,
         "date": "2025-12-19T13:47:59.000Z"
       },
@@ -2045,6 +2055,11 @@
         "source": "ASICXchange Market Place (Russia)",
         "price": 2980,
         "date": "2025-12-19T07:26:05.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 2621,
+        "date": "2025-12-18T21:20:02.000Z"
       },
       {
         "source": "Unistar Miner(Offical)",
@@ -2109,7 +2124,7 @@
     ]
   },
   {
-    "name": "Antminer S21 +",
+    "name": "Antminer S21+",
     "hashrateTH": 216,
     "price": 10,
     "stats": {
@@ -2200,7 +2215,7 @@
     ]
   },
   {
-    "name": "Antminer U3 S21XP Hydro",
+    "name": "Antminer U3 S21 XP Hydro",
     "hashrateTH": 860,
     "price": 11550,
     "stats": {
@@ -2463,7 +2478,7 @@
     "stats": {
       "min": 16,
       "max": 4650,
-      "count": 11,
+      "count": 12,
       "middle": 4131
     },
     "listings": [
@@ -2511,6 +2526,11 @@
         "source": "BT-Miners Global (HK)",
         "price": 4150,
         "date": "2025-12-19T09:32:21.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 4077,
+        "date": "2025-12-19T09:15:50.000Z"
       },
       {
         "source": "DCE miner",
@@ -2686,29 +2706,6 @@
         "source": "BT-Miners Global (USA)",
         "price": 3280,
         "date": "2025-12-19T09:32:21.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Antminer S21 Pro H 6pcs",
-    "hashrateTH": 234,
-    "price": 2504,
-    "stats": {
-      "min": 2504,
-      "max": 2621,
-      "count": 2,
-      "middle": 2563
-    },
-    "listings": [
-      {
-        "source": "ASICXchange Market Place",
-        "price": 2504,
-        "date": "2025-12-19T16:10:08.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 2621,
-        "date": "2025-12-18T21:20:02.000Z"
       }
     ]
   },
@@ -3136,13 +3133,13 @@
     ]
   },
   {
-    "name": "Whatsminer M63S 0",
+    "name": "Whatsminer M63s+",
     "hashrateTH": 410,
-    "price": 4660,
+    "price": 11,
     "stats": {
-      "min": 4660,
-      "max": 4660,
-      "count": 2,
+      "min": 11,
+      "max": 4740,
+      "count": 5,
       "middle": 4660
     },
     "listings": [
@@ -3154,7 +3151,22 @@
       {
         "source": "⛏️Asic mining center - Mila💰",
         "price": 4660,
-        "date": "2025-12-19T09:03:49.000Z"
+        "date": "2025-12-20T11:31:32.000Z"
+      },
+      {
+        "source": "SCminer (Russia)",
+        "price": 4740,
+        "date": "2025-12-20T04:42:16.000Z"
+      },
+      {
+        "source": "How2mine | Россия",
+        "price": 4740,
+        "date": "2025-12-19T09:37:02.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 11,
+        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
@@ -4566,39 +4578,6 @@
     ]
   },
   {
-    "name": "Whatsminer M63s+",
-    "hashrateTH": 410,
-    "price": 11,
-    "stats": {
-      "min": 11,
-      "max": 4740,
-      "count": 4,
-      "middle": 4700
-    },
-    "listings": [
-      {
-        "source": "⛏️Asic mining center - Mila💰",
-        "price": 4660,
-        "date": "2025-12-20T11:31:32.000Z"
-      },
-      {
-        "source": "SCminer (Russia)",
-        "price": 4740,
-        "date": "2025-12-20T04:42:16.000Z"
-      },
-      {
-        "source": "How2mine | Россия",
-        "price": 4740,
-        "date": "2025-12-19T09:37:02.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 11,
-        "date": "2025-12-19T06:11:49.000Z"
-      }
-    ]
-  },
-  {
     "name": "Antminer S21 Hydro",
     "hashrateTH": 473,
     "price": 7710,
@@ -5399,42 +5378,6 @@
         "source": "BT-Miners Global (HK)",
         "price": 8150,
         "date": "2025-12-19T09:32:21.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Antminer S21 Pro 7",
-    "hashrateTH": 220,
-    "price": 2772,
-    "stats": {
-      "min": 2772,
-      "max": 2772,
-      "count": 1,
-      "middle": 2772
-    },
-    "listings": [
-      {
-        "source": "AsicArk Official Channel (USA)",
-        "price": 2772,
-        "date": "2025-12-19T09:15:50.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Antminer S21 XP 7",
-    "hashrateTH": 270,
-    "price": 4077,
-    "stats": {
-      "min": 4077,
-      "max": 4077,
-      "count": 1,
-      "middle": 4077
-    },
-    "listings": [
-      {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 4077,
-        "date": "2025-12-19T09:15:50.000Z"
       }
     ]
   },

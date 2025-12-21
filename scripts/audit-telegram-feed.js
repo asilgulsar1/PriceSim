@@ -308,10 +308,22 @@ class TelegramService {
 
                             // Post-Clean Fixes for Casing (Prettify)
                             miner.name = miner.name
+                                .replace(/\bS21\s+Pro\s+H\b/gi, 'S21 Pro')
+                                .replace(/\bS21\s*\+\b/gi, 'S21+')
+                                .replace(/\bS21\s*\+\s*Hydro\b/gi, 'S21+ Hydro')
+                                .replace(/Antminer\s+S21\s+\+/gi, 'Antminer S21+')
+                                .replace(/\bS21XP\b/gi, 'S21 XP')
+                                .replace(/U3\s+S21\s*XP\s*Hydro/gi, 'U3 S21 XP Hydro')
+                                .replace(/\b\d+pcs\b/gi, '')
+                                .replace(/[\u200B-\u200D\uFEFF]/g, '')
+                                .replace(/\s+\d+$/g, '')
+                                .trim()
                                 .replace(/\bpro\b/gi, 'Pro')
                                 .replace(/\bhydro\b/gi, 'Hydro')
                                 .replace(/\bxp\b/gi, 'XP')
-                                .replace(/\bplus\b/gi, '+'); // Normalize "Plus" -> "+"
+                                .replace(/\bplus\b/gi, '+')
+                                .replace(/\s+\+/g, '+')
+                                .replace(/\s+Hydro/gi, ' Hydro'); // Enforce single space before Hydro
 
                             miner.date = new Date(msg.date * 1000);
                             results.push(miner);
