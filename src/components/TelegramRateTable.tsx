@@ -44,6 +44,9 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
                 else powerW = tg.hashrateTH * 22; // S19 Pro
             }
 
+            // Price Fallback (Robustness for older blobs or missing parses)
+            const price = tg.price || tg.stats?.minPrice || tg.stats?.middlePrice || 0;
+
             // 2. Calculate Financials
             let dailyRevenueUSD = 0;
             if (liveHashpriceUSD > 0 && tg.hashrateTH > 0) {
@@ -56,9 +59,9 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
 
             // 3. ROI (Annual)
             let roi = 0;
-            if (tg.price > 0 && dailyRevenueUSD > 0) {
+            if (price > 0 && dailyRevenueUSD > 0) {
                 if (dailyNet > 0) {
-                    roi = ((dailyNet * 365) / tg.price) * 100;
+                    roi = ((dailyNet * 365) / price) * 100;
                 } else {
                     roi = 0;
                 }
@@ -66,6 +69,7 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
 
             return {
                 ...tg,
+                price, // Override with safe price
                 powerW,
                 dailyRevenueUSD,
                 dailyExpenseUSD,
