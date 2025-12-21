@@ -22,24 +22,30 @@ export async function GET(request: Request) {
         }
 
         // 2. Fetch Telegram Data (Local or Blob)
-        let telegramData = [];
+        let telegramData: any[] = [];
         try {
             // Try Local First (Dev)
             if (process.env.NODE_ENV === 'development') {
                 try {
                     const localUrl = 'http://localhost:3000/miners-latest.json';
                     const res = await fetch(localUrl, { cache: 'no-store' });
-                    if (res.ok) telegramData = await res.json();
+                    if (res.ok) {
+                        const raw = await res.json();
+                        telegramData = Array.isArray(raw) ? raw : (raw.miners || []);
+                    }
                 } catch (e) { }
             }
 
             // If empty, try Blob
-            if (!telegramData.length) {
+            if (telegramData.length === 0) {
                 const { blobs } = await list({ prefix: 'miners-latest.json', limit: 1 });
                 if (blobs.length > 0) {
                     const blobUrl = `${blobs[0].url}?t=${Date.now()}`;
                     const res = await fetch(blobUrl, { cache: 'no-store' });
-                    if (res.ok) telegramData = await res.json();
+                    if (res.ok) {
+                        const raw = await res.json();
+                        telegramData = Array.isArray(raw) ? raw : (raw.miners || []);
+                    }
                 }
             }
         } catch (e) {
