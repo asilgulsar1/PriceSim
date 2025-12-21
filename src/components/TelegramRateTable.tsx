@@ -106,12 +106,12 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
                                 {m.matchName === 'Estimated' && <span className="ml-2 text-[10px] text-amber-500">(Est. Power)</span>}
                             </TableCell>
                             <TableCell className="text-right">{m.hashrateTH} TH</TableCell>
-                            <TableCell className="text-right">{m.powerW.toFixed(0)} W</TableCell>
-                            <TableCell className="text-right text-green-600">${m.dailyRevenueUSD.toFixed(2)}</TableCell>
-                            <TableCell className="text-right text-red-500">-${m.dailyExpenseUSD.toFixed(2)}</TableCell>
-                            <TableCell className="text-right font-bold text-green-700">${m.dailyNet.toFixed(2)}</TableCell>
-                            <TableCell className="text-right font-mono text-blue-600">{m.roi.toFixed(1)}%</TableCell>
-                            <TableCell className="text-right font-bold text-lg">${m.price.toLocaleString()}</TableCell>
+                            <TableCell className="text-right">{(m.powerW || 0).toFixed(0)} W</TableCell>
+                            <TableCell className="text-right text-green-600">${(m.dailyRevenueUSD || 0).toFixed(2)}</TableCell>
+                            <TableCell className="text-right text-red-500">-${(m.dailyExpenseUSD || 0).toFixed(2)}</TableCell>
+                            <TableCell className="text-right font-bold text-green-700">${(m.dailyNet || 0).toFixed(2)}</TableCell>
+                            <TableCell className="text-right font-mono text-blue-600">{(m.roi || 0).toFixed(1)}%</TableCell>
+                            <TableCell className="text-right font-bold text-lg">${(m.price || 0).toLocaleString()}</TableCell>
                             <TableCell className="text-right text-xs text-muted-foreground">
                                 {m.listings && m.listings.length > 0 ? (
                                     <div className="flex flex-col items-end">
@@ -128,7 +128,7 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
                 </TableBody>
             </Table>
             <div className="p-4 text-xs text-muted-foreground bg-muted/20 border-t">
-                * ROI calculated based on Net Daily Profit (Rev - Exp) using ${market.btcPrice.toLocaleString()} BTC and ${DEFAULT_CONTRACT_TERMS.electricityRate}/kWh.
+                * ROI calculated based on Net Daily Profit (Rev - Exp) using ${(market.btcPrice || 0).toLocaleString()} BTC and ${DEFAULT_CONTRACT_TERMS.electricityRate}/kWh.
             </div>
         </div>
     );
