@@ -43,19 +43,31 @@ export async function GET(request: Request) {
             }))
         };
 
-        // Upload to Blob
+        // Upload to Blob (Latest)
         const blob = await put('miners-latest.json', JSON.stringify(output), {
             access: 'public',
             addRandomSuffix: false, // Overwrite (Legacy)
             contentType: 'application/json',
-            allowOverwrite: true, // Explicit override required by new SDK
-            // @ts-ignore - Vercel Blob types might be outdated in old versions, but runtime supports it
+            allowOverwrite: true,
+            // @ts-ignore
+            token: process.env.BLOB_READ_WRITE_TOKEN
+        });
+
+        // Upload to Blob (Daily History) - For future analysis (Price movement S19 vs BTC)
+        const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+        const historyBlob = await put(`history/miners-${today}.json`, JSON.stringify(output), {
+            access: 'public',
+            addRandomSuffix: false,
+            contentType: 'application/json',
+            allowOverwrite: true,
+            // @ts-ignore
             token: process.env.BLOB_READ_WRITE_TOKEN
         });
 
         console.log("Cron Scrape Complete. Uploaded to:", blob.url);
+        console.log("History saved to:", historyBlob.url);
 
-        return NextResponse.json({ success: true, url: blob.url, count: results.length });
+        return NextResponse.json({ success: true, url: blob.url, historyUrl: historyBlob.url, count: results.length });
     } catch (error: any) {
         console.error("Cron Job Failed:", error);
         return NextResponse.json({ success: false, error: error.message }, { status: 500 });
