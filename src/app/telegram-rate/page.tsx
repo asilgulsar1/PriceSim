@@ -29,9 +29,13 @@ async function getTelegramData() {
         if (blobs.length > 0) {
             const res = await fetch(blobs[0].url, { cache: 'no-store' });
             if (res.ok) return await res.json();
+            return { error: `Fetch Failed: ${res.status} ${res.statusText}` };
+        } else {
+            return { error: "No Data Blob Found (Cron hasn't run?)" };
         }
-    } catch (e) {
+    } catch (e: any) {
         console.error("Failed to fetch telegram data", e);
+        return { error: `Blob Error: ${e.message}` };
     }
     return [];
 }
@@ -75,10 +79,16 @@ export default async function TelegramRatePage() {
                         {isDev ? 'DEV MODE (Auth Bypassed)' : 'Admin Only'}
                     </span>
                 </p>
-                {isDev && (
+                {/* Show Errors in Prod too now */}
+                {errorMsg && (
+                    <div className="p-4 bg-red-50 text-red-800 text-sm rounded border border-red-200">
+                        <strong>Data Error:</strong> {errorMsg}
+                        <div className="mt-1 text-xs">If "No Data Blob", try running the Cron Manually: <code>/api/cron/telegram-scrape</code></div>
+                    </div>
+                )}
+                {isDev && !errorMsg && (
                     <div className="p-2 bg-yellow-50 text-yellow-800 text-sm rounded border border-yellow-200">
                         Reading from generic local file: <code>debug-output.json</code>
-                        {errorMsg && <div className="text-red-600 font-bold mt-1">Error: {errorMsg}</div>}
                     </div>
                 )}
             </div>
