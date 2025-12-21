@@ -26,17 +26,34 @@ const MAX_AGE_HOURS = 72;
 function parseLine(line) {
     let cleanLine = line.replace(/^[-\*•]\s*/, '').trim();
 
+    // Check for Slash-Separated Hashrates (e.g., 434/436/440T or 434-436T)
+    const multiHashRegex = /((?:\d{3}[/\-]){1,4}\d{3})\s*(T|Th)/i;
+    const multiMatch = cleanLine.match(multiHashRegex);
+    let multiHashrates = [];
+    let usedMultiMatch = false;
+
+    if (multiMatch) {
+        const rawNums = multiMatch[1].split(/[/\-]/);
+        multiHashrates = rawNums.map(n => parseFloat(n)).filter(n => !isNaN(n) && n > 20); // Filter valid hashrates > 20T
+        if (multiHashrates.length > 1) {
+            usedMultiMatch = true;
+        }
+    }
+
+    // Fallback to Single Hashrate if no multi-group found
     const hashrateRegex = /(\d+(?:\.\d+)?)\s*(T|Th|G|Gh|M|Mh)(?![a-z])/i;
     const hashrateMatch = cleanLine.match(hashrateRegex);
     let hashrateTH = 0;
 
-    if (hashrateMatch) {
+    if (!usedMultiMatch && hashrateMatch) {
         const val = parseFloat(hashrateMatch[1]);
         const unit = hashrateMatch[2].toUpperCase();
         if (unit.startsWith('T')) hashrateTH = val;
         else if (unit.startsWith('G')) hashrateTH = val / 1000;
         else if (unit.startsWith('M')) hashrateTH = val / 1000000;
     }
+
+    // ... Power/Price logic remains (simplified for now to apply to all in split) ...
 
     const powerRegex = /(\d+(?:\.\d+)?)\s*W(?![a-z])/i;
     const effRegex = /(\d+(?:\.\d+)?)\s*J\/T/i;
@@ -47,8 +64,6 @@ function parseLine(line) {
 
     if (powerMatch) {
         powerW = parseFloat(powerMatch[1]);
-    } else if (effMatch && hashrateTH > 0) {
-        powerW = parseFloat(effMatch[1]) * hashrateTH;
     }
 
     const unitPriceRegex = /(?:[\$u]\s*)?(\d+(?:\.\d+)?)\s*(?:[u\$]|usd)?\s*\/\s*(?:t|th)/i;
@@ -58,9 +73,7 @@ function parseLine(line) {
     const unitMatch = cleanLine.match(unitPriceRegex);
     const flatMatch = cleanLine.match(flatPriceRegex);
 
-    if (unitMatch && hashrateTH > 0) {
-        price = parseFloat(unitMatch[1]) * hashrateTH;
-    } else if (flatMatch) {
+    if (flatMatch) {
         price = parseFloat(flatMatch[1] || flatMatch[2]);
     }
 
@@ -79,15 +92,17 @@ function parseLine(line) {
         }
     }
 
-    let name = cleanLine;
-    if (hashrateMatch) name = name.replace(hashrateMatch[0], '');
-    if (powerMatch) name = name.replace(powerMatch[0], '');
-    if (effMatch) name = name.replace(effMatch[0], '');
-    if (unitMatch) name = name.replace(unitMatch[0], '');
-    if (flatMatch) name = name.replace(flatMatch[0], '');
-    if (qtyMatch) name = name.replace(qtyMatch[0], '');
+    // --- Name Cleaning Common ---
+    let nameBase = cleanLine;
+    if (usedMultiMatch && multiMatch) nameBase = nameBase.replace(multiMatch[0], ''); // Remove "434/436T"
+    if (!usedMultiMatch && hashrateMatch) nameBase = nameBase.replace(hashrateMatch[0], '');
+    if (powerMatch) nameBase = nameBase.replace(powerMatch[0], '');
+    if (effMatch) nameBase = nameBase.replace(effMatch[0], '');
+    if (unitMatch) nameBase = nameBase.replace(unitMatch[0], '');
+    if (flatMatch) nameBase = nameBase.replace(flatMatch[0], '');
+    if (qtyMatch) nameBase = nameBase.replace(qtyMatch[0], '');
 
-    name = name.replace(/@\w+/g, '')
+    nameBase = nameBase.replace(/@\w+/g, '')
         .replace(/http\S+/g, '')
         .replace(/[:|\-—,]/g, ' ')
         .replace(/\b(?:moq|doa|warranty|working|condition|lot|batch|stock|spot|new|used|refurb|refurbished|for sale|selling|available|now)\b/gi, ' ')
@@ -95,28 +110,30 @@ function parseLine(line) {
         .replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]|\u2B50|\u2B55|\u231A|\u231B|\u23F3|\u23F0|\u25AA|\u25AB)/g, '')
         .replace(/\s+/g, ' ').trim();
 
-    name = name.replace(/\/h\b/i, '');
+    nameBase = nameBase.replace(/\/h\b/i, '');
 
-    const lowerName = name.toLowerCase();
+    const lowerName = nameBase.toLowerCase();
 
+    // Context Checks
     if (!lowerName.includes('antminer') && !lowerName.includes('bitmain')) {
-        if (/^(s|t|l|k|d|e)[0-9]/i.test(name) || /^u3/i.test(name) || /^b19/i.test(name)) {
-            name = `Antminer ${name}`;
+        if (/^(s|t|l|k|d|e)[0-9]/i.test(nameBase) || /^u3/i.test(nameBase) || /^b19/i.test(nameBase)) {
+            nameBase = `Antminer ${nameBase}`;
         }
     }
 
     if (!lowerName.includes('whatsminer') && !lowerName.includes('microbt')) {
-        if (/^m[0-9]/i.test(name)) {
-            name = `Whatsminer ${name}`;
+        if (/^m[0-9]/i.test(nameBase)) {
+            nameBase = `Whatsminer ${nameBase}`;
         }
     }
 
     if (!lowerName.includes('avalon') && !lowerName.includes('canaan')) {
-        if (/^a[0-9]/i.test(name)) {
-            name = `Avalon ${name}`;
+        if (/^a[0-9]/i.test(nameBase)) {
+            nameBase = `Avalon ${nameBase}`;
         }
     }
 
+    // Strict BTC Filter
     const btcPatterns = [
         /Antminer\s*[ST](19|21|23)/i,
         /Antminer\s*B19/i,
@@ -126,16 +143,58 @@ function parseLine(line) {
         /Teraflux|Auradine/i
     ];
 
-    const isMatch = btcPatterns.some(pattern => pattern.test(name));
-
-    if (!isMatch) {
-        return null;
+    if (!btcPatterns.some(pattern => pattern.test(nameBase))) {
+        return [];
     }
 
-    if (price > 0 && hashrateTH > 0) {
-        return { name, hashrateTH, price: Math.round(price), source: '', date: new Date(), powerW: Math.round(powerW) };
+    const results = [];
+
+    // 1. Multi-Hashrate Output
+    if (usedMultiMatch) {
+        for (const h of multiHashrates) {
+            let finalPrice = price;
+            // Logic: If Unit Price found, multiply. If Flat Price, assume same for all (or avg?)
+            if (unitMatch) {
+                finalPrice = parseFloat(unitMatch[1]) * h;
+            }
+
+            if (finalPrice > 0) {
+                // Recalc power if eff known
+                let finalPower = powerW;
+                if (effMatch) finalPower = parseFloat(effMatch[1]) * h;
+
+                results.push({
+                    name: nameBase,
+                    hashrateTH: h,
+                    price: Math.round(finalPrice),
+                    source: '',
+                    date: new Date(),
+                    powerW: Math.round(finalPower)
+                });
+            }
+        }
     }
-    return null;
+    // 2. Single Hashrate Output
+    else if (hashrateTH > 0) {
+        let finalPrice = price;
+        if (unitMatch) finalPrice = parseFloat(unitMatch[1]) * hashrateTH;
+
+        let finalPower = powerW;
+        if (effMatch) finalPower = parseFloat(effMatch[1]) * hashrateTH;
+
+        if (finalPrice > 0) {
+            results.push({
+                name: nameBase,
+                hashrateTH,
+                price: Math.round(finalPrice),
+                source: '',
+                date: new Date(),
+                powerW: Math.round(finalPower)
+            });
+        }
+    }
+
+    return results;
 }
 
 class TelegramService {
@@ -199,27 +258,30 @@ class TelegramService {
                     // Block "Ex factory", "Future Batch", "Est Date" AND "YYYY.MM" date codes (e.g., 2026.01)
                     if (/ex\s*factory/i.test(line) || /future\s*batch/i.test(line) || /est\.?\s*date/i.test(line) || /\b202[5-9][\.\-]?\d{2}\b/.test(line)) continue;
 
-                    const miner = parseLine(line);
-                    if (miner) {
-                        // Double check: If name still contains future keywords or date codes, drop it
-                        if (/ex\s*factory/i.test(miner.name) || /est\.?\s*date/i.test(miner.name) || /\b202[5-9][\.\-]?\d{2}\b/.test(miner.name)) continue;
+                    const miners = parseLine(line); // Now returns Array
+                    if (miners && miners.length > 0) {
+                        for (const miner of miners) {
+                            // Double check: If name still contains future keywords or date codes, drop it
+                            if (/ex\s*factory/i.test(miner.name) || /est\.?\s*date/i.test(miner.name) || /\b202[5-9][\.\-]?\d{2}\b/.test(miner.name)) continue;
 
-                        const regionTag = currentRegion ? ` (${currentRegion})` : '';
-                        miner.source = (dialog.title || "Telegram") + regionTag;
+                            const regionTag = currentRegion ? ` (${currentRegion})` : '';
+                            miner.source = (dialog.title || "Telegram") + regionTag;
 
-                        // Enhanced Cleanup
-                        miner.name = miner.name.replace(/^#/, '')
-                            .replace(/\/s\b/gi, '') // Remove "/s" suffix
-                            .replace(/\b(est\.?|date)\b/gi, '') // Remove "Est." "Date"
-                            .replace(/ex\s*factory/gi, '') // Explicit remove if skipped check?
-                            .replace(/mix/gi, '') // Remove "MIX" noise
-                            .replace(/([A-Z]\d+)hyd/gi, '$1 Hyd') // Fix "S23hyd" -> "S23 Hyd"
-                            .replace(/\b\d{2,3}\b$/g, '') // Remove trailing 2-3 digit numbers (like "100")
-                            .replace(/\s+/g, ' ') // Collapse spaces
-                            .trim();
+                            // Enhanced Cleanup
+                            miner.name = miner.name.replace(/^#/, '')
+                                .replace(/\/s\b/gi, '') // Remove "/s" suffix
+                                .replace(/\b(est\.?|date)\b/gi, '') // Remove "Est." "Date"
+                                .replace(/ex\s*factory/gi, '') // Explicit remove if skipped check?
+                                .replace(/mix/gi, '') // Remove "MIX" noise
+                                .replace(/([A-Z]\d+)hyd/gi, '$1 Hyd') // Fix "S23hyd" -> "S23 Hyd"
+                                .replace(/\/T\b/gi, '') // Remove "/T" suffix
+                                .replace(/\b\d{2,3}\b$/g, '') // Remove trailing 2-3 digit numbers
+                                .replace(/\s+/g, ' ') // Collapse spaces
+                                .trim();
 
-                        miner.date = new Date(msg.date * 1000);
-                        results.push(miner);
+                            miner.date = new Date(msg.date * 1000);
+                            results.push(miner);
+                        }
                     }
                 }
             }

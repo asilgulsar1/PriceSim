@@ -32,16 +32,30 @@ interface TelegramMiner {
     powerW?: number;
 }
 
-function parseLine(line: string): TelegramMiner | null {
+function parseLine(line: string): TelegramMiner[] | null {
     // 1. Clean basic bullets
     let cleanLine = line.replace(/^[-\*•]\s*/, '').trim();
 
-    // 2. Hashrate
+    // Check for Slash-Separated Hashrates (e.g., 434/436/440T or 434-436T)
+    const multiHashRegex = /((?:\d{3}[/\-]){1,4}\d{3})\s*(T|Th)/i;
+    const multiMatch = cleanLine.match(multiHashRegex);
+    let multiHashrates: number[] = [];
+    let usedMultiMatch = false;
+
+    if (multiMatch) {
+        const rawNums = multiMatch[1].split(/[/\-]/);
+        multiHashrates = rawNums.map(n => parseFloat(n)).filter(n => !isNaN(n) && n > 20); // Filter valid hashrates > 20T
+        if (multiHashrates.length > 1) {
+            usedMultiMatch = true;
+        }
+    }
+
+    // 2. Hashrate (Fallback)
     const hashrateRegex = /(\d+(?:\.\d+)?)\s*(T|Th|G|Gh|M|Mh)(?![a-z])/i;
     const hashrateMatch = cleanLine.match(hashrateRegex);
     let hashrateTH = 0;
 
-    if (hashrateMatch) {
+    if (!usedMultiMatch && hashrateMatch) {
         const val = parseFloat(hashrateMatch[1]);
         const unit = hashrateMatch[2].toUpperCase();
         if (unit.startsWith('T')) hashrateTH = val;
@@ -60,13 +74,6 @@ function parseLine(line: string): TelegramMiner | null {
 
     if (powerMatch) {
         powerW = parseFloat(powerMatch[1]);
-    } else if (effMatch && hashrateTH > 0) {
-        // J/T * TH = Seconds * Watts? No.
-        // 1 J = 1 Watt-Second.
-        // Efficiency J/TH is Joules per Terahash.
-        // Power (W) = H (TH/s) * Eff (J/TH).
-        // Example: 29.5 J/T * 100 TH = 2950 W.
-        powerW = parseFloat(effMatch[1]) * hashrateTH;
     }
 
     // 4. Price
@@ -77,14 +84,11 @@ function parseLine(line: string): TelegramMiner | null {
     const unitMatch = cleanLine.match(unitPriceRegex);
     const flatMatch = cleanLine.match(flatPriceRegex);
 
-    if (unitMatch && hashrateTH > 0) {
-        price = parseFloat(unitMatch[1]) * hashrateTH;
-    } else if (flatMatch) {
+    if (flatMatch) {
         price = parseFloat(flatMatch[1] || flatMatch[2]);
     }
 
     // 4b. Quantity / Lot Logic
-    // Detect "100pcs", "100x", "100 units"
     const qtyRegex = /(\d+)\s*(?:pcs|units|x\s|pieces)/i;
     const qtyMatch = cleanLine.match(qtyRegex);
     let quantity = 1;
@@ -93,13 +97,6 @@ function parseLine(line: string): TelegramMiner | null {
         quantity = parseInt(qtyMatch[1], 10);
     }
 
-    // Heuristic: If Price is very high (> $10,000) and Quantity > 1, it's likely a Lot Price.
-    // e.g. "100pcs S19j Pro $21500" -> $215/unit.
-    // However, S21 Hyros are ~$6k-8k. 10 units = $60k.
-    // If Price > $8000 and Quantity > 1...
-    // But check hash/model. S21 Hydro (2024) might be $5k.
-    // L7 is $4k.
-    // Let's safe-guard: If Price / Quantity is within reasonable range ($100 - $15,000), use it.
     if (quantity > 1 && price > 5000) {
         const impliedUnit = price / quantity;
         if (impliedUnit > 50 && impliedUnit < 15000) {
@@ -108,67 +105,49 @@ function parseLine(line: string): TelegramMiner | null {
     }
 
     // 5. Name Cleaning
-    // Remove the parts we matched to leave just the model name
-    let name = cleanLine;
-    if (hashrateMatch) name = name.replace(hashrateMatch[0], '');
-    if (powerMatch) name = name.replace(powerMatch[0], '');
-    if (effMatch) name = name.replace(effMatch[0], '');
-    if (unitMatch) name = name.replace(unitMatch[0], '');
-    if (flatMatch) name = name.replace(flatMatch[0], '');
-    if (qtyMatch) name = name.replace(qtyMatch[0], ''); // Remove "100pcs"
+    let nameBase = cleanLine;
+    if (usedMultiMatch && multiMatch) nameBase = nameBase.replace(multiMatch[0], ''); // Remove "434/436T"
+    if (!usedMultiMatch && hashrateMatch) nameBase = nameBase.replace(hashrateMatch[0], '');
+    if (powerMatch) nameBase = nameBase.replace(powerMatch[0], '');
+    if (effMatch) nameBase = nameBase.replace(effMatch[0], '');
+    if (unitMatch) nameBase = nameBase.replace(unitMatch[0], '');
+    if (flatMatch) nameBase = nameBase.replace(flatMatch[0], '');
+    if (qtyMatch) nameBase = nameBase.replace(qtyMatch[0], ''); // Remove "100pcs"
 
     // Aggressive Cleanup (Stop words)
-    name = name.replace(/@\w+/g, '') // Mentions
+    nameBase = nameBase.replace(/@\w+/g, '') // Mentions
         .replace(/http\S+/g, '') // Links
         .replace(/[:|\-—,]/g, ' ') // Punctuation key chars
         .replace(/\b(?:moq|doa|warranty|working|condition|lot|batch|stock|spot|new|used|refurb|refurbished|for sale|selling|available|now)\b/gi, ' ')
         .replace(/\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\b/gi, '') // Month frags
-        // Emoji Removal (Broader Ranges)
-        // \u2700-\u27BF: Dingbats
-        // \uE000-\uF8FF: PUC
-        // \uD83C..\uD83E..: Surrogate pairs for Emojis
-        // \u2000-\u2BFF: Symbols/Arrows/etc
         .replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]|\u2B50|\u2B55|\u231A|\u231B|\u23F3|\u23F0|\u25AA|\u25AB)/g, '')
         .replace(/\s+/g, ' ').trim();
 
     // Final Shortening
-    // "S21+ HYD /H" -> "S21+ HYD"
-    name = name.replace(/\/h\b/i, '');
+    nameBase = nameBase.replace(/\/h\b/i, '');
 
     // Standardization / Branding
-    const lowerName = name.toLowerCase();
+    const lowerName = nameBase.toLowerCase();
 
-    // Antminer (S/T/L/K/D/E series generally, but be careful with U3 or others)
-    // S21, T21, L7, K7..
-    // Only apply if not already present
     if (!lowerName.includes('antminer') && !lowerName.includes('bitmain')) {
-        if (/^(s|t|l|k|d|e)[0-9]/i.test(name) || /^u3/i.test(name) || /^b19/i.test(name)) {
-            name = `Antminer ${name}`;
+        if (/^(s|t|l|k|d|e)[0-9]/i.test(nameBase) || /^u3/i.test(nameBase) || /^b19/i.test(nameBase)) {
+            nameBase = `Antminer ${nameBase}`;
         }
     }
 
-    // Whatsminer (M series)
     if (!lowerName.includes('whatsminer') && !lowerName.includes('microbt')) {
-        if (/^m[0-9]/i.test(name)) {
-            name = `Whatsminer ${name}`;
+        if (/^m[0-9]/i.test(nameBase)) {
+            nameBase = `Whatsminer ${nameBase}`;
         }
     }
 
-    // Avalon (A series)
     if (!lowerName.includes('avalon') && !lowerName.includes('canaan')) {
-        if (/^a[0-9]/i.test(name)) {
-            name = `Avalon ${name}`;
+        if (/^a[0-9]/i.test(nameBase)) {
+            nameBase = `Avalon ${nameBase}`;
         }
     }
 
-    // STRICT FILTER: Match Positive Keywords on the CLEANED Name using Regex
-    // This allows covering variants (M60, M63, M66) without listing every single one.
-
-    // BTC Miner Patterns
-    // Bitmain: S19, S21, S23, T19, T21, B19, U3
-    // Whatsminer: M3x, M5x, M6x, M7x (e.g., M30, M31, M50, M53, M60, M63, M66, M70, M76)
-    // Avalon: A11 to A16
-    // Auradine: AT (Teraflux)
+    // STRICT FILTER
     const btcPatterns = [
         /Antminer\s*[ST](19|21|23)/i, // S19, T21, S23...
         /Antminer\s*B19/i,
@@ -178,25 +157,58 @@ function parseLine(line: string): TelegramMiner | null {
         /Teraflux|Auradine/i
     ];
 
-    const isMatch = btcPatterns.some(pattern => pattern.test(name));
-
-    // Fallback: If no "Brand" prefix was added (e.g. just "S21"), check simple codes
-    // But our Branding logic above forces prefixes. so "S21" became "Antminer S21".
-    // So the Regex should work.
-
-    // However, let's be safe. If branding logic failed (e.g. "Hammer Miner"), 
-    // we might want to check the raw codes too? 
-    // No, let's rely on the normalized name which has the brand.
-
-    if (!isMatch) {
-        // Debug Log? console.log(`Filtered out: ${name}`);
-        return null;
+    if (!btcPatterns.some(pattern => pattern.test(nameBase))) {
+        return null; // Return null (not empty array) to signal "no match"
     }
 
-    if (price > 0 && hashrateTH > 0) {
-        return { name, hashrateTH, price: Math.round(price), source: '', date: new Date(), powerW: Math.round(powerW) };
+    const results: TelegramMiner[] = [];
+
+    // 1. Multi-Hashrate Output
+    if (usedMultiMatch) {
+        for (const h of multiHashrates) {
+            let finalPrice = price;
+            // Logic: If Unit Price found, multiply. If Flat Price, assume same for all
+            if (unitMatch) {
+                finalPrice = parseFloat(unitMatch[1]) * h;
+            }
+
+            if (finalPrice > 0) {
+                // Recalc power if eff known
+                let finalPower = powerW;
+                if (effMatch) finalPower = parseFloat(effMatch[1]) * h;
+
+                results.push({
+                    name: nameBase,
+                    hashrateTH: h,
+                    price: Math.round(finalPrice),
+                    source: '',
+                    date: new Date(),
+                    powerW: Math.round(finalPower)
+                });
+            }
+        }
     }
-    return null;
+    // 2. Single Hashrate Output
+    else if (hashrateTH > 0) {
+        let finalPrice = price;
+        if (unitMatch) finalPrice = parseFloat(unitMatch[1]) * hashrateTH;
+
+        let finalPower = powerW;
+        if (effMatch) finalPower = parseFloat(effMatch[1]) * hashrateTH;
+
+        if (finalPrice > 0) {
+            results.push({
+                name: nameBase,
+                hashrateTH,
+                price: Math.round(finalPrice),
+                source: '',
+                date: new Date(),
+                powerW: Math.round(finalPower)
+            });
+        }
+    }
+
+    return results.length > 0 ? results : null;
 }
 
 // --- HK Filter Logic ---
@@ -285,27 +297,30 @@ export class TelegramService {
                     // Block "Ex factory", "Future Batch", "Est Date" AND "YYYY.MM" date codes (e.g., 2026.01)
                     if (/ex\s*factory/i.test(line) || /future\s*batch/i.test(line) || /est\.?\s*date/i.test(line) || /\b202[5-9][\.\-]?\d{2}\b/.test(line)) continue;
 
-                    const miner = parseLine(line);
-                    if (miner) {
-                        // Double check: If name still contains future keywords or date codes, drop it
-                        if (/ex\s*factory/i.test(miner.name) || /est\.?\s*date/i.test(miner.name) || /\b202[5-9][\.\-]?\d{2}\b/.test(miner.name)) continue;
+                    const miners = parseLine(line); // Returns array or null
+                    if (miners && miners.length > 0) {
+                        for (const miner of miners) {
+                            // Double check: If name still contains future keywords or date codes, drop it
+                            if (/ex\s*factory/i.test(miner.name) || /est\.?\s*date/i.test(miner.name) || /\b202[5-9][\.\-]?\d{2}\b/.test(miner.name)) continue;
 
-                        // Append Region to Source if detected
-                        const regionTag = currentRegion ? ` (${currentRegion})` : '';
-                        miner.source = (dialog.title || "Telegram") + regionTag;
+                            // Append Region to Source if detected
+                            const regionTag = currentRegion ? ` (${currentRegion})` : '';
+                            miner.source = (dialog.title || "Telegram") + regionTag;
 
-                        // Clean Name (Remove leading hash, noise, and fix formatting)
-                        miner.name = miner.name.replace(/^#/, '')
-                            .replace(/\/s\b/gi, '') // Remove "/s" suffix
-                            .replace(/\b(est\.?|date)\b/gi, '') // Remove "Est." "Date" artifacts
-                            .replace(/mix/gi, '') // Remove "MIX" noise
-                            .replace(/([A-Z]\d+)hyd/gi, '$1 Hyd') // Fix "S23hyd" -> "S23 Hyd"
-                            .replace(/\b\d{2,3}\b$/g, '') // Remove trailing 2-3 digit numbers (like "100")
-                            .replace(/\s+/g, ' ') // Collapse spaces
-                            .trim();
+                            // Clean Name (Remove leading hash, noise, and fix formatting)
+                            miner.name = miner.name.replace(/^#/, '')
+                                .replace(/\/s\b/gi, '') // Remove "/s" suffix
+                                .replace(/\b(est\.?|date)\b/gi, '') // Remove "Est." "Date" artifacts
+                                .replace(/mix/gi, '') // Remove "MIX" noise
+                                .replace(/([A-Z]\d+)hyd/gi, '$1 Hyd') // Fix "S23hyd" -> "S23 Hyd"
+                                .replace(/\/T\b/gi, '') // Remove "/T" suffix
+                                .replace(/\b\d{2,3}\b$/g, '') // Remove trailing 2-3 digit numbers (like "100")
+                                .replace(/\s+/g, ' ') // Collapse spaces
+                                .trim();
 
-                        miner.date = new Date(msg.date * 1000);
-                        results.push(miner);
+                            miner.date = new Date(msg.date * 1000);
+                            results.push(miner);
+                        }
                     }
                 }
             }
