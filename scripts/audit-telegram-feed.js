@@ -24,7 +24,7 @@ const LIMIT = 50;
 const MAX_AGE_HOURS = 72;
 
 function parseLine(line) {
-    let cleanLine = line.replace(/^[-\*•]\s*/, '').trim();
+    let cleanLine = line.replace(/^[-\*•#]\s*/, '').trim();
 
     // Check for Slash-Separated Hashrates (e.g., 434/436/440T or /440T/442T)
     // Updated to handle optional leading slash and units inside groups
@@ -240,6 +240,30 @@ class TelegramService {
                 }
 
                 if (lowerMsg.includes("wtb") || lowerMsg.includes("want to buy")) continue;
+
+                // DEBUG: Inspect CoolDragon Messages
+                if (dialog.title && dialog.title.toLowerCase().includes('cooldragon')) {
+                    const lines = msg.message.split('\n');
+                    for (const line of lines) {
+                        if (line.toLowerCase().includes('s21')) { // Trace S21 lines
+                            console.log(`[TRACE] Analyzing Line: "${line}"`);
+                            const res = parseLine(line);
+                            console.log(`   -> Parsed Result:`, JSON.stringify(res));
+                            if (res.length === 0) {
+                                let clean = line.replace(/^[-\*•#]\s*/, '').trim();
+                                console.log(`   -> Cleaned: "${clean}"`);
+                                let testName = clean;
+                                if (!testName.toLowerCase().includes('antminer') && !testName.toLowerCase().includes('bitmain')) {
+                                    // Replicating prefix logic
+                                    if (/^(s|t|l|k|d|e)[0-9]/i.test(testName)) testName = `Antminer ${testName}`;
+                                }
+                                console.log(`   -> Test Namebase: "${testName}"`);
+                                const matchesBTC = btcPatterns.some(p => p.test(testName));
+                                console.log(`   -> Passes BTC Filter? ${matchesBTC}`);
+                            }
+                        }
+                    }
+                }
 
                 let currentRegion = "";
 

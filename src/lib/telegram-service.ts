@@ -34,7 +34,7 @@ interface TelegramMiner {
 
 function parseLine(line: string): TelegramMiner[] | null {
     // 1. Clean basic bullets
-    let cleanLine = line.replace(/^[-\*•]\s*/, '').trim();
+    let cleanLine = line.replace(/^[-\*•#]\s*/, '').trim();
 
     // Check for Slash-Separated Hashrates (e.g., 434/436/440T or /440T/442T)
     // Updated to handle optional leading slash and units inside groups

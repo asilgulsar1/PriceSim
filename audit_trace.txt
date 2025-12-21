@@ -1,0 +1,310 @@
+[dotenv@17.2.3] injecting env (8) from .env.local -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+Connecting to Telegram (JS)...
+[33m[2025-12-22T01:36:34.009] [INFO] - [Running gramJS version 2.26.21][0m
+[33m[2025-12-22T01:36:34.012] [INFO] - [Connecting to 149.154.167.91:80/TCPFull...][0m
+[33m[2025-12-22T01:36:34.204] [INFO] - [Connection to 149.154.167.91:80/TCPFull complete!][0m
+[33m[2025-12-22T01:36:34.204] [INFO] - [Using LAYER 198 for initial connect][0m
+Fetched 100 dialogs
+Scanning Segments Cloud Retail - Precise 🌹 reporting...
+Scanning JingleMining Group I ASIC Miner Supplier...
+Scanning Segments Newsroom...
+Scanning Mining Resell...
+Scanning Minto...
+Scanning UNISTAR MINER（https://www.unistarminer.com/）...
+Scanning RUSHASH...
+Scanning CooldragonMinerList...
+[TRACE] Analyzing Line: "#S21pro 220T  $11.3/T"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":220,"price":2486,"source":"","date":"2025-12-21T20:06:38.364Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 234T  $11.6/T"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":234,"price":2714,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 245T  $12.1/T"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":245,"price":2965,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21xphyd 473T $16.5/T"
+   -> Parsed Result: [{"name":"Antminer S21xphyd","hashrateTH":473,"price":7805,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ 216T  $9.5/T"
+   -> Parsed Result: [{"name":"Antminer S21+","hashrateTH":216,"price":2052,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ 225T  $9.5/T"
+   -> Parsed Result: [{"name":"Antminer S21+","hashrateTH":225,"price":2138,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ 235T  $10.4/T"
+   -> Parsed Result: [{"name":"Antminer S21+","hashrateTH":235,"price":2444,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ HYD 338T $7.8/T "
+   -> Parsed Result: [{"name":"Antminer S21+ HYD","hashrateTH":338,"price":2636,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ HYD 358T $8/T "
+   -> Parsed Result: [{"name":"Antminer S21+ HYD","hashrateTH":358,"price":2864,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ HYD 395T $8.1/T"
+   -> Parsed Result: [{"name":"Antminer S21+ HYD","hashrateTH":395,"price":3200,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21imm 215T $7.4/T"
+   -> Parsed Result: [{"name":"Antminer S21imm","hashrateTH":215,"price":1591,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21ehyd 310T   $6.3/T"
+   -> Parsed Result: [{"name":"Antminer S21ehyd","hashrateTH":310,"price":1953,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21ehyd 332T  $6.3/T"
+   -> Parsed Result: [{"name":"Antminer S21ehyd","hashrateTH":332,"price":2092,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 220T       $12.7"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":220,"price":13,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+235T GTDRB   $2450"
+   -> Parsed Result: [{"name":"Antminer S21+ GTDRB","hashrateTH":235,"price":2450,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+225T GTDRB   $2350"
+   -> Parsed Result: [{"name":"Antminer S21+ GTDRB","hashrateTH":225,"price":2350,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 234T GTD   $3030"
+   -> Parsed Result: [{"name":"Antminer S21pro GTD","hashrateTH":234,"price":3030,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 220T GTD   $2930"
+   -> Parsed Result: [{"name":"Antminer S21pro GTD","hashrateTH":220,"price":2930,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21XP 270T GTDRB$4350"
+   -> Parsed Result: [{"name":"Antminer S21XP GTDRB","hashrateTH":270,"price":4350,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ Hyd  338T     $3500"
+   -> Parsed Result: [{"name":"Antminer S21+ Hyd","hashrateTH":338,"price":3500,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ Hyd  358T     $3900"
+   -> Parsed Result: [{"name":"Antminer S21+ Hyd","hashrateTH":358,"price":3900,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 220T  $11.3/T"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":220,"price":2486,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 234T  $11.6/T"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":234,"price":2714,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 245T  $12.1/T"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":245,"price":2965,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21xphyd 473T $16.5/T"
+   -> Parsed Result: [{"name":"Antminer S21xphyd","hashrateTH":473,"price":7805,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ 216T  $9.5/T"
+   -> Parsed Result: [{"name":"Antminer S21+","hashrateTH":216,"price":2052,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ 225T  $9.5/T"
+   -> Parsed Result: [{"name":"Antminer S21+","hashrateTH":225,"price":2138,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ 235T  $10.4/T"
+   -> Parsed Result: [{"name":"Antminer S21+","hashrateTH":235,"price":2444,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ HYD 338T $7.8/T "
+   -> Parsed Result: [{"name":"Antminer S21+ HYD","hashrateTH":338,"price":2636,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ HYD 358T $8/T "
+   -> Parsed Result: [{"name":"Antminer S21+ HYD","hashrateTH":358,"price":2864,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ HYD 395T $8.1/T"
+   -> Parsed Result: [{"name":"Antminer S21+ HYD","hashrateTH":395,"price":3200,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21imm 215T $7.4/T"
+   -> Parsed Result: [{"name":"Antminer S21imm","hashrateTH":215,"price":1591,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21ehyd 310T   $6.3/T"
+   -> Parsed Result: [{"name":"Antminer S21ehyd","hashrateTH":310,"price":1953,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21ehyd 332T  $6.3/T"
+   -> Parsed Result: [{"name":"Antminer S21ehyd","hashrateTH":332,"price":2092,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 220T       $12.7"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":220,"price":13,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+235T GTDRB   $2450"
+   -> Parsed Result: [{"name":"Antminer S21+ GTDRB","hashrateTH":235,"price":2450,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+225T GTDRB   $2350"
+   -> Parsed Result: [{"name":"Antminer S21+ GTDRB","hashrateTH":225,"price":2350,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 234T GTD   $3030"
+   -> Parsed Result: [{"name":"Antminer S21pro GTD","hashrateTH":234,"price":3030,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 220T GTD   $2930"
+   -> Parsed Result: [{"name":"Antminer S21pro GTD","hashrateTH":220,"price":2930,"source":"","date":"2025-12-21T20:06:38.365Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21XP 270T GTDRB$4350"
+   -> Parsed Result: [{"name":"Antminer S21XP GTDRB","hashrateTH":270,"price":4350,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ Hyd  338T     $3500"
+   -> Parsed Result: [{"name":"Antminer S21+ Hyd","hashrateTH":338,"price":3500,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ Hyd  358T     $3900"
+   -> Parsed Result: [{"name":"Antminer S21+ Hyd","hashrateTH":358,"price":3900,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 220T  $11.3/T"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":220,"price":2486,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 234T  $11.6/T"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":234,"price":2714,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 245T  $12.1/T"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":245,"price":2965,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21xphyd 473T $16.5/T"
+   -> Parsed Result: [{"name":"Antminer S21xphyd","hashrateTH":473,"price":7805,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ 216T  $9.5/T"
+   -> Parsed Result: [{"name":"Antminer S21+","hashrateTH":216,"price":2052,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ 225T  $9.5/T"
+   -> Parsed Result: [{"name":"Antminer S21+","hashrateTH":225,"price":2138,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ 235T  $10.4/T"
+   -> Parsed Result: [{"name":"Antminer S21+","hashrateTH":235,"price":2444,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ HYD 338T $7.8/T "
+   -> Parsed Result: [{"name":"Antminer S21+ HYD","hashrateTH":338,"price":2636,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ HYD 358T $8/T "
+   -> Parsed Result: [{"name":"Antminer S21+ HYD","hashrateTH":358,"price":2864,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ HYD 395T $8.1/T"
+   -> Parsed Result: [{"name":"Antminer S21+ HYD","hashrateTH":395,"price":3200,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21imm 215T $7.4/T"
+   -> Parsed Result: [{"name":"Antminer S21imm","hashrateTH":215,"price":1591,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21ehyd 310T   $6.3/T"
+   -> Parsed Result: [{"name":"Antminer S21ehyd","hashrateTH":310,"price":1953,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21ehyd 332T  $6.3/T"
+   -> Parsed Result: [{"name":"Antminer S21ehyd","hashrateTH":332,"price":2092,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 220T       $12.7"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":220,"price":13,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+235T GTDRB   $2450"
+   -> Parsed Result: [{"name":"Antminer S21+ GTDRB","hashrateTH":235,"price":2450,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+225T GTDRB   $2350"
+   -> Parsed Result: [{"name":"Antminer S21+ GTDRB","hashrateTH":225,"price":2350,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 234T GTD   $3030"
+   -> Parsed Result: [{"name":"Antminer S21pro GTD","hashrateTH":234,"price":3030,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 220T GTD   $2930"
+   -> Parsed Result: [{"name":"Antminer S21pro GTD","hashrateTH":220,"price":2930,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21XP 270T GTDRB$4350"
+   -> Parsed Result: [{"name":"Antminer S21XP GTDRB","hashrateTH":270,"price":4350,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ Hyd  338T     $3500"
+   -> Parsed Result: [{"name":"Antminer S21+ Hyd","hashrateTH":338,"price":3500,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ Hyd  358T     $3900"
+   -> Parsed Result: [{"name":"Antminer S21+ Hyd","hashrateTH":358,"price":3900,"source":"","date":"2025-12-21T20:06:38.366Z","powerW":0}]
+Scanning CooldragonMinerChannel...
+[TRACE] Analyzing Line: "#S21pro 220T  $11.3/T"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":220,"price":2486,"source":"","date":"2025-12-21T20:06:38.817Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 234T  $11.6/T"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":234,"price":2714,"source":"","date":"2025-12-21T20:06:38.817Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 245T  $12.1/T"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":245,"price":2965,"source":"","date":"2025-12-21T20:06:38.817Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21xphyd 473T $16.5/T"
+   -> Parsed Result: [{"name":"Antminer S21xphyd","hashrateTH":473,"price":7805,"source":"","date":"2025-12-21T20:06:38.817Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ 216T  $9.5/T"
+   -> Parsed Result: [{"name":"Antminer S21+","hashrateTH":216,"price":2052,"source":"","date":"2025-12-21T20:06:38.817Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ 225T  $9.5/T"
+   -> Parsed Result: [{"name":"Antminer S21+","hashrateTH":225,"price":2138,"source":"","date":"2025-12-21T20:06:38.817Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ 235T  $10.4/T"
+   -> Parsed Result: [{"name":"Antminer S21+","hashrateTH":235,"price":2444,"source":"","date":"2025-12-21T20:06:38.817Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ HYD 338T $7.8/T "
+   -> Parsed Result: [{"name":"Antminer S21+ HYD","hashrateTH":338,"price":2636,"source":"","date":"2025-12-21T20:06:38.817Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ HYD 358T $8/T "
+   -> Parsed Result: [{"name":"Antminer S21+ HYD","hashrateTH":358,"price":2864,"source":"","date":"2025-12-21T20:06:38.817Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ HYD 395T $8.1/T"
+   -> Parsed Result: [{"name":"Antminer S21+ HYD","hashrateTH":395,"price":3200,"source":"","date":"2025-12-21T20:06:38.817Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21imm 215T $7.4/T"
+   -> Parsed Result: [{"name":"Antminer S21imm","hashrateTH":215,"price":1591,"source":"","date":"2025-12-21T20:06:38.817Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21ehyd 310T   $6.3/T"
+   -> Parsed Result: [{"name":"Antminer S21ehyd","hashrateTH":310,"price":1953,"source":"","date":"2025-12-21T20:06:38.817Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21ehyd 332T  $6.3/T"
+   -> Parsed Result: [{"name":"Antminer S21ehyd","hashrateTH":332,"price":2092,"source":"","date":"2025-12-21T20:06:38.817Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 220T       $12.7"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":220,"price":13,"source":"","date":"2025-12-21T20:06:38.817Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+235T GTDRB   $2450"
+   -> Parsed Result: [{"name":"Antminer S21+ GTDRB","hashrateTH":235,"price":2450,"source":"","date":"2025-12-21T20:06:38.817Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+225T GTDRB   $2350"
+   -> Parsed Result: [{"name":"Antminer S21+ GTDRB","hashrateTH":225,"price":2350,"source":"","date":"2025-12-21T20:06:38.817Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 234T GTD   $3030"
+   -> Parsed Result: [{"name":"Antminer S21pro GTD","hashrateTH":234,"price":3030,"source":"","date":"2025-12-21T20:06:38.817Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 220T GTD   $2930"
+   -> Parsed Result: [{"name":"Antminer S21pro GTD","hashrateTH":220,"price":2930,"source":"","date":"2025-12-21T20:06:38.817Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21XP 270T GTDRB$4350"
+   -> Parsed Result: [{"name":"Antminer S21XP GTDRB","hashrateTH":270,"price":4350,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ Hyd  338T     $3500"
+   -> Parsed Result: [{"name":"Antminer S21+ Hyd","hashrateTH":338,"price":3500,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ Hyd  358T     $3900"
+   -> Parsed Result: [{"name":"Antminer S21+ Hyd","hashrateTH":358,"price":3900,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 220T  $11.3/T"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":220,"price":2486,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 234T  $11.6/T"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":234,"price":2714,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 245T  $12.1/T"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":245,"price":2965,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21xphyd 473T $16.5/T"
+   -> Parsed Result: [{"name":"Antminer S21xphyd","hashrateTH":473,"price":7805,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ 216T  $9.5/T"
+   -> Parsed Result: [{"name":"Antminer S21+","hashrateTH":216,"price":2052,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ 225T  $9.5/T"
+   -> Parsed Result: [{"name":"Antminer S21+","hashrateTH":225,"price":2138,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ 235T  $10.4/T"
+   -> Parsed Result: [{"name":"Antminer S21+","hashrateTH":235,"price":2444,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ HYD 338T $7.8/T "
+   -> Parsed Result: [{"name":"Antminer S21+ HYD","hashrateTH":338,"price":2636,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ HYD 358T $8/T "
+   -> Parsed Result: [{"name":"Antminer S21+ HYD","hashrateTH":358,"price":2864,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ HYD 395T $8.1/T"
+   -> Parsed Result: [{"name":"Antminer S21+ HYD","hashrateTH":395,"price":3200,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21imm 215T $7.4/T"
+   -> Parsed Result: [{"name":"Antminer S21imm","hashrateTH":215,"price":1591,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21ehyd 310T   $6.3/T"
+   -> Parsed Result: [{"name":"Antminer S21ehyd","hashrateTH":310,"price":1953,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21ehyd 332T  $6.3/T"
+   -> Parsed Result: [{"name":"Antminer S21ehyd","hashrateTH":332,"price":2092,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 220T       $12.7"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":220,"price":13,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+235T GTDRB   $2450"
+   -> Parsed Result: [{"name":"Antminer S21+ GTDRB","hashrateTH":235,"price":2450,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+225T GTDRB   $2350"
+   -> Parsed Result: [{"name":"Antminer S21+ GTDRB","hashrateTH":225,"price":2350,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 234T GTD   $3030"
+   -> Parsed Result: [{"name":"Antminer S21pro GTD","hashrateTH":234,"price":3030,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 220T GTD   $2930"
+   -> Parsed Result: [{"name":"Antminer S21pro GTD","hashrateTH":220,"price":2930,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21XP 270T GTDRB$4350"
+   -> Parsed Result: [{"name":"Antminer S21XP GTDRB","hashrateTH":270,"price":4350,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ Hyd  338T     $3500"
+   -> Parsed Result: [{"name":"Antminer S21+ Hyd","hashrateTH":338,"price":3500,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ Hyd  358T     $3900"
+   -> Parsed Result: [{"name":"Antminer S21+ Hyd","hashrateTH":358,"price":3900,"source":"","date":"2025-12-21T20:06:38.818Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 220T  $11.3/T"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":220,"price":2486,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 234T  $11.6/T"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":234,"price":2714,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 245T  $12.1/T"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":245,"price":2965,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21xphyd 473T $16.5/T"
+   -> Parsed Result: [{"name":"Antminer S21xphyd","hashrateTH":473,"price":7805,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ 216T  $9.5/T"
+   -> Parsed Result: [{"name":"Antminer S21+","hashrateTH":216,"price":2052,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ 225T  $9.5/T"
+   -> Parsed Result: [{"name":"Antminer S21+","hashrateTH":225,"price":2138,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ 235T  $10.4/T"
+   -> Parsed Result: [{"name":"Antminer S21+","hashrateTH":235,"price":2444,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ HYD 338T $7.8/T "
+   -> Parsed Result: [{"name":"Antminer S21+ HYD","hashrateTH":338,"price":2636,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ HYD 358T $8/T "
+   -> Parsed Result: [{"name":"Antminer S21+ HYD","hashrateTH":358,"price":2864,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ HYD 395T $8.1/T"
+   -> Parsed Result: [{"name":"Antminer S21+ HYD","hashrateTH":395,"price":3200,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21imm 215T $7.4/T"
+   -> Parsed Result: [{"name":"Antminer S21imm","hashrateTH":215,"price":1591,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21ehyd 310T   $6.3/T"
+   -> Parsed Result: [{"name":"Antminer S21ehyd","hashrateTH":310,"price":1953,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21ehyd 332T  $6.3/T"
+   -> Parsed Result: [{"name":"Antminer S21ehyd","hashrateTH":332,"price":2092,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 220T       $12.7"
+   -> Parsed Result: [{"name":"Antminer S21pro","hashrateTH":220,"price":13,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+235T GTDRB   $2450"
+   -> Parsed Result: [{"name":"Antminer S21+ GTDRB","hashrateTH":235,"price":2450,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+225T GTDRB   $2350"
+   -> Parsed Result: [{"name":"Antminer S21+ GTDRB","hashrateTH":225,"price":2350,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 234T GTD   $3030"
+   -> Parsed Result: [{"name":"Antminer S21pro GTD","hashrateTH":234,"price":3030,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21pro 220T GTD   $2930"
+   -> Parsed Result: [{"name":"Antminer S21pro GTD","hashrateTH":220,"price":2930,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21XP 270T GTDRB$4350"
+   -> Parsed Result: [{"name":"Antminer S21XP GTDRB","hashrateTH":270,"price":4350,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ Hyd  338T     $3500"
+   -> Parsed Result: [{"name":"Antminer S21+ Hyd","hashrateTH":338,"price":3500,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+[TRACE] Analyzing Line: "#S21+ Hyd  358T     $3900"
+   -> Parsed Result: [{"name":"Antminer S21+ Hyd","hashrateTH":358,"price":3900,"source":"","date":"2025-12-21T20:06:38.819Z","powerW":0}]
+Scanning NHASH Miners Market...
+Scanning Quantus Network Discussion...
+Scanning ASICXchange Market Place...
+Scanning Unistar Miner(Offical)...
+Scanning ⛏️Asic mining center - Mila💰...
+Scanning SCminer...
+[33m[2025-12-22T01:36:40.800] [INFO] - [Sleeping for 7s on flood wait (Caused by messages.GetHistory)][0m
+Scanning ASICXchange-Your Mining Supplier...
+Scanning How2mine | Россия...
+Scanning BT-Miners Global...
+Scanning AsicArk Official Channel...
+Scanning DCE miner...
+Scanning BITMARS _Leila~...
+Scanning 🅴🆃🅾🆁🅾 𝐃𝐔𝐁𝐀𝐈 🅸🅽🆅🅴🆂🆃...
+Scanning Mining Disrupt Official...
+Scanning ASL Miner ASIC Discussion...
+Scanning Braiins | bitcoin mining ecosystem...
+Scanning Cryptominerbros | CryptoCurrency Mining hardware Store...
+Scanning SCMiner-John...
+Scanning Asic mining machines price-Cherry...
+Scanning WoyouMiner...
+Scanning AozhiMiner Asic miners Shop...
+Scanning Jsbit | Bitcoin miners wholesale supplier...
+Scanning Dubai mine video...
+Scanning الإمارات دبي الوطني كابيتال السعودية...
+Scanning USD69...
+Scanning Yesmining...
+Scanning $QWIK ⛏ - Qwikmine Price chat (Community Owned)...
+Scanning Swift Mining...
+Scanning Greensky logistics（Dubai）...
+Scanning Jsbit Official （EN）...
+Scanning Bitcoin Oasis 24...
+Scanning 𝐆𝐋𝐎𝐁𝐀𝐋 𝐂𝐀𝐏𝐈𝐓𝐀𝐋 𝐌𝐀𝐑𝐊𝐄𝐓𝐒 🇦🇪...
+Scanning Auslioa-Asil Gulsar & Unistar-UAE...
+Scanning Bella+Unistar&Asil+Dubai...
+Scanning Kayla—Segments&Unistar UAE...
+Scanning K🏎️🚘sal nais car in afghan or US...
+Scanning Asil <> Firefish 🔥🐟...
+Scrape Complete. Found 154 models.
+Results saved to /Users/arshedgulshan/Documents/Software/Price Simulation/debug-output.json
+[35m[2025-12-22T01:36:58.225] [WARN] - [Disconnecting...][0m
+[33m[2025-12-22T01:36:58.225] [INFO] - [Disconnecting from 149.154.167.91:80/TCPFull...][0m

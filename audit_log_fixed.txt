@@ -1,0 +1,687 @@
+[dotenv@17.2.3] injecting env (8) from .env.local -- tip: ⚙️  suppress all logs with { quiet: true }
+Connecting to Telegram (JS)...
+[33m[2025-12-22T01:35:39.755] [INFO] - [Running gramJS version 2.26.21][0m
+[33m[2025-12-22T01:35:39.757] [INFO] - [Connecting to 149.154.167.91:80/TCPFull...][0m
+[33m[2025-12-22T01:35:39.971] [INFO] - [Connection to 149.154.167.91:80/TCPFull complete!][0m
+[33m[2025-12-22T01:35:39.971] [INFO] - [Using LAYER 198 for initial connect][0m
+Fetched 100 dialogs
+Scanning Segments Cloud Retail - Precise 🌹 reporting...
+Scanning JingleMining Group I ASIC Miner Supplier...
+Scanning Segments Newsroom...
+Scanning Mining Resell...
+Scanning Minto...
+Scanning UNISTAR MINER（https://www.unistarminer.com/）...
+Scanning RUSHASH...
+Scanning CooldragonMinerList...
+
+[DEBUG] CoolDragon Message (2025-12-21T09:54:22.000Z):
+🌌🌌🌌🌌🌌🌌🌌🌌🌌🌌
+👨‍💻2025-12-21 Daily Price List👨‍💻
+
+🇨🇳Hongkong Stock
+🐜Bitmain Antminer:
+#L9 15G $3800
+#L9 16G $4000
+#L9 16.5G $4100
+#L9 17G $4200
+#L11 20G Mix Jan $7950
+#L7 9050M  $880
+#L7 8800M  $830
+#L7 8550M  $780
+#Z15 pro 840K Mix 202604 $3500
+#S23 296T MIX: $22.8/TH (2026.01)
+#S23 HYD 580T MIX: $22.8/TH (2026.01)
+#S19Kpro 120T $3.4/T
+#S19Kpro 115T $2.9/T
+#S19Kpro 110T $2.9/T
+#S19Kpro 105T $2.7/T
+#S19XP 270T 7Day $15.5/T
+#S19XP+hyd 293T $4.3/T
+#S19eXP hyd 251T Dec $3.2/T
+#S21pro 220T  $11.3/T
+#S21pro 234T  $11.6/T
+#S21pro 245T  $12.1/T
+#S21xphyd 473T $16.5/T
+#S21+ 216T  $9.5/T
+#S21+ 225T  $9.5/T
+#S21+ 235T  $10.4/T
+#S21+ HYD 338T $7.8/T 
+#S21+ HYD 358T $8/T 
+#S21+ HYD 395T $8.1/T
+#S21imm 215T $7.4/T
+#S21ehyd 310T   $6.3/T
+#S21ehyd 332T  $6.3/T
+#Ks7    40T    $6150
+
+🫎Sealminer
+#A2prohyd 500T Jan $11.9
+#A2pro 260T mix Jan $11.9
+
+🐎Whatsminer
+#M61s+16.5w 244T$11.8
+#M61s+17w   238/240T    $11.6
+#M60s+16.5w206/208/T   $11.4
+#M60s+17w 208T             $11.3
+#M60s+17w202/204/206T$11.2
+#M63s+17w434/436/438T$11.3
+#M63s+17w 430/432T  $11.3
+#M63s+17w 416/418/420T $11.2
+
+❄️Iceriver:
+#AL0 400g $150
+#AL3 15T $1650
+#Ks7 30T $1850
+#AE3  2G  Nov  $5799
+#AE1 Lite 300M  $980
+
+🌟Goldshell:
+#LT6 3.35G $799
+#XT BOX 580G $1450
+
+😏Elphapex: 
+#DG1+ 0.28W 14G  $2699
+#DG1+ 0.28W 13G  $2499
+#DG Home1 2.1G  $599
+
+⭐️Canaan Avalon:
+#Nano3 4T $100
+#Nano3S 6T $210
+#Mini3 37.5T $840
+#Avalon Q 90T $1320
+#A15Pro 221T  13.3U/T
+
+😊VolcMiner:
+#D1 18.5G $3500
+#D1 Mini 2.2G $950
+
+🦌T3 115T 1700W Oct $1699
+🦌L1pro 6G  $1950
+🦌Fluminer L2 1.2G    $480
+
+🔥 INI BOX 850M   $2780
+
+🇺🇸USA Stock
+#S21pro 220T       $12.7
+
+🇷🇺Moscow Stock
+#L9   15G  GTD         $3600
+#L9   16G  GTD         $3700
+#L9  16.5G  GTD       $3800
+#L9   17G  GTD         $4100
+#L7   9500M             $1300
+#L7   9300M             $1100
+#L7   9050M             $980
+#L7   8800M             $830
+#S21+235T GTDRB   $2450
+#S21+225T GTDRB   $2350
+#S21pro 234T GTD   $3030
+#S21pro 220T GTD   $2930
+#S21XP 270T GTDRB$4350
+#S21+ Hyd  3
+
+[DEBUG] CoolDragon Message (2025-12-20T10:09:46.000Z):
+🌌🌌🌌🌌🌌🌌🌌🌌🌌🌌
+👨‍💻2025-12-20 Daily Price List👨‍💻
+
+🇨🇳Hongkong Stock
+🐜Bitmain Antminer:
+#L9 15G $3800
+#L9 16G $4000
+#L9 16.5G $4100
+#L9 17G $4200
+#L11 20G Mix Jan $7950
+#L7 9050M  $880
+#L7 8800M  $830
+#L7 8550M  $780
+#Z15 pro 840K Mix 202604 $3500
+#S23 296T MIX: $22.8/TH (2026.01)
+#S23 HYD 580T MIX: $22.8/TH (2026.01)
+#S19Kpro 120T $3.4/T
+#S19Kpro 115T $2.9/T
+#S19Kpro 110T $2.9/T
+#S19Kpro 105T $2.7/T
+#S19XP 270T 7Day $15.5/T
+#S19XP+hyd 293T $4.3/T
+#S19eXP hyd 251T Dec $3.2/T
+#S21pro 220T  $11.3/T
+#S21pro 234T  $11.6/T
+#S21pro 245T  $12.1/T
+#S21xphyd 473T $16.5/T
+#S21+ 216T  $9.5/T
+#S21+ 225T  $9.5/T
+#S21+ 235T  $10.4/T
+#S21+ HYD 338T $7.8/T 
+#S21+ HYD 358T $8/T 
+#S21+ HYD 395T $8.1/T
+#S21imm 215T $7.4/T
+#S21ehyd 310T   $6.3/T
+#S21ehyd 332T  $6.3/T
+#Ks7    40T    $6150
+
+🫎Sealminer
+#A2prohyd 500T Jan $11.9
+#A2pro 260T mix Jan $11.9
+
+🐎Whatsminer
+#M61s+16.5w 244T$11.8
+#M61s+17w   238/240T    $11.6
+#M60s+16.5w206/208/T   $11.4
+#M60s+17w 208T             $11.3
+#M60s+17w202/204/206T$11.2
+#M63s+17w434/436/438T$11.3
+#M63s+17w 430/432T  $11.3
+#M63s+17w 416/418/420T $11.2
+
+❄️Iceriver:
+#AL0 400g $150
+#AL3 15T $1650
+#Ks7 30T $1850
+#AE3  2G  Nov  $5799
+#AE1 Lite 300M  $980
+
+🌟Goldshell:
+#LT6 3.35G $799
+#XT BOX 580G $1450
+
+😏Elphapex: 
+#DG1+ 0.28W 14G  $2699
+#DG1+ 0.28W 13G  $2499
+#DG Home1 2.1G  $599
+
+⭐️Canaan Avalon:
+#Nano3 4T $100
+#Nano3S 6T $210
+#Mini3 37.5T $840
+#Avalon Q 90T $1320
+#A15Pro 221T  13.3U/T
+
+😊VolcMiner:
+#D1 18.5G $3500
+#D1 Mini 2.2G $950
+
+🦌T3 115T 1700W Oct $1699
+🦌L1pro 6G  $1950
+🦌Fluminer L2 1.2G    $480
+
+🔥 INI BOX 850M   $2780
+
+🇺🇸USA Stock
+#S21pro 220T       $12.7
+
+🇷🇺Moscow Stock
+#L9   15G  GTD         $3600
+#L9   16G  GTD         $3700
+#L9  16.5G  GTD       $3800
+#L9   17G  GTD         $4100
+#L7   9500M             $1300
+#L7   9300M             $1100
+#L7   9050M             $980
+#L7   8800M             $830
+#S21+235T GTDRB   $2450
+#S21+225T GTDRB   $2350
+#S21pro 234T GTD   $3030
+#S21pro 220T GTD   $2930
+#S21XP 270T GTDRB$4350
+#S21+ Hyd  3
+
+[DEBUG] CoolDragon Message (2025-12-19T07:22:03.000Z):
+🌌🌌🌌🌌🌌🌌🌌🌌🌌🌌
+👨‍💻2025-12-19 Daily Price List👨‍💻
+
+🇨🇳Hongkong Stock
+🐜Bitmain Antminer:
+#L9 15G $3800
+#L9 16G $4000
+#L9 16.5G $4100
+#L9 17G $4200
+#L11 20G Mix Jan $7950
+#L7 9050M  $880
+#L7 8800M  $830
+#L7 8550M  $780
+#Z15 pro 840K Mix 202604 $3500
+#S23 296T MIX: $22.8/TH (2026.01)
+#S23 HYD 580T MIX: $22.8/TH (2026.01)
+#S19Kpro 120T $3.4/T
+#S19Kpro 115T $2.9/T
+#S19Kpro 110T $2.9/T
+#S19Kpro 105T $2.7/T
+#S19XP 270T 7Day $15.5/T
+#S19XP+hyd 293T $4.3/T
+#S19eXP hyd 251T Dec $3.2/T
+#S21pro 220T  $11.3/T
+#S21pro 234T  $11.6/T
+#S21pro 245T  $12.1/T
+#S21xphyd 473T $16.5/T
+#S21+ 216T  $9.5/T
+#S21+ 225T  $9.5/T
+#S21+ 235T  $10.4/T
+#S21+ HYD 338T $7.8/T 
+#S21+ HYD 358T $8/T 
+#S21+ HYD 395T $8.1/T
+#S21imm 215T $7.4/T
+#S21ehyd 310T   $6.3/T
+#S21ehyd 332T  $6.3/T
+#Ks7    40T    $6150
+
+🫎Sealminer
+#A2prohyd 500T Jan $11.9
+#A2pro 260T mix Jan $11.9
+
+🐎Whatsminer
+#M61s+16.5w 244T$11.8
+#M61s+17w   238/240T    $11.6
+#M60s+16.5w206/208/T   $11.4
+#M60s+17w 208T             $11.3
+#M60s+17w202/204/206T$11.2
+#M63s+17w434/436/438T$11.3
+#M63s+17w 430/432T  $11.3
+#M63s+17w 416/418/420T $11.2
+
+❄️Iceriver:
+#AL0 400g $150
+#AL3 15T $1650
+#Ks7 30T $1850
+#AE3  2G  Nov  $5799
+#AE1 Lite 300M  $980
+
+🌟Goldshell:
+#LT6 3.35G $799
+#XT BOX 580G $1450
+
+😏Elphapex: 
+#DG1+ 0.28W 14G  $2699
+#DG1+ 0.28W 13G  $2499
+#DG Home1 2.1G  $599
+
+⭐️Canaan Avalon:
+#Nano3 4T $100
+#Nano3S 6T $210
+#Mini3 37.5T $840
+#Avalon Q 90T $1320
+#A15Pro 221T  13.3U/T
+
+😊VolcMiner:
+#D1 18.5G $3500
+#D1 Mini 2.2G $950
+
+🦌T3 115T 1700W Oct $1699
+🦌L1pro 6G  $1950
+🦌Fluminer L2 1.2G    $480
+
+🔥 INI BOX 850M   $2780
+
+🇺🇸USA Stock
+#S21pro 220T       $12.7
+
+🇷🇺Moscow Stock
+#L9   15G  GTD         $3600
+#L9   16G  GTD         $3700
+#L9  16.5G  GTD       $3800
+#L9   17G  GTD         $4100
+#L7   9500M             $1300
+#L7   9300M             $1100
+#L7   9050M             $980
+#L7   8800M             $830
+#S21+235T GTDRB   $2450
+#S21+225T GTDRB   $2350
+#S21pro 234T GTD   $3030
+#S21pro 220T GTD   $2930
+#S21XP 270T GTDRB$4350
+#S21+ Hyd  3
+Scanning CooldragonMinerChannel...
+
+[DEBUG] CoolDragon Message (2025-12-21T09:54:07.000Z):
+🌌🌌🌌🌌🌌🌌🌌🌌🌌🌌
+👨‍💻2025-12-21 Daily Price List👨‍💻
+
+🇨🇳Hongkong Stock
+🐜Bitmain Antminer:
+#L9 15G $3800
+#L9 16G $4000
+#L9 16.5G $4100
+#L9 17G $4200
+#L11 20G Mix Jan $7950
+#L7 9050M  $880
+#L7 8800M  $830
+#L7 8550M  $780
+#Z15 pro 840K Mix 202604 $3500
+#S23 296T MIX: $22.8/TH (2026.01)
+#S23 HYD 580T MIX: $22.8/TH (2026.01)
+#S19Kpro 120T $3.4/T
+#S19Kpro 115T $2.9/T
+#S19Kpro 110T $2.9/T
+#S19Kpro 105T $2.7/T
+#S19XP 270T 7Day $15.5/T
+#S19XP+hyd 293T $4.3/T
+#S19eXP hyd 251T Dec $3.2/T
+#S21pro 220T  $11.3/T
+#S21pro 234T  $11.6/T
+#S21pro 245T  $12.1/T
+#S21xphyd 473T $16.5/T
+#S21+ 216T  $9.5/T
+#S21+ 225T  $9.5/T
+#S21+ 235T  $10.4/T
+#S21+ HYD 338T $7.8/T 
+#S21+ HYD 358T $8/T 
+#S21+ HYD 395T $8.1/T
+#S21imm 215T $7.4/T
+#S21ehyd 310T   $6.3/T
+#S21ehyd 332T  $6.3/T
+#Ks7    40T    $6150
+
+🫎Sealminer
+#A2prohyd 500T Jan $11.9
+#A2pro 260T mix Jan $11.9
+
+🐎Whatsminer
+#M61s+16.5w 244T$11.8
+#M61s+17w   238/240T    $11.6
+#M60s+16.5w206/208/T   $11.4
+#M60s+17w 208T             $11.3
+#M60s+17w202/204/206T$11.2
+#M63s+17w434/436/438T$11.3
+#M63s+17w 430/432T  $11.3
+#M63s+17w 416/418/420T $11.2
+
+❄️Iceriver:
+#AL0 400g $150
+#AL3 15T $1650
+#Ks7 30T $1850
+#AE3  2G  Nov  $5799
+#AE1 Lite 300M  $980
+
+🌟Goldshell:
+#LT6 3.35G $799
+#XT BOX 580G $1450
+
+😏Elphapex: 
+#DG1+ 0.28W 14G  $2699
+#DG1+ 0.28W 13G  $2499
+#DG Home1 2.1G  $599
+
+⭐️Canaan Avalon:
+#Nano3 4T $100
+#Nano3S 6T $210
+#Mini3 37.5T $840
+#Avalon Q 90T $1320
+#A15Pro 221T  13.3U/T
+
+😊VolcMiner:
+#D1 18.5G $3500
+#D1 Mini 2.2G $950
+
+🦌T3 115T 1700W Oct $1699
+🦌L1pro 6G  $1950
+🦌Fluminer L2 1.2G    $480
+
+🔥 INI BOX 850M   $2780
+
+🇺🇸USA Stock
+#S21pro 220T       $12.7
+
+🇷🇺Moscow Stock
+#L9   15G  GTD         $3600
+#L9   16G  GTD         $3700
+#L9  16.5G  GTD       $3800
+#L9   17G  GTD         $4100
+#L7   9500M             $1300
+#L7   9300M             $1100
+#L7   9050M             $980
+#L7   8800M             $830
+#S21+235T GTDRB   $2450
+#S21+225T GTDRB   $2350
+#S21pro 234T GTD   $3030
+#S21pro 220T GTD   $2930
+#S21XP 270T GTDRB$4350
+#S21+ Hyd  3
+
+[DEBUG] CoolDragon Message (2025-12-20T10:09:57.000Z):
+🌌🌌🌌🌌🌌🌌🌌🌌🌌🌌
+👨‍💻2025-12-20 Daily Price List👨‍💻
+
+🇨🇳Hongkong Stock
+🐜Bitmain Antminer:
+#L9 15G $3800
+#L9 16G $4000
+#L9 16.5G $4100
+#L9 17G $4200
+#L11 20G Mix Jan $7950
+#L7 9050M  $880
+#L7 8800M  $830
+#L7 8550M  $780
+#Z15 pro 840K Mix 202604 $3500
+#S23 296T MIX: $22.8/TH (2026.01)
+#S23 HYD 580T MIX: $22.8/TH (2026.01)
+#S19Kpro 120T $3.4/T
+#S19Kpro 115T $2.9/T
+#S19Kpro 110T $2.9/T
+#S19Kpro 105T $2.7/T
+#S19XP 270T 7Day $15.5/T
+#S19XP+hyd 293T $4.3/T
+#S19eXP hyd 251T Dec $3.2/T
+#S21pro 220T  $11.3/T
+#S21pro 234T  $11.6/T
+#S21pro 245T  $12.1/T
+#S21xphyd 473T $16.5/T
+#S21+ 216T  $9.5/T
+#S21+ 225T  $9.5/T
+#S21+ 235T  $10.4/T
+#S21+ HYD 338T $7.8/T 
+#S21+ HYD 358T $8/T 
+#S21+ HYD 395T $8.1/T
+#S21imm 215T $7.4/T
+#S21ehyd 310T   $6.3/T
+#S21ehyd 332T  $6.3/T
+#Ks7    40T    $6150
+
+🫎Sealminer
+#A2prohyd 500T Jan $11.9
+#A2pro 260T mix Jan $11.9
+
+🐎Whatsminer
+#M61s+16.5w 244T$11.8
+#M61s+17w   238/240T    $11.6
+#M60s+16.5w206/208/T   $11.4
+#M60s+17w 208T             $11.3
+#M60s+17w202/204/206T$11.2
+#M63s+17w434/436/438T$11.3
+#M63s+17w 430/432T  $11.3
+#M63s+17w 416/418/420T $11.2
+
+❄️Iceriver:
+#AL0 400g $150
+#AL3 15T $1650
+#Ks7 30T $1850
+#AE3  2G  Nov  $5799
+#AE1 Lite 300M  $980
+
+🌟Goldshell:
+#LT6 3.35G $799
+#XT BOX 580G $1450
+
+😏Elphapex: 
+#DG1+ 0.28W 14G  $2699
+#DG1+ 0.28W 13G  $2499
+#DG Home1 2.1G  $599
+
+⭐️Canaan Avalon:
+#Nano3 4T $100
+#Nano3S 6T $210
+#Mini3 37.5T $840
+#Avalon Q 90T $1320
+#A15Pro 221T  13.3U/T
+
+😊VolcMiner:
+#D1 18.5G $3500
+#D1 Mini 2.2G $950
+
+🦌T3 115T 1700W Oct $1699
+🦌L1pro 6G  $1950
+🦌Fluminer L2 1.2G    $480
+
+🔥 INI BOX 850M   $2780
+
+🇺🇸USA Stock
+#S21pro 220T       $12.7
+
+🇷🇺Moscow Stock
+#L9   15G  GTD         $3600
+#L9   16G  GTD         $3700
+#L9  16.5G  GTD       $3800
+#L9   17G  GTD         $4100
+#L7   9500M             $1300
+#L7   9300M             $1100
+#L7   9050M             $980
+#L7   8800M             $830
+#S21+235T GTDRB   $2450
+#S21+225T GTDRB   $2350
+#S21pro 234T GTD   $3030
+#S21pro 220T GTD   $2930
+#S21XP 270T GTDRB$4350
+#S21+ Hyd  3
+
+[DEBUG] CoolDragon Message (2025-12-19T07:21:49.000Z):
+🌌🌌🌌🌌🌌🌌🌌🌌🌌🌌
+👨‍💻2025-12-19 Daily Price List👨‍💻
+
+🇨🇳Hongkong Stock
+🐜Bitmain Antminer:
+#L9 15G $3800
+#L9 16G $4000
+#L9 16.5G $4100
+#L9 17G $4200
+#L11 20G Mix Jan $7950
+#L7 9050M  $880
+#L7 8800M  $830
+#L7 8550M  $780
+#Z15 pro 840K Mix 202604 $3500
+#S23 296T MIX: $22.8/TH (2026.01)
+#S23 HYD 580T MIX: $22.8/TH (2026.01)
+#S19Kpro 120T $3.4/T
+#S19Kpro 115T $2.9/T
+#S19Kpro 110T $2.9/T
+#S19Kpro 105T $2.7/T
+#S19XP 270T 7Day $15.5/T
+#S19XP+hyd 293T $4.3/T
+#S19eXP hyd 251T Dec $3.2/T
+#S21pro 220T  $11.3/T
+#S21pro 234T  $11.6/T
+#S21pro 245T  $12.1/T
+#S21xphyd 473T $16.5/T
+#S21+ 216T  $9.5/T
+#S21+ 225T  $9.5/T
+#S21+ 235T  $10.4/T
+#S21+ HYD 338T $7.8/T 
+#S21+ HYD 358T $8/T 
+#S21+ HYD 395T $8.1/T
+#S21imm 215T $7.4/T
+#S21ehyd 310T   $6.3/T
+#S21ehyd 332T  $6.3/T
+#Ks7    40T    $6150
+
+🫎Sealminer
+#A2prohyd 500T Jan $11.9
+#A2pro 260T mix Jan $11.9
+
+🐎Whatsminer
+#M61s+16.5w 244T$11.8
+#M61s+17w   238/240T    $11.6
+#M60s+16.5w206/208/T   $11.4
+#M60s+17w 208T             $11.3
+#M60s+17w202/204/206T$11.2
+#M63s+17w434/436/438T$11.3
+#M63s+17w 430/432T  $11.3
+#M63s+17w 416/418/420T $11.2
+
+❄️Iceriver:
+#AL0 400g $150
+#AL3 15T $1650
+#Ks7 30T $1850
+#AE3  2G  Nov  $5799
+#AE1 Lite 300M  $980
+
+🌟Goldshell:
+#LT6 3.35G $799
+#XT BOX 580G $1450
+
+😏Elphapex: 
+#DG1+ 0.28W 14G  $2699
+#DG1+ 0.28W 13G  $2499
+#DG Home1 2.1G  $599
+
+⭐️Canaan Avalon:
+#Nano3 4T $100
+#Nano3S 6T $210
+#Mini3 37.5T $840
+#Avalon Q 90T $1320
+#A15Pro 221T  13.3U/T
+
+😊VolcMiner:
+#D1 18.5G $3500
+#D1 Mini 2.2G $950
+
+🦌T3 115T 1700W Oct $1699
+🦌L1pro 6G  $1950
+🦌Fluminer L2 1.2G    $480
+
+🔥 INI BOX 850M   $2780
+
+🇺🇸USA Stock
+#S21pro 220T       $12.7
+
+🇷🇺Moscow Stock
+#L9   15G  GTD         $3600
+#L9   16G  GTD         $3700
+#L9  16.5G  GTD       $3800
+#L9   17G  GTD         $4100
+#L7   9500M             $1300
+#L7   9300M             $1100
+#L7   9050M             $980
+#L7   8800M             $830
+#S21+235T GTDRB   $2450
+#S21+225T GTDRB   $2350
+#S21pro 234T GTD   $3030
+#S21pro 220T GTD   $2930
+#S21XP 270T GTDRB$4350
+#S21+ Hyd  3
+Scanning NHASH Miners Market...
+Scanning Quantus Network Discussion...
+Scanning ASICXchange Market Place...
+Scanning Unistar Miner(Offical)...
+Scanning ⛏️Asic mining center - Mila💰...
+Scanning SCminer...
+Scanning ASICXchange-Your Mining Supplier...
+Scanning How2mine | Россия...
+Scanning BT-Miners Global...
+Scanning AsicArk Official Channel...
+Scanning DCE miner...
+Scanning BITMARS _Leila~...
+Scanning 🅴🆃🅾🆁🅾 𝐃𝐔𝐁𝐀𝐈 🅸🅽🆅🅴🆂🆃...
+Scanning Mining Disrupt Official...
+Scanning ASL Miner ASIC Discussion...
+Scanning Braiins | bitcoin mining ecosystem...
+Scanning Cryptominerbros | CryptoCurrency Mining hardware Store...
+Scanning SCMiner-John...
+Scanning Asic mining machines price-Cherry...
+Scanning WoyouMiner...
+Scanning AozhiMiner Asic miners Shop...
+Scanning Jsbit | Bitcoin miners wholesale supplier...
+Scanning Dubai mine video...
+Scanning الإمارات دبي الوطني كابيتال السعودية...
+Scanning USD69...
+Scanning Yesmining...
+Scanning $QWIK ⛏ - Qwikmine Price chat (Community Owned)...
+Scanning Swift Mining...
+Scanning Greensky logistics（Dubai）...
+Scanning Jsbit Official （EN）...
+Scanning Bitcoin Oasis 24...
+Scanning 𝐆𝐋𝐎𝐁𝐀𝐋 𝐂𝐀𝐏𝐈𝐓𝐀𝐋 𝐌𝐀𝐑𝐊𝐄𝐓𝐒 🇦🇪...
+Scanning Auslioa-Asil Gulsar & Unistar-UAE...
+Scanning Bella+Unistar&Asil+Dubai...
+Scanning Kayla—Segments&Unistar UAE...
+Scanning K🏎️🚘sal nais car in afghan or US...
+Scanning Asil <> Firefish 🔥🐟...
+Scrape Complete. Found 154 models.
+Results saved to /Users/arshedgulshan/Documents/Software/Price Simulation/debug-output.json
+[35m[2025-12-22T01:35:59.126] [WARN] - [Disconnecting...][0m
+[33m[2025-12-22T01:35:59.127] [INFO] - [Disconnecting from 149.154.167.91:80/TCPFull...][0m
