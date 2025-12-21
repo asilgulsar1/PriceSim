@@ -42,6 +42,7 @@ export async function GET(request: Request) {
             access: 'public',
             addRandomSuffix: false, // Overwrite (Legacy)
             contentType: 'application/json',
+            allowOverwrite: true, // Explicit override required by new SDK
             // @ts-ignore - Vercel Blob types might be outdated in old versions, but runtime supports it
             token: process.env.BLOB_READ_WRITE_TOKEN
         });
