@@ -1,0 +1,1271 @@
+[dotenv@17.2.3] injecting env (8) from .env.local -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+Connecting to Telegram (JS)...
+[33m[2025-12-22T02:05:13.847] [INFO] - [Running gramJS version 2.26.21][0m
+[33m[2025-12-22T02:05:13.849] [INFO] - [Connecting to 149.154.167.91:80/TCPFull...][0m
+[33m[2025-12-22T02:05:14.041] [INFO] - [Connection to 149.154.167.91:80/TCPFull complete!][0m
+[33m[2025-12-22T02:05:14.042] [INFO] - [Using LAYER 198 for initial connect][0m
+Fetched 100 dialogs
+Scanning Segments Cloud Retail - Precise 🌹 reporting...
+Scanning JingleMining Group I ASIC Miner Supplier...
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:16.159Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:16.159Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:16.159Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:16.161Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:16.161Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:16.161Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:16.161Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:16.161Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:16.161Z",
+    "powerW": 0
+  }
+]
+Scanning Segments Newsroom...
+Scanning Mining Resell...
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:16.782Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:16.782Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:16.782Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:16.782Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:16.782Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:16.782Z",
+    "powerW": 0
+  }
+]
+[MISS] Potential Miner: "MO,USA Stocked Antminer S21+ 216T's 🔥📈🇺🇸" (Source: Mining Resell)
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:16.783Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:16.783Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:16.783Z",
+    "powerW": 0
+  }
+]
+Scanning Minto...
+Scanning UNISTAR MINER（https://www.unistarminer.com/）...
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:17.678Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:17.678Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:17.678Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:17.678Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:17.678Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:17.678Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:17.678Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:17.678Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:17.678Z",
+    "powerW": 0
+  }
+]
+Scanning RUSHASH...
+Scanning CooldragonMinerList...
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:18.605Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:18.605Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:18.605Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:18.606Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:18.606Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:18.606Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:18.607Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:18.607Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:18.607Z",
+    "powerW": 0
+  }
+]
+Scanning CooldragonMinerChannel...
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:19.739Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:19.739Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:19.739Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:19.740Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:19.740Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:19.740Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:19.741Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:19.741Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:19.741Z",
+    "powerW": 0
+  }
+]
+Scanning NHASH Miners Market...
+[MISS] Potential Miner: "ROI S21 xp more then 3,5 years for 7 cents electricity" (Source: NHASH Miners Market)
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.062Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.062Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.062Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.062Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.062Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.062Z",
+    "powerW": 0
+  }
+]
+Scanning Quantus Network Discussion...
+Scanning ASICXchange Market Place...
+[MISS] Potential Miner: "300 qty Bitmain Antminer S21 Pro 220T 15 J/T for Sale" (Source: ASICXchange Market Place)
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.676Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.676Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.676Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.676Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.676Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.676Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.676Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.676Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.676Z",
+    "powerW": 0
+  }
+]
+[MISS] Potential Miner: "WTS: Bitmain Antminer S21 190/200TH "Plug And Play Mining Package"" (Source: ASICXchange Market Place)
+[MISS] Potential Miner: "#Wattum #S21 #190 #200" (Source: ASICXchange Market Place)
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.677Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.677Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.677Z",
+    "powerW": 0
+  }
+]
+[MISS] Potential Miner: "#S21+ #L9  #S21pro" (Source: ASICXchange Market Place)
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.677Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.677Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.677Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.678Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.678Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.678Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.679Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.679Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.679Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.680Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.680Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.680Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.680Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.680Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:20.680Z",
+    "powerW": 0
+  }
+]
+Scanning Unistar Miner(Offical)...
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.119Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.119Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.119Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.119Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.119Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.119Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.119Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.119Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.119Z",
+    "powerW": 0
+  }
+]
+Scanning ⛏️Asic mining center - Mila💰...
+[MISS] Potential Miner: "#S21+ #L9  #S21pro" (Source: ⛏️Asic mining center - Mila💰)
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.923Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.923Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.923Z",
+    "powerW": 0
+  }
+]
+[MISS] Potential Miner: "#L9 #S21+ #whatsminer" (Source: ⛏️Asic mining center - Mila💰)
+[MISS] Potential Miner: "M50mix   5U" (Source: ⛏️Asic mining center - Mila💰)
+[MISS] Potential Miner: "M50S 24W  7.7U/T" (Source: ⛏️Asic mining center - Mila💰)
+[MISS] Potential Miner: "M50S++22W  8.7U/T" (Source: ⛏️Asic mining center - Mila💰)
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.924Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.924Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.924Z",
+    "powerW": 0
+  }
+]
+[MISS] Potential Miner: "#S21+ #L9  #S21pro" (Source: ⛏️Asic mining center - Mila💰)
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.925Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.925Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.925Z",
+    "powerW": 0
+  }
+]
+[MISS] Potential Miner: "#L9 #S21+ #whatsminer" (Source: ⛏️Asic mining center - Mila💰)
+[MISS] Potential Miner: "M50mix   5U" (Source: ⛏️Asic mining center - Mila💰)
+[MISS] Potential Miner: "M50S 24W  7.7U/T" (Source: ⛏️Asic mining center - Mila💰)
+[MISS] Potential Miner: "M50S++22W  8.7U/T" (Source: ⛏️Asic mining center - Mila💰)
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.926Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.926Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:21.926Z",
+    "powerW": 0
+  }
+]
+Scanning SCminer...
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:22.292Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:22.292Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:22.292Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:22.293Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:22.293Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:22.293Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:22.294Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:22.294Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:22.294Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:22.294Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:22.294Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:22.294Z",
+    "powerW": 0
+  }
+]
+Scanning ASICXchange-Your Mining Supplier...
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:22.624Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:22.624Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:22.624Z",
+    "powerW": 0
+  }
+]
+Scanning How2mine | Россия...
+[MISS] Potential Miner: "🌸S21 XP 270t.              4115" (Source: How2mine | Россия)
+[MISS] Potential Miner: "🌸S21+hyd 338t.            2618" (Source: How2mine | Россия)
+[MISS] Potential Miner: "🌸S21+hyd 358t.            2802" (Source: How2mine | Россия)
+[MISS] Potential Miner: "🌸S21+hyd 395t.            3180" (Source: How2mine | Россия)
+[MISS] Potential Miner: "🌸S21 pro 220T.              2465" (Source: How2mine | Россия)
+[MISS] Potential Miner: "🌸S21 pro 234T.              2698" (Source: How2mine | Россия)
+[MISS] Potential Miner: "🌸S21 pro 245T.              2950" (Source: How2mine | Россия)
+[MISS] Potential Miner: "🌸S21imm 215t.               1615" (Source: How2mine | Россия)
+[MISS] Potential Miner: "🐎S21 +216T                    2055" (Source: How2mine | Россия)
+[MISS] Potential Miner: "🔥S21 XPHYD 473T        7768" (Source: How2mine | Россия)
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:23.038Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:23.038Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:23.038Z",
+    "powerW": 0
+  }
+]
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:23.038Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:23.038Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:23.038Z",
+    "powerW": 0
+  }
+]
+Scanning BT-Miners Global...
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:23.535Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:23.535Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:23.535Z",
+    "powerW": 0
+  }
+]
+Scanning AsicArk Official Channel...
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:23.998Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:23.998Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:23.998Z",
+    "powerW": 0
+  }
+]
+Scanning DCE miner...
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:24.309Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:24.309Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:24.309Z",
+    "powerW": 0
+  }
+]
+Scanning BITMARS _Leila~...
+[TEST-CASE] Processing: "Antminer S19k Pro 110/112/114th $2.9/t"
+   -> Result: [
+  {
+    "name": "Antminer S19k Pro 110T",
+    "hashrateTH": 110,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:24.596Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 112T",
+    "hashrateTH": 112,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:24.596Z",
+    "powerW": 0
+  },
+  {
+    "name": "Antminer S19k Pro 114T",
+    "hashrateTH": 114,
+    "price": 3,
+    "source": "",
+    "date": "2025-12-21T20:35:24.596Z",
+    "powerW": 0
+  }
+]
+Scanning 🅴🆃🅾🆁🅾 𝐃𝐔𝐁𝐀𝐈 🅸🅽🆅🅴🆂🆃...
+Scanning Mining Disrupt Official...
+Scanning ASL Miner ASIC Discussion...
+Scanning Braiins | bitcoin mining ecosystem...
+Scanning Cryptominerbros | CryptoCurrency Mining hardware Store...
+Scanning SCMiner-John...
+Scanning Asic mining machines price-Cherry...
+Scanning WoyouMiner...
+Scanning AozhiMiner Asic miners Shop...
+Scanning Jsbit | Bitcoin miners wholesale supplier...
+Scanning Dubai mine video...
+Scanning الإمارات دبي الوطني كابيتال السعودية...
+Scanning USD69...
+Scanning Yesmining...
+Scanning $QWIK ⛏ - Qwikmine Price chat (Community Owned)...
+Scanning Swift Mining...
+Scanning Greensky logistics（Dubai）...
+Scanning Jsbit Official （EN）...
+Scanning Bitcoin Oasis 24...
+Scanning 𝐆𝐋𝐎𝐁𝐀𝐋 𝐂𝐀𝐏𝐈𝐓𝐀𝐋 𝐌𝐀𝐑𝐊𝐄𝐓𝐒 🇦🇪...
+Scanning Auslioa-Asil Gulsar & Unistar-UAE...
+Scanning Bella+Unistar&Asil+Dubai...
+Scanning Kayla—Segments&Unistar UAE...
+Scanning K🏎️🚘sal nais car in afghan or US...
+Scanning Asil <> Firefish 🔥🐟...
+Scrape Complete. Found 195 models.
+Results saved to /Users/arshedgulshan/Documents/Software/Price Simulation/debug-output.json
+[35m[2025-12-22T02:05:32.373] [WARN] - [Disconnecting...][0m
+[33m[2025-12-22T02:05:32.373] [INFO] - [Disconnecting from 149.154.167.91:80/TCPFull...][0m

@@ -31,35 +31,51 @@ async function getMiner(slug: string): Promise<ExtendedMinerProfile | null> {
 
     // 2. Fetch Market Data to enrich or fallback
     try {
-        // Use implicit token from environment like the working API route
-        const { blobs } = await list({ prefix: 'market-prices.json', limit: 1 });
-        if (blobs.length > 0) {
-            // Add cache busting query param
-            const blobUrl = `${blobs[0].url}?t=${Date.now()}`;
-            const res = await fetch(blobUrl, { cache: 'no-store' }); // Ensure fresh data
+        let marketData = { miners: [] };
 
-            if (res.ok) {
-                const data = await res.json();
-                const marketMiner = data.miners?.find((m: any) => slugify(m.name) === slug);
-
-                if (marketMiner) {
-                    // If we didn't have a static miner, use this one
-                    if (!result) {
-                        result = {
-                            name: marketMiner.name,
-                            hashrateTH: marketMiner.specs.hashrateTH,
-                            powerWatts: marketMiner.specs.powerW,
-                            price: marketMiner.stats.middlePrice,
-                            slug, // Ensure slug is attached
-                        };
-                    }
-
-                    // Attach market data (listings & stats) to the result
-                    result.listings = marketMiner.listings;
-                    result.stats = marketMiner.stats;
+        // Try Local First (Dev)
+        if (process.env.NODE_ENV === 'development') {
+            try {
+                // Determine base URL dynamically or fallback to localhost
+                const baseUrl = 'http://localhost:3000';
+                const res = await fetch(`${baseUrl}/api/market/latest`, { cache: 'no-store' });
+                if (res.ok) {
+                    marketData = await res.json();
                 }
+            } catch (e) {
+                console.warn("Local dev fetch failed", e);
             }
         }
+
+        // If no local data, try Blob
+        if (!marketData.miners || marketData.miners.length === 0) {
+            const { blobs } = await list({ prefix: 'market-prices.json', limit: 1 });
+            if (blobs.length > 0) {
+                const blobUrl = `${blobs[0].url}?t=${Date.now()}`;
+                const res = await fetch(blobUrl, { cache: 'no-store' });
+                if (res.ok) marketData = await res.json();
+            }
+        }
+
+        const marketMiner = marketData.miners?.find((m: any) => slugify(m.name) === slug);
+
+        if (marketMiner) {
+            // If we didn't have a static miner, use this one
+            if (!result) {
+                result = {
+                    name: marketMiner.name,
+                    hashrateTH: marketMiner.specs.hashrateTH,
+                    powerWatts: marketMiner.specs.powerW,
+                    price: marketMiner.stats.middlePrice,
+                    slug, // Ensure slug is attached
+                };
+            }
+
+            // Attach market data (listings & stats) to the result
+            result.listings = marketMiner.listings;
+            result.stats = marketMiner.stats;
+        }
+
     } catch (e) {
         console.error("Failed to fetch market miner fallback", e);
     }

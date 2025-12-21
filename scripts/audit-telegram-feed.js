@@ -181,8 +181,12 @@ function parseLine(line) {
                 let finalPower = powerW;
                 if (effMatch) finalPower = parseFloat(effMatch[1]) * h;
 
+                // Clean trailing "T" from nameBase if present before appending
+                let specificName = nameBase.replace(/\s+T$/i, '').trim();
+                specificName = `${specificName} ${h}T`;
+
                 results.push({
-                    name: nameBase,
+                    name: specificName,
                     hashrateTH: h,
                     price: Math.round(finalPrice),
                     source: '',
@@ -258,9 +262,7 @@ class TelegramService {
 
                 let currentRegion = "";
 
-                const lines = msg.message.split('\n');
                 for (const line of lines) {
-
                     // Check for High-Value Keywords
                     if (/(s21|t21|m60|m50|m63|m64|avalon a15)/i.test(line)) {
                         const res = parseLine(line);

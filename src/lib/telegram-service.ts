@@ -195,8 +195,12 @@ function parseLine(line: string): TelegramMiner[] | null {
                 let finalPower = powerW;
                 if (effMatch) finalPower = parseFloat(effMatch[1]) * h;
 
+                // Clean trailing "T" from nameBase if present before appending
+                let specificName = nameBase.replace(/\s+T$/i, '').trim();
+                specificName = `${specificName} ${h}T`;
+
                 results.push({
-                    name: nameBase,
+                    name: specificName,
                     hashrateTH: h,
                     price: Math.round(finalPrice),
                     source: '',

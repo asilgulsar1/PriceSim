@@ -3,7 +3,10 @@ import { NextResponse } from 'next/server';
 import { list } from '@vercel/blob';
 import { normalizeMinerName } from '@/lib/market-matching';
 
-export const runtime = 'edge';
+import { promises as fs } from 'fs';
+import path from 'path';
+
+export const runtime = 'nodejs'; // Switch to Node.js for FS access
 export const dynamic = 'force-dynamic'; // Ensure no caching
 
 export async function GET(request: Request) {
@@ -27,13 +30,24 @@ export async function GET(request: Request) {
             // Try Local First (Dev)
             if (process.env.NODE_ENV === 'development') {
                 try {
+                    // Match logic from telegram-rate/page.tsx
+                    const localPath = path.join(process.cwd(), 'debug-output.json');
+                    const data = await fs.readFile(localPath, 'utf-8');
+                    telegramData = JSON.parse(data);
+
+                    // Handle wrapped format if any
+                    if (!Array.isArray(telegramData) && (telegramData as any).miners) {
+                        telegramData = (telegramData as any).miners;
+                    }
+                } catch (e) {
+                    console.warn("Local FS read failed, trying fetch...", e);
                     const localUrl = 'http://localhost:3000/miners-latest.json';
                     const res = await fetch(localUrl, { cache: 'no-store' });
                     if (res.ok) {
                         const raw = await res.json();
                         telegramData = Array.isArray(raw) ? raw : (raw.miners || []);
                     }
-                } catch (e) { }
+                }
             }
 
             // If empty, try Blob
@@ -62,16 +76,55 @@ export async function GET(request: Request) {
     }
 }
 
+return result;
+}
+
+// Helper to look up power from static DB
+import { INITIAL_MINERS } from '@/lib/miner-data';
+
+function getPowerForMiner(name: string, hashrate: number): number {
+    const nName = normalizeMinerName(name);
+    // 1. Direct Hashrate Match in Static DB
+    const match = INITIAL_MINERS.find(m => {
+        const mName = normalizeMinerName(m.name);
+        return (mName.includes(nName) || nName.includes(mName)) &&
+            Math.abs(m.hashrateTH - hashrate) < (hashrate * 0.05);
+    });
+    if (match) return match.powerWatts;
+
+    // 2. Generic Model Match (Less accurate)
+    const genericMatch = INITIAL_MINERS.find(m => {
+        const mName = normalizeMinerName(m.name);
+        return (mName.includes(nName) || nName.includes(mName));
+    });
+    if (genericMatch) {
+        // Scale power by hashrate ratio
+        const ratio = hashrate / genericMatch.hashrateTH;
+        return Math.round(genericMatch.powerWatts * ratio);
+    }
+
+    return 0;
+}
+
 function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
     // Clone to avoid mutation if needed
     const result = [...marketMiners];
 
     for (const tgMiner of telegramMiners) {
-        // tgMiner is now Aggregated: { name, hashrateTH, price (middle), stats: {min, max, middle, count}, listings }
-        if (!tgMiner.price || tgMiner.price <= 0) continue;
+        let price = tgMiner.price;
+        if (!price || price <= 0) continue;
 
-        // Find match
-        // 1. Match by exact Hashrate (+- 1%) AND similar name
+        // SANITIZATION: Detect $/TH prices (< $100 usually)
+        if (price < 100 && tgMiner.hashrateTH > 0) {
+            price = Math.round(price * tgMiner.hashrateTH);
+        }
+
+        // ENRICHMENT: Backfill Power if missing
+        let powerW = tgMiner.powerW || 0;
+        if (powerW === 0 && tgMiner.hashrateTH > 0) {
+            powerW = getPowerForMiner(tgMiner.name, tgMiner.hashrateTH);
+        }
+
         // Find match
         // 1. Match by exact Hashrate (+- 1%) AND similar name
         const matchIndex = result.findIndex(m => {
@@ -96,7 +149,7 @@ function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
             const originalListings = m.listings || [];
             const telegramListings = (tgMiner.listings || []).map((l: any) => ({
                 vendor: l.source || "Telegram Broker",
-                price: l.price,
+                price: l.price || price, // Use sanitized price fallback
                 currency: "USD",
                 stockStatus: "Spot",
                 url: "#"
@@ -120,15 +173,13 @@ function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
                 m.stats.vendorCount = count;
             } else {
                 // Fallback if no valid prices found during merge (unlikely if loop check passed)
-                m.stats.middlePrice = tgMiner.stats?.middle || tgMiner.price;
+                m.stats.middlePrice = tgMiner.stats?.middle || price;
             }
 
-            m.stats.lastUpdated = new Date().toISOString();
+            // Backfill power if existing record was empty (unlikely for static miners but possible)
+            if (!m.specs.powerW && powerW > 0) m.specs.powerW = powerW;
 
-            // Only tag source if mostly Telegram? Or just leave it generic.
-            // User asked to treat it as "Market Prices".
-            // We can append source info if needed, but "Telegram Spot (Aggregated)" was for the overwrite.
-            // Let's rely on listings to show source.
+            m.stats.lastUpdated = new Date().toISOString();
             m.source = 'Market Aggregated';
 
         } else {
@@ -138,21 +189,21 @@ function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
                 name: tgMiner.name,
                 specs: {
                     hashrateTH: tgMiner.hashrateTH,
-                    powerW: 0,
+                    powerW: powerW, // Use enriched power
                     algo: 'SHA-256'
                 },
                 listings: (tgMiner.listings || []).map((l: any) => ({
                     vendor: l.source || "Telegram Broker",
-                    price: l.price,
+                    price: l.price || price,
                     currency: "USD",
                     stockStatus: "Spot",
                     url: "#"
                 })),
                 stats: {
-                    minPrice: tgMiner.stats?.min || tgMiner.price,
-                    maxPrice: tgMiner.stats?.max || tgMiner.price,
-                    avgPrice: tgMiner.stats?.avg || tgMiner.price,
-                    middlePrice: tgMiner.stats?.middle || tgMiner.price,
+                    minPrice: tgMiner.stats?.min || price,
+                    maxPrice: tgMiner.stats?.max || price,
+                    avgPrice: tgMiner.stats?.avg || price,
+                    middlePrice: tgMiner.stats?.middle || price,
                     vendorCount: tgMiner.stats?.count || 1,
                     lastUpdated: new Date().toISOString()
                 }
