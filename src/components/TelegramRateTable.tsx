@@ -131,7 +131,7 @@ function Row({ m }: { m: any }) {
                         {m.matchName === 'Estimated' && !m.powerW && <span className="ml-2 text-[10px] text-amber-500">(Est. Power)</span>}
                     </div>
                 </TableCell>
-                <TableCell className="text-right">{m.hashrateTH} TH</TableCell>
+                <TableCell className="text-right">{(m.hashrateTH || 0).toFixed(0)} TH</TableCell>
                 <TableCell className="text-right">{(m.powerW || 0).toFixed(0)} W</TableCell>
                 <TableCell className="text-right text-green-600">${(m.dailyRevenueUSD || 0).toFixed(2)}</TableCell>
                 <TableCell className="text-right text-red-500">-${(m.dailyExpenseUSD || 0).toFixed(2)}</TableCell>

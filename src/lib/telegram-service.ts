@@ -7,7 +7,7 @@ const API_ID = parseInt(process.env.API_ID || "0", 10);
 const API_HASH = process.env.API_HASH || "";
 const SESSION_STRING = process.env.TELEGRAM_SESSION || "";
 
-const KEYWORDS = ["S21", "S19", "T21", "M50", "M60", "A15", "A14", "A13"]; // BTC Only Series
+const KEYWORDS = ["S23", "S21", "S19", "T21", "M50", "M60", "B19", "U3"]; // Added S23, B19, U3
 const NEGATIVE_KEYWORDS = [
     // Altcoins
     "L7", "K7", "D9", "E9", "Z15", "KA3", "KS3", "KS5", "AL3", "DR3", "IceRiver", "Goldshell",
