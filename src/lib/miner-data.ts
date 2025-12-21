@@ -201,6 +201,15 @@ export const INITIAL_MINERS: MinerProfile[] = [
     // Air - S21 Series
     { name: 'Antminer S21 XP', hashrateTH: 270, powerWatts: 3645, price: 0 },
     { name: 'Antminer S21 Pro 245T', hashrateTH: 245, powerWatts: 3510, price: 0 },
+    { name: 'Antminer S21 Pro 235T', hashrateTH: 235, powerWatts: 3525, price: 0 }, // 15 J/T
     { name: 'Antminer S21 Pro 234T', hashrateTH: 234, powerWatts: 3510, price: 0 },
+    { name: 'Antminer S21 Pro 225T', hashrateTH: 225, powerWatts: 3375, price: 0 }, // 15 J/T
     { name: 'Antminer S21+', hashrateTH: 235, powerWatts: 3877, price: 0 },
+    { name: 'Antminer S21e XP Hydro', hashrateTH: 860, powerWatts: 11180, price: 0 }, // U3S21EXPH Ref
+
+    // S19 / Other
+    { name: 'Antminer S19k Pro 120T', hashrateTH: 120, powerWatts: 2760, price: 0 },
+    { name: 'Antminer S19k Pro 115T', hashrateTH: 115, powerWatts: 2645, price: 0 },
+    { name: 'Antminer L7 9500M', hashrateTH: 9.5, powerWatts: 3425, price: 0 },
+    { name: 'Antminer L7 9050M', hashrateTH: 9.05, powerWatts: 3260, price: 0 },
 ];

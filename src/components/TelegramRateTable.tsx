@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { useMarketData } from "@/hooks/useMarketData";
 import { INITIAL_MINERS } from "@/lib/miner-data";
-import { normalizeMinerName } from "@/lib/market-matching";
+import { normalizeMinerName, findBestStaticMatch } from "@/lib/market-matching";
 import { calculateHashpriceUSD, calculateMinerRevenueUSD } from "@/lib/mining-math";
 import { DEFAULT_CONTRACT_TERMS } from "@/lib/constants";
 
@@ -27,9 +27,8 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
 
         return telegramMiners.filter(tg => tg.name).map(tg => {
             // 1. Find Specs (Power)
-            // ... (keep existing logic)
-            const normTg = normalizeMinerName(tg.name);
-            const match = INITIAL_MINERS.find(m => normalizeMinerName(m.name).includes(normTg) || normTg.includes(normalizeMinerName(m.name)));
+            // Use improved matcher that handles synonyms (EXPH -> XP Hydro)
+            const match = findBestStaticMatch(tg.name, INITIAL_MINERS);
 
             let powerW = 0;
             if (match) {

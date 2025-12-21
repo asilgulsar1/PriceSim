@@ -126,3 +126,45 @@ export function normalizeMinerName(name: string): string {
     // allowing us to match "s21+hyd" with "s21hyd" easily if separators differ
     return lower.replace(/[^a-z0-9+]/g, '');
 }
+
+/**
+ * Finds the best matching static miner profile for a given "dirty" Telegram name.
+ * Handles abbreviations like "EXPH" -> "XP Hydro" and "U3" prefixes.
+ */
+export function findBestStaticMatch(dirtyName: string, staticMiners: { name: string, hashrateTH: number }[]): { name: string, powerWatts: number } | undefined {
+    const normalize = (s: string) => {
+        let n = s.toLowerCase();
+        // Abbreviations
+        n = n.replace(/exph/g, 'xp hydro');
+        n = n.replace(/u3/g, ''); // Container ref
+        n = n.replace(/pro/g, ' pro ');
+        n = n.replace(/xp/g, ' xp ');
+        n = n.replace(/hyd/g, ' hydro ');
+        return n.replace(/[^a-z0-9]/g, '');
+    };
+
+    const targetNorm = normalize(dirtyName);
+
+    // 1. Try Exact Inclusion first (High Confidence)
+    // e.g. "S21 XP" in "Antminer S21 XP Hydro"
+    // Sorted by length descending to match longest specific model first
+    const sorted = [...staticMiners].sort((a, b) => b.name.length - a.name.length);
+
+    for (const m of sorted) {
+        const mNorm = normalize(m.name);
+        if (targetNorm.includes(mNorm) || mNorm.includes(targetNorm)) {
+            // Check Hashrate if available in dirty name? 
+            // The scraping parser has already separated Hashrate. 
+            // Here we assume dirtyName is just the model string.
+            // But if dirty string contains "200T" and static has "200T", that helps?
+            // Usually dirtyName comes cleans from parser (no hashrate).
+            return m as any;
+        }
+    }
+
+    // 2. Token Match for tougher cases
+    // s21e xp hydro vs s21xp
+    // ... logic if needed, but inclusion usually works if abbreviations are expanded.
+
+    return undefined;
+}
