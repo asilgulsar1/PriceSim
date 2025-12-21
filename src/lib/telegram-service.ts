@@ -123,8 +123,12 @@ function parseLine(line: string): TelegramMiner | null {
         .replace(/[:|\-—,]/g, ' ') // Punctuation key chars
         .replace(/\b(?:moq|doa|warranty|working|condition|lot|batch|stock|spot|new|used|refurb|refurbished|for sale|selling|available|now)\b/gi, ' ')
         .replace(/\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\b/gi, '') // Month frags
-        // Emoji Removal (Range-based for safety)
-        .replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '')
+        // Emoji Removal (Broader Ranges)
+        // \u2700-\u27BF: Dingbats
+        // \uE000-\uF8FF: PUC
+        // \uD83C..\uD83E..: Surrogate pairs for Emojis
+        // \u2000-\u2BFF: Symbols/Arrows/etc
+        .replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]|\u2B50|\u2B55|\u231A|\u231B|\u23F3|\u23F0|\u25AA|\u25AB)/g, '')
         .replace(/\s+/g, ' ').trim();
 
     // Final Shortening
@@ -155,6 +159,13 @@ function parseLine(line: string): TelegramMiner | null {
         if (/^a[0-9]/i.test(name)) {
             name = `Avalon ${name}`;
         }
+    }
+
+    // STRICT FILTER: Match Positive Keywords on the CLEANED Name
+    // This removes "AE BOX", "MiniDoge", "L2", "L7" (since L7 not in KEYWORDS)
+    // KEYWORDS = ["S23", "S21", "S19", "T21", "M50", "M60", "B19", "U3"]
+    if (!KEYWORDS.some(k => name.toLowerCase().includes(k.toLowerCase()))) {
+        return null;
     }
 
     if (price > 0 && hashrateTH > 0) {
