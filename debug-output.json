@@ -1,328 +1,6 @@
 [
   {
-    "name": "Whatsminer M78S  . Ex factory  2026 02 28",
-    "hashrateTH": 498,
-    "price": 8815,
-    "stats": {
-      "min": 8815,
-      "max": 9960,
-      "count": 2,
-      "middle": 9388
-    },
-    "listings": [
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 9960,
-        "date": "2025-12-19T06:48:44.000Z"
-      },
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 8815,
-        "date": "2025-12-19T06:48:43.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M78  . Ex factory  2026 02 28",
-    "hashrateTH": 464,
-    "price": 7285,
-    "stats": {
-      "min": 7285,
-      "max": 8213,
-      "count": 2,
-      "middle": 7749
-    },
-    "listings": [
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 8213,
-        "date": "2025-12-19T06:48:44.000Z"
-      },
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 7285,
-        "date": "2025-12-19T06:48:43.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M76S+  . Ex factory  2026 02 28",
-    "hashrateTH": 416,
-    "price": 8611,
-    "stats": {
-      "min": 8611,
-      "max": 9735,
-      "count": 2,
-      "middle": 9173
-    },
-    "listings": [
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 9735,
-        "date": "2025-12-19T06:48:44.000Z"
-      },
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 8611,
-        "date": "2025-12-19T06:48:43.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M76S  . Ex factory  2026 02 28",
-    "hashrateTH": 384,
-    "price": 6797,
-    "stats": {
-      "min": 6797,
-      "max": 7680,
-      "count": 2,
-      "middle": 7239
-    },
-    "listings": [
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 7680,
-        "date": "2025-12-19T06:48:44.000Z"
-      },
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 6797,
-        "date": "2025-12-19T06:48:43.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M76  . Ex factory  2026 02 28",
-    "hashrateTH": 354,
-    "price": 5558,
-    "stats": {
-      "min": 5558,
-      "max": 6266,
-      "count": 2,
-      "middle": 5912
-    },
-    "listings": [
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 6266,
-        "date": "2025-12-19T06:48:44.000Z"
-      },
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 5558,
-        "date": "2025-12-19T06:48:43.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M79S  . Ex factory  2026 02 28",
-    "hashrateTH": 980,
-    "price": 17346,
-    "stats": {
-      "min": 17346,
-      "max": 19600,
-      "count": 2,
-      "middle": 18473
-    },
-    "listings": [
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 19600,
-        "date": "2025-12-19T06:48:44.000Z"
-      },
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 17346,
-        "date": "2025-12-19T06:48:43.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M79  . Ex factory  2026 02 28",
-    "hashrateTH": 920,
-    "price": 14444,
-    "stats": {
-      "min": 14444,
-      "max": 16284,
-      "count": 2,
-      "middle": 15364
-    },
-    "listings": [
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 16284,
-        "date": "2025-12-19T06:48:44.000Z"
-      },
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 14444,
-        "date": "2025-12-19T06:48:44.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M73S+  . Ex factory  2026 02 28",
-    "hashrateTH": 570,
-    "price": 11799,
-    "stats": {
-      "min": 11799,
-      "max": 13338,
-      "count": 2,
-      "middle": 12569
-    },
-    "listings": [
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 13338,
-        "date": "2025-12-19T06:48:44.000Z"
-      },
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 11799,
-        "date": "2025-12-19T06:48:44.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M73S  . Ex factory  2026 02 28",
-    "hashrateTH": 526,
-    "price": 9310,
-    "stats": {
-      "min": 9310,
-      "max": 10520,
-      "count": 2,
-      "middle": 9915
-    },
-    "listings": [
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 10520,
-        "date": "2025-12-19T06:48:44.000Z"
-      },
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 9310,
-        "date": "2025-12-19T06:48:44.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M73  . Ex factory  2026 02 28",
-    "hashrateTH": 498,
-    "price": 7818,
-    "stats": {
-      "min": 7818,
-      "max": 8815,
-      "count": 2,
-      "middle": 8317
-    },
-    "listings": [
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 8815,
-        "date": "2025-12-19T06:48:44.000Z"
-      },
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 7818,
-        "date": "2025-12-19T06:48:44.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M72  . Ex factory  2026 02 28",
-    "hashrateTH": 262,
-    "price": 4270,
-    "stats": {
-      "min": 4270,
-      "max": 4820,
-      "count": 2,
-      "middle": 4545
-    },
-    "listings": [
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 4820,
-        "date": "2025-12-19T06:48:44.000Z"
-      },
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 4270,
-        "date": "2025-12-19T06:48:44.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M70S+  . Ex factory  2026 02 28",
-    "hashrateTH": 262,
-    "price": 5580,
-    "stats": {
-      "min": 5580,
-      "max": 6314,
-      "count": 2,
-      "middle": 5947
-    },
-    "listings": [
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 6314,
-        "date": "2025-12-19T06:48:44.000Z"
-      },
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 5580,
-        "date": "2025-12-19T06:48:44.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M70S  . Ex factory  2026 02 28",
-    "hashrateTH": 242,
-    "price": 4430,
-    "stats": {
-      "min": 4430,
-      "max": 5010,
-      "count": 2,
-      "middle": 4720
-    },
-    "listings": [
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 5010,
-        "date": "2025-12-19T06:48:44.000Z"
-      },
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 4430,
-        "date": "2025-12-19T06:48:44.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M70  . Ex factory  2026 02 28",
-    "hashrateTH": 224,
-    "price": 3651,
-    "stats": {
-      "min": 3651,
-      "max": 4121,
-      "count": 2,
-      "middle": 3886
-    },
-    "listings": [
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 4121,
-        "date": "2025-12-19T06:48:44.000Z"
-      },
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 3651,
-        "date": "2025-12-19T06:48:44.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M63S+  /T",
+    "name": "Whatsminer M63S+ /T",
     "hashrateTH": 442,
     "price": 5083,
     "stats": {
@@ -345,7 +23,7 @@
     ]
   },
   {
-    "name": "Whatsminer M63S+  /T",
+    "name": "Whatsminer M63S+ /T",
     "hashrateTH": 420,
     "price": 4704,
     "stats": {
@@ -368,7 +46,7 @@
     ]
   },
   {
-    "name": "Whatsminer M63S+  /T",
+    "name": "Whatsminer M63S+ /T",
     "hashrateTH": 418,
     "price": 4682,
     "stats": {
@@ -391,7 +69,7 @@
     ]
   },
   {
-    "name": "Whatsminer M63S+  /T",
+    "name": "Whatsminer M63S+ /T",
     "hashrateTH": 432,
     "price": 4882,
     "stats": {
@@ -414,7 +92,7 @@
     ]
   },
   {
-    "name": "Whatsminer M63S+  /T",
+    "name": "Whatsminer M63S+ /T",
     "hashrateTH": 440,
     "price": 5896,
     "stats": {
@@ -432,7 +110,7 @@
     ]
   },
   {
-    "name": "Whatsminer M63S+  /T",
+    "name": "Whatsminer M63S+ /T",
     "hashrateTH": 436,
     "price": 5014,
     "stats": {
@@ -455,7 +133,7 @@
     ]
   },
   {
-    "name": "Whatsminer M60S+  /T",
+    "name": "Whatsminer M60S+ /T",
     "hashrateTH": 206,
     "price": 2328,
     "stats": {
@@ -488,7 +166,7 @@
     ]
   },
   {
-    "name": "Whatsminer M63S+  /T",
+    "name": "Whatsminer M63S+ /T",
     "hashrateTH": 430,
     "price": 4859,
     "stats": {
@@ -511,7 +189,7 @@
     ]
   },
   {
-    "name": "Whatsminer M63S+  /T",
+    "name": "Whatsminer M63S+ /T",
     "hashrateTH": 428,
     "price": 4837,
     "stats": {
@@ -534,7 +212,7 @@
     ]
   },
   {
-    "name": "Whatsminer M60S+  /T",
+    "name": "Whatsminer M60S+ /T",
     "hashrateTH": 208,
     "price": 2392,
     "stats": {
@@ -567,7 +245,7 @@
     ]
   },
   {
-    "name": "Whatsminer M60S+  /T",
+    "name": "Whatsminer M60S+ /T",
     "hashrateTH": 210,
     "price": 2457,
     "stats": {
@@ -590,7 +268,7 @@
     ]
   },
   {
-    "name": "Whatsminer M60S+  /T",
+    "name": "Whatsminer M60S+ /T",
     "hashrateTH": 204,
     "price": 2305,
     "stats": {
@@ -613,7 +291,7 @@
     ]
   },
   {
-    "name": "Whatsminer M60S+  /T",
+    "name": "Whatsminer M60S+ /T",
     "hashrateTH": 202,
     "price": 2283,
     "stats": {
@@ -631,24 +309,6 @@
       {
         "source": "JingleMining Group I ASIC Miner Supplier",
         "price": 2283,
-        "date": "2025-12-19T06:48:44.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M72S  . Ex factory  2026 02 28",
-    "hashrateTH": 282,
-    "price": 5160,
-    "stats": {
-      "min": 5160,
-      "max": 5160,
-      "count": 1,
-      "middle": 5160
-    },
-    "listings": [
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 5160,
         "date": "2025-12-19T06:48:44.000Z"
       }
     ]
@@ -1034,7 +694,7 @@
     ]
   },
   {
-    "name": "Antminer S21+ HYD  (2 months )",
+    "name": "Antminer S21+ HYD (2 months )",
     "hashrateTH": 395,
     "price": 8,
     "stats": {
@@ -1397,24 +1057,6 @@
     ]
   },
   {
-    "name": "Antminer S19e XP Hydro  . Ex factory  2025 12 26",
-    "hashrateTH": 251,
-    "price": 830,
-    "stats": {
-      "min": 830,
-      "max": 830,
-      "count": 1,
-      "middle": 830
-    },
-    "listings": [
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 830,
-        "date": "2025-12-19T06:48:43.000Z"
-      }
-    ]
-  },
-  {
     "name": "Antminer S19Kpro ⬇️",
     "hashrateTH": 120,
     "price": 4,
@@ -1594,24 +1236,6 @@
     ]
   },
   {
-    "name": "Antminer S21 XP  . Ex factory  2025 12 26",
-    "hashrateTH": 270,
-    "price": 4400,
-    "stats": {
-      "min": 4400,
-      "max": 4400,
-      "count": 1,
-      "middle": 4400
-    },
-    "listings": [
-      {
-        "source": "JingleMining Group I ASIC Miner Supplier",
-        "price": 4400,
-        "date": "2025-12-19T06:48:43.000Z"
-      }
-    ]
-  },
-  {
     "name": "Antminer S21 PRO (GTD) ( )",
     "hashrateTH": 234,
     "price": 12,
@@ -1723,15 +1347,20 @@
     "price": 12180,
     "stats": {
       "min": 12180,
-      "max": 12180,
-      "count": 1,
-      "middle": 12180
+      "max": 14906,
+      "count": 2,
+      "middle": 13543
     },
     "listings": [
       {
         "source": "Mining Resell",
         "price": 12180,
         "date": "2025-12-21T13:57:27.000Z"
+      },
+      {
+        "source": "BT-Miners Global (HK)",
+        "price": 14906,
+        "date": "2025-12-19T09:32:21.000Z"
       }
     ]
   },
@@ -2107,24 +1736,6 @@
     ]
   },
   {
-    "name": "Antminer S23 MIX (2026.01)",
-    "hashrateTH": 296,
-    "price": 7400,
-    "stats": {
-      "min": 7400,
-      "max": 7400,
-      "count": 1,
-      "middle": 7400
-    },
-    "listings": [
-      {
-        "source": "UNISTAR MINER（https://www.unistarminer.com/） (Dubai)",
-        "price": 7400,
-        "date": "2025-12-21T12:00:00.000Z"
-      }
-    ]
-  },
-  {
     "name": "Antminer S21 XP (7 10 Days)",
     "hashrateTH": 270,
     "price": 16,
@@ -2174,24 +1785,6 @@
         "source": "DCE miner",
         "price": 16,
         "date": "2025-12-19T08:17:26.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Antminer S23 HYD MIX (2026.01)",
-    "hashrateTH": 580,
-    "price": 14500,
-    "stats": {
-      "min": 14500,
-      "max": 14500,
-      "count": 1,
-      "middle": 14500
-    },
-    "listings": [
-      {
-        "source": "UNISTAR MINER（https://www.unistarminer.com/） (Dubai)",
-        "price": 14500,
-        "date": "2025-12-21T12:00:00.000Z"
       }
     ]
   },
@@ -2295,7 +1888,7 @@
     ]
   },
   {
-    "name": "Whatsminer M66 Mixed (2 Months =20)",
+    "name": "Whatsminer M66 ed (2 Months =20)",
     "hashrateTH": 280,
     "price": 3799,
     "stats": {
@@ -4851,7 +4444,7 @@
     ]
   },
   {
-    "name": "Antminer S21 HYD  (2 months )",
+    "name": "Antminer S21 HYD (2 months )",
     "hashrateTH": 335,
     "price": 3183,
     "stats": {
@@ -4865,42 +4458,6 @@
         "source": "ASICXchange Market Place",
         "price": 3183,
         "date": "2025-12-18T21:20:02.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Antminer S23 MIX 2026.01",
-    "hashrateTH": 296,
-    "price": 7400,
-    "stats": {
-      "min": 7400,
-      "max": 7400,
-      "count": 1,
-      "middle": 7400
-    },
-    "listings": [
-      {
-        "source": "Unistar Miner(Offical)",
-        "price": 7400,
-        "date": "2025-12-20T16:24:13.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Antminer S23 HYD MIX 2026.01",
-    "hashrateTH": 580,
-    "price": 14500,
-    "stats": {
-      "min": 14500,
-      "max": 14500,
-      "count": 1,
-      "middle": 14500
-    },
-    "listings": [
-      {
-        "source": "Unistar Miner(Offical)",
-        "price": 14500,
-        "date": "2025-12-20T16:24:13.000Z"
       }
     ]
   },
@@ -4923,14 +4480,14 @@
     ]
   },
   {
-    "name": "Whatsminer M63S",
+    "name": "Whatsminer M63s+",
     "hashrateTH": 410,
-    "price": 4660,
+    "price": 11,
     "stats": {
-      "min": 4660,
+      "min": 11,
       "max": 4740,
-      "count": 3,
-      "middle": 4740
+      "count": 4,
+      "middle": 4700
     },
     "listings": [
       {
@@ -4947,11 +4504,16 @@
         "source": "How2mine | Россия",
         "price": 4740,
         "date": "2025-12-19T09:37:02.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 11,
+        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
   {
-    "name": "Antminer S21hyd",
+    "name": "Antminer S21 Hyd",
     "hashrateTH": 473,
     "price": 7710,
     "stats": {
@@ -5399,18 +4961,23 @@
   {
     "name": "Whatsminer M70",
     "hashrateTH": 248,
-    "price": 4092,
+    "price": 17,
     "stats": {
-      "min": 4092,
+      "min": 17,
       "max": 4092,
-      "count": 1,
-      "middle": 4092
+      "count": 2,
+      "middle": 2055
     },
     "listings": [
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
         "price": 4092,
         "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 17,
+        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
@@ -5435,12 +5002,12 @@
   {
     "name": "Whatsminer M70",
     "hashrateTH": 244,
-    "price": 3880,
+    "price": 16,
     "stats": {
-      "min": 3880,
+      "min": 16,
       "max": 4026,
-      "count": 2,
-      "middle": 3953
+      "count": 3,
+      "middle": 3880
     },
     "listings": [
       {
@@ -5452,6 +5019,11 @@
         "source": "⛏️Asic mining center - Mila💰 (HK)",
         "price": 3880,
         "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 16,
+        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
@@ -5726,7 +5298,7 @@
     "stats": {
       "min": 16,
       "max": 16,
-      "count": 2,
+      "count": 1,
       "middle": 16
     },
     "listings": [
@@ -5734,11 +5306,6 @@
         "source": "⛏️Asic mining center - Mila💰 (HK)",
         "price": 16,
         "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 16,
-        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
@@ -5999,7 +5566,7 @@
     ]
   },
   {
-    "name": "Antminer S23 mix 100",
+    "name": "Antminer S23",
     "hashrateTH": 296,
     "price": 8150,
     "stats": {
@@ -6012,24 +5579,6 @@
       {
         "source": "BT-Miners Global (HK)",
         "price": 8150,
-        "date": "2025-12-19T09:32:21.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Antminer S23hyd mix 100",
-    "hashrateTH": 580,
-    "price": 14906,
-    "stats": {
-      "min": 14906,
-      "max": 14906,
-      "count": 1,
-      "middle": 14906
-    },
-    "listings": [
-      {
-        "source": "BT-Miners Global (HK)",
-        "price": 14906,
         "date": "2025-12-19T09:32:21.000Z"
       }
     ]
@@ -6189,42 +5738,6 @@
     ]
   },
   {
-    "name": "Whatsminer M70 238",
-    "hashrateTH": 248,
-    "price": 17,
-    "stats": {
-      "min": 17,
-      "max": 17,
-      "count": 1,
-      "middle": 17
-    },
-    "listings": [
-      {
-        "source": "BITMARS _Leila~",
-        "price": 17,
-        "date": "2025-12-19T06:11:49.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M70 220",
-    "hashrateTH": 244,
-    "price": 16,
-    "stats": {
-      "min": 16,
-      "max": 16,
-      "count": 1,
-      "middle": 16
-    },
-    "listings": [
-      {
-        "source": "BITMARS _Leila~",
-        "price": 16,
-        "date": "2025-12-19T06:11:49.000Z"
-      }
-    ]
-  },
-  {
     "name": "Whatsminer M63s+ 440/",
     "hashrateTH": 442,
     "price": 11,
@@ -6261,19 +5774,19 @@
     ]
   },
   {
-    "name": "Whatsminer M63s+ 400",
-    "hashrateTH": 410,
-    "price": 11,
+    "name": "Whatsminer M73",
+    "hashrateTH": 526,
+    "price": 16,
     "stats": {
-      "min": 11,
-      "max": 11,
+      "min": 16,
+      "max": 16,
       "count": 1,
-      "middle": 11
+      "middle": 16
     },
     "listings": [
       {
         "source": "BITMARS _Leila~",
-        "price": 11,
+        "price": 16,
         "date": "2025-12-19T06:11:49.000Z"
       }
     ]

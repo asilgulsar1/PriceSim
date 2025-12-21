@@ -282,22 +282,26 @@ export class TelegramService {
                     }
 
                     // Strict Spot Checks (Regex for flexibility)
-                    // Block "Ex factory", "Future Batch", "Est Date"
-                    if (/ex\s*factory/i.test(line) || /future\s*batch/i.test(line) || /est\.?\s*date/i.test(line)) continue;
+                    // Block "Ex factory", "Future Batch", "Est Date" AND "YYYY.MM" date codes (e.g., 2026.01)
+                    if (/ex\s*factory/i.test(line) || /future\s*batch/i.test(line) || /est\.?\s*date/i.test(line) || /\b202[5-9][\.\-]?\d{2}\b/.test(line)) continue;
 
                     const miner = parseLine(line);
                     if (miner) {
-                        // Double check: If name still contains future keywords, drop it
-                        if (/ex\s*factory/i.test(miner.name) || /est\.?\s*date/i.test(miner.name)) continue;
+                        // Double check: If name still contains future keywords or date codes, drop it
+                        if (/ex\s*factory/i.test(miner.name) || /est\.?\s*date/i.test(miner.name) || /\b202[5-9][\.\-]?\d{2}\b/.test(miner.name)) continue;
 
                         // Append Region to Source if detected
                         const regionTag = currentRegion ? ` (${currentRegion})` : '';
                         miner.source = (dialog.title || "Telegram") + regionTag;
 
-                        // Clean Name (Remove leading hash from tags like #Whatsminer)
+                        // Clean Name (Remove leading hash, noise, and fix formatting)
                         miner.name = miner.name.replace(/^#/, '')
                             .replace(/\/s\b/gi, '') // Remove "/s" suffix
                             .replace(/\b(est\.?|date)\b/gi, '') // Remove "Est." "Date" artifacts
+                            .replace(/mix/gi, '') // Remove "MIX" noise
+                            .replace(/([A-Z]\d+)hyd/gi, '$1 Hyd') // Fix "S23hyd" -> "S23 Hyd"
+                            .replace(/\b\d{2,3}\b$/g, '') // Remove trailing 2-3 digit numbers (like "100")
+                            .replace(/\s+/g, ' ') // Collapse spaces
                             .trim();
 
                         miner.date = new Date(msg.date * 1000);
