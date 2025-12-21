@@ -26,16 +26,18 @@ const MAX_AGE_HOURS = 72;
 function parseLine(line) {
     let cleanLine = line.replace(/^[-\*•]\s*/, '').trim();
 
-    // Check for Slash-Separated Hashrates (e.g., 434/436/440T or /440/442T)
-    // Updated to handle optional leading slash/dash
-    const multiHashRegex = /[/\-]?\b((?:\d{3}[/\-]){1,4}\d{3})\s*(T|Th)\b/i;
+    // Check for Slash-Separated Hashrates (e.g., 434/436/440T or /440T/442T)
+    // Updated to handle optional leading slash and units inside groups
+    const multiHashRegex = /[/\-]?\b((?:\d{3}(?:T|Th)?[/\-]){1,4}\d{3}(?:T|Th)?)\b/i;
     const multiMatch = cleanLine.match(multiHashRegex);
     let multiHashrates = [];
     let usedMultiMatch = false;
 
     if (multiMatch) {
         const rawNums = multiMatch[1].split(/[/\-]/);
-        multiHashrates = rawNums.map(n => parseFloat(n)).filter(n => !isNaN(n) && n > 20); // Filter valid hashrates > 20T
+        // Strip non-digits (T/Th) before parsing
+        multiHashrates = rawNums.map(n => parseFloat(n.replace(/[^\d.]/g, '')))
+            .filter(n => !isNaN(n) && n > 20); // Filter valid hashrates > 20T
         if (multiHashrates.length > 1) {
             usedMultiMatch = true;
         }
@@ -259,7 +261,7 @@ class TelegramService {
                     // Block "Ex factory", "Future Batch", "Est Date" AND "YYYY.MM" date codes (e.g., 2026.01)
                     if (/ex\s*factory/i.test(line) || /future\s*batch/i.test(line) || /est\.?\s*date/i.test(line) || /\b202[5-9][\.\-]?\d{2}\b/.test(line)) continue;
 
-                    const miners = parseLine(line); // Now returns Array
+                    const miners = parseLine(line); // Returns array
                     if (miners && miners.length > 0) {
                         for (const miner of miners) {
                             // Double check: If name still contains future keywords or date codes, drop it
@@ -272,10 +274,15 @@ class TelegramService {
                             miner.name = miner.name.replace(/^#/, '')
                                 .replace(/\/s\b/gi, '') // Remove "/s" suffix
                                 .replace(/\b(est\.?|date)\b/gi, '') // Remove "Est." "Date"
-                                .replace(/ex\s*factory/gi, '') // Explicit remove if skipped check?
+                                .replace(/ex\s*factory/gi, '')
                                 .replace(/mix/gi, '') // Remove "MIX" noise
                                 .replace(/([A-Z]\d+)hyd/gi, '$1 Hyd') // Fix "S23hyd" -> "S23 Hyd"
+                                .replace(/U3S21/gi, 'U3 S21') // Fix concatenated model
+                                .replace(/\b(GTD|RB|HK\/SZ)\b/gi, '') // Remove trade terms
                                 .replace(/\/T\b/gi, '') // Remove "/T" suffix
+                                .replace(/\/8T\b/gi, '') // Remove specific debris like "/8T"
+                                .replace(/\(\s*\)/g, '') // Remove empty brackets ( )
+                                .replace(/\b\d{1,2}(days|weeks|months)\b/gi, '') // Remove duration debris "7days"
                                 .replace(/\b\d{2,3}\b$/g, '') // Remove trailing 2-3 digit numbers
                                 .replace(/\s+/g, ' ') // Collapse spaces
                                 .trim();

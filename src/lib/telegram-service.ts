@@ -36,16 +36,18 @@ function parseLine(line: string): TelegramMiner[] | null {
     // 1. Clean basic bullets
     let cleanLine = line.replace(/^[-\*•]\s*/, '').trim();
 
-    // Check for Slash-Separated Hashrates (e.g., 434/436/440T or /440/442T)
-    // Updated to handle optional leading slash/dash
-    const multiHashRegex = /[/\-]?\b((?:\d{3}[/\-]){1,4}\d{3})\s*(T|Th)\b/i;
+    // Check for Slash-Separated Hashrates (e.g., 434/436/440T or /440T/442T)
+    // Updated to handle optional leading slash and units inside groups
+    const multiHashRegex = /[/\-]?\b((?:\d{3}(?:T|Th)?[/\-]){1,4}\d{3}(?:T|Th)?)\b/i;
     const multiMatch = cleanLine.match(multiHashRegex);
     let multiHashrates: number[] = [];
     let usedMultiMatch = false;
 
     if (multiMatch) {
         const rawNums = multiMatch[1].split(/[/\-]/);
-        multiHashrates = rawNums.map(n => parseFloat(n)).filter(n => !isNaN(n) && n > 20); // Filter valid hashrates > 20T
+        // Strip non-digits (T/Th) before parsing
+        multiHashrates = rawNums.map(n => parseFloat(n.replace(/[^\d.]/g, '')))
+            .filter(n => !isNaN(n) && n > 20); // Filter valid hashrates > 20T
         if (multiHashrates.length > 1) {
             usedMultiMatch = true;
         }
@@ -308,14 +310,20 @@ export class TelegramService {
                             const regionTag = currentRegion ? ` (${currentRegion})` : '';
                             miner.source = (dialog.title || "Telegram") + regionTag;
 
-                            // Clean Name (Remove leading hash, noise, and fix formatting)
+                            // Enhanced Cleanup
                             miner.name = miner.name.replace(/^#/, '')
                                 .replace(/\/s\b/gi, '') // Remove "/s" suffix
                                 .replace(/\b(est\.?|date)\b/gi, '') // Remove "Est." "Date" artifacts
+                                .replace(/ex\s*factory/gi, '')
                                 .replace(/mix/gi, '') // Remove "MIX" noise
                                 .replace(/([A-Z]\d+)hyd/gi, '$1 Hyd') // Fix "S23hyd" -> "S23 Hyd"
+                                .replace(/U3S21/gi, 'U3 S21') // Fix concatenated model U3 + S21
+                                .replace(/\b(GTD|RB|HK\/SZ)\b/gi, '') // Remove trade terms
                                 .replace(/\/T\b/gi, '') // Remove "/T" suffix
-                                .replace(/\b\d{2,3}\b$/g, '') // Remove trailing 2-3 digit numbers (like "100")
+                                .replace(/\/8T\b/gi, '') // Remove specific debris like "/8T"
+                                .replace(/\(\s*\)/g, '') // Remove empty brackets ( )
+                                .replace(/\b\d{1,2}(days|weeks|months)\b/gi, '') // Remove duration debris "7days"
+                                .replace(/\b\d{2,3}\b$/g, '') // Remove trailing 2-3 digit numbers
                                 .replace(/\s+/g, ' ') // Collapse spaces
                                 .trim();
 
