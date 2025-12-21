@@ -108,6 +108,57 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
         return processed;
     }, [telegramMiners, market, filterText, sortConfig]);
 
+    // Grouping Logic
+    const groupedData = useMemo(() => {
+        const groups: Record<string, any> = {};
+
+        enrichedData.forEach(m => {
+            if (!groups[m.name]) {
+                groups[m.name] = {
+                    name: m.name,
+                    minHash: m.hashrateTH,
+                    maxHash: m.hashrateTH,
+                    minPrice: m.price,
+                    minRoi: m.roi,
+                    maxRoi: m.roi,
+                    count: 0,
+                    children: []
+                };
+            }
+
+            const g = groups[m.name];
+            g.children.push(m);
+            g.minHash = Math.min(g.minHash, m.hashrateTH);
+            g.maxHash = Math.max(g.maxHash, m.hashrateTH);
+            g.minPrice = Math.min(g.minPrice, m.price);
+            if (m.roi > -99) {
+                g.minRoi = Math.min(g.minRoi, m.roi);
+                g.maxRoi = Math.max(g.maxRoi, m.roi);
+            }
+            g.count++;
+        });
+
+        // Convert to array and Sort Groups
+        return Object.values(groups).sort((a: any, b: any) => {
+            if (sortConfig) {
+                if (sortConfig.key === 'price') {
+                    return sortConfig.direction === 'asc' ? a.minPrice - b.minPrice : b.minPrice - a.minPrice;
+                }
+                if (sortConfig.key === 'roi') {
+                    // ROI Descending usually preferred
+                    // Use Max ROI for the group
+                    return sortConfig.direction === 'asc' ? a.maxRoi - b.maxRoi : b.maxRoi - a.maxRoi;
+                }
+                if (sortConfig.key === 'name') {
+                    return sortConfig.direction === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
+                }
+            }
+            // Default Sort Groups by Max Hashrate
+            return b.maxHash - a.maxHash;
+        });
+
+    }, [enrichedData, sortConfig]);
+
     const requestSort = (key: string) => {
         let direction: 'asc' | 'desc' = 'asc';
         if (sortConfig && sortConfig.key === key && sortConfig.direction === 'asc') {
@@ -131,7 +182,7 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
                     onChange={(e) => setFilterText(e.target.value)}
                 />
                 <Badge variant="outline" className="ml-auto">
-                    {enrichedData.length} Results
+                    {groupedData.length} Models ({enrichedData.length} Variants)
                 </Badge>
             </div>
 
@@ -139,20 +190,20 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
                 <Table>
                     <TableHeader>
                         <TableRow className="bg-muted/50">
-                            <TableHead className="cursor-pointer hover:text-foreground" onClick={() => requestSort('name')}>Miner Model {sortConfig?.key === 'name' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</TableHead>
-                            <TableHead className="text-right cursor-pointer hover:text-foreground" onClick={() => requestSort('hashrateTH')}>Hashrate {sortConfig?.key === 'hashrateTH' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</TableHead>
-                            <TableHead className="text-right">Power</TableHead>
+                            <TableHead>Miner Model</TableHead>
+                            <TableHead className="text-right">Hashrate Range</TableHead>
+                            <TableHead className="text-right">Est. Power</TableHead>
                             <TableHead className="text-right">Daily Rev</TableHead>
                             <TableHead className="text-right">Daily Exp</TableHead>
-                            <TableHead className="text-right cursor-pointer hover:text-foreground" onClick={() => requestSort('dailyNet')}>Daily Net {sortConfig?.key === 'dailyNet' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</TableHead>
-                            <TableHead className="text-right cursor-pointer hover:text-foreground" onClick={() => requestSort('roi')}>ROI (Net) {sortConfig?.key === 'roi' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</TableHead>
-                            <TableHead className="text-right cursor-pointer hover:text-foreground" onClick={() => requestSort('price')}>Lowest Price {sortConfig?.key === 'price' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</TableHead>
-                            <TableHead className="text-right">Source</TableHead>
+                            <TableHead className="text-right">Daily Net</TableHead>
+                            <TableHead className="text-right">ROI (Net)</TableHead>
+                            <TableHead className="text-right">Lowest Price</TableHead>
+                            <TableHead className="text-right">Variants</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {enrichedData.map((m: any, i: number) => (
-                            <Row key={i} m={m} />
+                        {groupedData.map((group: any, i: number) => (
+                            <GroupRow key={i} group={group} />
                         ))}
                     </TableBody>
                 </Table>
@@ -168,7 +219,56 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
     );
 }
 
-function Row({ m }: { m: any }) {
+function GroupRow({ group }: { group: any }) {
+    const [open, setOpen] = React.useState(false);
+
+    // Sort children by Hashrate Desc
+    const children = group.children.sort((a: any, b: any) => b.hashrateTH - a.hashrateTH);
+    const topVariant = children[0]; // Representative for columns if needed
+
+    // Logic: If only 1 child, just render the child row directly? 
+    // Or render Group Row but expanded by default? 
+    // Let's render Group Row, but make it look like a single item if count is 1.
+    // Actually, user wants to collapse "combinations". Single items don't need collapsing.
+
+    if (group.count === 1) {
+        return <Row m={topVariant} isChild={false} />;
+    }
+
+    return (
+        <>
+            <TableRow className="hover:bg-muted/50 cursor-pointer border-l-4 border-l-transparent hover:border-l-primary" onClick={() => setOpen(!open)}>
+                <TableCell className="font-bold flex items-center gap-2">
+                    <span className="text-xs text-muted-foreground w-4">{open ? '▼' : '▶'}</span>
+                    {group.name}
+                </TableCell>
+                <TableCell className="text-right font-medium">
+                    {group.minHash === group.maxHash ?
+                        `${group.maxHash} TH` :
+                        `${group.minHash} - ${group.maxHash} TH`}
+                </TableCell>
+                <TableCell className="text-right text-muted-foreground">-</TableCell>
+                <TableCell className="text-right text-muted-foreground">-</TableCell>
+                <TableCell className="text-right text-muted-foreground">-</TableCell>
+                <TableCell className="text-right text-muted-foreground">-</TableCell>
+                <TableCell className="text-right font-mono text-blue-600">
+                    {group.minRoi === group.maxRoi ? `${group.maxRoi.toFixed(0)}%` : `${group.minRoi.toFixed(0)}% - ${group.maxRoi.toFixed(0)}%`}
+                </TableCell>
+                <TableCell className="text-right font-bold">From ${group.minPrice.toLocaleString()}</TableCell>
+                <TableCell className="text-right text-xs text-muted-foreground">{group.count} Variants</TableCell>
+            </TableRow>
+            {open && (
+                <>
+                    {children.map((m: any, idx: number) => (
+                        <Row key={idx} m={m} isChild={true} />
+                    ))}
+                </>
+            )}
+        </>
+    );
+}
+
+function Row({ m, isChild = false }: { m: any, isChild?: boolean }) {
     const [open, setOpen] = React.useState(false);
     const hasListings = m.listings && m.listings.length > 0;
 
