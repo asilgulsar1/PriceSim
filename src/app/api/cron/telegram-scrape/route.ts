@@ -29,6 +29,7 @@ export async function GET(request: Request) {
                     hashrateTH: r.hashrateTH,
                     powerW: r.powerW // New Field
                 },
+                hashrateTH: r.hashrateTH, // Top level for Frontend ease
                 price: r.price, // New Field (Top level)
                 stats: {
                     minPrice: r.stats.min,

@@ -7,7 +7,16 @@ const API_ID = parseInt(process.env.API_ID || "0", 10);
 const API_HASH = process.env.API_HASH || "";
 const SESSION_STRING = process.env.TELEGRAM_SESSION || "";
 
-const KEYWORDS = ["S21", "L7", "S19", "Whatsminer", "KS5", "KS3", "Antminer"];
+const KEYWORDS = ["S21", "S19", "T21", "M50", "M60", "A15", "A14", "A13"]; // BTC Only Series
+const NEGATIVE_KEYWORDS = [
+    // Altcoins
+    "L7", "K7", "D9", "E9", "Z15", "KA3", "KS3", "KS5", "AL3", "DR3", "IceRiver", "Goldshell",
+    // Futures / Pre-orders
+    "Future", "Preorder", "Pre-order", "Batch", "Production",
+    "Jan ", "Feb ", "Mar ", "Apr ", "May ", "Jun ", "Jul ", "Aug ", "Sep ", "Oct ", "Nov ", "Dec ",
+    "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+];
+
 // Reduce limit for Vercel timeout safety (Serverless func usually 10s-60s)
 // We might need to be very targeted.
 const LIMIT = 50;
@@ -119,7 +128,7 @@ export class TelegramService {
         if (!this.client) await this.connect();
         const client = this.client!;
 
-        const dialogs = await client.getDialogs({ limit: 10 }); // Reduced to 10
+        const dialogs = await client.getDialogs({ limit: 100 }); // Increased to 100 to find more vendors
         console.log(`Fetched ${dialogs.length} dialogs`);
 
         const results: TelegramMiner[] = [];
@@ -129,13 +138,19 @@ export class TelegramService {
             if (!dialog.isChannel && !dialog.isGroup) continue;
             console.log(`Scanning ${dialog.title}...`);
 
-            const msgs = await client.getMessages(dialog.entity, { limit: 50 }); // Increased to 50
+            const msgs = await client.getMessages(dialog.entity, { limit: 50 });
             for (const msg of msgs) {
                 if (!msg.message || msg.date * 1000 < cutoff) continue;
 
-                // Only process if it has relevant keywords
-                if (!KEYWORDS.some(k => msg.message.toLowerCase().includes(k.toLowerCase()))) {
-                    // console.log(`Skipped (No Keyword): ${msg.message.substring(0, 20)}...`);
+                const lowerMsg = msg.message.toLowerCase();
+
+                // 1. Positive Keywords (BTC Only)
+                if (!KEYWORDS.some(k => lowerMsg.includes(k.toLowerCase()))) {
+                    continue;
+                }
+
+                // 2. Negative Keywords (No Futures, No Alts)
+                if (NEGATIVE_KEYWORDS.some(nk => lowerMsg.includes(nk.toLowerCase()))) {
                     continue;
                 }
 
