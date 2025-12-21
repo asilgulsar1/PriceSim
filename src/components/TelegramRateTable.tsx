@@ -15,8 +15,10 @@ interface TelegramRateTableProps {
 
 export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
     const { market } = useMarketData();
+    const [filterText, setFilterText] = React.useState("");
+    const [sortConfig, setSortConfig] = React.useState<{ key: string, direction: 'asc' | 'desc' } | null>(null);
 
-    // Enrich Data logic... (unchanged, just ensuring variable scope)
+    // Enrich Data logic
     const enrichedData = useMemo(() => {
         if (!telegramMiners || !Array.isArray(telegramMiners)) return [];
 
@@ -25,7 +27,7 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
             liveHashpriceUSD = calculateHashpriceUSD(market.networkDifficulty, market.blockReward, market.btcPrice);
         }
 
-        return telegramMiners.filter(tg => tg.name).map(tg => {
+        let processed = telegramMiners.filter(tg => tg.name).map(tg => {
             // 1. Find Specs (Power)
             // Use improved matcher that handles synonyms (EXPH -> XP Hydro)
             const match = findBestStaticMatch(tg.name, INITIAL_MINERS);
@@ -38,13 +40,13 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
             } else if (tg.powerW > 0) {
                 powerW = tg.powerW; // Use parsed power
             } else {
-                // Estimator
-                if (tg.hashrateTH > 300) powerW = tg.hashrateTH * 16; // S21-class
-                else if (tg.hashrateTH > 200) powerW = tg.hashrateTH * 19; // S19 XP
-                else powerW = tg.hashrateTH * 22; // S19 Pro
+                // Estimator fallback
+                if (tg.hashrateTH > 300) powerW = tg.hashrateTH * 16;
+                else if (tg.hashrateTH > 200) powerW = tg.hashrateTH * 19;
+                else powerW = tg.hashrateTH * 22;
             }
 
-            // Price Fallback (Robustness for older blobs or missing parses)
+            // Price Fallback
             const price = tg.price || tg.stats?.minPrice || tg.stats?.middlePrice || 0;
 
             // 2. Calculate Financials
@@ -69,47 +71,98 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
 
             return {
                 ...tg,
-                price, // Override with safe price
+                price,
                 powerW,
                 dailyRevenueUSD,
                 dailyExpenseUSD,
                 dailyNet,
-                roi,
+                roi: dailyNet > 0 ? roi : -100, // Normalize negative ROI
                 matchName: match ? match.name : 'Estimated'
             };
-        }).sort((a, b) => b.hashrateTH - a.hashrateTH);
-    }, [telegramMiners, market]);
+        });
+
+        // Search Filter
+        if (filterText) {
+            processed = processed.filter(m => m.name.toLowerCase().includes(filterText.toLowerCase()));
+        }
+
+        // Logic Filter (ROI > 500% = Bad Data or Outlier)
+        processed = processed.filter(m => m.roi <= 500);
+
+        // Sorting
+        if (sortConfig !== null) {
+            processed.sort((a, b) => {
+                if (a[sortConfig.key] < b[sortConfig.key]) {
+                    return sortConfig.direction === 'asc' ? -1 : 1;
+                }
+                if (a[sortConfig.key] > b[sortConfig.key]) {
+                    return sortConfig.direction === 'asc' ? 1 : -1;
+                }
+                return 0;
+            });
+        } else {
+            // Default Sort: Hashrate Desc
+            processed.sort((a, b) => b.hashrateTH - a.hashrateTH);
+        }
+
+        return processed;
+    }, [telegramMiners, market, filterText, sortConfig]);
+
+    const requestSort = (key: string) => {
+        let direction: 'asc' | 'desc' = 'asc';
+        if (sortConfig && sortConfig.key === key && sortConfig.direction === 'asc') {
+            direction = 'desc';
+        }
+        setSortConfig({ key, direction });
+    };
 
     if (!telegramMiners || !Array.isArray(telegramMiners) || telegramMiners.length === 0) {
         return <div className="p-8 text-center text-muted-foreground">No recent Telegram data found in snapshot.</div>;
     }
 
     return (
-        <div className="rounded-lg border shadow-sm bg-card">
-            <Table>
-                <TableHeader>
-                    <TableRow className="bg-muted/50">
-                        <TableHead>Miner Model</TableHead>
-                        <TableHead className="text-right">Hashrate</TableHead>
-                        <TableHead className="text-right">Power</TableHead>
-                        <TableHead className="text-right">Daily Rev</TableHead>
-                        <TableHead className="text-right">Daily Exp</TableHead>
-                        <TableHead className="text-right">Daily Net</TableHead>
-                        <TableHead className="text-right">ROI (Net)</TableHead>
-                        <TableHead className="text-right">Lowest Price</TableHead>
-                        <TableHead className="text-right">Source</TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {enrichedData.map((m: any, i: number) => (
-                        <Row key={i} m={m} />
-                    ))}
-                </TableBody>
-            </Table>
-            <div className="p-4 text-xs text-muted-foreground bg-muted/20 border-t">
-                * ROI calculated based on Net Daily Profit (Rev - Exp) using ${(market.btcPrice || 0).toLocaleString()} BTC and ${DEFAULT_CONTRACT_TERMS.electricityRate}/kWh.
-                <br />
-                * Power estimated unless parsed from message text.
+        <div className="space-y-4">
+            <div className="flex items-center space-x-2">
+                <input
+                    type="text"
+                    placeholder="Search miner models..."
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 max-w-sm"
+                    value={filterText}
+                    onChange={(e) => setFilterText(e.target.value)}
+                />
+                <Badge variant="outline" className="ml-auto">
+                    {enrichedData.length} Results
+                </Badge>
+            </div>
+
+            <div className="rounded-lg border shadow-sm bg-card">
+                <Table>
+                    <TableHeader>
+                        <TableRow className="bg-muted/50">
+                            <TableHead className="cursor-pointer hover:text-foreground" onClick={() => requestSort('name')}>Miner Model {sortConfig?.key === 'name' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</TableHead>
+                            <TableHead className="text-right cursor-pointer hover:text-foreground" onClick={() => requestSort('hashrateTH')}>Hashrate {sortConfig?.key === 'hashrateTH' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</TableHead>
+                            <TableHead className="text-right">Power</TableHead>
+                            <TableHead className="text-right">Daily Rev</TableHead>
+                            <TableHead className="text-right">Daily Exp</TableHead>
+                            <TableHead className="text-right cursor-pointer hover:text-foreground" onClick={() => requestSort('dailyNet')}>Daily Net {sortConfig?.key === 'dailyNet' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</TableHead>
+                            <TableHead className="text-right cursor-pointer hover:text-foreground" onClick={() => requestSort('roi')}>ROI (Net) {sortConfig?.key === 'roi' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</TableHead>
+                            <TableHead className="text-right cursor-pointer hover:text-foreground" onClick={() => requestSort('price')}>Lowest Price {sortConfig?.key === 'price' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</TableHead>
+                            <TableHead className="text-right">Source</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {enrichedData.map((m: any, i: number) => (
+                            <Row key={i} m={m} />
+                        ))}
+                    </TableBody>
+                </Table>
+                <div className="p-4 text-xs text-muted-foreground bg-muted/20 border-t">
+                    * ROI calculated based on Net Daily Profit (Rev - Exp) using ${(market.btcPrice || 0).toLocaleString()} BTC and ${DEFAULT_CONTRACT_TERMS.electricityRate}/kWh.
+                    <br />
+                    * Hiding entries with ROI {'>'} 500% (likely data errors).
+                    <br />
+                    * Power estimated unless parsed from message text.
+                </div>
             </div>
         </div>
     );
