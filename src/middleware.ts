@@ -20,7 +20,8 @@ export default auth((req) => {
         nextUrl.pathname.startsWith('/api/market/latest') ||
         nextUrl.pathname.startsWith('/api/miners/latest') ||
         nextUrl.pathname.startsWith('/api/price-list') ||
-        nextUrl.pathname.startsWith('/api/cron/update-prices'); // Cron handles its own auth
+        nextUrl.pathname.startsWith('/api/cron/update-prices') ||
+        nextUrl.pathname.startsWith('/api/cron/telegram-scrape'); // Cron handles its own auth
 
     if (!isLoggedIn) {
         if (!isPublicRoute) {
