@@ -43,6 +43,11 @@ describe('TelegramRateTable', () => {
                 price: 5000,
                 specs: { powerW: 5360 },
                 listings: [{ source: 'TestChannel' }]
+            },
+            // @ts-ignore - Invalid item to test robustness
+            {
+                hashrateTH: 100,
+                price: 1000
             }
         ];
 

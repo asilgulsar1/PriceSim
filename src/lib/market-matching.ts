@@ -108,6 +108,7 @@ export function findBestNameMatch(simName: string, marketMiners: SimpleMarketMin
 }
 
 export function normalizeMinerName(name: string): string {
+    if (!name) return "";
     let lower = name.toLowerCase();
 
     // 1. Remove Brands

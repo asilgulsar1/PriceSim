@@ -25,7 +25,7 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
             liveHashpriceUSD = calculateHashpriceUSD(market.networkDifficulty, market.blockReward, market.btcPrice);
         }
 
-        return telegramMiners.map(tg => {
+        return telegramMiners.filter(tg => tg.name).map(tg => {
             // 1. Find Specs (Power)
             const normTg = normalizeMinerName(tg.name);
             const match = INITIAL_MINERS.find(m => normalizeMinerName(m.name).includes(normTg) || normTg.includes(normalizeMinerName(m.name)));
