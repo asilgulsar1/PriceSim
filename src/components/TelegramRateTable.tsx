@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { useMarketData } from "@/hooks/useMarketData";
 import { INITIAL_MINERS } from "@/lib/miner-data";
 import { normalizeMinerName } from "@/lib/market-matching";
-import { calculateHashpriceUSD, calculateMinerRevenueUSD } from "@/lib/price-simulator-calculator";
+import { calculateHashpriceUSD, calculateMinerRevenueUSD } from "@/lib/mining-math";
 import { DEFAULT_CONTRACT_TERMS } from "@/lib/constants";
 
 interface TelegramRateTableProps {
@@ -48,7 +48,7 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
                 dailyRevenueUSD = calculateMinerRevenueUSD(tg.hashrateTH, liveHashpriceUSD, 1.0); // 1% pool fee assumed
             }
 
-            const kwhPrice = DEFAULT_CONTRACT_TERMS.electricityPrice || 0.055;
+            const kwhPrice = DEFAULT_CONTRACT_TERMS.electricityRate || 0.055;
             const dailyExpenseUSD = (powerW / 1000) * 24 * kwhPrice;
             const dailyNet = dailyRevenueUSD - dailyExpenseUSD;
 
@@ -128,7 +128,7 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
                 </TableBody>
             </Table>
             <div className="p-4 text-xs text-muted-foreground bg-muted/20 border-t">
-                * ROI calculated based on Net Daily Profit (Rev - Exp) using ${market.btcPrice.toLocaleString()} BTC and ${DEFAULT_CONTRACT_TERMS.electricityPrice}/kWh.
+                * ROI calculated based on Net Daily Profit (Rev - Exp) using ${market.btcPrice.toLocaleString()} BTC and ${DEFAULT_CONTRACT_TERMS.electricityRate}/kWh.
             </div>
         </div>
     );
