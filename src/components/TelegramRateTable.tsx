@@ -18,7 +18,7 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
 
     // Enrich Data
     const enrichedData = useMemo(() => {
-        if (!telegramMiners) return [];
+        if (!telegramMiners || !Array.isArray(telegramMiners)) return [];
 
         let liveHashpriceUSD = 0;
         if (market.networkDifficulty > 0 && market.btcPrice > 0) {
@@ -78,7 +78,7 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
         }).sort((a, b) => b.hashrateTH - a.hashrateTH); // Default sort by hashrate
     }, [telegramMiners, market]);
 
-    if (!telegramMiners || telegramMiners.length === 0) {
+    if (!telegramMiners || !Array.isArray(telegramMiners) || telegramMiners.length === 0) {
         return <div className="p-8 text-center text-muted-foreground">No recent Telegram data found in snapshot.</div>;
     }
 

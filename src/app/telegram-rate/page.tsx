@@ -43,7 +43,15 @@ export default async function TelegramRatePage() {
         );
     }
 
-    const data = await getTelegramData();
+    const rawData = await getTelegramData();
+    let miners: any[] = [];
+
+    // Handle both Array (legacy/dev) and Object (new cron) formats
+    if (Array.isArray(rawData)) {
+        miners = rawData;
+    } else if (rawData && Array.isArray(rawData.miners)) {
+        miners = rawData.miners;
+    }
 
     return (
         <div className="container mx-auto py-12 space-y-8">
@@ -57,7 +65,7 @@ export default async function TelegramRatePage() {
                 </p>
             </div>
 
-            <TelegramRateTable telegramMiners={data} />
+            <TelegramRateTable telegramMiners={miners} />
         </div>
     );
 }

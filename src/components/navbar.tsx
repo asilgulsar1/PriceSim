@@ -65,6 +65,12 @@ export function Navbar() {
                                         >
                                             Treasury
                                         </Link>
+                                        <Link
+                                            href="/telegram-rate"
+                                            className="text-foreground/60 hover:text-foreground transition-colors"
+                                        >
+                                            Telegram Rate
+                                        </Link>
                                     </>
                                 )}
                                 <Link
@@ -110,6 +116,14 @@ export function Navbar() {
                                     )}
                                 >
                                     Treasury
+                                </Link>
+                                <Link
+                                    href="/telegram-rate"
+                                    className={cn(
+                                        "transition-colors hover:text-foreground/80 text-foreground/60"
+                                    )}
+                                >
+                                    Telegram Rate
                                 </Link>
                             </>
                         )}
