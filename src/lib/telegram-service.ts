@@ -312,32 +312,57 @@ export class TelegramService {
             const key = `${clean}-${Math.round(l.hashrateTH)}`;
 
             if (!groups[key]) {
-                groups[key] = { candidate: l.name, hashrate: l.hashrateTH, listings: [] };
+                groups[key] = {
+                    name: l.name,
+                    hashrateTH: l.hashrateTH,
+                    listings: [],
+                    count: 0
+                };
             }
-            groups[key].listings.push(l);
-            if (l.name.length > groups[key].candidate.length) groups[key].candidate = l.name;
+
+            // Name improvement: Keep the longest descriptive name found for this normalized key
+            if (l.name.length > groups[key].name.length) {
+                groups[key].name = l.name;
+            }
+
+            // Add to listings (Deduplicate: Same Source + Same Price)
+            // Note: l.source now includes Region (e.g. "JingleMining (HK)")
+            const existingIdx = groups[key].listings.findIndex((item: any) => item.source === l.source && item.price === l.price);
+
+            if (existingIdx !== -1) {
+                // Update date if newer
+                if (l.date > groups[key].listings[existingIdx].date) {
+                    groups[key].listings[existingIdx].date = l.date;
+                }
+            } else {
+                groups[key].listings.push({
+                    source: l.source,
+                    price: l.price,
+                    date: l.date
+                });
+            }
+
+            groups[key].count++;
         }
 
         return Object.values(groups).map(g => {
             const prices = g.listings.map((x: any) => x.price).sort((a: number, b: number) => a - b);
+
+            // Calculate stats if needed, but we mostly care about Min Price now.
             const midIdx = Math.floor(prices.length / 2);
-            const middle = prices.length % 2 === 0 ? (prices[midIdx - 1] + prices[midIdx]) / 2 : prices[midIdx];
+            const middle = prices.length > 0 ? (prices.length % 2 === 0 ? (prices[midIdx - 1] + prices[midIdx]) / 2 : prices[midIdx]) : 0;
 
             return {
-                name: g.name, // Use the candidate name from the group
+                name: g.name,
                 hashrateTH: g.hashrateTH,
-                price: Math.round(prices[0]), // Use Lowest Price as primary
+                price: prices.length > 0 ? Math.round(prices[0]) : 0, // Lowest Price
                 stats: {
-                    min: prices[0],
-                    max: prices[prices.length - 1],
+                    min: prices[0] || 0,
+                    max: prices[prices.length - 1] || 0,
                     count: prices.length,
                     middle: Math.round(middle)
                 },
-                listings: g.listings.map((l: any) => ({
-                    source: l.source,
-                    price: l.price,
-                    date: l.date
-                }))
+                listings: g.listings
             };
         });
     }
