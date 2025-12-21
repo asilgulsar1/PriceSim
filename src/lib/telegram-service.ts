@@ -259,19 +259,40 @@ export class TelegramService {
                 // We reuse script logic: simple HK check on the message
                 // if (!isHKContent(msg.message)) continue; // DISABLED filter to force data flow
 
+                // Context State
+                let currentRegion = "";
+
                 // Parse
                 const lines = msg.message.split('\n');
                 for (const line of lines) {
                     const lowerLine = line.toLowerCase();
 
+                    // Region Detection (Header Lines)
+                    // "HK Stock", "USA Spot", "Dubai Warehouse"
+                    if (/(hk|hong kong|hkg).*stock/i.test(line)) { currentRegion = "HK"; continue; }
+                    if (/(us|usa|united states|america).*stock/i.test(line)) { currentRegion = "USA"; continue; }
+                    if (/(dubai|uae|abudhabi).*stock/i.test(line)) { currentRegion = "Dubai"; continue; }
+                    if (/(russia|moscow).*stock/i.test(line)) { currentRegion = "Russia"; continue; }
+                    if (/(paraguay|py).*stock/i.test(line)) { currentRegion = "PY"; continue; }
+
                     // Line-Level Negative Filter (Futures/Alts)
+                    // Added "ex factory", "preorder" to be safer
                     if (NEGATIVE_KEYWORDS.some(nk => lowerLine.includes(nk.toLowerCase()))) {
                         continue;
                     }
 
+                    // Extra Spot Check
+                    if (lowerLine.includes("ex factory") || lowerLine.includes("future batch")) continue;
+
                     const miner = parseLine(line);
                     if (miner) {
-                        miner.source = dialog.title || "Telegram";
+                        // Append Region to Source if detected
+                        const regionTag = currentRegion ? ` (${currentRegion})` : '';
+                        miner.source = (dialog.title || "Telegram") + regionTag;
+
+                        // Clean Name (Remove leading hash from tags like #Whatsminer)
+                        miner.name = miner.name.replace(/^#/, '');
+
                         miner.date = new Date(msg.date * 1000);
                         results.push(miner);
                     }
@@ -303,8 +324,8 @@ export class TelegramService {
             const middle = prices.length % 2 === 0 ? (prices[midIdx - 1] + prices[midIdx]) / 2 : prices[midIdx];
 
             return {
-                name: g.candidate,
-                hashrateTH: g.hashrate,
+                name: g.name, // Use the candidate name from the group
+                hashrateTH: g.hashrateTH,
                 price: Math.round(prices[0]), // Use Lowest Price as primary
                 stats: {
                     min: prices[0],
