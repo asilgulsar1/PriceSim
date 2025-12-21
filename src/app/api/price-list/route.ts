@@ -100,8 +100,8 @@ export async function GET(request: Request) {
             const m = { ...miner };
 
             // Market Match
-            const marketMiddlePrice = findMatchingMarketMiner(m, marketDataList);
-            const basePrice = Math.max(m.calculatedPrice, marketMiddlePrice);
+            const matchResult = findMatchingMarketMiner(m, marketDataList);
+            const basePrice = Math.max(m.calculatedPrice, matchResult.price);
 
             m.calculatedPrice = basePrice;
 
