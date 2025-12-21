@@ -161,10 +161,35 @@ function parseLine(line: string): TelegramMiner | null {
         }
     }
 
-    // STRICT FILTER: Match Positive Keywords on the CLEANED Name
-    // This removes "AE BOX", "MiniDoge", "L2", "L7" (since L7 not in KEYWORDS)
-    // KEYWORDS = ["S23", "S21", "S19", "T21", "M50", "M60", "B19", "U3"]
-    if (!KEYWORDS.some(k => name.toLowerCase().includes(k.toLowerCase()))) {
+    // STRICT FILTER: Match Positive Keywords on the CLEANED Name using Regex
+    // This allows covering variants (M60, M63, M66) without listing every single one.
+
+    // BTC Miner Patterns
+    // Bitmain: S19, S21, S23, T19, T21, B19, U3
+    // Whatsminer: M3x, M5x, M6x, M7x (e.g., M30, M31, M50, M53, M60, M63, M66, M70, M76)
+    // Avalon: A11 to A16
+    // Auradine: AT (Teraflux)
+    const btcPatterns = [
+        /Antminer\s*[ST](19|21|23)/i, // S19, T21, S23...
+        /Antminer\s*B19/i,
+        /Antminer\s*U3/i,
+        /Whatsminer\s*M[3-7][0-9]/i, // Matches M30-M79
+        /Avalon\s*A1[1-6]/i, // A11-A16
+        /Teraflux|Auradine/i
+    ];
+
+    const isMatch = btcPatterns.some(pattern => pattern.test(name));
+
+    // Fallback: If no "Brand" prefix was added (e.g. just "S21"), check simple codes
+    // But our Branding logic above forces prefixes. so "S21" became "Antminer S21".
+    // So the Regex should work.
+
+    // However, let's be safe. If branding logic failed (e.g. "Hammer Miner"), 
+    // we might want to check the raw codes too? 
+    // No, let's rely on the normalized name which has the brand.
+
+    if (!isMatch) {
+        // Debug Log? console.log(`Filtered out: ${name}`);
         return null;
     }
 
