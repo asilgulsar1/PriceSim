@@ -123,11 +123,39 @@ function parseLine(line: string): TelegramMiner | null {
         .replace(/[:|\-—,]/g, ' ') // Punctuation key chars
         .replace(/\b(?:moq|doa|warranty|working|condition|lot|batch|stock|spot|new|used|refurb|refurbished|for sale|selling|available|now)\b/gi, ' ')
         .replace(/\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\b/gi, '') // Month frags
+        // Emoji Removal (Range-based for safety)
+        .replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '')
         .replace(/\s+/g, ' ').trim();
 
     // Final Shortening
     // "S21+ HYD /H" -> "S21+ HYD"
     name = name.replace(/\/h\b/i, '');
+
+    // Standardization / Branding
+    const lowerName = name.toLowerCase();
+
+    // Antminer (S/T/L/K/D/E series generally, but be careful with U3 or others)
+    // S21, T21, L7, K7..
+    // Only apply if not already present
+    if (!lowerName.includes('antminer') && !lowerName.includes('bitmain')) {
+        if (/^(s|t|l|k|d|e)[0-9]/i.test(name) || /^u3/i.test(name) || /^b19/i.test(name)) {
+            name = `Antminer ${name}`;
+        }
+    }
+
+    // Whatsminer (M series)
+    if (!lowerName.includes('whatsminer') && !lowerName.includes('microbt')) {
+        if (/^m[0-9]/i.test(name)) {
+            name = `Whatsminer ${name}`;
+        }
+    }
+
+    // Avalon (A series)
+    if (!lowerName.includes('avalon') && !lowerName.includes('canaan')) {
+        if (/^a[0-9]/i.test(name)) {
+            name = `Avalon ${name}`;
+        }
+    }
 
     if (price > 0 && hashrateTH > 0) {
         return { name, hashrateTH, price: Math.round(price), source: '', date: new Date(), powerW: Math.round(powerW) };
