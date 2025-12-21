@@ -282,7 +282,16 @@ class TelegramService {
                                 .replace(/\b(GTD|RB|HK\/SZ|RF|Refurb|Used|New|Brand New)\b/gi, '')
                                 .replace(/\b(nits|nit|units|pcs|pieces|qty|moq|mqo)\b/gi, '') // Added pieces
                                 .replace(/\b(in transit|arriving|coming)\b/gi, '')
-                                .replace(/\b(DE|US|HK|CN|MY|RU|PY)\b/g, '') // Remove 2-letter Country Codes (DE=Germany) if uppercase
+                                .replace(/\b(DE|US|HK|CN|MY|RU|PY|SZ)\b/g, '') // Added SZ
+                                .replace(/\b(ed|imm)\b/gi, '') // Remove "ed"? "Imm" = Immersion? Wait. S21 Imm exists. Keep Imm?
+                                // "M66 ed" -> Likely typo for immersion or education? Or "edition"?
+                                // Let's strip "ed" if isolated. Keep "Imm" as it usually implies Immersion cooling variant.
+                                .replace(/\b\d+(\.\d+)?J\b/gi, '') // Remove Joule ratings (e.g. 19.5J)
+                                .replace(/(\d{2,3})s\b/g, '$1S') // Fix "M63s" -> "M63S" (lowercase s to Upper S after numbers)
+                                .replace(/(\d{2,3})s\+/g, '$1S+') // "M60s+" -> "M60S+"
+                                .replace(/(\d+)T\b/gi, '') // Remove attached Hashrate (e.g. 240T in M61S+240T)
+                                .replace(/imm\b/gi, 'Imm') // Normalize "Imm"
+                                .replace(/S21imm/gi, 'S21 Imm') // Fix S21imm
                                 .replace(/jpro/gi, 'j Pro')
                                 .replace(/xphyd/gi, 'XP Hydro')
                                 .replace(/exp\s*hyd/gi, 'XP Hydro')

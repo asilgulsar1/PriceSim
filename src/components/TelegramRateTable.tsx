@@ -139,23 +139,48 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
         });
 
         // Convert to array and Sort Groups
-        return Object.values(groups).sort((a: any, b: any) => {
+        const sortedGroups = Object.values(groups).sort((a: any, b: any) => {
             if (sortConfig) {
                 if (sortConfig.key === 'price') {
                     return sortConfig.direction === 'asc' ? a.minPrice - b.minPrice : b.minPrice - a.minPrice;
                 }
                 if (sortConfig.key === 'roi') {
-                    // ROI Descending usually preferred
-                    // Use Max ROI for the group
                     return sortConfig.direction === 'asc' ? a.maxRoi - b.maxRoi : b.maxRoi - a.maxRoi;
                 }
                 if (sortConfig.key === 'name') {
                     return sortConfig.direction === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
                 }
             }
-            // Default Sort Groups by Max Hashrate
             return b.maxHash - a.maxHash;
         });
+
+        // Recursively Sort Children (Variants) if Sort Config exists
+        // This enables "Sort for Global rows" feeling while keeping groups
+        if (sortConfig) {
+            sortedGroups.forEach((g: any) => {
+                g.children.sort((a: any, b: any) => {
+                    let valA, valB;
+                    if (sortConfig.key === 'price') {
+                        valA = a.price; valB = b.price;
+                    } else if (sortConfig.key === 'roi') {
+                        valA = a.roi; valB = b.roi;
+                    } else if (sortConfig.key === 'name') {
+                        // Sort children by hashrate if name sorted, or vendor name?
+                        // Usually sorting by price is most useful for variants.
+                        // Let's stick to the key.
+                        valA = a.name; valB = b.name;
+                    } else {
+                        valA = a.hashrateTH; valB = b.hashrateTH;
+                    }
+
+                    if (valA < valB) return sortConfig.direction === 'asc' ? -1 : 1;
+                    if (valA > valB) return sortConfig.direction === 'asc' ? 1 : -1;
+                    return 0;
+                });
+            });
+        }
+
+        return sortedGroups;
 
     }, [enrichedData, sortConfig]);
 
