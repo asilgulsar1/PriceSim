@@ -37,6 +37,7 @@ interface MarketMiner {
         vendorCount: number;
         lastUpdated: string;
     };
+    source?: string;
 }
 
 interface MarketListing {
@@ -50,6 +51,7 @@ interface MarketListing {
 interface MarketPriceTableProps {
     initialData: MarketMiner[];
     lastUpdated?: string;
+    userRole?: string;
 }
 
 type SortField = 'name' | 'price' | 'hashrate' | 'vendors';
@@ -57,7 +59,7 @@ type SortOrder = 'asc' | 'desc';
 
 import { syncMarketplaceAction } from '@/app/market-prices/actions';
 
-export function MarketPriceTable({ initialData, lastUpdated }: MarketPriceTableProps) {
+export function MarketPriceTable({ initialData, lastUpdated, userRole }: MarketPriceTableProps) {
     const [data, setData] = useState<MarketMiner[]>(initialData);
     const [lastUpdatedTime, setLastUpdatedTime] = useState<string | undefined>(lastUpdated);
     const [search, setSearch] = useState('');
@@ -205,6 +207,11 @@ export function MarketPriceTable({ initialData, lastUpdated }: MarketPriceTableP
                                         <div>
                                             <span className="text-xs text-muted-foreground block">Middle Price</span>
                                             <span className="font-bold text-green-600 text-lg">${miner.stats.middlePrice.toLocaleString()}</span>
+                                            {userRole === 'admin' && miner.source && miner.source.includes('Telegram') && (
+                                                <Badge variant="secondary" className="ml-2 text-[10px] h-5 bg-sky-100 text-sky-800">
+                                                    Telegram
+                                                </Badge>
+                                            )}
                                         </div>
                                         <div className="text-right">
                                             <span className="text-xs text-muted-foreground block">Vendors</span>
@@ -271,8 +278,13 @@ export function MarketPriceTable({ initialData, lastUpdated }: MarketPriceTableP
                                     </TableCell>
                                     <TableCell className="text-muted-foreground">{miner.specs.powerW} W</TableCell>
                                     <TableCell>
-                                        <div className="font-bold text-green-500 text-lg">
-                                            ${miner.stats.middlePrice.toLocaleString()}
+                                        <div className="font-bold text-green-500 text-lg flex items-center gap-2">
+                                            <span>${miner.stats.middlePrice.toLocaleString()}</span>
+                                            {userRole === 'admin' && miner.source && miner.source.includes('Telegram') && (
+                                                <span className="text-[10px] uppercase font-bold text-sky-600 bg-sky-50 px-1.5 py-0.5 rounded border border-sky-100">
+                                                    Telegram Spot
+                                                </span>
+                                            )}
                                         </div>
                                     </TableCell>
                                     <TableCell className="text-xs text-muted-foreground">

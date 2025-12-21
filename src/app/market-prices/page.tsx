@@ -1,6 +1,7 @@
 
 import { list } from '@vercel/blob';
 import { MarketPriceTable } from '@/components/MarketPriceTable';
+import { auth } from "@/auth";
 
 export const revalidate = 60; // Revalidate every minute
 
@@ -23,6 +24,8 @@ async function getInitialData() {
 
 export default async function MarketPricesPage() {
     const data = await getInitialData();
+    const session = await auth();
+    const userRole = (session?.user as any)?.role || 'client';
 
     return (
         <div className="container mx-auto py-8 space-y-8">
@@ -36,6 +39,7 @@ export default async function MarketPricesPage() {
             <MarketPriceTable
                 initialData={data.miners || []}
                 lastUpdated={data.updatedAt}
+                userRole={userRole}
             />
         </div>
     );

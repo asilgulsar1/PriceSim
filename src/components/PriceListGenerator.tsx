@@ -79,7 +79,8 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
                             list.push({
                                 name: miner.name,
                                 stats: { middlePrice: miner.stats.middlePrice },
-                                specs: { hashrateTH: miner.specs?.hashrateTH || 0 }
+                                specs: { hashrateTH: miner.specs?.hashrateTH || 0 },
+                                source: miner.source // Capture source from API
                             });
                         }
                     });
@@ -181,6 +182,53 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
         let liveHashpriceUSD = 0;
         if (market.networkDifficulty > 0 && market.btcPrice > 0) {
             liveHashpriceUSD = calculateHashpriceUSD(market.networkDifficulty, market.blockReward, market.btcPrice);
+            const updated = baseResults.map(item => {
+                const rawMiner = { ...item.miner };
+
+                // FIX 1: UPDATE REVENUE WITH LIVE MARKET DATA
+                if (liveHashpriceUSD > 0) {
+                    const poolFee = DEFAULT_CONTRACT_TERMS.poolFee || 1.0;
+                    rawMiner.dailyRevenueUSD = calculateMinerRevenueUSD(rawMiner.hashrateTH, liveHashpriceUSD, poolFee);
+                }
+
+                // STEP 1: Apply Max(Simulator Price, Market Middle Price) Logic
+                const { price: marketMiddlePrice, source: marketSource } = findMatchingMarketMiner(rawMiner, marketDataList);
+                let basePrice = Math.max(rawMiner.calculatedPrice, marketMiddlePrice);
+
+                // Store source for UI display
+                if (marketSource) {
+                    (rawMiner as any).priceSource = marketSource;
+                }
+
+                // RESELLER MARKUP LOGIC
+                if (userRole === 'reseller') {
+                    const markup = typeof resellerMargin === 'number' ? resellerMargin : 500;
+                    basePrice += markup;
+                }
+
+                rawMiner.calculatedPrice = basePrice;
+
+                // STEP 2: Apply Margin
+                let marginAmount = 0;
+                if (salesMarginType === 'usd') {
+                    marginAmount = salesMargin;
+                } else {
+                    marginAmount = rawMiner.calculatedPrice * (salesMargin / 100);
+                }
+                rawMiner.calculatedPrice = rawMiner.calculatedPrice + marginAmount;
+
+                // STEP 3: Recalculate ROI
+                if (rawMiner.calculatedPrice > 0 && rawMiner.dailyRevenueUSD > 0) {
+                    rawMiner.clientProfitabilityPercent = ((rawMiner.dailyRevenueUSD * 365) / rawMiner.calculatedPrice) * 100;
+                } else {
+                    rawMiner.clientProfitabilityPercent = 0;
+                }
+
+                return { ...item, miner: rawMiner };
+            });
+
+            const minersOnly = updated.map(u => u.miner);
+            return rankMiners(minersOnly);
         }
 
         const updated = baseResults.map(item => {
@@ -194,8 +242,13 @@ export function PriceListGenerator({ userRole, resellerMargin, branding }: Price
             }
 
             // STEP 1: Apply Max(Simulator Price, Market Middle Price) Logic
-            const marketMiddlePrice = findMatchingMarketMiner(rawMiner, marketDataList);
+            const { price: marketMiddlePrice, source: marketSource } = findMatchingMarketMiner(rawMiner, marketDataList);
             let basePrice = Math.max(rawMiner.calculatedPrice, marketMiddlePrice);
+
+            // Store source for UI display
+            if (marketSource) {
+                (rawMiner as any).priceSource = marketSource;
+            }
 
             // RESELLER MARKUP LOGIC
             if (userRole === 'reseller') {

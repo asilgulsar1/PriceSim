@@ -6,9 +6,24 @@ export const runtime = 'edge';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-export async function GET() {
+export async function GET(request: Request) {
     try {
-        // Find the latest blob
+        // In Development, prefer the local parsed file if available
+        if (process.env.NODE_ENV === 'development') {
+            try {
+                // Assuming standard port 3000 for dev
+                const localUrl = 'http://localhost:3000/miners-latest.json';
+                const res = await fetch(localUrl, { cache: 'no-store' });
+                if (res.ok) {
+                    const data = await res.json();
+                    return NextResponse.json(data);
+                }
+            } catch (e) {
+                console.warn("Failed to fetch local miners-latest.json", e);
+            }
+        }
+
+        // Production / Fallback: Find the latest blob
         const { blobs } = await list({ prefix: 'miners-latest.json', limit: 1 });
 
         if (blobs.length === 0) {

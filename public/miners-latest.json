@@ -1,0 +1,7686 @@
+[
+  {
+    "name": "L9 16G",
+    "hashrateTH": 0.016,
+    "price": 3900,
+    "stats": {
+      "min": 3850,
+      "max": 3900,
+      "avg": 3883,
+      "middle": 3900,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "L9 16G",
+        "hashrateTH": 0.016,
+        "powerWatts": 0,
+        "price": 3850,
+        "raw_price": "$3850",
+        "source_line": "L9 16G: $3850  (SPOT)",
+        "updatedAt": "2025-12-21T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "L9 16G",
+        "hashrateTH": 0.016,
+        "powerWatts": 0,
+        "price": 3900,
+        "raw_price": "$3900",
+        "source_line": "L9 16G: $3900  (SPOT)",
+        "updatedAt": "2025-12-20T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "L9 16G",
+        "hashrateTH": 0.016,
+        "powerWatts": 0,
+        "price": 3900,
+        "raw_price": "$3900",
+        "source_line": "L9 16G: $3900  (SPOT)",
+        "updatedAt": "2025-12-19T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      }
+    ]
+  },
+  {
+    "name": "L9 17G",
+    "hashrateTH": 0.017,
+    "price": 4150,
+    "stats": {
+      "min": 4100,
+      "max": 4150,
+      "avg": 4133,
+      "middle": 4150,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "L9 17G",
+        "hashrateTH": 0.017,
+        "powerWatts": 0,
+        "price": 4100,
+        "raw_price": "$4100",
+        "source_line": "L9 17G: $4100  (SPOT)",
+        "updatedAt": "2025-12-21T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "L9 17G",
+        "hashrateTH": 0.017,
+        "powerWatts": 0,
+        "price": 4150,
+        "raw_price": "$4150",
+        "source_line": "L9 17G: $4150  (SPOT)",
+        "updatedAt": "2025-12-20T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "L9 17G",
+        "hashrateTH": 0.017,
+        "powerWatts": 0,
+        "price": 4150,
+        "raw_price": "$4150",
+        "source_line": "L9 17G: $4150  (SPOT)",
+        "updatedAt": "2025-12-19T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      }
+    ]
+  },
+  {
+    "name": "L9 16.5G",
+    "hashrateTH": 0.0165,
+    "price": 4000,
+    "stats": {
+      "min": 3900,
+      "max": 4000,
+      "avg": 3967,
+      "middle": 4000,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "L9 16.5G",
+        "hashrateTH": 0.0165,
+        "powerWatts": 0,
+        "price": 3900,
+        "raw_price": "$3900",
+        "source_line": "L9 16.5G: $3900  (SPOT)",
+        "updatedAt": "2025-12-21T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "L9 16.5G",
+        "hashrateTH": 0.0165,
+        "powerWatts": 0,
+        "price": 4000,
+        "raw_price": "$4000",
+        "source_line": "L9 16.5G: $4000  (SPOT)",
+        "updatedAt": "2025-12-20T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "L9 16.5G",
+        "hashrateTH": 0.0165,
+        "powerWatts": 0,
+        "price": 4000,
+        "raw_price": "$4000",
+        "source_line": "L9 16.5G: $4000  (SPOT)",
+        "updatedAt": "2025-12-19T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      }
+    ]
+  },
+  {
+    "name": "L9 15G",
+    "hashrateTH": 0.015,
+    "price": 3700,
+    "stats": {
+      "min": 3600,
+      "max": 3700,
+      "avg": 3667,
+      "middle": 3700,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "L9 15G",
+        "hashrateTH": 0.015,
+        "powerWatts": 0,
+        "price": 3600,
+        "raw_price": "$3600",
+        "source_line": "L9 15G: $3600  (SPOT)",
+        "updatedAt": "2025-12-21T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "L9 15G",
+        "hashrateTH": 0.015,
+        "powerWatts": 0,
+        "price": 3700,
+        "raw_price": "$3700",
+        "source_line": "L9 15G: $3700  (SPOT)",
+        "updatedAt": "2025-12-20T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "L9 15G",
+        "hashrateTH": 0.015,
+        "powerWatts": 0,
+        "price": 3700,
+        "raw_price": "$3700",
+        "source_line": "L9 15G: $3700  (SPOT)",
+        "updatedAt": "2025-12-19T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      }
+    ]
+  },
+  {
+    "name": "L7 8800M",
+    "hashrateTH": 0.0088,
+    "price": 830,
+    "stats": {
+      "min": 780,
+      "max": 830,
+      "avg": 813,
+      "middle": 830,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "L7 8800M",
+        "hashrateTH": 0.0088,
+        "powerWatts": 0,
+        "price": 780,
+        "raw_price": "$780",
+        "source_line": "L7 8800M: $780  (SPOT)",
+        "updatedAt": "2025-12-21T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "L7 8800M",
+        "hashrateTH": 0.0088,
+        "powerWatts": 0,
+        "price": 830,
+        "raw_price": "$830",
+        "source_line": "L7 8800M: $830  (SPOT)",
+        "updatedAt": "2025-12-20T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "L7 8800M",
+        "hashrateTH": 0.0088,
+        "powerWatts": 0,
+        "price": 830,
+        "raw_price": "$830",
+        "source_line": "L7 8800M: $830  (SPOT)",
+        "updatedAt": "2025-12-19T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      }
+    ]
+  },
+  {
+    "name": "L7 9050M",
+    "hashrateTH": 0.00905,
+    "price": 880,
+    "stats": {
+      "min": 800,
+      "max": 880,
+      "avg": 853,
+      "middle": 880,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "L7 9050M",
+        "hashrateTH": 0.00905,
+        "powerWatts": 0,
+        "price": 800,
+        "raw_price": "$800",
+        "source_line": "L7 9050M: $800  (SPOT)",
+        "updatedAt": "2025-12-21T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "L7 9050M",
+        "hashrateTH": 0.00905,
+        "powerWatts": 0,
+        "price": 880,
+        "raw_price": "$880",
+        "source_line": "L7 9050M: $880  (SPOT)",
+        "updatedAt": "2025-12-20T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "L7 9050M",
+        "hashrateTH": 0.00905,
+        "powerWatts": 0,
+        "price": 880,
+        "raw_price": "$880",
+        "source_line": "L7 9050M: $880  (SPOT)",
+        "updatedAt": "2025-12-19T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      }
+    ]
+  },
+  {
+    "name": "S19 XP+ HYD 293T",
+    "hashrateTH": 293,
+    "price": 1260,
+    "stats": {
+      "min": 1260,
+      "max": 1260,
+      "avg": 1260,
+      "middle": 1260,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "S19 XP+ HYD 293T",
+        "hashrateTH": 293,
+        "powerWatts": 0,
+        "price": 1260,
+        "raw_price": "$4.3",
+        "source_line": "S19 XP+ HYD 293T: $4.3/T (SPOT)",
+        "updatedAt": "2025-12-21T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "S19 XP+ HYD 293T",
+        "hashrateTH": 293,
+        "powerWatts": 0,
+        "price": 1260,
+        "raw_price": "$4.3",
+        "source_line": "S19 XP+ HYD 293T: $4.3/T (SPOT)",
+        "updatedAt": "2025-12-20T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "S19 XP+ HYD 293T",
+        "hashrateTH": 293,
+        "powerWatts": 0,
+        "price": 1260,
+        "raw_price": "$4.3",
+        "source_line": "S19 XP+ HYD 293T: $4.3/T (SPOT)",
+        "updatedAt": "2025-12-19T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      }
+    ]
+  },
+  {
+    "name": "S21+ HYD 395T",
+    "hashrateTH": 395,
+    "price": 3121,
+    "stats": {
+      "min": 3121,
+      "max": 3121,
+      "avg": 3121,
+      "middle": 3121,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "S21+ HYD 395T",
+        "hashrateTH": 395,
+        "powerWatts": 0,
+        "price": 3121,
+        "raw_price": "$7.9",
+        "source_line": "S21+ HYD 395T: $7.9/T (SPOT)",
+        "updatedAt": "2025-12-21T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "S21+ HYD 395T",
+        "hashrateTH": 395,
+        "powerWatts": 0,
+        "price": 3121,
+        "raw_price": "$7.9",
+        "source_line": "S21+ HYD 395T: $7.9/T (SPOT)",
+        "updatedAt": "2025-12-20T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "S21+ HYD 395T",
+        "hashrateTH": 395,
+        "powerWatts": 0,
+        "price": 3121,
+        "raw_price": "$7.9",
+        "source_line": "S21+ HYD 395T: $7.9/T (SPOT)",
+        "updatedAt": "2025-12-19T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      }
+    ]
+  },
+  {
+    "name": "S21+ HYD 358T",
+    "hashrateTH": 358,
+    "price": 2828,
+    "stats": {
+      "min": 2828,
+      "max": 2828,
+      "avg": 2828,
+      "middle": 2828,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "S21+ HYD 358T",
+        "hashrateTH": 358,
+        "powerWatts": 0,
+        "price": 2828,
+        "raw_price": "$7.9",
+        "source_line": "S21+ HYD 358T: $7.9/T (SPOT)",
+        "updatedAt": "2025-12-21T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "S21+ HYD 358T",
+        "hashrateTH": 358,
+        "powerWatts": 0,
+        "price": 2828,
+        "raw_price": "$7.9",
+        "source_line": "S21+ HYD 358T: $7.9/T (SPOT)",
+        "updatedAt": "2025-12-20T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "S21+ HYD 358T",
+        "hashrateTH": 358,
+        "powerWatts": 0,
+        "price": 2828,
+        "raw_price": "$7.9",
+        "source_line": "S21+ HYD 358T: $7.9/T (SPOT)",
+        "updatedAt": "2025-12-19T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      }
+    ]
+  },
+  {
+    "name": "S21+ HYD 338T",
+    "hashrateTH": 338,
+    "price": 2603,
+    "stats": {
+      "min": 2603,
+      "max": 2603,
+      "avg": 2603,
+      "middle": 2603,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "S21+ HYD 338T",
+        "hashrateTH": 338,
+        "powerWatts": 0,
+        "price": 2603,
+        "raw_price": "$7.7",
+        "source_line": "S21+ HYD 338T: $7.7/T (SPOT)",
+        "updatedAt": "2025-12-21T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "S21+ HYD 338T",
+        "hashrateTH": 338,
+        "powerWatts": 0,
+        "price": 2603,
+        "raw_price": "$7.7",
+        "source_line": "S21+ HYD 338T: $7.7/T (SPOT)",
+        "updatedAt": "2025-12-20T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "S21+ HYD 338T",
+        "hashrateTH": 338,
+        "powerWatts": 0,
+        "price": 2603,
+        "raw_price": "$7.7",
+        "source_line": "S21+ HYD 338T: $7.7/T (SPOT)",
+        "updatedAt": "2025-12-19T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      }
+    ]
+  },
+  {
+    "name": "S21+ 225T",
+    "hashrateTH": 225,
+    "price": 2138,
+    "stats": {
+      "min": 2138,
+      "max": 2138,
+      "avg": 2138,
+      "middle": 2138,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "S21+ 225T",
+        "hashrateTH": 225,
+        "powerWatts": 0,
+        "price": 2138,
+        "raw_price": "$9.5",
+        "source_line": "S21+ 225T: $9.5/T (SPOT)",
+        "updatedAt": "2025-12-21T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "S21+ 225T",
+        "hashrateTH": 225,
+        "powerWatts": 0,
+        "price": 2138,
+        "raw_price": "$9.5",
+        "source_line": "S21+ 225T: $9.5/T (SPOT)",
+        "updatedAt": "2025-12-20T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "S21+ 225T",
+        "hashrateTH": 225,
+        "powerWatts": 0,
+        "price": 2138,
+        "raw_price": "$9.5",
+        "source_line": "S21+ 225T: $9.5/T (SPOT)",
+        "updatedAt": "2025-12-19T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      }
+    ]
+  },
+  {
+    "name": "S21+ 216T",
+    "hashrateTH": 216,
+    "price": 2052,
+    "stats": {
+      "min": 2052,
+      "max": 2052,
+      "avg": 2052,
+      "middle": 2052,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "S21+ 216T",
+        "hashrateTH": 216,
+        "powerWatts": 0,
+        "price": 2052,
+        "raw_price": "$9.5",
+        "source_line": "S21+ 216T: $9.5/T (SPOT)",
+        "updatedAt": "2025-12-21T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "S21+ 216T",
+        "hashrateTH": 216,
+        "powerWatts": 0,
+        "price": 2052,
+        "raw_price": "$9.5",
+        "source_line": "S21+ 216T: $9.5/T (SPOT)",
+        "updatedAt": "2025-12-20T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "S21+ 216T",
+        "hashrateTH": 216,
+        "powerWatts": 0,
+        "price": 2052,
+        "raw_price": "$9.5",
+        "source_line": "S21+ 216T: $9.5/T (SPOT)",
+        "updatedAt": "2025-12-19T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      }
+    ]
+  },
+  {
+    "name": "S21 PRO 234T",
+    "hashrateTH": 234,
+    "price": 2691,
+    "stats": {
+      "min": 2691,
+      "max": 2691,
+      "avg": 2691,
+      "middle": 2691,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "S21 PRO 234T",
+        "hashrateTH": 234,
+        "powerWatts": 0,
+        "price": 2691,
+        "raw_price": "$11.5",
+        "source_line": "S21 PRO 234T: $11.5/T (SPOT)",
+        "updatedAt": "2025-12-21T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "S21 PRO 234T",
+        "hashrateTH": 234,
+        "powerWatts": 0,
+        "price": 2691,
+        "raw_price": "$11.5",
+        "source_line": "S21 PRO 234T: $11.5/T (SPOT)",
+        "updatedAt": "2025-12-20T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "S21 PRO 234T",
+        "hashrateTH": 234,
+        "powerWatts": 0,
+        "price": 2691,
+        "raw_price": "$11.5",
+        "source_line": "S21 PRO 234T: $11.5/T (SPOT)",
+        "updatedAt": "2025-12-19T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      }
+    ]
+  },
+  {
+    "name": "S21 PRO 220T",
+    "hashrateTH": 220,
+    "price": 2486,
+    "stats": {
+      "min": 2486,
+      "max": 2486,
+      "avg": 2486,
+      "middle": 2486,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "S21 PRO 220T",
+        "hashrateTH": 220,
+        "powerWatts": 0,
+        "price": 2486,
+        "raw_price": "$11.3",
+        "source_line": "S21 PRO 220T: $11.3/T (SPOT)",
+        "updatedAt": "2025-12-21T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "S21 PRO 220T",
+        "hashrateTH": 220,
+        "powerWatts": 0,
+        "price": 2486,
+        "raw_price": "$11.3",
+        "source_line": "S21 PRO 220T: $11.3/T (SPOT)",
+        "updatedAt": "2025-12-20T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "S21 PRO 220T",
+        "hashrateTH": 220,
+        "powerWatts": 0,
+        "price": 2486,
+        "raw_price": "$11.3",
+        "source_line": "S21 PRO 220T: $11.3/T (SPOT)",
+        "updatedAt": "2025-12-19T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      }
+    ]
+  },
+  {
+    "name": "S21 XP HYD 473T",
+    "hashrateTH": 473,
+    "price": 7805,
+    "stats": {
+      "min": 7805,
+      "max": 7805,
+      "avg": 7805,
+      "middle": 7805,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "S21 XP HYD 473T",
+        "hashrateTH": 473,
+        "powerWatts": 0,
+        "price": 7805,
+        "raw_price": "$16.5",
+        "source_line": "S21 XP HYD 473T: $16.5/T (SPOT)",
+        "updatedAt": "2025-12-21T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "S21 XP HYD 473T",
+        "hashrateTH": 473,
+        "powerWatts": 0,
+        "price": 7805,
+        "raw_price": "$16.5",
+        "source_line": "S21 XP HYD 473T: $16.5/T (SPOT)",
+        "updatedAt": "2025-12-20T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      },
+      {
+        "name": "S21 XP HYD 473T",
+        "hashrateTH": 473,
+        "powerWatts": 0,
+        "price": 7805,
+        "raw_price": "$16.5",
+        "source_line": "S21 XP HYD 473T: $16.5/T (SPOT)",
+        "updatedAt": "2025-12-19T12:00:00.000Z",
+        "source": "UNISTAR MINER（https://www.unistarminer.com/）"
+      }
+    ]
+  },
+  {
+    "name": "*Antminer L7 8800Mh",
+    "hashrateTH": 0.0088,
+    "price": 1079,
+    "stats": {
+      "min": 1079,
+      "max": 1079,
+      "avg": 1079,
+      "middle": 1079,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Antminer L7 8800Mh",
+        "hashrateTH": 0.0088,
+        "powerWatts": 0,
+        "price": 1079,
+        "raw_price": "$1079",
+        "source_line": "*Antminer L7 8800Mh — $1079** 🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Antminer L7 9050Mh",
+    "hashrateTH": 0.00905,
+    "price": 1129,
+    "stats": {
+      "min": 1129,
+      "max": 1129,
+      "avg": 1129,
+      "middle": 1129,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Antminer L7 9050Mh",
+        "hashrateTH": 0.00905,
+        "powerWatts": 0,
+        "price": 1129,
+        "raw_price": "$1129",
+        "source_line": "*Antminer L7 9050Mh — $1129** 🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Antminer L9 15Gh",
+    "hashrateTH": 0.015,
+    "price": 3999,
+    "stats": {
+      "min": 3999,
+      "max": 3999,
+      "avg": 3999,
+      "middle": 3999,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Antminer L9 15Gh",
+        "hashrateTH": 0.015,
+        "powerWatts": 0,
+        "price": 3999,
+        "raw_price": "$3999",
+        "source_line": "*Antminer L9 15Gh — $3999 **🔥🔥🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Antminer L9 16Gh",
+    "hashrateTH": 0.016,
+    "price": 4349,
+    "stats": {
+      "min": 4349,
+      "max": 4349,
+      "avg": 4349,
+      "middle": 4349,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Antminer L9 16Gh",
+        "hashrateTH": 0.016,
+        "powerWatts": 0,
+        "price": 4349,
+        "raw_price": "$4349",
+        "source_line": "*Antminer L9 16Gh — $4349 **🔥🔥🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Antminer L9 16.5Gh",
+    "hashrateTH": 0.0165,
+    "price": 4399,
+    "stats": {
+      "min": 4399,
+      "max": 4399,
+      "avg": 4399,
+      "middle": 4399,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Antminer L9 16.5Gh",
+        "hashrateTH": 0.0165,
+        "powerWatts": 0,
+        "price": 4399,
+        "raw_price": "$4399",
+        "source_line": "*Antminer L9 16.5Gh**  **— $4399 **🔥🔥🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "Antminer L9 17Gh",
+    "hashrateTH": 0.017,
+    "price": 4499,
+    "stats": {
+      "min": 4499,
+      "max": 4499,
+      "avg": 4499,
+      "middle": 4499,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "Antminer L9 17Gh",
+        "hashrateTH": 0.017,
+        "powerWatts": 0,
+        "price": 4499,
+        "raw_price": "$4499",
+        "source_line": "An**tminer L9 17Gh** **— $4499 **🔥🔥🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Antminer L11 20Gh (Jan. 2026 Batch)",
+    "hashrateTH": 0.02,
+    "price": 8499,
+    "stats": {
+      "min": 8499,
+      "max": 8499,
+      "avg": 8499,
+      "middle": 8499,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Antminer L11 20Gh (Jan. 2026 Batch)",
+        "hashrateTH": 0.02,
+        "powerWatts": 0,
+        "price": 8499,
+        "raw_price": "$8499",
+        "source_line": "*Antminer L11 20Gh (Jan. 2026 Batch) — $8499**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Antminer L11 Hyd 35Gh (Dec. Batch)",
+    "hashrateTH": 0.035,
+    "price": 17499,
+    "stats": {
+      "min": 17499,
+      "max": 17499,
+      "avg": 17499,
+      "middle": 17499,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Antminer L11 Hyd 35Gh (Dec. Batch)",
+        "hashrateTH": 0.035,
+        "powerWatts": 0,
+        "price": 17499,
+        "raw_price": "$17499",
+        "source_line": "*Antminer L11 Hyd 35Gh (Dec. Batch)** **— $17499**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Volcminer D1 Mini Pre 2.2Gh",
+    "hashrateTH": 0.000001,
+    "price": 999,
+    "stats": {
+      "min": 999,
+      "max": 999,
+      "avg": 999,
+      "middle": 999,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Volcminer D1 Mini Pre 2.2Gh",
+        "hashrateTH": 0.000001,
+        "powerWatts": 0,
+        "price": 999,
+        "raw_price": "$999",
+        "source_line": "*Volcminer D1 Mini Pre 2.2Gh** **— $999 **🔥🔥🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Volcminer D1 Lite 14Gh",
+    "hashrateTH": 0.014,
+    "price": 3875,
+    "stats": {
+      "min": 3875,
+      "max": 3875,
+      "avg": 3875,
+      "middle": 3875,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Volcminer D1 Lite 14Gh",
+        "hashrateTH": 0.014,
+        "powerWatts": 0,
+        "price": 3875,
+        "raw_price": "$3875",
+        "source_line": "*Volcminer D1 Lite 14Gh — $3875**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Volcminer D1 16Gh",
+    "hashrateTH": 0.016,
+    "price": 5899,
+    "stats": {
+      "min": 5899,
+      "max": 5899,
+      "avg": 5899,
+      "middle": 5899,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Volcminer D1 16Gh",
+        "hashrateTH": 0.016,
+        "powerWatts": 0,
+        "price": 5899,
+        "raw_price": "$5899",
+        "source_line": "*Volcminer D1 16Gh — $5899**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Volcminer D1 Hydro 32Gh (Dec. Batch)",
+    "hashrateTH": 0.032,
+    "price": 8999,
+    "stats": {
+      "min": 8999,
+      "max": 8999,
+      "avg": 8999,
+      "middle": 8999,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Volcminer D1 Hydro 32Gh (Dec. Batch)",
+        "hashrateTH": 0.032,
+        "powerWatts": 0,
+        "price": 8999,
+        "raw_price": "$8999",
+        "source_line": "*Volcminer D1 Hydro 32Gh (Dec. Batch)** **— $8999**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Fluminer L2 1Gh",
+    "hashrateTH": 0.001,
+    "price": 579,
+    "stats": {
+      "min": 579,
+      "max": 579,
+      "avg": 579,
+      "middle": 579,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Fluminer L2 1Gh",
+        "hashrateTH": 0.001,
+        "powerWatts": 0,
+        "price": 579,
+        "raw_price": "$579",
+        "source_line": "*Fluminer L2 1Gh — $579 **🔥🔥🔥**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "Fluminer L1 Pro 6Gh",
+    "hashrateTH": 0.006,
+    "price": 1999,
+    "stats": {
+      "min": 1999,
+      "max": 1999,
+      "avg": 1999,
+      "middle": 1999,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "Fluminer L1 Pro 6Gh",
+        "hashrateTH": 0.006,
+        "powerWatts": 0,
+        "price": 1999,
+        "raw_price": "$1999",
+        "source_line": "Fluminer L1 Pro 6Gh** **— $1999 **🔥🔥🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Fluminer L3 9.5Gh (Feb. 2026 Batch)",
+    "hashrateTH": 0.0095,
+    "price": 4149,
+    "stats": {
+      "min": 4149,
+      "max": 4149,
+      "avg": 4149,
+      "middle": 4149,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Fluminer L3 9.5Gh (Feb. 2026 Batch)",
+        "hashrateTH": 0.0095,
+        "powerWatts": 0,
+        "price": 4149,
+        "raw_price": "$4149",
+        "source_line": "*Fluminer L3 9.5Gh (Feb. 2026 Batch) — $4149**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Elphapex DG1+ 13Gh",
+    "hashrateTH": 0.013,
+    "price": 2099,
+    "stats": {
+      "min": 2099,
+      "max": 2099,
+      "avg": 2099,
+      "middle": 2099,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Elphapex DG1+ 13Gh",
+        "hashrateTH": 0.013,
+        "powerWatts": 0,
+        "price": 2099,
+        "raw_price": "$2099",
+        "source_line": "*Elphapex DG1+ 13Gh — $2099 **🔥🔥🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Elphapex DG1+ 14Gh",
+    "hashrateTH": 0.014,
+    "price": 2849,
+    "stats": {
+      "min": 2849,
+      "max": 2849,
+      "avg": 2849,
+      "middle": 2849,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Elphapex DG1+ 14Gh",
+        "hashrateTH": 0.014,
+        "powerWatts": 0,
+        "price": 2849,
+        "raw_price": "$2849",
+        "source_line": "*Elphapex DG1+ 14Gh — $2849 **🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Elphapex DG2 18Gh (Feb. 2026 Batch)",
+    "hashrateTH": 0.018,
+    "price": 7699,
+    "stats": {
+      "min": 7699,
+      "max": 7699,
+      "avg": 7699,
+      "middle": 7699,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Elphapex DG2 18Gh (Feb. 2026 Batch)",
+        "hashrateTH": 0.018,
+        "powerWatts": 0,
+        "price": 7699,
+        "raw_price": "$7699",
+        "source_line": "*Elphapex DG2 18Gh (Feb. 2026 Batch) — $7699",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "Elphapex DG2+ 20.5Gh (Feb. 2026 Batch)",
+    "hashrateTH": 0.0205,
+    "price": 10499,
+    "stats": {
+      "min": 10499,
+      "max": 10499,
+      "avg": 10499,
+      "middle": 10499,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "Elphapex DG2+ 20.5Gh (Feb. 2026 Batch)",
+        "hashrateTH": 0.0205,
+        "powerWatts": 0,
+        "price": 10499,
+        "raw_price": "$10499",
+        "source_line": "Elphapex DG2+ 20.5Gh (Feb. 2026 Batch) — $10499**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Elphapex DG Hyd. 1 20Gh",
+    "hashrateTH": 0.02,
+    "price": 6299,
+    "stats": {
+      "min": 6299,
+      "max": 6299,
+      "avg": 6299,
+      "middle": 6299,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Elphapex DG Hyd. 1 20Gh",
+        "hashrateTH": 0.02,
+        "powerWatts": 0,
+        "price": 6299,
+        "raw_price": "$6299",
+        "source_line": "*Elphapex DG Hyd. 1 20Gh — $6299**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Goldshell XT Box 580Gh",
+    "hashrateTH": 0.58,
+    "price": 1399,
+    "stats": {
+      "min": 1399,
+      "max": 1399,
+      "avg": 1399,
+      "middle": 1399,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Goldshell XT Box 580Gh",
+        "hashrateTH": 0.58,
+        "powerWatts": 0,
+        "price": 1399,
+        "raw_price": "$1399",
+        "source_line": "*Goldshell XT Box 580Gh — $1399 🔥**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*ICERIVER AE1 Lite 300Mh",
+    "hashrateTH": 0.0003,
+    "price": 1129,
+    "stats": {
+      "min": 1129,
+      "max": 1129,
+      "avg": 1129,
+      "middle": 1129,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*ICERIVER AE1 Lite 300Mh",
+        "hashrateTH": 0.0003,
+        "powerWatts": 0,
+        "price": 1129,
+        "raw_price": "$1129",
+        "source_line": "*ICERIVER AE1 Lite 300Mh — $1129** 🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*ICERIVER AE2 720Mh (Dec. Batch)",
+    "hashrateTH": 0.00072,
+    "price": 2879,
+    "stats": {
+      "min": 2879,
+      "max": 2879,
+      "avg": 2879,
+      "middle": 2879,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*ICERIVER AE2 720Mh (Dec. Batch)",
+        "hashrateTH": 0.00072,
+        "powerWatts": 0,
+        "price": 2879,
+        "raw_price": "$2879",
+        "source_line": "*ICERIVER AE2 720Mh (Dec. Batch) — $2879 🔥**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "ICERIVER AE3 2Gh",
+    "hashrateTH": 0.002,
+    "price": 6149,
+    "stats": {
+      "min": 6149,
+      "max": 6149,
+      "avg": 6149,
+      "middle": 6149,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "ICERIVER AE3 2Gh",
+        "hashrateTH": 0.002,
+        "powerWatts": 0,
+        "price": 6149,
+        "raw_price": "$6149",
+        "source_line": "IC**ERIVER AE3 2Gh — $6149** 🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "ICERIVER AE3 2Gh Hosting",
+    "hashrateTH": 0.002,
+    "price": 5999,
+    "stats": {
+      "min": 5999,
+      "max": 5999,
+      "avg": 5999,
+      "middle": 5999,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "ICERIVER AE3 2Gh Hosting",
+        "hashrateTH": 0.002,
+        "powerWatts": 0,
+        "price": 5999,
+        "raw_price": "$5999",
+        "source_line": "IC**ERIVER AE3 2Gh Hosting — $5999** 🔥🔥🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Goldshell E-AE1M",
+    "hashrateTH": 0.000001,
+    "price": 879,
+    "stats": {
+      "min": 879,
+      "max": 879,
+      "avg": 879,
+      "middle": 879,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Goldshell E-AE1M",
+        "hashrateTH": 0.000001,
+        "powerWatts": 0,
+        "price": 879,
+        "raw_price": "$879",
+        "source_line": "*Goldshell E-AE1M — $879 🔥**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*ICERIVER KS5M",
+    "hashrateTH": 0.000005,
+    "price": 649,
+    "stats": {
+      "min": 649,
+      "max": 649,
+      "avg": 649,
+      "middle": 649,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*ICERIVER KS5M",
+        "hashrateTH": 0.000005,
+        "powerWatts": 0,
+        "price": 649,
+        "raw_price": "$649",
+        "source_line": "*ICERIVER KS5M — $649 🔥**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*ICERIVER KS7 30Th",
+    "hashrateTH": 30,
+    "price": 2199,
+    "stats": {
+      "min": 2199,
+      "max": 2199,
+      "avg": 2199,
+      "middle": 2199,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*ICERIVER KS7 30Th",
+        "hashrateTH": 30,
+        "powerWatts": 0,
+        "price": 2199,
+        "raw_price": "$2199",
+        "source_line": "*ICERIVER KS7 30Th — $2199 🔥**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*ICERIVER KS7 30Th Hosting",
+    "hashrateTH": 30,
+    "price": 1999,
+    "stats": {
+      "min": 1999,
+      "max": 1999,
+      "avg": 1999,
+      "middle": 1999,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*ICERIVER KS7 30Th Hosting",
+        "hashrateTH": 30,
+        "powerWatts": 0,
+        "price": 1999,
+        "raw_price": "$1999",
+        "source_line": "*ICERIVER KS7 30Th Hosting — $1999 🔥🔥🔥**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Antminer KS7 36Th (Dec. Batch)",
+    "hashrateTH": 36,
+    "price": 5899,
+    "stats": {
+      "min": 5899,
+      "max": 5899,
+      "avg": 5899,
+      "middle": 5899,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Antminer KS7 36Th (Dec. Batch)",
+        "hashrateTH": 36,
+        "powerWatts": 0,
+        "price": 5899,
+        "raw_price": "$5899",
+        "source_line": "*Antminer KS7 36Th (Dec. Batch) — $5899 🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "Antminer KS7 40Th (Dec. Batch)",
+    "hashrateTH": 40,
+    "price": 6499,
+    "stats": {
+      "min": 6499,
+      "max": 6499,
+      "avg": 6499,
+      "middle": 6499,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "Antminer KS7 40Th (Dec. Batch)",
+        "hashrateTH": 40,
+        "powerWatts": 0,
+        "price": 6499,
+        "raw_price": "$6499",
+        "source_line": "Antminer KS7 40Th (Dec. Batch) — $6499 🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "Antminer KS7 45Th (Dec. Batch)",
+    "hashrateTH": 45,
+    "price": 7299,
+    "stats": {
+      "min": 7299,
+      "max": 7299,
+      "avg": 7299,
+      "middle": 7299,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "Antminer KS7 45Th (Dec. Batch)",
+        "hashrateTH": 45,
+        "powerWatts": 0,
+        "price": 7299,
+        "raw_price": "$7299",
+        "source_line": "Antminer KS7 45Th (Dec. Batch) — $7299 🔥**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*iPollo V2X 1200Mh",
+    "hashrateTH": 0.0012,
+    "price": 849,
+    "stats": {
+      "min": 849,
+      "max": 849,
+      "avg": 849,
+      "middle": 849,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*iPollo V2X 1200Mh",
+        "hashrateTH": 0.0012,
+        "powerWatts": 0,
+        "price": 849,
+        "raw_price": "$849",
+        "source_line": "*iPollo V2X 1200Mh — $849 **🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*iPollo V2H 3200Mh",
+    "hashrateTH": 0.0032,
+    "price": 1999,
+    "stats": {
+      "min": 1999,
+      "max": 1999,
+      "avg": 1999,
+      "middle": 1999,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*iPollo V2H 3200Mh",
+        "hashrateTH": 0.0032,
+        "powerWatts": 0,
+        "price": 1999,
+        "raw_price": "$1999",
+        "source_line": "*iPollo V2H 3200Mh — $1999**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*iPollo V2H 3300Mh",
+    "hashrateTH": 0.0033,
+    "price": 2049,
+    "stats": {
+      "min": 2049,
+      "max": 2049,
+      "avg": 2049,
+      "middle": 2049,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*iPollo V2H 3300Mh",
+        "hashrateTH": 0.0033,
+        "powerWatts": 0,
+        "price": 2049,
+        "raw_price": "$2049",
+        "source_line": "*iPollo V2H 3300Mh — $2049**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*iPollo V2H 3400Mh",
+    "hashrateTH": 0.0034,
+    "price": 2099,
+    "stats": {
+      "min": 2099,
+      "max": 2099,
+      "avg": 2099,
+      "middle": 2099,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*iPollo V2H 3400Mh",
+        "hashrateTH": 0.0034,
+        "powerWatts": 0,
+        "price": 2099,
+        "raw_price": "$2099",
+        "source_line": "*iPollo V2H 3400Mh — $2099**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*iPollo V2H 3500Mh",
+    "hashrateTH": 0.0035,
+    "price": 2149,
+    "stats": {
+      "min": 2149,
+      "max": 2149,
+      "avg": 2149,
+      "middle": 2149,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*iPollo V2H 3500Mh",
+        "hashrateTH": 0.0035,
+        "powerWatts": 0,
+        "price": 2149,
+        "raw_price": "$2149",
+        "source_line": "*iPollo V2H 3500Mh — $2149**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*iPollo V2H 3600Mh",
+    "hashrateTH": 0.0036,
+    "price": 2199,
+    "stats": {
+      "min": 2199,
+      "max": 2199,
+      "avg": 2199,
+      "middle": 2199,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*iPollo V2H 3600Mh",
+        "hashrateTH": 0.0036,
+        "powerWatts": 0,
+        "price": 2199,
+        "raw_price": "$2199",
+        "source_line": "*iPollo V2H 3600Mh — $2199**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*iPollo V2H 3700Mh",
+    "hashrateTH": 0.0037,
+    "price": 2299,
+    "stats": {
+      "min": 2299,
+      "max": 2299,
+      "avg": 2299,
+      "middle": 2299,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*iPollo V2H 3700Mh",
+        "hashrateTH": 0.0037,
+        "powerWatts": 0,
+        "price": 2299,
+        "raw_price": "$2299",
+        "source_line": "*iPollo V2H 3700Mh — $2299 🔥**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*iPollo V2 9Gh",
+    "hashrateTH": 0.009,
+    "price": 4999,
+    "stats": {
+      "min": 4999,
+      "max": 4999,
+      "avg": 4999,
+      "middle": 4999,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*iPollo V2 9Gh",
+        "hashrateTH": 0.009,
+        "powerWatts": 0,
+        "price": 4999,
+        "raw_price": "$4999",
+        "source_line": "*iPollo V2 9Gh — $4999**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*iPollo V2 10Gh",
+    "hashrateTH": 0.01,
+    "price": 5549,
+    "stats": {
+      "min": 5549,
+      "max": 5549,
+      "avg": 5549,
+      "middle": 5549,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*iPollo V2 10Gh",
+        "hashrateTH": 0.01,
+        "powerWatts": 0,
+        "price": 5549,
+        "raw_price": "$5549",
+        "source_line": "*iPollo V2 10Gh — $5549**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*iPollo V2 11Gh",
+    "hashrateTH": 0.011,
+    "price": 6099,
+    "stats": {
+      "min": 6099,
+      "max": 6099,
+      "avg": 6099,
+      "middle": 6099,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*iPollo V2 11Gh",
+        "hashrateTH": 0.011,
+        "powerWatts": 0,
+        "price": 6099,
+        "raw_price": "$6099",
+        "source_line": "*iPollo V2 11Gh — $6099**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*iPollo V2 12Gh",
+    "hashrateTH": 0.012,
+    "price": 6599,
+    "stats": {
+      "min": 6599,
+      "max": 6599,
+      "avg": 6599,
+      "middle": 6599,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*iPollo V2 12Gh",
+        "hashrateTH": 0.012,
+        "powerWatts": 0,
+        "price": 6599,
+        "raw_price": "$6599",
+        "source_line": "*iPollo V2 12Gh — $6599**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*iPollo V2 13Gh",
+    "hashrateTH": 0.013,
+    "price": 7149,
+    "stats": {
+      "min": 7149,
+      "max": 7149,
+      "avg": 7149,
+      "middle": 7149,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*iPollo V2 13Gh",
+        "hashrateTH": 0.013,
+        "powerWatts": 0,
+        "price": 7149,
+        "raw_price": "$7149",
+        "source_line": "*iPollo V2 13Gh — $7149**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*iPollo V2 14Gh",
+    "hashrateTH": 0.014,
+    "price": 7699,
+    "stats": {
+      "min": 7699,
+      "max": 7699,
+      "avg": 7699,
+      "middle": 7699,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*iPollo V2 14Gh",
+        "hashrateTH": 0.014,
+        "powerWatts": 0,
+        "price": 7699,
+        "raw_price": "$7699",
+        "source_line": "*iPollo V2 14Gh — $7699**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*iPollo V2 15Gh",
+    "hashrateTH": 0.015,
+    "price": 8199,
+    "stats": {
+      "min": 8199,
+      "max": 8199,
+      "avg": 8199,
+      "middle": 8199,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*iPollo V2 15Gh",
+        "hashrateTH": 0.015,
+        "powerWatts": 0,
+        "price": 8199,
+        "raw_price": "$8199",
+        "source_line": "*iPollo V2 15Gh — $8199**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Jasminer X16-QE 1650Mh",
+    "hashrateTH": 0.00165,
+    "price": 679,
+    "stats": {
+      "min": 679,
+      "max": 679,
+      "avg": 679,
+      "middle": 679,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Jasminer X16-QE 1650Mh",
+        "hashrateTH": 0.00165,
+        "powerWatts": 0,
+        "price": 679,
+        "raw_price": "$679",
+        "source_line": "*Jasminer X16-QE 1650Mh — $679** 🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Jasminer X16-QE 1750Mh",
+    "hashrateTH": 0.00175,
+    "price": 749,
+    "stats": {
+      "min": 749,
+      "max": 749,
+      "avg": 749,
+      "middle": 749,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Jasminer X16-QE 1750Mh",
+        "hashrateTH": 0.00175,
+        "powerWatts": 0,
+        "price": 749,
+        "raw_price": "$749",
+        "source_line": "*Jasminer X16-QE 1750Mh — $749** 🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Jasminer X16-QE 1850Mh",
+    "hashrateTH": 0.00185,
+    "price": 849,
+    "stats": {
+      "min": 849,
+      "max": 849,
+      "avg": 849,
+      "middle": 849,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Jasminer X16-QE 1850Mh",
+        "hashrateTH": 0.00185,
+        "powerWatts": 0,
+        "price": 849,
+        "raw_price": "$849",
+        "source_line": "*Jasminer X16-QE 1850Mh — $849** 🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Jasminer X16-Q 1950Mh",
+    "hashrateTH": 0.00195,
+    "price": 1029,
+    "stats": {
+      "min": 1029,
+      "max": 1029,
+      "avg": 1029,
+      "middle": 1029,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Jasminer X16-Q 1950Mh",
+        "hashrateTH": 0.00195,
+        "powerWatts": 0,
+        "price": 1029,
+        "raw_price": "$1029",
+        "source_line": "*Jasminer X16-Q 1950Mh — $1029** 🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Jasminer X16-P 5800Mh",
+    "hashrateTH": 0.0058,
+    "price": 2599,
+    "stats": {
+      "min": 2599,
+      "max": 2599,
+      "avg": 2599,
+      "middle": 2599,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Jasminer X16-P 5800Mh",
+        "hashrateTH": 0.0058,
+        "powerWatts": 0,
+        "price": 2599,
+        "raw_price": "$2599",
+        "source_line": "*Jasminer X16-P 5800Mh — $2599** 🔥",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "Antminer K7 63.5Th",
+    "hashrateTH": 63.5,
+    "price": 2049,
+    "stats": {
+      "min": 2049,
+      "max": 2049,
+      "avg": 2049,
+      "middle": 2049,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "Antminer K7 63.5Th",
+        "hashrateTH": 63.5,
+        "powerWatts": 0,
+        "price": 2049,
+        "raw_price": "$2049",
+        "source_line": "Antminer K7 63.5Th — $2049",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "Antminer D9 1770Gh (7-10 Days)",
+    "hashrateTH": 1.77,
+    "price": 3149,
+    "stats": {
+      "min": 3149,
+      "max": 3149,
+      "avg": 3149,
+      "middle": 3149,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "Antminer D9 1770Gh (7-10 Days)",
+        "hashrateTH": 1.77,
+        "powerWatts": 0,
+        "price": 3149,
+        "raw_price": "$3149",
+        "source_line": "Antminer D9 1770Gh (7-10 Days) — $3149",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Matches INIBOX 850Mh",
+    "hashrateTH": 0.00085,
+    "price": 2999,
+    "stats": {
+      "min": 2999,
+      "max": 2999,
+      "avg": 2999,
+      "middle": 2999,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Matches INIBOX 850Mh",
+        "hashrateTH": 0.00085,
+        "powerWatts": 0,
+        "price": 2999,
+        "raw_price": "$2999",
+        "source_line": "*Matches INIBOX 850Mh — $2999**",
+        "updatedAt": "2025-12-19T09:00:23.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Antminer S19k Pro 105Th",
+    "hashrateTH": 105,
+    "price": 499,
+    "stats": {
+      "min": 499,
+      "max": 499,
+      "avg": 499,
+      "middle": 499,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Antminer S19k Pro 105Th",
+        "hashrateTH": 105,
+        "powerWatts": 0,
+        "price": 499,
+        "raw_price": "$499",
+        "source_line": "*Antminer S19k Pro 105Th — $499** 🔥🔥**🔥**",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Antminer S19k Pro 110Th",
+    "hashrateTH": 110,
+    "price": 535,
+    "stats": {
+      "min": 535,
+      "max": 535,
+      "avg": 535,
+      "middle": 535,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Antminer S19k Pro 110Th",
+        "hashrateTH": 110,
+        "powerWatts": 0,
+        "price": 535,
+        "raw_price": "$535",
+        "source_line": "*Antminer S19k Pro 110Th — $535 🔥🔥🔥**",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Antminer S19k Pro 115Th",
+    "hashrateTH": 115,
+    "price": 549,
+    "stats": {
+      "min": 549,
+      "max": 549,
+      "avg": 549,
+      "middle": 549,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Antminer S19k Pro 115Th",
+        "hashrateTH": 115,
+        "powerWatts": 0,
+        "price": 549,
+        "raw_price": "$549",
+        "source_line": "*Antminer S19k Pro 115Th — $549** 🔥🔥🔥",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Antminer S19k Pro 120Th",
+    "hashrateTH": 120,
+    "price": 619,
+    "stats": {
+      "min": 619,
+      "max": 619,
+      "avg": 619,
+      "middle": 619,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Antminer S19k Pro 120Th",
+        "hashrateTH": 120,
+        "powerWatts": 0,
+        "price": 619,
+        "raw_price": "$619",
+        "source_line": "*Antminer S19k Pro 120Th — $619 🔥🔥🔥",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S19 XP+ Hyd 293Th",
+    "hashrateTH": 293,
+    "price": 1465,
+    "stats": {
+      "min": 1465,
+      "max": 1465,
+      "avg": 1465,
+      "middle": 1465,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "Antminer S19 XP+ Hyd 293Th",
+        "hashrateTH": 293,
+        "powerWatts": 0,
+        "price": 1465,
+        "raw_price": "$1465",
+        "source_line": "Antminer S19 XP+ Hyd 293Th — $1465**",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Antminer S21 Imm 215Th",
+    "hashrateTH": 215,
+    "price": 1899,
+    "stats": {
+      "min": 1899,
+      "max": 1899,
+      "avg": 1899,
+      "middle": 1899,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Antminer S21 Imm 215Th",
+        "hashrateTH": 215,
+        "powerWatts": 0,
+        "price": 1899,
+        "raw_price": "$1899",
+        "source_line": "*Antminer S21 Imm 215Th — $1899**",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Antminer S21+ 216Th",
+    "hashrateTH": 216,
+    "price": 2349,
+    "stats": {
+      "min": 2349,
+      "max": 2349,
+      "avg": 2349,
+      "middle": 2349,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Antminer S21+ 216Th",
+        "hashrateTH": 216,
+        "powerWatts": 0,
+        "price": 2349,
+        "raw_price": "$2349",
+        "source_line": "*Antminer S21+ 216Th — $2349** 🔥🔥🔥",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Antminer S21+ 225Th",
+    "hashrateTH": 225,
+    "price": 2479,
+    "stats": {
+      "min": 2479,
+      "max": 2479,
+      "avg": 2479,
+      "middle": 2479,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Antminer S21+ 225Th",
+        "hashrateTH": 225,
+        "powerWatts": 0,
+        "price": 2479,
+        "raw_price": "$2479",
+        "source_line": "*Antminer S21+ 225Th — $2479** 🔥🔥🔥",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Antminer S21 Pro 220Th",
+    "hashrateTH": 220,
+    "price": 2849,
+    "stats": {
+      "min": 2849,
+      "max": 2849,
+      "avg": 2849,
+      "middle": 2849,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Antminer S21 Pro 220Th",
+        "hashrateTH": 220,
+        "powerWatts": 0,
+        "price": 2849,
+        "raw_price": "$2849",
+        "source_line": "*Antminer S21 Pro 220Th — $2849** 🔥🔥🔥",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Antminer S21 Pro 234Th",
+    "hashrateTH": 234,
+    "price": 3079,
+    "stats": {
+      "min": 3079,
+      "max": 3079,
+      "avg": 3079,
+      "middle": 3079,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Antminer S21 Pro 234Th",
+        "hashrateTH": 234,
+        "powerWatts": 0,
+        "price": 3079,
+        "raw_price": "$3079",
+        "source_line": "*Antminer S21 Pro 234Th — $3079** 🔥🔥🔥",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Antminer S21 Pro 245Th",
+    "hashrateTH": 245,
+    "price": 3349,
+    "stats": {
+      "min": 3349,
+      "max": 3349,
+      "avg": 3349,
+      "middle": 3349,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Antminer S21 Pro 245Th",
+        "hashrateTH": 245,
+        "powerWatts": 0,
+        "price": 3349,
+        "raw_price": "$3349",
+        "source_line": "*Antminer S21 Pro 245Th — $3349** 🔥",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Antminer S21 XP 270Th (7-10 Working Days)",
+    "hashrateTH": 270,
+    "price": 4499,
+    "stats": {
+      "min": 4499,
+      "max": 4499,
+      "avg": 4499,
+      "middle": 4499,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Antminer S21 XP 270Th (7-10 Working Days)",
+        "hashrateTH": 270,
+        "powerWatts": 0,
+        "price": 4499,
+        "raw_price": "$4499",
+        "source_line": "*Antminer S21 XP 270Th (7-10 Working Days) — $4499** 🔥🔥🔥**",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M60 164Th",
+    "hashrateTH": 164,
+    "price": 1649,
+    "stats": {
+      "min": 1649,
+      "max": 1649,
+      "avg": 1649,
+      "middle": 1649,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "Whatsminer M60 164Th",
+        "hashrateTH": 164,
+        "powerWatts": 0,
+        "price": 1649,
+        "raw_price": "$1649",
+        "source_line": "Whatsminer M60 164Th — $1649**",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Whatsminer M66 280Th Mixed (2 Months, MOQ=20)",
+    "hashrateTH": 280,
+    "price": 3799,
+    "stats": {
+      "min": 3799,
+      "max": 3799,
+      "avg": 3799,
+      "middle": 3799,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Whatsminer M66 280Th Mixed (2 Months, MOQ=20)",
+        "hashrateTH": 280,
+        "powerWatts": 0,
+        "price": 3799,
+        "raw_price": "$3799",
+        "source_line": "*Whatsminer M66 280Th Mixed (2 Months, MOQ=20) — $3799**",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Sealminer A2 Pro 260Th Mixed (Jan. 2026 Batch)",
+    "hashrateTH": 260,
+    "price": 3599,
+    "stats": {
+      "min": 3599,
+      "max": 3599,
+      "avg": 3599,
+      "middle": 3599,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Sealminer A2 Pro 260Th Mixed (Jan. 2026 Batch)",
+        "hashrateTH": 260,
+        "powerWatts": 0,
+        "price": 3599,
+        "raw_price": "$3599",
+        "source_line": "*Sealminer A2 Pro 260Th Mixed (Jan. 2026 Batch) — $3599**",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Avalon Nano 3 4Th",
+    "hashrateTH": 4,
+    "price": 179,
+    "stats": {
+      "min": 179,
+      "max": 179,
+      "avg": 179,
+      "middle": 179,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Avalon Nano 3 4Th",
+        "hashrateTH": 4,
+        "powerWatts": 0,
+        "price": 179,
+        "raw_price": "$179",
+        "source_line": "*Avalon Nano 3 4Th — $179**",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Avalon Nano 3S 6Th",
+    "hashrateTH": 6,
+    "price": 299,
+    "stats": {
+      "min": 299,
+      "max": 299,
+      "avg": 299,
+      "middle": 299,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Avalon Nano 3S 6Th",
+        "hashrateTH": 6,
+        "powerWatts": 0,
+        "price": 299,
+        "raw_price": "$299",
+        "source_line": "*Avalon Nano 3S 6Th — $299 🔥",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "Avalon Mini 3 37.5Th",
+    "hashrateTH": 37.5,
+    "price": 1049,
+    "stats": {
+      "min": 1049,
+      "max": 1049,
+      "avg": 1049,
+      "middle": 1049,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "Avalon Mini 3 37.5Th",
+        "hashrateTH": 37.5,
+        "powerWatts": 0,
+        "price": 1049,
+        "raw_price": "$1049",
+        "source_line": "Avalon Mini 3 37.5Th — $1049**",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Avalon Q 90Th (2-3 Working Days)",
+    "hashrateTH": 90,
+    "price": 1599,
+    "stats": {
+      "min": 1599,
+      "max": 1599,
+      "avg": 1599,
+      "middle": 1599,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Avalon Q 90Th (2-3 Working Days)",
+        "hashrateTH": 90,
+        "powerWatts": 0,
+        "price": 1599,
+        "raw_price": "$1599",
+        "source_line": "*Avalon Q 90Th (2-3 Working Days) — $1599** 🔥**🔥🔥**",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Avalon A15 Pro 221Th",
+    "hashrateTH": 221,
+    "price": 2499,
+    "stats": {
+      "min": 2499,
+      "max": 2499,
+      "avg": 2499,
+      "middle": 2499,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Avalon A15 Pro 221Th",
+        "hashrateTH": 221,
+        "powerWatts": 0,
+        "price": 2499,
+        "raw_price": "$2499",
+        "source_line": "*Avalon A15 Pro 221Th — $2499 🔥🔥🔥**",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Bitaxe Gamma 601 1.2Th",
+    "hashrateTH": 1.2,
+    "price": 109,
+    "stats": {
+      "min": 109,
+      "max": 109,
+      "avg": 109,
+      "middle": 109,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Bitaxe Gamma 601 1.2Th",
+        "hashrateTH": 1.2,
+        "powerWatts": 0,
+        "price": 109,
+        "raw_price": "$109",
+        "source_line": "*Bitaxe Gamma 601 1.2Th — $109 🔥🔥🔥",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "Bitaxe GT 800 2.4Th (10-14 Days)",
+    "hashrateTH": 2.4,
+    "price": 183,
+    "stats": {
+      "min": 183,
+      "max": 183,
+      "avg": 183,
+      "middle": 183,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "Bitaxe GT 800 2.4Th (10-14 Days)",
+        "hashrateTH": 2.4,
+        "powerWatts": 0,
+        "price": 183,
+        "raw_price": "$183",
+        "source_line": "Bitaxe GT 800 2.4Th (10-14 Days) — $183",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "Bitaxe Supra Hex 702 4.2Th (10-14 Days)",
+    "hashrateTH": 4.2,
+    "price": 249,
+    "stats": {
+      "min": 249,
+      "max": 249,
+      "avg": 249,
+      "middle": 249,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "Bitaxe Supra Hex 702 4.2Th (10-14 Days)",
+        "hashrateTH": 4.2,
+        "powerWatts": 0,
+        "price": 249,
+        "raw_price": "$249",
+        "source_line": "Bitaxe Supra Hex 702 4.2Th (10-14 Days) — $249 🔥🔥🔥",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "NerdQaxe++ 4.8Th",
+    "hashrateTH": 4.8,
+    "price": 329,
+    "stats": {
+      "min": 329,
+      "max": 329,
+      "avg": 329,
+      "middle": 329,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "NerdQaxe++ 4.8Th",
+        "hashrateTH": 4.8,
+        "powerWatts": 0,
+        "price": 329,
+        "raw_price": "$329",
+        "source_line": "NerdQaxe++ 4.8Th — $329 🔥🔥🔥",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "NerdQaxe++ Rev6.1 6Th (7-10 Days)",
+    "hashrateTH": 6,
+    "price": 389,
+    "stats": {
+      "min": 389,
+      "max": 389,
+      "avg": 389,
+      "middle": 389,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "NerdQaxe++ Rev6.1 6Th (7-10 Days)",
+        "hashrateTH": 6,
+        "powerWatts": 0,
+        "price": 389,
+        "raw_price": "$389",
+        "source_line": "NerdQaxe++ Rev6.1 6Th (7-10 Days) — $389 🔥🔥🔥",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "NerdQaxe++ Rev6.1 Hyd 6Th (10-14 Days)",
+    "hashrateTH": 6,
+    "price": 399,
+    "stats": {
+      "min": 399,
+      "max": 399,
+      "avg": 399,
+      "middle": 399,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "NerdQaxe++ Rev6.1 Hyd 6Th (10-14 Days)",
+        "hashrateTH": 6,
+        "powerWatts": 0,
+        "price": 399,
+        "raw_price": "$399",
+        "source_line": "NerdQaxe++ Rev6.1 Hyd 6Th (10-14 Days) — $399 🔥🔥🔥",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "NerdOCTAxe 9.6Th",
+    "hashrateTH": 9.6,
+    "price": 629,
+    "stats": {
+      "min": 629,
+      "max": 629,
+      "avg": 629,
+      "middle": 629,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "NerdOCTAxe 9.6Th",
+        "hashrateTH": 9.6,
+        "powerWatts": 0,
+        "price": 629,
+        "raw_price": "$629",
+        "source_line": "NerdOCTAxe 9.6Th — $629 🔥🔥🔥**",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*MagicMiner BG02 7Th",
+    "hashrateTH": 7,
+    "price": 389,
+    "stats": {
+      "min": 389,
+      "max": 389,
+      "avg": 389,
+      "middle": 389,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*MagicMiner BG02 7Th",
+        "hashrateTH": 7,
+        "powerWatts": 0,
+        "price": 389,
+        "raw_price": "$389",
+        "source_line": "*MagicMiner BG02 7Th — $389 🔥🔥🔥**",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Jingle Miner BTC Solo Lite 1.2Th",
+    "hashrateTH": 1.2,
+    "price": 169,
+    "stats": {
+      "min": 169,
+      "max": 169,
+      "avg": 169,
+      "middle": 169,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Jingle Miner BTC Solo Lite 1.2Th",
+        "hashrateTH": 1.2,
+        "powerWatts": 0,
+        "price": 169,
+        "raw_price": "$169",
+        "source_line": "*Jingle Miner BTC Solo Lite 1.2Th — $169 🔥**",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "*Fluminer T3 115Th (End of Jan. 2026 Batch)",
+    "hashrateTH": 115,
+    "price": 1849,
+    "stats": {
+      "min": 1849,
+      "max": 1849,
+      "avg": 1849,
+      "middle": 1849,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "*Fluminer T3 115Th (End of Jan. 2026 Batch)",
+        "hashrateTH": 115,
+        "powerWatts": 0,
+        "price": 1849,
+        "raw_price": "$1849",
+        "source_line": "*Fluminer T3 115Th (End of Jan. 2026 Batch) — $1849**",
+        "updatedAt": "2025-12-19T09:00:07.000Z",
+        "source": "NHASH Miners Market"
+      }
+    ]
+  },
+  {
+    "name": "🔥 🔥 🔥 24pcs S21 Pro 234 T",
+    "hashrateTH": 234,
+    "price": 2504,
+    "stats": {
+      "min": 2504,
+      "max": 2504,
+      "avg": 2504,
+      "middle": 2504,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🔥 🔥 🔥 24pcs S21 Pro 234 T",
+        "hashrateTH": 234,
+        "powerWatts": 0,
+        "price": 2504,
+        "raw_price": "$2500",
+        "source_line": "🔥 🔥 🔥 24pcs S21 Pro 234 T - 10.7U/TH - $2500 (out of warranty, 30-day DOA) MQO 6pcs",
+        "updatedAt": "2025-12-19T16:10:08.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "L9 15G       $3600       SPOT",
+    "hashrateTH": 0.015,
+    "price": 3600,
+    "stats": {
+      "min": 3600,
+      "max": 3600,
+      "avg": 3600,
+      "middle": 3600,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "L9 15G $3600",
+        "hashrateTH": 0.015,
+        "powerWatts": 0,
+        "price": 3600,
+        "raw_price": "$3600",
+        "source_line": "L9 15G $3600",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      },
+      {
+        "name": "L9 15G       $3600       SPOT",
+        "hashrateTH": 0.015,
+        "powerWatts": 0,
+        "price": 3600,
+        "raw_price": "$3600",
+        "source_line": "L9 15G       $3600       SPOT",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "🔥L9   15G     $3600",
+        "hashrateTH": 0.015,
+        "powerWatts": 0,
+        "price": 3600,
+        "raw_price": "$3600",
+        "source_line": "🔥L9   15G     $3600",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🔥L9   16G     $3800",
+    "hashrateTH": 0.016,
+    "price": 3800,
+    "stats": {
+      "min": 3800,
+      "max": 3800,
+      "avg": 3800,
+      "middle": 3800,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "L9 16G $3800",
+        "hashrateTH": 0.016,
+        "powerWatts": 0,
+        "price": 3800,
+        "raw_price": "$3800",
+        "source_line": "L9 16G $3800",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      },
+      {
+        "name": "🔥L9   16G     $3800",
+        "hashrateTH": 0.016,
+        "powerWatts": 0,
+        "price": 3800,
+        "raw_price": "$3800",
+        "source_line": "🔥L9   16G     $3800",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "L9 16.5G       $3900       SPOT",
+    "hashrateTH": 0.0165,
+    "price": 3900,
+    "stats": {
+      "min": 3900,
+      "max": 3900,
+      "avg": 3900,
+      "middle": 3900,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "L9 16.5G $3900",
+        "hashrateTH": 0.0165,
+        "powerWatts": 0,
+        "price": 3900,
+        "raw_price": "$3900",
+        "source_line": "L9 16.5G $3900",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      },
+      {
+        "name": "L9 16.5G       $3900       SPOT",
+        "hashrateTH": 0.0165,
+        "powerWatts": 0,
+        "price": 3900,
+        "raw_price": "$3900",
+        "source_line": "L9 16.5G       $3900       SPOT",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "🔥L9   16.5G  $3900",
+        "hashrateTH": 0.0165,
+        "powerWatts": 0,
+        "price": 3900,
+        "raw_price": "$3900",
+        "source_line": "🔥L9   16.5G  $3900",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🔥L9   17G     $4000",
+    "hashrateTH": 0.017,
+    "price": 4000,
+    "stats": {
+      "min": 4000,
+      "max": 4000,
+      "avg": 4000,
+      "middle": 4000,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "L9 17G $4000",
+        "hashrateTH": 0.017,
+        "powerWatts": 0,
+        "price": 4000,
+        "raw_price": "$4000",
+        "source_line": "L9 17G $4000",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      },
+      {
+        "name": "🔥L9   17G     $4000",
+        "hashrateTH": 0.017,
+        "powerWatts": 0,
+        "price": 4000,
+        "raw_price": "$4000",
+        "source_line": "🔥L9   17G     $4000",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "L7 9050M $780",
+    "hashrateTH": 0.00905,
+    "price": 780,
+    "stats": {
+      "min": 780,
+      "max": 780,
+      "avg": 780,
+      "middle": 780,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L7 9050M $780",
+        "hashrateTH": 0.00905,
+        "powerWatts": 0,
+        "price": 780,
+        "raw_price": "$780",
+        "source_line": "L7 9050M $780",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "L7 8800M $750",
+    "hashrateTH": 0.0088,
+    "price": 750,
+    "stats": {
+      "min": 750,
+      "max": 750,
+      "avg": 750,
+      "middle": 750,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L7 8800M $750",
+        "hashrateTH": 0.0088,
+        "powerWatts": 0,
+        "price": 750,
+        "raw_price": "$750",
+        "source_line": "L7 8800M $750",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "L7 8550M $720",
+    "hashrateTH": 0.00855,
+    "price": 720,
+    "stats": {
+      "min": 720,
+      "max": 720,
+      "avg": 720,
+      "middle": 720,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L7 8550M $720",
+        "hashrateTH": 0.00855,
+        "powerWatts": 0,
+        "price": 720,
+        "raw_price": "$720",
+        "source_line": "L7 8550M $720",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "🌟L11 20G Mix $7950(Jan Batch)",
+    "hashrateTH": 0.02,
+    "price": 7950,
+    "stats": {
+      "min": 7950,
+      "max": 7950,
+      "avg": 7950,
+      "middle": 7950,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "L11 20G Mix $7950 (Jan Batch)",
+        "hashrateTH": 0.02,
+        "powerWatts": 0,
+        "price": 7950,
+        "raw_price": "$7950",
+        "source_line": "L11 20G Mix $7950 (Jan Batch)",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      },
+      {
+        "name": "🌟L11 20G Mix $7950(Jan Batch)",
+        "hashrateTH": 0.02,
+        "powerWatts": 0,
+        "price": 7950,
+        "raw_price": "$7950",
+        "source_line": "🌟L11 20G Mix $7950(Jan Batch)",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "L11 HU6 33G 5676W Dec",
+    "hashrateTH": 0.033,
+    "price": 515,
+    "stats": {
+      "min": 515,
+      "max": 515,
+      "avg": 515,
+      "middle": 515,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L11 HU6 33G 5676W Dec",
+        "hashrateTH": 0.033,
+        "powerWatts": 0,
+        "price": 515,
+        "raw_price": "$515",
+        "source_line": "L11 HU6 33G 5676W Dec: $515/G",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "L11 HU2 35G 5775W Dec",
+    "hashrateTH": 0.035,
+    "price": 469,
+    "stats": {
+      "min": 469,
+      "max": 469,
+      "avg": 469,
+      "middle": 469,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L11 HU2 35G 5775W Dec",
+        "hashrateTH": 0.035,
+        "powerWatts": 0,
+        "price": 469,
+        "raw_price": "$469",
+        "source_line": "L11 HU2 35G 5775W Dec: $469/G",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "KS7 40T Mix $6100",
+    "hashrateTH": 40,
+    "price": 6100,
+    "stats": {
+      "min": 6100,
+      "max": 6100,
+      "avg": 6100,
+      "middle": 6100,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "KS7 40T Mix $6100",
+        "hashrateTH": 40,
+        "powerWatts": 0,
+        "price": 6100,
+        "raw_price": "$6100",
+        "source_line": "KS7 40T Mix $6100",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "KS7 45T Mix $6500",
+    "hashrateTH": 45,
+    "price": 6500,
+    "stats": {
+      "min": 6500,
+      "max": 6500,
+      "avg": 6500,
+      "middle": 6500,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "KS7 45T Mix $6500",
+        "hashrateTH": 45,
+        "powerWatts": 0,
+        "price": 6500,
+        "raw_price": "$6500",
+        "source_line": "KS7 45T Mix $6500",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "K7 66/63.5/60.5/58T $1899/1699/1599/1499",
+    "hashrateTH": 58,
+    "price": 1899,
+    "stats": {
+      "min": 1899,
+      "max": 1899,
+      "avg": 1899,
+      "middle": 1899,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "K7 66/63.5/60.5/58T $1899/1699/1599/1499",
+        "hashrateTH": 58,
+        "powerWatts": 0,
+        "price": 1899,
+        "raw_price": "$1899",
+        "source_line": "K7 66/63.5/60.5/58T $1899/1699/1599/1499",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S19 XP+ HYD 293T       $4.3 /T       SPOT",
+    "hashrateTH": 293,
+    "price": 1260,
+    "stats": {
+      "min": 1260,
+      "max": 1260,
+      "avg": 1260,
+      "middle": 1260,
+      "count": 4
+    },
+    "listings": [
+      {
+        "name": "S19XP+HYD 293T $4.3/T",
+        "hashrateTH": 293,
+        "powerWatts": 0,
+        "price": 1260,
+        "raw_price": "$4.3",
+        "source_line": "S19XP+HYD 293T $4.3/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      },
+      {
+        "name": "S19 XP+ HYD 293T       $4.3 /T       SPOT",
+        "hashrateTH": 293,
+        "powerWatts": 0,
+        "price": 1260,
+        "raw_price": "$4.3",
+        "source_line": "S19 XP+ HYD 293T       $4.3 /T       SPOT",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S19 XP+ HYD 293T     $4.3 /T     SPOT",
+        "hashrateTH": 293,
+        "powerWatts": 0,
+        "price": 1260,
+        "raw_price": "$4.3",
+        "source_line": "S19 XP+ HYD 293T     $4.3 /T     SPOT",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S19 XP+ HYD 293T     $4.3 /T     SPOT",
+        "hashrateTH": 293,
+        "powerWatts": 0,
+        "price": 1260,
+        "raw_price": "$4.3",
+        "source_line": "S19 XP+ HYD 293T     $4.3 /T     SPOT",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "S21ehyd 310T $6.3/T",
+    "hashrateTH": 310,
+    "price": 1953,
+    "stats": {
+      "min": 1953,
+      "max": 1953,
+      "avg": 1953,
+      "middle": 1953,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "S21ehyd 310T $6.3/T",
+        "hashrateTH": 310,
+        "powerWatts": 0,
+        "price": 1953,
+        "raw_price": "$6.3",
+        "source_line": "S21ehyd 310T $6.3/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S21+ HYD 338/358T $7.8/8T",
+    "hashrateTH": 358,
+    "price": 8,
+    "stats": {
+      "min": 8,
+      "max": 8,
+      "avg": 8,
+      "middle": 8,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "S21+ HYD 338/358T $7.8/8T",
+        "hashrateTH": 358,
+        "powerWatts": 0,
+        "price": 8,
+        "raw_price": "$7.8",
+        "source_line": "S21+ HYD 338/358T $7.8/8T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S21 XP HYD 473T       $16.5 /T       SPOT",
+    "hashrateTH": 473,
+    "price": 7805,
+    "stats": {
+      "min": 7805,
+      "max": 7805,
+      "avg": 7805,
+      "middle": 7805,
+      "count": 4
+    },
+    "listings": [
+      {
+        "name": "S21 XP HYD 473T $16.5/T",
+        "hashrateTH": 473,
+        "powerWatts": 0,
+        "price": 7805,
+        "raw_price": "$16.5",
+        "source_line": "S21 XP HYD 473T $16.5/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      },
+      {
+        "name": "S21 XP HYD 473T       $16.5 /T       SPOT",
+        "hashrateTH": 473,
+        "powerWatts": 0,
+        "price": 7805,
+        "raw_price": "$16.5",
+        "source_line": "S21 XP HYD 473T       $16.5 /T       SPOT",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S21 XP HYD 473T     $16.5 /T     SPOT",
+        "hashrateTH": 473,
+        "powerWatts": 0,
+        "price": 7805,
+        "raw_price": "$16.5",
+        "source_line": "S21 XP HYD 473T     $16.5 /T     SPOT",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S21 XP HYD 473T     $16.5 /T     SPOT",
+        "hashrateTH": 473,
+        "powerWatts": 0,
+        "price": 7805,
+        "raw_price": "$16.5",
+        "source_line": "S21 XP HYD 473T     $16.5 /T     SPOT",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "S23 Hyd 580T Mix $25/T (Jan Batch)",
+    "hashrateTH": 580,
+    "price": 14500,
+    "stats": {
+      "min": 14500,
+      "max": 14500,
+      "avg": 14500,
+      "middle": 14500,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "S23 Hyd 580T Mix $25/T (Jan Batch)",
+        "hashrateTH": 580,
+        "powerWatts": 0,
+        "price": 14500,
+        "raw_price": "$25",
+        "source_line": "S23 Hyd 580T Mix $25/T (Jan Batch)",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S19Kpro 110T/115T/120T $3/3.1/3.7/T",
+    "hashrateTH": 110,
+    "price": 407,
+    "stats": {
+      "min": 407,
+      "max": 407,
+      "avg": 407,
+      "middle": 407,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "S19Kpro 110T/115T/120T $3/3.1/3.7/T",
+        "hashrateTH": 110,
+        "powerWatts": 0,
+        "price": 407,
+        "raw_price": "$3",
+        "source_line": "S19Kpro 110T/115T/120T $3/3.1/3.7/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S21+ 216/225T $9.5/9.5/T",
+    "hashrateTH": 225,
+    "price": 2138,
+    "stats": {
+      "min": 2138,
+      "max": 2138,
+      "avg": 2138,
+      "middle": 2138,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "S21+ 216/225T $9.5/9.5/T",
+        "hashrateTH": 225,
+        "powerWatts": 0,
+        "price": 2138,
+        "raw_price": "$9.5",
+        "source_line": "S21+ 216/225T $9.5/9.5/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S21 pro 220/234T $11.3/11.6/T",
+    "hashrateTH": 234,
+    "price": 2714,
+    "stats": {
+      "min": 2714,
+      "max": 2714,
+      "avg": 2714,
+      "middle": 2714,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "S21 pro 220/234T $11.3/11.6/T",
+        "hashrateTH": 234,
+        "powerWatts": 0,
+        "price": 2714,
+        "raw_price": "$11.3",
+        "source_line": "S21 pro 220/234T $11.3/11.6/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S21 XP 270T $15.5/T",
+    "hashrateTH": 270,
+    "price": 4185,
+    "stats": {
+      "min": 4185,
+      "max": 4185,
+      "avg": 4185,
+      "middle": 4185,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "S21 XP 270T $15.5/T",
+        "hashrateTH": 270,
+        "powerWatts": 0,
+        "price": 4185,
+        "raw_price": "$15.5",
+        "source_line": "S21 XP 270T $15.5/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "A15Pro 221T $11.8/T",
+    "hashrateTH": 221,
+    "price": 2608,
+    "stats": {
+      "min": 2608,
+      "max": 2608,
+      "avg": 2608,
+      "middle": 2608,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "A15Pro 221T $11.8/T",
+        "hashrateTH": 221,
+        "powerWatts": 0,
+        "price": 2608,
+        "raw_price": "$11.8",
+        "source_line": "A15Pro 221T $11.8/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "Avalon Q 90T $1330",
+    "hashrateTH": 90,
+    "price": 1330,
+    "stats": {
+      "min": 1330,
+      "max": 1330,
+      "avg": 1330,
+      "middle": 1330,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "Avalon Q 90T $1330",
+        "hashrateTH": 90,
+        "powerWatts": 0,
+        "price": 1330,
+        "raw_price": "$1330",
+        "source_line": "Avalon Q 90T $1330",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "Avalon Mini3 37.5T $840",
+    "hashrateTH": 37.5,
+    "price": 840,
+    "stats": {
+      "min": 840,
+      "max": 840,
+      "avg": 840,
+      "middle": 840,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "Avalon Mini3 37.5T $840",
+        "hashrateTH": 37.5,
+        "powerWatts": 0,
+        "price": 840,
+        "raw_price": "$840",
+        "source_line": "Avalon Mini3 37.5T $840",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "Avalo nano3 4T $155",
+    "hashrateTH": 4,
+    "price": 155,
+    "stats": {
+      "min": 155,
+      "max": 155,
+      "avg": 155,
+      "middle": 155,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "Avalo nano3 4T $155",
+        "hashrateTH": 4,
+        "powerWatts": 0,
+        "price": 155,
+        "raw_price": "$155",
+        "source_line": "Avalo nano3 4T $155",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "Avalon nano3s 6T $230",
+    "hashrateTH": 6,
+    "price": 230,
+    "stats": {
+      "min": 230,
+      "max": 230,
+      "avg": 230,
+      "middle": 230,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "Avalon nano3s 6T $230",
+        "hashrateTH": 6,
+        "powerWatts": 0,
+        "price": 230,
+        "raw_price": "$230",
+        "source_line": "Avalon nano3s 6T $230",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "AE3 2G/3400W $5750",
+    "hashrateTH": 0.002,
+    "price": 5750,
+    "stats": {
+      "min": 5750,
+      "max": 5750,
+      "avg": 5750,
+      "middle": 5750,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "AE3 2G/3400W $5750",
+        "hashrateTH": 0.002,
+        "powerWatts": 0,
+        "price": 5750,
+        "raw_price": "$5750",
+        "source_line": "AE3 2G/3400W $5750",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "AE1 LITE 300M/500W $989",
+    "hashrateTH": 0.0003,
+    "price": 989,
+    "stats": {
+      "min": 989,
+      "max": 989,
+      "avg": 989,
+      "middle": 989,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "AE1 LITE 300M/500W $989",
+        "hashrateTH": 0.0003,
+        "powerWatts": 0,
+        "price": 989,
+        "raw_price": "$989",
+        "source_line": "AE1 LITE 300M/500W $989",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "KS7 30T $1900",
+    "hashrateTH": 30,
+    "price": 1900,
+    "stats": {
+      "min": 1900,
+      "max": 1900,
+      "avg": 1900,
+      "middle": 1900,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "KS7 30T $1900",
+        "hashrateTH": 30,
+        "powerWatts": 0,
+        "price": 1900,
+        "raw_price": "$1900",
+        "source_line": "KS7 30T $1900",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "KS5M 15T $450",
+    "hashrateTH": 0.000005,
+    "price": 450,
+    "stats": {
+      "min": 450,
+      "max": 450,
+      "avg": 450,
+      "middle": 450,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "KS5M 15T $450",
+        "hashrateTH": 0.000005,
+        "powerWatts": 0,
+        "price": 450,
+        "raw_price": "$450",
+        "source_line": "KS5M 15T $450",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "KS3M 6T $100(Used)",
+    "hashrateTH": 0.000003,
+    "price": 100,
+    "stats": {
+      "min": 100,
+      "max": 100,
+      "avg": 100,
+      "middle": 100,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "KS3M 6T $100(Used)",
+        "hashrateTH": 0.000003,
+        "powerWatts": 0,
+        "price": 100,
+        "raw_price": "$100",
+        "source_line": "KS3M 6T $100(Used)",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "M60 19.9w 156T/158T/160T/162T/164T $10.3/T",
+    "hashrateTH": 156,
+    "price": 1607,
+    "stats": {
+      "min": 1607,
+      "max": 1607,
+      "avg": 1607,
+      "middle": 1607,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M60 19.9w 156T/158T/160T/162T/164T $10.3/T",
+        "hashrateTH": 156,
+        "powerWatts": 0,
+        "price": 1607,
+        "raw_price": "$10.3",
+        "source_line": "M60 19.9w 156T/158T/160T/162T/164T $10.3/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "M61 19.9w 202T/204T/206T/208/210T $10.4/T",
+    "hashrateTH": 202,
+    "price": 2101,
+    "stats": {
+      "min": 2101,
+      "max": 2101,
+      "avg": 2101,
+      "middle": 2101,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M61 19.9w 202T/204T/206T/208/210T $10.4/T",
+        "hashrateTH": 202,
+        "powerWatts": 0,
+        "price": 2101,
+        "raw_price": "$10.4",
+        "source_line": "M61 19.9w 202T/204T/206T/208/210T $10.4/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "M61 19w 206T/208T $10.7/T",
+    "hashrateTH": 206,
+    "price": 2204,
+    "stats": {
+      "min": 2204,
+      "max": 2204,
+      "avg": 2204,
+      "middle": 2204,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M61 19w 206T/208T $10.7/T",
+        "hashrateTH": 206,
+        "powerWatts": 0,
+        "price": 2204,
+        "raw_price": "$10.7",
+        "source_line": "M61 19w 206T/208T $10.7/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "M61 19W 210T/212T $10.8/T",
+    "hashrateTH": 210,
+    "price": 2268,
+    "stats": {
+      "min": 2268,
+      "max": 2268,
+      "avg": 2268,
+      "middle": 2268,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M61 19W 210T/212T $10.8/T",
+        "hashrateTH": 210,
+        "powerWatts": 0,
+        "price": 2268,
+        "raw_price": "$10.8",
+        "source_line": "M61 19W 210T/212T $10.8/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "M61S+ 16.5w 244T $11.4/T",
+    "hashrateTH": 244,
+    "price": 2782,
+    "stats": {
+      "min": 2782,
+      "max": 2782,
+      "avg": 2782,
+      "middle": 2782,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M61S+ 16.5w 244T $11.4/T",
+        "hashrateTH": 244,
+        "powerWatts": 0,
+        "price": 2782,
+        "raw_price": "$11.4",
+        "source_line": "M61S+ 16.5w 244T $11.4/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "M61S+17w238T/240T $11.3/T",
+    "hashrateTH": 238,
+    "price": 2689,
+    "stats": {
+      "min": 2689,
+      "max": 2689,
+      "avg": 2689,
+      "middle": 2689,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M61S+17w238T/240T $11.3/T",
+        "hashrateTH": 238,
+        "powerWatts": 0,
+        "price": 2689,
+        "raw_price": "$11.3",
+        "source_line": "M61S+17w238T/240T $11.3/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "M60s+17w 202/204T/206T $11.2/T",
+    "hashrateTH": 204,
+    "price": 2285,
+    "stats": {
+      "min": 2285,
+      "max": 2285,
+      "avg": 2285,
+      "middle": 2285,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M60s+17w 202/204T/206T $11.2/T",
+        "hashrateTH": 204,
+        "powerWatts": 0,
+        "price": 2285,
+        "raw_price": "$11.2",
+        "source_line": "M60s+17w 202/204T/206T $11.2/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "M60s+ 17w 208T $11.3/T",
+    "hashrateTH": 208,
+    "price": 2350,
+    "stats": {
+      "min": 2350,
+      "max": 2350,
+      "avg": 2350,
+      "middle": 2350,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M60s+ 17w 208T $11.3/T",
+        "hashrateTH": 208,
+        "powerWatts": 0,
+        "price": 2350,
+        "raw_price": "$11.3",
+        "source_line": "M60s+ 17w 208T $11.3/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "M60s+16.5w 206T/208T/T $11.4/T",
+    "hashrateTH": 206,
+    "price": 2348,
+    "stats": {
+      "min": 2348,
+      "max": 2348,
+      "avg": 2348,
+      "middle": 2348,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M60s+16.5w 206T/208T/T $11.4/T",
+        "hashrateTH": 206,
+        "powerWatts": 0,
+        "price": 2348,
+        "raw_price": "$11.4",
+        "source_line": "M60s+16.5w 206T/208T/T $11.4/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "M63s+ 17W 436T/440T/442T $11.3/T",
+    "hashrateTH": 436,
+    "price": 4927,
+    "stats": {
+      "min": 4927,
+      "max": 4927,
+      "avg": 4927,
+      "middle": 4927,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M63s+ 17W 436T/440T/442T $11.3/T",
+        "hashrateTH": 436,
+        "powerWatts": 0,
+        "price": 4927,
+        "raw_price": "$11.3",
+        "source_line": "M63s+ 17W 436T/440T/442T $11.3/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "M63s+17w 430/432T $11.3/T",
+    "hashrateTH": 432,
+    "price": 4882,
+    "stats": {
+      "min": 4882,
+      "max": 4882,
+      "avg": 4882,
+      "middle": 4882,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M63s+17w 430/432T $11.3/T",
+        "hashrateTH": 432,
+        "powerWatts": 0,
+        "price": 4882,
+        "raw_price": "$11.3",
+        "source_line": "M63s+17w 430/432T $11.3/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "M63s+17w 418/420T $11.2/T",
+    "hashrateTH": 420,
+    "price": 4704,
+    "stats": {
+      "min": 4704,
+      "max": 4704,
+      "avg": 4704,
+      "middle": 4704,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M63s+17w 418/420T $11.2/T",
+        "hashrateTH": 420,
+        "powerWatts": 0,
+        "price": 4704,
+        "raw_price": "$11.2",
+        "source_line": "M63s+17w 418/420T $11.2/T",
+        "updatedAt": "2025-12-19T08:41:32.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "L9     15G      3500U⬇️",
+    "hashrateTH": 0.015,
+    "price": 3500,
+    "stats": {
+      "min": 3500,
+      "max": 3500,
+      "avg": 3500,
+      "middle": 3500,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L9     15G      3500U⬇️",
+        "hashrateTH": 0.015,
+        "powerWatts": 0,
+        "price": 3500,
+        "raw_price": "3500U",
+        "source_line": "L9     15G      3500U⬇️",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "L9     16G      3600U⬇️",
+    "hashrateTH": 0.016,
+    "price": 3600,
+    "stats": {
+      "min": 3600,
+      "max": 3600,
+      "avg": 3600,
+      "middle": 3600,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L9     16G      3600U⬇️",
+        "hashrateTH": 0.016,
+        "powerWatts": 0,
+        "price": 3600,
+        "raw_price": "3600U",
+        "source_line": "L9     16G      3600U⬇️",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "L9     16.5G   3700U⬇️",
+    "hashrateTH": 0.0165,
+    "price": 3700,
+    "stats": {
+      "min": 3700,
+      "max": 3700,
+      "avg": 3700,
+      "middle": 3700,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "L9     16.5G   3700U⬇️",
+        "hashrateTH": 0.0165,
+        "powerWatts": 0,
+        "price": 3700,
+        "raw_price": "3700U",
+        "source_line": "L9     16.5G   3700U⬇️",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      },
+      {
+        "name": "L9   16.5G  3700U",
+        "hashrateTH": 0.0165,
+        "powerWatts": 0,
+        "price": 3700,
+        "raw_price": "3700U",
+        "source_line": "L9   16.5G  3700U",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "L9     17G      4000U⬇️",
+    "hashrateTH": 0.017,
+    "price": 4000,
+    "stats": {
+      "min": 4000,
+      "max": 4000,
+      "avg": 4000,
+      "middle": 4000,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L9     17G      4000U⬇️",
+        "hashrateTH": 0.017,
+        "powerWatts": 0,
+        "price": 4000,
+        "raw_price": "4000U",
+        "source_line": "L9     17G      4000U⬇️",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "L7    9500M    1190U",
+    "hashrateTH": 0.0095,
+    "price": 1190,
+    "stats": {
+      "min": 1190,
+      "max": 1190,
+      "avg": 1190,
+      "middle": 1190,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L7    9500M    1190U",
+        "hashrateTH": 0.0095,
+        "powerWatts": 0,
+        "price": 1190,
+        "raw_price": "1190U",
+        "source_line": "L7    9500M    1190U",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "L7    9300M    1050U",
+    "hashrateTH": 0.0093,
+    "price": 1050,
+    "stats": {
+      "min": 1050,
+      "max": 1050,
+      "avg": 1050,
+      "middle": 1050,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L7    9300M    1050U",
+        "hashrateTH": 0.0093,
+        "powerWatts": 0,
+        "price": 1050,
+        "raw_price": "1050U",
+        "source_line": "L7    9300M    1050U",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "L7    9050M    930U",
+    "hashrateTH": 0.00905,
+    "price": 930,
+    "stats": {
+      "min": 930,
+      "max": 930,
+      "avg": 930,
+      "middle": 930,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L7    9050M    930U",
+        "hashrateTH": 0.00905,
+        "powerWatts": 0,
+        "price": 930,
+        "raw_price": "930U",
+        "source_line": "L7    9050M    930U",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "L7    8800M    780U",
+    "hashrateTH": 0.0088,
+    "price": 780,
+    "stats": {
+      "min": 780,
+      "max": 780,
+      "avg": 780,
+      "middle": 780,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L7    8800M    780U",
+        "hashrateTH": 0.0088,
+        "powerWatts": 0,
+        "price": 780,
+        "raw_price": "780U",
+        "source_line": "L7    8800M    780U",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S21+    225T    2300U",
+    "hashrateTH": 225,
+    "price": 2300,
+    "stats": {
+      "min": 2300,
+      "max": 2300,
+      "avg": 2300,
+      "middle": 2300,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "S21+    225T    2300U",
+        "hashrateTH": 225,
+        "powerWatts": 0,
+        "price": 2300,
+        "raw_price": "2300U",
+        "source_line": "S21+    225T    2300U",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S21+    235T    2400U",
+    "hashrateTH": 235,
+    "price": 2400,
+    "stats": {
+      "min": 2400,
+      "max": 2400,
+      "avg": 2400,
+      "middle": 2400,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "S21+    235T    2400U",
+        "hashrateTH": 235,
+        "powerWatts": 0,
+        "price": 2400,
+        "raw_price": "2400U",
+        "source_line": "S21+    235T    2400U",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S21PRO 245T  3320U",
+    "hashrateTH": 245,
+    "price": 3320,
+    "stats": {
+      "min": 3320,
+      "max": 3320,
+      "avg": 3320,
+      "middle": 3320,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "S21PRO 245T  3320U",
+        "hashrateTH": 245,
+        "powerWatts": 0,
+        "price": 3320,
+        "raw_price": "3320U",
+        "source_line": "S21PRO 245T  3320U",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S21PRO 234T  2980U",
+    "hashrateTH": 234,
+    "price": 2980,
+    "stats": {
+      "min": 2980,
+      "max": 2980,
+      "avg": 2980,
+      "middle": 2980,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "S21PRO 234T  2980U",
+        "hashrateTH": 234,
+        "powerWatts": 0,
+        "price": 2980,
+        "raw_price": "2980U",
+        "source_line": "S21PRO 234T  2980U",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S21PRO 220T  2880U⬆️",
+    "hashrateTH": 220,
+    "price": 2880,
+    "stats": {
+      "min": 2880,
+      "max": 2880,
+      "avg": 2880,
+      "middle": 2880,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "S21PRO 220T  2880U⬆️",
+        "hashrateTH": 220,
+        "powerWatts": 0,
+        "price": 2880,
+        "raw_price": "2880U",
+        "source_line": "S21PRO 220T  2880U⬆️",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S19xphyd 293T 1680U⬇️",
+    "hashrateTH": 293,
+    "price": 1680,
+    "stats": {
+      "min": 1680,
+      "max": 1680,
+      "avg": 1680,
+      "middle": 1680,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "S19xphyd 293T 1680U⬇️",
+        "hashrateTH": 293,
+        "powerWatts": 0,
+        "price": 1680,
+        "raw_price": "1680U",
+        "source_line": "S19xphyd 293T 1680U⬇️",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S19xphyd 279T 1580U",
+    "hashrateTH": 279,
+    "price": 1580,
+    "stats": {
+      "min": 1580,
+      "max": 1580,
+      "avg": 1580,
+      "middle": 1580,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "S19xphyd 279T 1580U",
+        "hashrateTH": 279,
+        "powerWatts": 0,
+        "price": 1580,
+        "raw_price": "1580U",
+        "source_line": "S19xphyd 279T 1580U",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S21+HYD 395T  4200U",
+    "hashrateTH": 395,
+    "price": 4200,
+    "stats": {
+      "min": 4200,
+      "max": 4200,
+      "avg": 4200,
+      "middle": 4200,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "S21+HYD 395T  4200U",
+        "hashrateTH": 395,
+        "powerWatts": 0,
+        "price": 4200,
+        "raw_price": "4200U",
+        "source_line": "S21+HYD 395T  4200U",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S21+HYD 358T  3800U",
+    "hashrateTH": 358,
+    "price": 3800,
+    "stats": {
+      "min": 3800,
+      "max": 3800,
+      "avg": 3800,
+      "middle": 3800,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "S21+HYD 358T  3800U",
+        "hashrateTH": 358,
+        "powerWatts": 0,
+        "price": 3800,
+        "raw_price": "3800U",
+        "source_line": "S21+HYD 358T  3800U",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S21+HYD 338T  3400U",
+    "hashrateTH": 338,
+    "price": 3400,
+    "stats": {
+      "min": 3400,
+      "max": 3400,
+      "avg": 3400,
+      "middle": 3400,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "S21+HYD 338T  3400U",
+        "hashrateTH": 338,
+        "powerWatts": 0,
+        "price": 3400,
+        "raw_price": "3400U",
+        "source_line": "S21+HYD 338T  3400U",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S21ehyd  332T 2670U",
+    "hashrateTH": 332,
+    "price": 2670,
+    "stats": {
+      "min": 2670,
+      "max": 2670,
+      "avg": 2670,
+      "middle": 2670,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "S21ehyd  332T 2670U",
+        "hashrateTH": 332,
+        "powerWatts": 0,
+        "price": 2670,
+        "raw_price": "2670U",
+        "source_line": "S21ehyd  332T 2670U",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S21ehyd  310T 2470U",
+    "hashrateTH": 310,
+    "price": 2470,
+    "stats": {
+      "min": 2470,
+      "max": 2470,
+      "avg": 2470,
+      "middle": 2470,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "S21ehyd  310T 2470U",
+        "hashrateTH": 310,
+        "powerWatts": 0,
+        "price": 2470,
+        "raw_price": "2470U",
+        "source_line": "S21ehyd  310T 2470U",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "KS5pro  21T  1300U",
+    "hashrateTH": 21,
+    "price": 1300,
+    "stats": {
+      "min": 1300,
+      "max": 1300,
+      "avg": 1300,
+      "middle": 1300,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "KS5pro  21T  1300U",
+        "hashrateTH": 21,
+        "powerWatts": 0,
+        "price": 1300,
+        "raw_price": "1300U",
+        "source_line": "KS5pro  21T  1300U",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "KS5pro  18T  1150U",
+    "hashrateTH": 18,
+    "price": 1150,
+    "stats": {
+      "min": 1150,
+      "max": 1150,
+      "avg": 1150,
+      "middle": 1150,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "KS5pro  18T  1150U",
+        "hashrateTH": 18,
+        "powerWatts": 0,
+        "price": 1150,
+        "raw_price": "1150U",
+        "source_line": "KS5pro  18T  1150U",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "M60S+    17W     206T    2300U",
+    "hashrateTH": 206,
+    "price": 2300,
+    "stats": {
+      "min": 2300,
+      "max": 2300,
+      "avg": 2300,
+      "middle": 2300,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M60S+    17W     206T    2300U",
+        "hashrateTH": 206,
+        "powerWatts": 0,
+        "price": 2300,
+        "raw_price": "2300U",
+        "source_line": "M60S+    17W     206T    2300U",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "M60S+    17W     208T    2390U",
+    "hashrateTH": 208,
+    "price": 2390,
+    "stats": {
+      "min": 2390,
+      "max": 2390,
+      "avg": 2390,
+      "middle": 2390,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M60S+    17W     208T    2390U",
+        "hashrateTH": 208,
+        "powerWatts": 0,
+        "price": 2390,
+        "raw_price": "2390U",
+        "source_line": "M60S+    17W     208T    2390U",
+        "updatedAt": "2025-12-19T07:26:05.000Z",
+        "source": "ASICXchange Market Place"
+      }
+    ]
+  },
+  {
+    "name": "S23 296T MIX       $25 /T       2026.01",
+    "hashrateTH": 296,
+    "price": 7400,
+    "stats": {
+      "min": 7400,
+      "max": 7400,
+      "avg": 7400,
+      "middle": 7400,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "S23 296T MIX       $25 /T       2026.01",
+        "hashrateTH": 296,
+        "powerWatts": 0,
+        "price": 7400,
+        "raw_price": "$25",
+        "source_line": "S23 296T MIX       $25 /T       2026.01",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S23 296T MIX     $25 /T     2026.01",
+        "hashrateTH": 296,
+        "powerWatts": 0,
+        "price": 7400,
+        "raw_price": "$25",
+        "source_line": "S23 296T MIX     $25 /T     2026.01",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S23 296T MIX     $25 /T     2026.01",
+        "hashrateTH": 296,
+        "powerWatts": 0,
+        "price": 7400,
+        "raw_price": "$25",
+        "source_line": "S23 296T MIX     $25 /T     2026.01",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "S23 HYD 580T MIX       $25 /T       2026.01",
+    "hashrateTH": 580,
+    "price": 14500,
+    "stats": {
+      "min": 14500,
+      "max": 14500,
+      "avg": 14500,
+      "middle": 14500,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "S23 HYD 580T MIX       $25 /T       2026.01",
+        "hashrateTH": 580,
+        "powerWatts": 0,
+        "price": 14500,
+        "raw_price": "$25",
+        "source_line": "S23 HYD 580T MIX       $25 /T       2026.01",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S23 HYD 580T MIX     $25 /T     2026.01",
+        "hashrateTH": 580,
+        "powerWatts": 0,
+        "price": 14500,
+        "raw_price": "$25",
+        "source_line": "S23 HYD 580T MIX     $25 /T     2026.01",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S23 HYD 580T MIX     $25 /T     2026.01",
+        "hashrateTH": 580,
+        "powerWatts": 0,
+        "price": 14500,
+        "raw_price": "$25",
+        "source_line": "S23 HYD 580T MIX     $25 /T     2026.01",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "S21 XP 270T       $15.3 /T       SPOT",
+    "hashrateTH": 270,
+    "price": 4131,
+    "stats": {
+      "min": 4131,
+      "max": 4131,
+      "avg": 4131,
+      "middle": 4131,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "S21 XP 270T       $15.3 /T       SPOT",
+        "hashrateTH": 270,
+        "powerWatts": 0,
+        "price": 4131,
+        "raw_price": "$15.3",
+        "source_line": "S21 XP 270T       $15.3 /T       SPOT",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S21 XP 270T     $15.3 /T     SPOT",
+        "hashrateTH": 270,
+        "powerWatts": 0,
+        "price": 4131,
+        "raw_price": "$15.3",
+        "source_line": "S21 XP 270T     $15.3 /T     SPOT",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S21 XP 270T     $15.3 /T     SPOT",
+        "hashrateTH": 270,
+        "powerWatts": 0,
+        "price": 4131,
+        "raw_price": "$15.3",
+        "source_line": "S21 XP 270T     $15.3 /T     SPOT",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "S21 PRO 220T       $11.3 /T       SPOT",
+    "hashrateTH": 220,
+    "price": 2486,
+    "stats": {
+      "min": 2486,
+      "max": 2486,
+      "avg": 2486,
+      "middle": 2486,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "S21 PRO 220T       $11.3 /T       SPOT",
+        "hashrateTH": 220,
+        "powerWatts": 0,
+        "price": 2486,
+        "raw_price": "$11.3",
+        "source_line": "S21 PRO 220T       $11.3 /T       SPOT",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S21 PRO 220T     $11.3 /T     SPOT",
+        "hashrateTH": 220,
+        "powerWatts": 0,
+        "price": 2486,
+        "raw_price": "$11.3",
+        "source_line": "S21 PRO 220T     $11.3 /T     SPOT",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S21 PRO 220T     $11.3 /T     SPOT",
+        "hashrateTH": 220,
+        "powerWatts": 0,
+        "price": 2486,
+        "raw_price": "$11.3",
+        "source_line": "S21 PRO 220T     $11.3 /T     SPOT",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "S21 PRO 234T       $11.5 /T       SPOT",
+    "hashrateTH": 234,
+    "price": 2691,
+    "stats": {
+      "min": 2691,
+      "max": 2691,
+      "avg": 2691,
+      "middle": 2691,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "S21 PRO 234T       $11.5 /T       SPOT",
+        "hashrateTH": 234,
+        "powerWatts": 0,
+        "price": 2691,
+        "raw_price": "$11.5",
+        "source_line": "S21 PRO 234T       $11.5 /T       SPOT",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S21 PRO 234T     $11.5 /T     SPOT",
+        "hashrateTH": 234,
+        "powerWatts": 0,
+        "price": 2691,
+        "raw_price": "$11.5",
+        "source_line": "S21 PRO 234T     $11.5 /T     SPOT",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S21 PRO 234T     $11.5 /T     SPOT",
+        "hashrateTH": 234,
+        "powerWatts": 0,
+        "price": 2691,
+        "raw_price": "$11.5",
+        "source_line": "S21 PRO 234T     $11.5 /T     SPOT",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "S21+ 216T       $9.5 /T       SPOT",
+    "hashrateTH": 216,
+    "price": 2052,
+    "stats": {
+      "min": 2052,
+      "max": 2052,
+      "avg": 2052,
+      "middle": 2052,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "S21+ 216T       $9.5 /T       SPOT",
+        "hashrateTH": 216,
+        "powerWatts": 0,
+        "price": 2052,
+        "raw_price": "$9.5",
+        "source_line": "S21+ 216T       $9.5 /T       SPOT",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S21+ 216T     $9.5 /T     SPOT",
+        "hashrateTH": 216,
+        "powerWatts": 0,
+        "price": 2052,
+        "raw_price": "$9.5",
+        "source_line": "S21+ 216T     $9.5 /T     SPOT",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S21+ 216T     $9.5 /T     SPOT",
+        "hashrateTH": 216,
+        "powerWatts": 0,
+        "price": 2052,
+        "raw_price": "$9.5",
+        "source_line": "S21+ 216T     $9.5 /T     SPOT",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "S21+ 225T       $9.5 /T       SPOT",
+    "hashrateTH": 225,
+    "price": 2138,
+    "stats": {
+      "min": 2138,
+      "max": 2138,
+      "avg": 2138,
+      "middle": 2138,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "S21+ 225T       $9.5 /T       SPOT",
+        "hashrateTH": 225,
+        "powerWatts": 0,
+        "price": 2138,
+        "raw_price": "$9.5",
+        "source_line": "S21+ 225T       $9.5 /T       SPOT",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S21+ 225T     $9.5 /T     SPOT",
+        "hashrateTH": 225,
+        "powerWatts": 0,
+        "price": 2138,
+        "raw_price": "$9.5",
+        "source_line": "S21+ 225T     $9.5 /T     SPOT",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S21+ 225T     $9.5 /T     SPOT",
+        "hashrateTH": 225,
+        "powerWatts": 0,
+        "price": 2138,
+        "raw_price": "$9.5",
+        "source_line": "S21+ 225T     $9.5 /T     SPOT",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "S21+ HYD 338T       $7.7 /T       SPOT",
+    "hashrateTH": 338,
+    "price": 2603,
+    "stats": {
+      "min": 2603,
+      "max": 2603,
+      "avg": 2603,
+      "middle": 2603,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "S21+ HYD 338T       $7.7 /T       SPOT",
+        "hashrateTH": 338,
+        "powerWatts": 0,
+        "price": 2603,
+        "raw_price": "$7.7",
+        "source_line": "S21+ HYD 338T       $7.7 /T       SPOT",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S21+ HYD 338T     $7.7 /T     SPOT",
+        "hashrateTH": 338,
+        "powerWatts": 0,
+        "price": 2603,
+        "raw_price": "$7.7",
+        "source_line": "S21+ HYD 338T     $7.7 /T     SPOT",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S21+ HYD 338T     $7.7 /T     SPOT",
+        "hashrateTH": 338,
+        "powerWatts": 0,
+        "price": 2603,
+        "raw_price": "$7.7",
+        "source_line": "S21+ HYD 338T     $7.7 /T     SPOT",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "S21+ HYD 358T       $7.9 /T       SPOT",
+    "hashrateTH": 358,
+    "price": 2828,
+    "stats": {
+      "min": 2828,
+      "max": 2828,
+      "avg": 2828,
+      "middle": 2828,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "S21+ HYD 358T       $7.9 /T       SPOT",
+        "hashrateTH": 358,
+        "powerWatts": 0,
+        "price": 2828,
+        "raw_price": "$7.9",
+        "source_line": "S21+ HYD 358T       $7.9 /T       SPOT",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S21+ HYD 358T     $7.9 /T     SPOT",
+        "hashrateTH": 358,
+        "powerWatts": 0,
+        "price": 2828,
+        "raw_price": "$7.9",
+        "source_line": "S21+ HYD 358T     $7.9 /T     SPOT",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S21+ HYD 358T     $7.9 /T     SPOT",
+        "hashrateTH": 358,
+        "powerWatts": 0,
+        "price": 2828,
+        "raw_price": "$7.9",
+        "source_line": "S21+ HYD 358T     $7.9 /T     SPOT",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "S21+ HYD 395T       $7.9 /T       SPOT",
+    "hashrateTH": 395,
+    "price": 3121,
+    "stats": {
+      "min": 3121,
+      "max": 3121,
+      "avg": 3121,
+      "middle": 3121,
+      "count": 4
+    },
+    "listings": [
+      {
+        "name": "S21+ HYD 395T       $7.9 /T       SPOT",
+        "hashrateTH": 395,
+        "powerWatts": 0,
+        "price": 3121,
+        "raw_price": "$7.9",
+        "source_line": "S21+ HYD 395T       $7.9 /T       SPOT",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S21+ HYD 395T     $7.9 /T     SPOT",
+        "hashrateTH": 395,
+        "powerWatts": 0,
+        "price": 3121,
+        "raw_price": "$7.9",
+        "source_line": "S21+ HYD 395T     $7.9 /T     SPOT",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S21+ HYD 395T     $7.9 /T     SPOT",
+        "hashrateTH": 395,
+        "powerWatts": 0,
+        "price": 3121,
+        "raw_price": "$7.9",
+        "source_line": "S21+ HYD 395T     $7.9 /T     SPOT",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "🔥S21+ hyd 395T   $7.9/T",
+        "hashrateTH": 395,
+        "powerWatts": 0,
+        "price": 3121,
+        "raw_price": "$7.9",
+        "source_line": "🔥S21+ hyd 395T   $7.9/T",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "S19 XP+ 180T MIX       $8 /T       December",
+    "hashrateTH": 180,
+    "price": 1440,
+    "stats": {
+      "min": 1440,
+      "max": 1440,
+      "avg": 1440,
+      "middle": 1440,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "S19 XP+ 180T MIX       $8 /T       December",
+        "hashrateTH": 180,
+        "powerWatts": 0,
+        "price": 1440,
+        "raw_price": "$8",
+        "source_line": "S19 XP+ 180T MIX       $8 /T       December",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S19 XP+ 180T MIX     $8 /T     December",
+        "hashrateTH": 180,
+        "powerWatts": 0,
+        "price": 1440,
+        "raw_price": "$8",
+        "source_line": "S19 XP+ 180T MIX     $8 /T     December",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "S19 XP+ 180T MIX     $8 /T     December",
+        "hashrateTH": 180,
+        "powerWatts": 0,
+        "price": 1440,
+        "raw_price": "$8",
+        "source_line": "S19 XP+ 180T MIX     $8 /T     December",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "L7 9050M       $800       SPOT",
+    "hashrateTH": 0.00905,
+    "price": 800,
+    "stats": {
+      "min": 800,
+      "max": 800,
+      "avg": 800,
+      "middle": 800,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L7 9050M       $800       SPOT",
+        "hashrateTH": 0.00905,
+        "powerWatts": 0,
+        "price": 800,
+        "raw_price": "$800",
+        "source_line": "L7 9050M       $800       SPOT",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "L7 8800M       $780       SPOT",
+    "hashrateTH": 0.0088,
+    "price": 780,
+    "stats": {
+      "min": 780,
+      "max": 780,
+      "avg": 780,
+      "middle": 780,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L7 8800M       $780       SPOT",
+        "hashrateTH": 0.0088,
+        "powerWatts": 0,
+        "price": 780,
+        "raw_price": "$780",
+        "source_line": "L7 8800M       $780       SPOT",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "L9 16G       $3850       SPOT",
+    "hashrateTH": 0.016,
+    "price": 3850,
+    "stats": {
+      "min": 3850,
+      "max": 3850,
+      "avg": 3850,
+      "middle": 3850,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L9 16G       $3850       SPOT",
+        "hashrateTH": 0.016,
+        "powerWatts": 0,
+        "price": 3850,
+        "raw_price": "$3850",
+        "source_line": "L9 16G       $3850       SPOT",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "L9 17G       $4100       SPOT",
+    "hashrateTH": 0.017,
+    "price": 4100,
+    "stats": {
+      "min": 4100,
+      "max": 4100,
+      "avg": 4100,
+      "middle": 4100,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L9 17G       $4100       SPOT",
+        "hashrateTH": 0.017,
+        "powerWatts": 0,
+        "price": 4100,
+        "raw_price": "$4100",
+        "source_line": "L9 17G       $4100       SPOT",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "L11 20G MIX       $8000       2026.01       moq",
+    "hashrateTH": 0.02,
+    "price": 8000,
+    "stats": {
+      "min": 8000,
+      "max": 8000,
+      "avg": 8000,
+      "middle": 8000,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "L11 20G MIX       $8000       2026.01       moq",
+        "hashrateTH": 0.02,
+        "powerWatts": 0,
+        "price": 8000,
+        "raw_price": "$8000",
+        "source_line": "L11 20G MIX       $8000       2026.01       moq:10",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "L11 20G MIX     $8000      2026.01     moq",
+        "hashrateTH": 0.02,
+        "powerWatts": 0,
+        "price": 8000,
+        "raw_price": "$8000",
+        "source_line": "L11 20G MIX     $8000      2026.01     moq:10",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "L11 20G MIX     $8000      2026.01     moq",
+        "hashrateTH": 0.02,
+        "powerWatts": 0,
+        "price": 8000,
+        "raw_price": "$8000",
+        "source_line": "L11 20G MIX     $8000      2026.01     moq:10",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "A2 PRO 260T MIX       $11.8 /T       January",
+    "hashrateTH": 260,
+    "price": 3068,
+    "stats": {
+      "min": 3068,
+      "max": 3068,
+      "avg": 3068,
+      "middle": 3068,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "A2 PRO 260T MIX       $11.8 /T       January",
+        "hashrateTH": 260,
+        "powerWatts": 0,
+        "price": 3068,
+        "raw_price": "$11.8",
+        "source_line": "A2 PRO 260T MIX       $11.8 /T       January",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "A2 PRO 260T MIX     $11.8 /T     January",
+        "hashrateTH": 260,
+        "powerWatts": 0,
+        "price": 3068,
+        "raw_price": "$11.8",
+        "source_line": "A2 PRO 260T MIX     $11.8 /T     January",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "A2 PRO 260T MIX     $11.8 /T     January",
+        "hashrateTH": 260,
+        "powerWatts": 0,
+        "price": 3068,
+        "raw_price": "$11.8",
+        "source_line": "A2 PRO 260T MIX     $11.8 /T     January",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "A2 PRO HYD 500T MIX       $11.8 /T       January",
+    "hashrateTH": 500,
+    "price": 5900,
+    "stats": {
+      "min": 5900,
+      "max": 5900,
+      "avg": 5900,
+      "middle": 5900,
+      "count": 3
+    },
+    "listings": [
+      {
+        "name": "A2 PRO HYD 500T MIX       $11.8 /T       January",
+        "hashrateTH": 500,
+        "powerWatts": 0,
+        "price": 5900,
+        "raw_price": "$11.8",
+        "source_line": "A2 PRO HYD 500T MIX       $11.8 /T       January",
+        "updatedAt": "2025-12-20T16:24:13.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "A2 PRO HYD 500T MIX     $11.8 /T     January",
+        "hashrateTH": 500,
+        "powerWatts": 0,
+        "price": 5900,
+        "raw_price": "$11.8",
+        "source_line": "A2 PRO HYD 500T MIX     $11.8 /T     January",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "A2 PRO HYD 500T MIX     $11.8 /T     January",
+        "hashrateTH": 500,
+        "powerWatts": 0,
+        "price": 5900,
+        "raw_price": "$11.8",
+        "source_line": "A2 PRO HYD 500T MIX     $11.8 /T     January",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "L7 9050M     $880      SPOT",
+    "hashrateTH": 0.00905,
+    "price": 880,
+    "stats": {
+      "min": 880,
+      "max": 880,
+      "avg": 880,
+      "middle": 880,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "L7 9050M     $880      SPOT",
+        "hashrateTH": 0.00905,
+        "powerWatts": 0,
+        "price": 880,
+        "raw_price": "$880",
+        "source_line": "L7 9050M     $880      SPOT",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "L7 9050M     $880      SPOT",
+        "hashrateTH": 0.00905,
+        "powerWatts": 0,
+        "price": 880,
+        "raw_price": "$880",
+        "source_line": "L7 9050M     $880      SPOT",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "L7 8800M     $830      SPOT",
+    "hashrateTH": 0.0088,
+    "price": 830,
+    "stats": {
+      "min": 830,
+      "max": 830,
+      "avg": 830,
+      "middle": 830,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "L7 8800M     $830      SPOT",
+        "hashrateTH": 0.0088,
+        "powerWatts": 0,
+        "price": 830,
+        "raw_price": "$830",
+        "source_line": "L7 8800M     $830      SPOT",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "L7 8800M     $830      SPOT",
+        "hashrateTH": 0.0088,
+        "powerWatts": 0,
+        "price": 830,
+        "raw_price": "$830",
+        "source_line": "L7 8800M     $830      SPOT",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "L9 15G     $3700      SPOT",
+    "hashrateTH": 0.015,
+    "price": 3700,
+    "stats": {
+      "min": 3700,
+      "max": 3700,
+      "avg": 3700,
+      "middle": 3700,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "L9 15G     $3700      SPOT",
+        "hashrateTH": 0.015,
+        "powerWatts": 0,
+        "price": 3700,
+        "raw_price": "$3700",
+        "source_line": "L9 15G     $3700      SPOT",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "L9 15G     $3700      SPOT",
+        "hashrateTH": 0.015,
+        "powerWatts": 0,
+        "price": 3700,
+        "raw_price": "$3700",
+        "source_line": "L9 15G     $3700      SPOT",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "L9 16G     $3900      SPOT",
+    "hashrateTH": 0.016,
+    "price": 3900,
+    "stats": {
+      "min": 3900,
+      "max": 3900,
+      "avg": 3900,
+      "middle": 3900,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "L9 16G     $3900      SPOT",
+        "hashrateTH": 0.016,
+        "powerWatts": 0,
+        "price": 3900,
+        "raw_price": "$3900",
+        "source_line": "L9 16G     $3900      SPOT",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "L9 16G     $3900      SPOT",
+        "hashrateTH": 0.016,
+        "powerWatts": 0,
+        "price": 3900,
+        "raw_price": "$3900",
+        "source_line": "L9 16G     $3900      SPOT",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "L9 16.5G     $4000      SPOT",
+    "hashrateTH": 0.0165,
+    "price": 4000,
+    "stats": {
+      "min": 4000,
+      "max": 4000,
+      "avg": 4000,
+      "middle": 4000,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "L9 16.5G     $4000      SPOT",
+        "hashrateTH": 0.0165,
+        "powerWatts": 0,
+        "price": 4000,
+        "raw_price": "$4000",
+        "source_line": "L9 16.5G     $4000      SPOT",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "L9 16.5G     $4000      SPOT",
+        "hashrateTH": 0.0165,
+        "powerWatts": 0,
+        "price": 4000,
+        "raw_price": "$4000",
+        "source_line": "L9 16.5G     $4000      SPOT",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "L9 17G     $4150      SPOT",
+    "hashrateTH": 0.017,
+    "price": 4150,
+    "stats": {
+      "min": 4150,
+      "max": 4150,
+      "avg": 4150,
+      "middle": 4150,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "L9 17G     $4150      SPOT",
+        "hashrateTH": 0.017,
+        "powerWatts": 0,
+        "price": 4150,
+        "raw_price": "$4150",
+        "source_line": "L9 17G     $4150      SPOT",
+        "updatedAt": "2025-12-20T05:51:03.000Z",
+        "source": "Unistar Miner(Offical)"
+      },
+      {
+        "name": "L9 17G     $4150      SPOT",
+        "hashrateTH": 0.017,
+        "powerWatts": 0,
+        "price": 4150,
+        "raw_price": "$4150",
+        "source_line": "L9 17G     $4150      SPOT",
+        "updatedAt": "2025-12-19T05:54:02.000Z",
+        "source": "Unistar Miner(Offical)"
+      }
+    ]
+  },
+  {
+    "name": "L11   20Gmix Jan         7900U",
+    "hashrateTH": 0.02,
+    "price": 7900,
+    "stats": {
+      "min": 7900,
+      "max": 7900,
+      "avg": 7900,
+      "middle": 7900,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "L11   20Gmix Jan         7900U",
+        "hashrateTH": 0.02,
+        "powerWatts": 0,
+        "price": 7900,
+        "raw_price": "7900U",
+        "source_line": "L11   20Gmix Jan         7900U",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "L11   20Gmix Jan         7900U",
+        "hashrateTH": 0.02,
+        "powerWatts": 0,
+        "price": 7900,
+        "raw_price": "7900U",
+        "source_line": "L11   20Gmix Jan         7900U",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "L9   17G      3950U",
+    "hashrateTH": 0.017,
+    "price": 3950,
+    "stats": {
+      "min": 3950,
+      "max": 3950,
+      "avg": 3950,
+      "middle": 3950,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L9   17G      3950U",
+        "hashrateTH": 0.017,
+        "powerWatts": 0,
+        "price": 3950,
+        "raw_price": "3950U",
+        "source_line": "L9   17G      3950U",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "L9   16.5G  3850U",
+    "hashrateTH": 0.0165,
+    "price": 3850,
+    "stats": {
+      "min": 3850,
+      "max": 3850,
+      "avg": 3850,
+      "middle": 3850,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L9   16.5G  3850U",
+        "hashrateTH": 0.0165,
+        "powerWatts": 0,
+        "price": 3850,
+        "raw_price": "3850U",
+        "source_line": "L9   16.5G  3850U",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "L9   16G     3750U",
+    "hashrateTH": 0.016,
+    "price": 3750,
+    "stats": {
+      "min": 3750,
+      "max": 3750,
+      "avg": 3750,
+      "middle": 3750,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L9   16G     3750U",
+        "hashrateTH": 0.016,
+        "powerWatts": 0,
+        "price": 3750,
+        "raw_price": "3750U",
+        "source_line": "L9   16G     3750U",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "L9   15G     3550U",
+    "hashrateTH": 0.015,
+    "price": 3550,
+    "stats": {
+      "min": 3550,
+      "max": 3550,
+      "avg": 3550,
+      "middle": 3550,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "L9   15G     3550U",
+        "hashrateTH": 0.015,
+        "powerWatts": 0,
+        "price": 3550,
+        "raw_price": "3550U",
+        "source_line": "L9   15G     3550U",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "L9   15G     3550U",
+        "hashrateTH": 0.015,
+        "powerWatts": 0,
+        "price": 3550,
+        "raw_price": "3550U",
+        "source_line": "L9   15G     3550U",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "L7 9050M   770U",
+    "hashrateTH": 0.00905,
+    "price": 770,
+    "stats": {
+      "min": 770,
+      "max": 770,
+      "avg": 770,
+      "middle": 770,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L7 9050M   770U",
+        "hashrateTH": 0.00905,
+        "powerWatts": 0,
+        "price": 770,
+        "raw_price": "770U",
+        "source_line": "L7 9050M   770U",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "L7 8800M   730U",
+    "hashrateTH": 0.0088,
+    "price": 730,
+    "stats": {
+      "min": 730,
+      "max": 730,
+      "avg": 730,
+      "middle": 730,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L7 8800M   730U",
+        "hashrateTH": 0.0088,
+        "powerWatts": 0,
+        "price": 730,
+        "raw_price": "730U",
+        "source_line": "L7 8800M   730U",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "S21hyd473T           16.3U/T🔥",
+    "hashrateTH": 473,
+    "price": 7710,
+    "stats": {
+      "min": 7710,
+      "max": 7710,
+      "avg": 7710,
+      "middle": 7710,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "S21hyd473T           16.3U/T🔥",
+        "hashrateTH": 473,
+        "powerWatts": 0,
+        "price": 7710,
+        "raw_price": "16.3U/T",
+        "source_line": "S21hyd473T           16.3U/T🔥",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "S21hyd473T           16.3U/T🔥",
+        "hashrateTH": 473,
+        "powerWatts": 0,
+        "price": 7710,
+        "raw_price": "16.3U/T",
+        "source_line": "S21hyd473T           16.3U/T🔥",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "S21+hyd395T        7.9U/T",
+    "hashrateTH": 395,
+    "price": 3121,
+    "stats": {
+      "min": 3121,
+      "max": 3121,
+      "avg": 3121,
+      "middle": 3121,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "S21+hyd395T        7.9U/T",
+        "hashrateTH": 395,
+        "powerWatts": 0,
+        "price": 3121,
+        "raw_price": "7.9U/T",
+        "source_line": "S21+hyd395T        7.9U/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "S21+hyd395T        7.9U/T",
+        "hashrateTH": 395,
+        "powerWatts": 0,
+        "price": 3121,
+        "raw_price": "7.9U/T",
+        "source_line": "S21+hyd395T        7.9U/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "S21+hyd358T        7.8U/T",
+    "hashrateTH": 358,
+    "price": 2792,
+    "stats": {
+      "min": 2792,
+      "max": 2792,
+      "avg": 2792,
+      "middle": 2792,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "S21+hyd358T        7.8U/T",
+        "hashrateTH": 358,
+        "powerWatts": 0,
+        "price": 2792,
+        "raw_price": "7.8U/T",
+        "source_line": "S21+hyd358T        7.8U/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "S21+hyd358T        7.8U/T",
+        "hashrateTH": 358,
+        "powerWatts": 0,
+        "price": 2792,
+        "raw_price": "7.8U/T",
+        "source_line": "S21+hyd358T        7.8U/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "S21+hyd338T        7.6U/T",
+    "hashrateTH": 338,
+    "price": 2569,
+    "stats": {
+      "min": 2569,
+      "max": 2569,
+      "avg": 2569,
+      "middle": 2569,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "S21+hyd338T        7.6U/T",
+        "hashrateTH": 338,
+        "powerWatts": 0,
+        "price": 2569,
+        "raw_price": "7.6U/T",
+        "source_line": "S21+hyd338T        7.6U/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "S21+hyd338T        7.6U/T",
+        "hashrateTH": 338,
+        "powerWatts": 0,
+        "price": 2569,
+        "raw_price": "7.6U/T",
+        "source_line": "S21+hyd338T        7.6U/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "S21ehyd310T         6.2U/T",
+    "hashrateTH": 310,
+    "price": 1922,
+    "stats": {
+      "min": 1922,
+      "max": 1922,
+      "avg": 1922,
+      "middle": 1922,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "S21ehyd310T         6.2U/T",
+        "hashrateTH": 310,
+        "powerWatts": 0,
+        "price": 1922,
+        "raw_price": "6.2U/T",
+        "source_line": "S21ehyd310T         6.2U/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "S21ehyd310T         6.2U/T",
+        "hashrateTH": 310,
+        "powerWatts": 0,
+        "price": 1922,
+        "raw_price": "6.2U/T",
+        "source_line": "S21ehyd310T         6.2U/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "S21ehyd332T        6.2U/T",
+    "hashrateTH": 332,
+    "price": 2058,
+    "stats": {
+      "min": 2058,
+      "max": 2058,
+      "avg": 2058,
+      "middle": 2058,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "S21ehyd332T        6.2U/T",
+        "hashrateTH": 332,
+        "powerWatts": 0,
+        "price": 2058,
+        "raw_price": "6.2U/T",
+        "source_line": "S21ehyd332T        6.2U/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "S21ehyd332T        6.2U/T",
+        "hashrateTH": 332,
+        "powerWatts": 0,
+        "price": 2058,
+        "raw_price": "6.2U/T",
+        "source_line": "S21ehyd332T        6.2U/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "S21imm215T          7.3U/T",
+    "hashrateTH": 215,
+    "price": 1570,
+    "stats": {
+      "min": 1570,
+      "max": 1570,
+      "avg": 1570,
+      "middle": 1570,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "S21imm215T          7.3U/T",
+        "hashrateTH": 215,
+        "powerWatts": 0,
+        "price": 1570,
+        "raw_price": "7.3U/T",
+        "source_line": "S21imm215T          7.3U/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "S21imm215T          7.3U/T",
+        "hashrateTH": 215,
+        "powerWatts": 0,
+        "price": 1570,
+        "raw_price": "7.3U/T",
+        "source_line": "S21imm215T          7.3U/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "S21XP 270T 5days   15.1U/T",
+    "hashrateTH": 270,
+    "price": 4077,
+    "stats": {
+      "min": 4077,
+      "max": 4077,
+      "avg": 4077,
+      "middle": 4077,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "S21XP 270T 5days   15.1U/T",
+        "hashrateTH": 270,
+        "powerWatts": 0,
+        "price": 4077,
+        "raw_price": "15.1U/T",
+        "source_line": "S21XP 270T 5days   15.1U/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "S21XP 270T 5days   15.1U/T",
+        "hashrateTH": 270,
+        "powerWatts": 0,
+        "price": 4077,
+        "raw_price": "15.1U/T",
+        "source_line": "S21XP 270T 5days   15.1U/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "S21pro245T              12.0U/T",
+    "hashrateTH": 245,
+    "price": 2940,
+    "stats": {
+      "min": 2940,
+      "max": 2940,
+      "avg": 2940,
+      "middle": 2940,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "S21pro245T              12.0U/T",
+        "hashrateTH": 245,
+        "powerWatts": 0,
+        "price": 2940,
+        "raw_price": "12.0U/T",
+        "source_line": "S21pro245T              12.0U/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "S21pro245T              12.0U/T",
+        "hashrateTH": 245,
+        "powerWatts": 0,
+        "price": 2940,
+        "raw_price": "12.0U/T",
+        "source_line": "S21pro245T              12.0U/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "S21pro234T              11.4U/T",
+    "hashrateTH": 234,
+    "price": 2668,
+    "stats": {
+      "min": 2668,
+      "max": 2668,
+      "avg": 2668,
+      "middle": 2668,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "S21pro234T              11.4U/T",
+        "hashrateTH": 234,
+        "powerWatts": 0,
+        "price": 2668,
+        "raw_price": "11.4U/T",
+        "source_line": "S21pro234T              11.4U/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "S21pro234T              11.4U/T",
+        "hashrateTH": 234,
+        "powerWatts": 0,
+        "price": 2668,
+        "raw_price": "11.4U/T",
+        "source_line": "S21pro234T              11.4U/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "S21pro220T              11.1U/T",
+    "hashrateTH": 220,
+    "price": 2442,
+    "stats": {
+      "min": 2442,
+      "max": 2442,
+      "avg": 2442,
+      "middle": 2442,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "S21pro220T              11.1U/T",
+        "hashrateTH": 220,
+        "powerWatts": 0,
+        "price": 2442,
+        "raw_price": "11.1U/T",
+        "source_line": "S21pro220T              11.1U/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "S21pro220T              11.1U/T",
+        "hashrateTH": 220,
+        "powerWatts": 0,
+        "price": 2442,
+        "raw_price": "11.1U/T",
+        "source_line": "S21pro220T              11.1U/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "S21+235T  HK/SZ     10.2U/T",
+    "hashrateTH": 235,
+    "price": 2397,
+    "stats": {
+      "min": 2397,
+      "max": 2397,
+      "avg": 2397,
+      "middle": 2397,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "S21+235T  HK/SZ     10.2U/T",
+        "hashrateTH": 235,
+        "powerWatts": 0,
+        "price": 2397,
+        "raw_price": "10.2U/T",
+        "source_line": "S21+235T  HK/SZ     10.2U/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "S21+235T  HK/SZ     10.2U/T",
+        "hashrateTH": 235,
+        "powerWatts": 0,
+        "price": 2397,
+        "raw_price": "10.2U/T",
+        "source_line": "S21+235T  HK/SZ     10.2U/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "S21+225T  HK/SZ      9.3U/T",
+    "hashrateTH": 225,
+    "price": 2093,
+    "stats": {
+      "min": 2093,
+      "max": 2093,
+      "avg": 2093,
+      "middle": 2093,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "S21+225T  HK/SZ      9.3U/T",
+        "hashrateTH": 225,
+        "powerWatts": 0,
+        "price": 2093,
+        "raw_price": "9.3U/T",
+        "source_line": "S21+225T  HK/SZ      9.3U/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "S21+225T  HK/SZ      9.3U/T",
+        "hashrateTH": 225,
+        "powerWatts": 0,
+        "price": 2093,
+        "raw_price": "9.3U/T",
+        "source_line": "S21+225T  HK/SZ      9.3U/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "S21+216T   HK/SZ     9.3U/T",
+    "hashrateTH": 216,
+    "price": 2009,
+    "stats": {
+      "min": 2009,
+      "max": 2009,
+      "avg": 2009,
+      "middle": 2009,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "S21+216T   HK/SZ     9.3U/T",
+        "hashrateTH": 216,
+        "powerWatts": 0,
+        "price": 2009,
+        "raw_price": "9.3U/T",
+        "source_line": "S21+216T   HK/SZ     9.3U/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "S21+216T   HK/SZ     9.3U/T",
+        "hashrateTH": 216,
+        "powerWatts": 0,
+        "price": 2009,
+        "raw_price": "9.3U/T",
+        "source_line": "S21+216T   HK/SZ     9.3U/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "S19eXP hyd251T    5days  3.1U/T",
+    "hashrateTH": 251,
+    "price": 778,
+    "stats": {
+      "min": 778,
+      "max": 778,
+      "avg": 778,
+      "middle": 778,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "S19eXP hyd251T    5days  3.1U/T",
+        "hashrateTH": 251,
+        "powerWatts": 0,
+        "price": 778,
+        "raw_price": "3.1U/T",
+        "source_line": "S19eXP hyd251T    5days  3.1U/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "S19eXP hyd251T    5days  3.1U/T",
+        "hashrateTH": 251,
+        "powerWatts": 0,
+        "price": 778,
+        "raw_price": "3.1U/T",
+        "source_line": "S19eXP hyd251T    5days  3.1U/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "S19XP+ HYD293T    4.2U/T",
+    "hashrateTH": 293,
+    "price": 1231,
+    "stats": {
+      "min": 1231,
+      "max": 1231,
+      "avg": 1231,
+      "middle": 1231,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "S19XP+ HYD293T    4.2U/T",
+        "hashrateTH": 293,
+        "powerWatts": 0,
+        "price": 1231,
+        "raw_price": "4.2U/T",
+        "source_line": "S19XP+ HYD293T    4.2U/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "S19XP+ HYD293T    4.2U/T",
+        "hashrateTH": 293,
+        "powerWatts": 0,
+        "price": 1231,
+        "raw_price": "4.2U/T",
+        "source_line": "S19XP+ HYD293T    4.2U/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "S19Kpro120T           3.3U/T",
+    "hashrateTH": 120,
+    "price": 396,
+    "stats": {
+      "min": 396,
+      "max": 396,
+      "avg": 396,
+      "middle": 396,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "S19Kpro120T           3.3U/T",
+        "hashrateTH": 120,
+        "powerWatts": 0,
+        "price": 396,
+        "raw_price": "3.3U/T",
+        "source_line": "S19Kpro120T           3.3U/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "S19Kpro120T           3.3U/T",
+        "hashrateTH": 120,
+        "powerWatts": 0,
+        "price": 396,
+        "raw_price": "3.3U/T",
+        "source_line": "S19Kpro120T           3.3U/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "S19Kpro115T            2.9U/T",
+    "hashrateTH": 115,
+    "price": 334,
+    "stats": {
+      "min": 334,
+      "max": 334,
+      "avg": 334,
+      "middle": 334,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "S19Kpro115T            2.9U/T",
+        "hashrateTH": 115,
+        "powerWatts": 0,
+        "price": 334,
+        "raw_price": "2.9U/T",
+        "source_line": "S19Kpro115T            2.9U/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "S19Kpro115T            2.9U/T",
+        "hashrateTH": 115,
+        "powerWatts": 0,
+        "price": 334,
+        "raw_price": "2.9U/T",
+        "source_line": "S19Kpro115T            2.9U/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "S19Kpro110T            2.9U/T",
+    "hashrateTH": 110,
+    "price": 319,
+    "stats": {
+      "min": 319,
+      "max": 319,
+      "avg": 319,
+      "middle": 319,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "S19Kpro110T            2.9U/T",
+        "hashrateTH": 110,
+        "powerWatts": 0,
+        "price": 319,
+        "raw_price": "2.9U/T",
+        "source_line": "S19Kpro110T            2.9U/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "S19Kpro110T            2.9U/T",
+        "hashrateTH": 110,
+        "powerWatts": 0,
+        "price": 319,
+        "raw_price": "2.9U/T",
+        "source_line": "S19Kpro110T            2.9U/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "D9  1770G  2-3days    1999U",
+    "hashrateTH": 1.77,
+    "price": 1999,
+    "stats": {
+      "min": 1999,
+      "max": 1999,
+      "avg": 1999,
+      "middle": 1999,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "D9  1770G  2-3days    1999U",
+        "hashrateTH": 1.77,
+        "powerWatts": 0,
+        "price": 1999,
+        "raw_price": "1999U",
+        "source_line": "D9  1770G  2-3days    1999U",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "D9  1770G  2-3days    1999U",
+        "hashrateTH": 1.77,
+        "powerWatts": 0,
+        "price": 1999,
+        "raw_price": "1999U",
+        "source_line": "D9  1770G  2-3days    1999U",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "D9  1860G 2-3days     2199U",
+    "hashrateTH": 1.86,
+    "price": 2199,
+    "stats": {
+      "min": 2199,
+      "max": 2199,
+      "avg": 2199,
+      "middle": 2199,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "D9  1860G 2-3days     2199U",
+        "hashrateTH": 1.86,
+        "powerWatts": 0,
+        "price": 2199,
+        "raw_price": "2199U",
+        "source_line": "D9  1860G 2-3days     2199U",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "D9  1860G 2-3days     2199U",
+        "hashrateTH": 1.86,
+        "powerWatts": 0,
+        "price": 2199,
+        "raw_price": "2199U",
+        "source_line": "D9  1860G 2-3days     2199U",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "KS7      45T                   6600U",
+    "hashrateTH": 45,
+    "price": 6600,
+    "stats": {
+      "min": 6600,
+      "max": 6600,
+      "avg": 6600,
+      "middle": 6600,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "KS7      45T                   6600U",
+        "hashrateTH": 45,
+        "powerWatts": 0,
+        "price": 6600,
+        "raw_price": "6600U",
+        "source_line": "KS7      45T                   6600U",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "KS7      45T                   6600U",
+        "hashrateTH": 45,
+        "powerWatts": 0,
+        "price": 6600,
+        "raw_price": "6600U",
+        "source_line": "KS7      45T                   6600U",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "A14XP-150T-21.5J $5.6/T⬇️",
+    "hashrateTH": 150,
+    "price": 840,
+    "stats": {
+      "min": 840,
+      "max": 840,
+      "avg": 840,
+      "middle": 840,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "A14XP-150T-21.5J $5.6/T⬇️",
+        "hashrateTH": 150,
+        "powerWatts": 0,
+        "price": 840,
+        "raw_price": "$5.6",
+        "source_line": "A14XP-150T-21.5J $5.6/T⬇️",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "A14XP-150T-21.5J $5.6/T⬇️",
+        "hashrateTH": 150,
+        "powerWatts": 0,
+        "price": 840,
+        "raw_price": "$5.6",
+        "source_line": "A14XP-150T-21.5J $5.6/T⬇️",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "A15eHA-400T-19.5J $5.6/T",
+    "hashrateTH": 400,
+    "price": 2240,
+    "stats": {
+      "min": 2240,
+      "max": 2240,
+      "avg": 2240,
+      "middle": 2240,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "A15eHA-400T-19.5J $5.6/T",
+        "hashrateTH": 400,
+        "powerWatts": 0,
+        "price": 2240,
+        "raw_price": "$5.6",
+        "source_line": "A15eHA-400T-19.5J $5.6/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "A15eHA-400T-19.5J $5.6/T",
+        "hashrateTH": 400,
+        "powerWatts": 0,
+        "price": 2240,
+        "raw_price": "$5.6",
+        "source_line": "A15eHA-400T-19.5J $5.6/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "A15Pro 221T    HK       10U/T",
+    "hashrateTH": 221,
+    "price": 2210,
+    "stats": {
+      "min": 2210,
+      "max": 2210,
+      "avg": 2210,
+      "middle": 2210,
+      "count": 2
+    },
+    "listings": [
+      {
+        "name": "A15Pro 221T    HK       10U/T",
+        "hashrateTH": 221,
+        "powerWatts": 0,
+        "price": 2210,
+        "raw_price": "10U/T",
+        "source_line": "A15Pro 221T    HK       10U/T",
+        "updatedAt": "2025-12-20T11:31:17.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      },
+      {
+        "name": "A15Pro 221T    HK       10U/T",
+        "hashrateTH": 221,
+        "powerWatts": 0,
+        "price": 2210,
+        "raw_price": "10U/T",
+        "source_line": "A15Pro 221T    HK       10U/T",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "L9   17G      3900U",
+    "hashrateTH": 0.017,
+    "price": 3900,
+    "stats": {
+      "min": 3900,
+      "max": 3900,
+      "avg": 3900,
+      "middle": 3900,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L9   17G      3900U",
+        "hashrateTH": 0.017,
+        "powerWatts": 0,
+        "price": 3900,
+        "raw_price": "3900U",
+        "source_line": "L9   17G      3900U",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "L9   16G     3650U",
+    "hashrateTH": 0.016,
+    "price": 3650,
+    "stats": {
+      "min": 3650,
+      "max": 3650,
+      "avg": 3650,
+      "middle": 3650,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L9   16G     3650U",
+        "hashrateTH": 0.016,
+        "powerWatts": 0,
+        "price": 3650,
+        "raw_price": "3650U",
+        "source_line": "L9   16G     3650U",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "L7 9050M   810U",
+    "hashrateTH": 0.00905,
+    "price": 810,
+    "stats": {
+      "min": 810,
+      "max": 810,
+      "avg": 810,
+      "middle": 810,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L7 9050M   810U",
+        "hashrateTH": 0.00905,
+        "powerWatts": 0,
+        "price": 810,
+        "raw_price": "810U",
+        "source_line": "L7 9050M   810U",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "L7 8800M   790U",
+    "hashrateTH": 0.0088,
+    "price": 790,
+    "stats": {
+      "min": 790,
+      "max": 790,
+      "avg": 790,
+      "middle": 790,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "L7 8800M   790U",
+        "hashrateTH": 0.0088,
+        "powerWatts": 0,
+        "price": 790,
+        "raw_price": "790U",
+        "source_line": "L7 8800M   790U",
+        "updatedAt": "2025-12-19T09:03:34.000Z",
+        "source": "⛏️Asic mining center - Mila💰"
+      }
+    ]
+  },
+  {
+    "name": "🌟L7 9300M  $810",
+    "hashrateTH": 0.0093,
+    "price": 810,
+    "stats": {
+      "min": 810,
+      "max": 810,
+      "avg": 810,
+      "middle": 810,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟L7 9300M  $810",
+        "hashrateTH": 0.0093,
+        "powerWatts": 0,
+        "price": 810,
+        "raw_price": "$810",
+        "source_line": "🌟L7 9300M  $810",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🔥L7 9050M  $750",
+    "hashrateTH": 0.00905,
+    "price": 750,
+    "stats": {
+      "min": 750,
+      "max": 750,
+      "avg": 750,
+      "middle": 750,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🔥L7 9050M  $750",
+        "hashrateTH": 0.00905,
+        "powerWatts": 0,
+        "price": 750,
+        "raw_price": "$750",
+        "source_line": "🔥L7 9050M  $750",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟L7 8800M  $720",
+    "hashrateTH": 0.0088,
+    "price": 720,
+    "stats": {
+      "min": 720,
+      "max": 720,
+      "avg": 720,
+      "middle": 720,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟L7 8800M  $720",
+        "hashrateTH": 0.0088,
+        "powerWatts": 0,
+        "price": 720,
+        "raw_price": "$720",
+        "source_line": "🌟L7 8800M  $720",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟L7 8550M  $700",
+    "hashrateTH": 0.00855,
+    "price": 700,
+    "stats": {
+      "min": 700,
+      "max": 700,
+      "avg": 700,
+      "middle": 700,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟L7 8550M  $700",
+        "hashrateTH": 0.00855,
+        "powerWatts": 0,
+        "price": 700,
+        "raw_price": "$700",
+        "source_line": "🌟L7 8550M  $700",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟DG1+ 14G $2300",
+    "hashrateTH": 0.014,
+    "price": 2300,
+    "stats": {
+      "min": 2300,
+      "max": 2300,
+      "avg": 2300,
+      "middle": 2300,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟DG1+ 14G $2300",
+        "hashrateTH": 0.014,
+        "powerWatts": 0,
+        "price": 2300,
+        "raw_price": "$2300",
+        "source_line": "🌟DG1+ 14G $2300",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟DG home1 2.1G $570",
+    "hashrateTH": 0.0021000000000000003,
+    "price": 570,
+    "stats": {
+      "min": 570,
+      "max": 570,
+      "avg": 570,
+      "middle": 570,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟DG home1 2.1G $570",
+        "hashrateTH": 0.0021000000000000003,
+        "powerWatts": 0,
+        "price": 570,
+        "raw_price": "$570",
+        "source_line": "🌟DG home1 2.1G $570",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟Fluminer L1pro 6G $1720",
+    "hashrateTH": 0.006,
+    "price": 1720,
+    "stats": {
+      "min": 1720,
+      "max": 1720,
+      "avg": 1720,
+      "middle": 1720,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟Fluminer L1pro 6G $1720",
+        "hashrateTH": 0.006,
+        "powerWatts": 0,
+        "price": 1720,
+        "raw_price": "$1720",
+        "source_line": "🌟Fluminer L1pro 6G $1720",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟D1 Mini Pre 2.2G $860",
+    "hashrateTH": 0.000001,
+    "price": 860,
+    "stats": {
+      "min": 860,
+      "max": 860,
+      "avg": 860,
+      "middle": 860,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟D1 Mini Pre 2.2G $860",
+        "hashrateTH": 0.000001,
+        "powerWatts": 0,
+        "price": 860,
+        "raw_price": "$860",
+        "source_line": "🌟D1 Mini Pre 2.2G $860",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟S21+ 216T $9.3/T",
+    "hashrateTH": 216,
+    "price": 2009,
+    "stats": {
+      "min": 2009,
+      "max": 2009,
+      "avg": 2009,
+      "middle": 2009,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟S21+ 216T $9.3/T",
+        "hashrateTH": 216,
+        "powerWatts": 0,
+        "price": 2009,
+        "raw_price": "$9.3",
+        "source_line": "🌟S21+ 216T $9.3/T",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟S21+ 225T $9.3/T",
+    "hashrateTH": 225,
+    "price": 2093,
+    "stats": {
+      "min": 2093,
+      "max": 2093,
+      "avg": 2093,
+      "middle": 2093,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟S21+ 225T $9.3/T",
+        "hashrateTH": 225,
+        "powerWatts": 0,
+        "price": 2093,
+        "raw_price": "$9.3",
+        "source_line": "🌟S21+ 225T $9.3/T",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🔥S21+ 235T $10.2/T",
+    "hashrateTH": 235,
+    "price": 2397,
+    "stats": {
+      "min": 2397,
+      "max": 2397,
+      "avg": 2397,
+      "middle": 2397,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🔥S21+ 235T $10.2/T",
+        "hashrateTH": 235,
+        "powerWatts": 0,
+        "price": 2397,
+        "raw_price": "$10.2",
+        "source_line": "🔥S21+ 235T $10.2/T",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟S21 Pro 220T $11.2/T",
+    "hashrateTH": 220,
+    "price": 2464,
+    "stats": {
+      "min": 2464,
+      "max": 2464,
+      "avg": 2464,
+      "middle": 2464,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟S21 Pro 220T $11.2/T",
+        "hashrateTH": 220,
+        "powerWatts": 0,
+        "price": 2464,
+        "raw_price": "$11.2",
+        "source_line": "🌟S21 Pro 220T $11.2/T",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🔥S21 Pro 234T $11.4/T",
+    "hashrateTH": 234,
+    "price": 2668,
+    "stats": {
+      "min": 2668,
+      "max": 2668,
+      "avg": 2668,
+      "middle": 2668,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🔥S21 Pro 234T $11.4/T",
+        "hashrateTH": 234,
+        "powerWatts": 0,
+        "price": 2668,
+        "raw_price": "$11.4",
+        "source_line": "🔥S21 Pro 234T $11.4/T",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟S21 Pro 245T $12/T",
+    "hashrateTH": 245,
+    "price": 2940,
+    "stats": {
+      "min": 2940,
+      "max": 2940,
+      "avg": 2940,
+      "middle": 2940,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟S21 Pro 245T $12/T",
+        "hashrateTH": 245,
+        "powerWatts": 0,
+        "price": 2940,
+        "raw_price": "$12",
+        "source_line": "🌟S21 Pro 245T $12/T",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🔥S21 XP 270T $15.1/T(7days）",
+    "hashrateTH": 270,
+    "price": 4077,
+    "stats": {
+      "min": 4077,
+      "max": 4077,
+      "avg": 4077,
+      "middle": 4077,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🔥S21 XP 270T $15.1/T(7days）",
+        "hashrateTH": 270,
+        "powerWatts": 0,
+        "price": 4077,
+        "raw_price": "$15.1",
+        "source_line": "🔥S21 XP 270T $15.1/T(7days）",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🔥S19K Pro 120T $3.2/T",
+    "hashrateTH": 120,
+    "price": 384,
+    "stats": {
+      "min": 384,
+      "max": 384,
+      "avg": 384,
+      "middle": 384,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🔥S19K Pro 120T $3.2/T",
+        "hashrateTH": 120,
+        "powerWatts": 0,
+        "price": 384,
+        "raw_price": "$3.2",
+        "source_line": "🔥S19K Pro 120T $3.2/T",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟S19K Pro 115T $2.8/T",
+    "hashrateTH": 115,
+    "price": 322,
+    "stats": {
+      "min": 322,
+      "max": 322,
+      "avg": 322,
+      "middle": 322,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟S19K Pro 115T $2.8/T",
+        "hashrateTH": 115,
+        "powerWatts": 0,
+        "price": 322,
+        "raw_price": "$2.8",
+        "source_line": "🌟S19K Pro 115T $2.8/T",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟S19K Pro 110T $2.8/T",
+    "hashrateTH": 110,
+    "price": 308,
+    "stats": {
+      "min": 308,
+      "max": 308,
+      "avg": 308,
+      "middle": 308,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟S19K Pro 110T $2.8/T",
+        "hashrateTH": 110,
+        "powerWatts": 0,
+        "price": 308,
+        "raw_price": "$2.8",
+        "source_line": "🌟S19K Pro 110T $2.8/T",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟S19K Pro 105T $2.6/T",
+    "hashrateTH": 105,
+    "price": 273,
+    "stats": {
+      "min": 273,
+      "max": 273,
+      "avg": 273,
+      "middle": 273,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟S19K Pro 105T $2.6/T",
+        "hashrateTH": 105,
+        "powerWatts": 0,
+        "price": 273,
+        "raw_price": "$2.6",
+        "source_line": "🌟S19K Pro 105T $2.6/T",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🔥S21 Imm 215T $7.3/T",
+    "hashrateTH": 215,
+    "price": 1570,
+    "stats": {
+      "min": 1570,
+      "max": 1570,
+      "avg": 1570,
+      "middle": 1570,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🔥S21 Imm 215T $7.3/T",
+        "hashrateTH": 215,
+        "powerWatts": 0,
+        "price": 1570,
+        "raw_price": "$7.3",
+        "source_line": "🔥S21 Imm 215T $7.3/T",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟S19exp hyd 251T $3.1/T(7days）",
+    "hashrateTH": 251,
+    "price": 778,
+    "stats": {
+      "min": 778,
+      "max": 778,
+      "avg": 778,
+      "middle": 778,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟S19exp hyd 251T $3.1/T(7days）",
+        "hashrateTH": 251,
+        "powerWatts": 0,
+        "price": 778,
+        "raw_price": "$3.1",
+        "source_line": "🌟S19exp hyd 251T $3.1/T(7days）",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🔥S19XP+hyd 293T $4.2/T",
+    "hashrateTH": 293,
+    "price": 1231,
+    "stats": {
+      "min": 1231,
+      "max": 1231,
+      "avg": 1231,
+      "middle": 1231,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🔥S19XP+hyd 293T $4.2/T",
+        "hashrateTH": 293,
+        "powerWatts": 0,
+        "price": 1231,
+        "raw_price": "$4.2",
+        "source_line": "🔥S19XP+hyd 293T $4.2/T",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🔥S19XP+hyd 293T $4.1/T(7days)",
+    "hashrateTH": 293,
+    "price": 1201,
+    "stats": {
+      "min": 1201,
+      "max": 1201,
+      "avg": 1201,
+      "middle": 1201,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🔥S19XP+hyd 293T $4.1/T(7days)",
+        "hashrateTH": 293,
+        "powerWatts": 0,
+        "price": 1201,
+        "raw_price": "$4.1",
+        "source_line": "🔥S19XP+hyd 293T $4.1/T(7days)",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟S21e hyd 310T   $6.1/T",
+    "hashrateTH": 310,
+    "price": 1891,
+    "stats": {
+      "min": 1891,
+      "max": 1891,
+      "avg": 1891,
+      "middle": 1891,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟S21e hyd 310T   $6.1/T",
+        "hashrateTH": 310,
+        "powerWatts": 0,
+        "price": 1891,
+        "raw_price": "$6.1",
+        "source_line": "🌟S21e hyd 310T   $6.1/T",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟S21e hyd 332T   $6.2/T",
+    "hashrateTH": 332,
+    "price": 2058,
+    "stats": {
+      "min": 2058,
+      "max": 2058,
+      "avg": 2058,
+      "middle": 2058,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟S21e hyd 332T   $6.2/T",
+        "hashrateTH": 332,
+        "powerWatts": 0,
+        "price": 2058,
+        "raw_price": "$6.2",
+        "source_line": "🌟S21e hyd 332T   $6.2/T",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟S21+ hyd 338T   $7.6/T",
+    "hashrateTH": 338,
+    "price": 2569,
+    "stats": {
+      "min": 2569,
+      "max": 2569,
+      "avg": 2569,
+      "middle": 2569,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟S21+ hyd 338T   $7.6/T",
+        "hashrateTH": 338,
+        "powerWatts": 0,
+        "price": 2569,
+        "raw_price": "$7.6",
+        "source_line": "🌟S21+ hyd 338T   $7.6/T",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟S21+ hyd 358T   $7.8/T",
+    "hashrateTH": 358,
+    "price": 2792,
+    "stats": {
+      "min": 2792,
+      "max": 2792,
+      "avg": 2792,
+      "middle": 2792,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟S21+ hyd 358T   $7.8/T",
+        "hashrateTH": 358,
+        "powerWatts": 0,
+        "price": 2792,
+        "raw_price": "$7.8",
+        "source_line": "🌟S21+ hyd 358T   $7.8/T",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟S21XP hyd 473T $16.4/T",
+    "hashrateTH": 473,
+    "price": 7757,
+    "stats": {
+      "min": 7757,
+      "max": 7757,
+      "avg": 7757,
+      "middle": 7757,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟S21XP hyd 473T $16.4/T",
+        "hashrateTH": 473,
+        "powerWatts": 0,
+        "price": 7757,
+        "raw_price": "$16.4",
+        "source_line": "🌟S21XP hyd 473T $16.4/T",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🔥A2pro 255T mix $11.8/T(Jan Batch)",
+    "hashrateTH": 255,
+    "price": 3009,
+    "stats": {
+      "min": 3009,
+      "max": 3009,
+      "avg": 3009,
+      "middle": 3009,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🔥A2pro 255T mix $11.8/T(Jan Batch)",
+        "hashrateTH": 255,
+        "powerWatts": 0,
+        "price": 3009,
+        "raw_price": "$11.8",
+        "source_line": "🔥A2pro 255T mix $11.8/T(Jan Batch)",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟A2pro hyd 500T mix $11.8/T(Jan Batch）",
+    "hashrateTH": 500,
+    "price": 5900,
+    "stats": {
+      "min": 5900,
+      "max": 5900,
+      "avg": 5900,
+      "middle": 5900,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟A2pro hyd 500T mix $11.8/T(Jan Batch）",
+        "hashrateTH": 500,
+        "powerWatts": 0,
+        "price": 5900,
+        "raw_price": "$11.8",
+        "source_line": "🌟A2pro hyd 500T mix $11.8/T(Jan Batch）",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🔥Avalon Q 90T $1310(5days)",
+    "hashrateTH": 90,
+    "price": 1310,
+    "stats": {
+      "min": 1310,
+      "max": 1310,
+      "avg": 1310,
+      "middle": 1310,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🔥Avalon Q 90T $1310(5days)",
+        "hashrateTH": 90,
+        "powerWatts": 0,
+        "price": 1310,
+        "raw_price": "$1310",
+        "source_line": "🔥Avalon Q 90T $1310(5days)",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟Avalon nano3s 6T $220",
+    "hashrateTH": 6,
+    "price": 220,
+    "stats": {
+      "min": 220,
+      "max": 220,
+      "avg": 220,
+      "middle": 220,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟Avalon nano3s 6T $220",
+        "hashrateTH": 6,
+        "powerWatts": 0,
+        "price": 220,
+        "raw_price": "$220",
+        "source_line": "🌟Avalon nano3s 6T $220",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟Avalon Mini3 37.5T $820",
+    "hashrateTH": 37.5,
+    "price": 820,
+    "stats": {
+      "min": 820,
+      "max": 820,
+      "avg": 820,
+      "middle": 820,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟Avalon Mini3 37.5T $820",
+        "hashrateTH": 37.5,
+        "powerWatts": 0,
+        "price": 820,
+        "raw_price": "$820",
+        "source_line": "🌟Avalon Mini3 37.5T $820",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🌟Fluminer T3 115T $1650(Feb Batch)",
+    "hashrateTH": 115,
+    "price": 1650,
+    "stats": {
+      "min": 1650,
+      "max": 1650,
+      "avg": 1650,
+      "middle": 1650,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🌟Fluminer T3 115T $1650(Feb Batch)",
+        "hashrateTH": 115,
+        "powerWatts": 0,
+        "price": 1650,
+        "raw_price": "$1650",
+        "source_line": "🌟Fluminer T3 115T $1650(Feb Batch)",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "M50s 26w 126T $6.1",
+    "hashrateTH": 126,
+    "price": 6,
+    "stats": {
+      "min": 6,
+      "max": 6,
+      "avg": 6,
+      "middle": 6,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M50s 26w 126T $6.1",
+        "hashrateTH": 126,
+        "powerWatts": 0,
+        "price": 6,
+        "raw_price": "$6.1",
+        "source_line": "M50s 26w 126T $6.1",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "M61s+16.5w 244T $11.3",
+    "hashrateTH": 244,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 11,
+      "avg": 11,
+      "middle": 11,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M61s+16.5w 244T $11.3",
+        "hashrateTH": 244,
+        "powerWatts": 0,
+        "price": 11,
+        "raw_price": "$11.3",
+        "source_line": "M61s+16.5w 244T $11.3",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "M61s+17w 238/240T $11.2",
+    "hashrateTH": 240,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 11,
+      "avg": 11,
+      "middle": 11,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M61s+17w 238/240T $11.2",
+        "hashrateTH": 240,
+        "powerWatts": 0,
+        "price": 11,
+        "raw_price": "$11.2",
+        "source_line": "M61s+17w 238/240T $11.2",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "M60s+17w 208T $11.1",
+    "hashrateTH": 208,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 11,
+      "avg": 11,
+      "middle": 11,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M60s+17w 208T $11.1",
+        "hashrateTH": 208,
+        "powerWatts": 0,
+        "price": 11,
+        "raw_price": "$11.1",
+        "source_line": "M60s+17w 208T $11.1",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "M60s+17w 202/204/206T $11",
+    "hashrateTH": 206,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 11,
+      "avg": 11,
+      "middle": 11,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M60s+17w 202/204/206T $11",
+        "hashrateTH": 206,
+        "powerWatts": 0,
+        "price": 11,
+        "raw_price": "$11",
+        "source_line": "M60s+17w 202/204/206T $11",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "M70 14w 238-248T $16.5",
+    "hashrateTH": 248,
+    "price": 17,
+    "stats": {
+      "min": 17,
+      "max": 17,
+      "avg": 17,
+      "middle": 17,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M70 14w 238-248T $16.5",
+        "hashrateTH": 248,
+        "powerWatts": 0,
+        "price": 17,
+        "raw_price": "$16.5",
+        "source_line": "M70 14w 238-248T $16.5",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "M70 14.5w 220-244T $15.9",
+    "hashrateTH": 244,
+    "price": 16,
+    "stats": {
+      "min": 16,
+      "max": 16,
+      "avg": 16,
+      "middle": 16,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M70 14.5w 220-244T $15.9",
+        "hashrateTH": 244,
+        "powerWatts": 0,
+        "price": 16,
+        "raw_price": "$15.9",
+        "source_line": "M70 14.5w 220-244T $15.9",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "M63s+17w 440/442T $11.1",
+    "hashrateTH": 442,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 11,
+      "avg": 11,
+      "middle": 11,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M63s+17w 440/442T $11.1",
+        "hashrateTH": 442,
+        "powerWatts": 0,
+        "price": 11,
+        "raw_price": "$11.1",
+        "source_line": "M63s+17w 440/442T $11.1",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "M63s+17w 428/430/436T $11.1",
+    "hashrateTH": 436,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 11,
+      "avg": 11,
+      "middle": 11,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M63s+17w 428/430/436T $11.1",
+        "hashrateTH": 436,
+        "powerWatts": 0,
+        "price": 11,
+        "raw_price": "$11.1",
+        "source_line": "M63s+17w 428/430/436T $11.1",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "M63s+17w 418/420T $11",
+    "hashrateTH": 420,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 11,
+      "avg": 11,
+      "middle": 11,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M63s+17w 418/420T $11",
+        "hashrateTH": 420,
+        "powerWatts": 0,
+        "price": 11,
+        "raw_price": "$11",
+        "source_line": "M63s+17w 418/420T $11",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "M63s+17.5w 400-410T $10.9",
+    "hashrateTH": 410,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 11,
+      "avg": 11,
+      "middle": 11,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M63s+17.5w 400-410T $10.9",
+        "hashrateTH": 410,
+        "powerWatts": 0,
+        "price": 11,
+        "raw_price": "$10.9",
+        "source_line": "M63s+17.5w 400-410T $10.9",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "M73 14w  514-526T $15.9",
+    "hashrateTH": 526,
+    "price": 16,
+    "stats": {
+      "min": 16,
+      "max": 16,
+      "avg": 16,
+      "middle": 16,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "M73 14w  514-526T $15.9",
+        "hashrateTH": 526,
+        "powerWatts": 0,
+        "price": 16,
+        "raw_price": "$15.9",
+        "source_line": "M73 14w  514-526T $15.9",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "Matches InIBox 850M $2780",
+    "hashrateTH": 0.00085,
+    "price": 2780,
+    "stats": {
+      "min": 2780,
+      "max": 2780,
+      "avg": 2780,
+      "middle": 2780,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "Matches InIBox 850M $2780",
+        "hashrateTH": 0.00085,
+        "powerWatts": 0,
+        "price": 2780,
+        "raw_price": "$2780",
+        "source_line": "Matches InIBox 850M $2780",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  },
+  {
+    "name": "🔥AE BOX II 54M $120",
+    "hashrateTH": 0.000054,
+    "price": 120,
+    "stats": {
+      "min": 120,
+      "max": 120,
+      "avg": 120,
+      "middle": 120,
+      "count": 1
+    },
+    "listings": [
+      {
+        "name": "🔥AE BOX II 54M $120",
+        "hashrateTH": 0.000054,
+        "powerWatts": 0,
+        "price": 120,
+        "raw_price": "$120",
+        "source_line": "🔥AE BOX II 54M $120",
+        "updatedAt": "2025-12-19T06:11:49.000Z",
+        "source": "BITMARS _Leila~"
+      }
+    ]
+  }
+]

@@ -5,16 +5,18 @@ export interface SimpleMarketMiner {
     name: string;
     stats: { middlePrice: number };
     specs: { hashrateTH: number };
+    source?: string;
 }
 
 // Robust matching helper using Hashrate + Series
-export function findMatchingMarketMiner(simMiner: { name: string, hashrateTH: number }, marketMiners: SimpleMarketMiner[]): number {
+export function findMatchingMarketMiner(simMiner: { name: string, hashrateTH: number }, marketMiners: SimpleMarketMiner[]): { price: number, source?: string } {
     const simHash = simMiner.hashrateTH;
     const simSlug = slugify(simMiner.name);
 
     // 0. Exact Name Match (Optimization)
     const exact = marketMiners.find(m => m.name === simMiner.name);
-    if (exact && exact.stats.middlePrice > 0) return exact.stats.middlePrice;
+    if (exact && exact.stats.middlePrice > 0) return { price: exact.stats.middlePrice, source: exact.source };
+
 
     // Filter candidates by Hashrate Proximity (within 5% or 2 TH for small items)
     const candidates = marketMiners.filter(m => {
@@ -27,7 +29,8 @@ export function findMatchingMarketMiner(simMiner: { name: string, hashrateTH: nu
     });
 
     if (candidates.length === 0) {
-        return findBestNameMatch(simMiner.name, marketMiners);
+        const best = findBestNameMatch(simMiner.name, marketMiners);
+        return { price: best.price, source: best.source };
     }
 
     // Among candidates (Hashrate matched), find best Name match
@@ -70,10 +73,10 @@ export function findMatchingMarketMiner(simMiner: { name: string, hashrateTH: nu
     }
 
     if (bestMatch && maxScore > 0) {
-        return bestMatch.stats.middlePrice;
+        return { price: bestMatch.stats.middlePrice, source: bestMatch.source };
     }
 
-    return 0;
+    return { price: 0 };
 }
 
 export function hasFeature(slug: string, feature: string): boolean {
@@ -86,7 +89,7 @@ export function getTokens(slug: string, important: string[]): string[] {
     return slug.split('-').filter(t => t.length > 0);
 }
 
-export function findBestNameMatch(simName: string, marketMiners: SimpleMarketMiner[]): number {
+export function findBestNameMatch(simName: string, marketMiners: SimpleMarketMiner[]): { price: number, source?: string } {
     const simSlug = slugify(simName);
     const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
     const simNorm = normalize(simName);
@@ -98,8 +101,8 @@ export function findBestNameMatch(simName: string, marketMiners: SimpleMarketMin
             const markTokens = m.name.toLowerCase().split(/[\s-]+/);
             const matches = simTokens.filter(t => markTokens.includes(t));
             const score = matches.length / Math.max(simTokens.length, markTokens.length);
-            if (score > 0.8 && m.stats.middlePrice > 0) return m.stats.middlePrice;
+            if (score > 0.8 && m.stats.middlePrice > 0) return { price: m.stats.middlePrice, source: m.source };
         }
     }
-    return 0;
+    return { price: 0 };
 }
