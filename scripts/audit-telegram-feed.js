@@ -1,42 +1,31 @@
 
-import { TelegramClient } from "telegram";
-import { StringSession } from "telegram/sessions";
-import { Api } from "telegram";
+const { TelegramClient } = require("telegram");
+const { StringSession } = require("telegram/sessions");
+const dotenv = require('dotenv');
+const fs = require('fs');
+const path = require('path');
+
+// Load .env.local
+const envPath = path.resolve(process.cwd(), '.env.local');
+dotenv.config({ path: envPath });
 
 const API_ID = parseInt(process.env.API_ID || "0", 10);
 const API_HASH = process.env.API_HASH || "";
 const SESSION_STRING = process.env.TELEGRAM_SESSION || "";
 
-const KEYWORDS = ["S23", "S21", "S19", "T21", "M50", "M60", "B19", "U3"]; // Added S23, B19, U3
+const KEYWORDS = ["S23", "S21", "S19", "T21", "M50", "M60", "B19", "U3"];
 const NEGATIVE_KEYWORDS = [
-    // Altcoins
     "L7", "K7", "D9", "E9", "Z15", "KA3", "KS3", "KS5", "AL3", "DR3", "IceRiver", "Goldshell",
-    // Futures / Pre-orders
     "Future", "Preorder", "Pre-order", "Batch", "Production",
     "Jan ", "Feb ", "Mar ", "Apr ", "May ", "Jun ", "Jul ", "Aug ", "Sep ", "Oct ", "Nov ", "Dec ",
     "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
 ];
-
-// Reduce limit for Vercel timeout safety (Serverless func usually 10s-60s)
-// We might need to be very targeted.
 const LIMIT = 50;
-const MAX_AGE_HOURS = 72; // Increased to 72h (weekend coverage)
+const MAX_AGE_HOURS = 72;
 
-// --- Parser Logic (Ported from scripts/parse-telegram-prices.js) ---
-interface TelegramMiner {
-    name: string;
-    hashrateTH: number;
-    price: number;
-    source: string;
-    date: Date;
-    powerW?: number;
-}
-
-function parseLine(line: string): TelegramMiner | null {
-    // 1. Clean basic bullets
+function parseLine(line) {
     let cleanLine = line.replace(/^[-\*•]\s*/, '').trim();
 
-    // 2. Hashrate
     const hashrateRegex = /(\d+(?:\.\d+)?)\s*(T|Th|G|Gh|M|Mh)(?![a-z])/i;
     const hashrateMatch = cleanLine.match(hashrateRegex);
     let hashrateTH = 0;
@@ -49,8 +38,6 @@ function parseLine(line: string): TelegramMiner | null {
         else if (unit.startsWith('M')) hashrateTH = val / 1000000;
     }
 
-    // 3. Efficiency / Power
-    // Format: "3000W" or "20J/T"
     const powerRegex = /(\d+(?:\.\d+)?)\s*W(?![a-z])/i;
     const effRegex = /(\d+(?:\.\d+)?)\s*J\/T/i;
 
@@ -61,15 +48,9 @@ function parseLine(line: string): TelegramMiner | null {
     if (powerMatch) {
         powerW = parseFloat(powerMatch[1]);
     } else if (effMatch && hashrateTH > 0) {
-        // J/T * TH = Seconds * Watts? No.
-        // 1 J = 1 Watt-Second.
-        // Efficiency J/TH is Joules per Terahash.
-        // Power (W) = H (TH/s) * Eff (J/TH).
-        // Example: 29.5 J/T * 100 TH = 2950 W.
         powerW = parseFloat(effMatch[1]) * hashrateTH;
     }
 
-    // 4. Price
     const unitPriceRegex = /(?:[\$u]\s*)?(\d+(?:\.\d+)?)\s*(?:[u\$]|usd)?\s*\/\s*(?:t|th)/i;
     const flatPriceRegex = /(?:\$|usd)\s*(\d+(?:\.\d+)?)|(\d+(?:\.\d+)?)\s*(?:u|usd)(?!\/)/i;
 
@@ -83,8 +64,6 @@ function parseLine(line: string): TelegramMiner | null {
         price = parseFloat(flatMatch[1] || flatMatch[2]);
     }
 
-    // 4b. Quantity / Lot Logic
-    // Detect "100pcs", "100x", "100 units"
     const qtyRegex = /(\d+)\s*(?:pcs|units|x\s|pieces)/i;
     const qtyMatch = cleanLine.match(qtyRegex);
     let quantity = 1;
@@ -93,13 +72,6 @@ function parseLine(line: string): TelegramMiner | null {
         quantity = parseInt(qtyMatch[1], 10);
     }
 
-    // Heuristic: If Price is very high (> $10,000) and Quantity > 1, it's likely a Lot Price.
-    // e.g. "100pcs S19j Pro $21500" -> $215/unit.
-    // However, S21 Hyros are ~$6k-8k. 10 units = $60k.
-    // If Price > $8000 and Quantity > 1...
-    // But check hash/model. S21 Hydro (2024) might be $5k.
-    // L7 is $4k.
-    // Let's safe-guard: If Price / Quantity is within reasonable range ($100 - $15,000), use it.
     if (quantity > 1 && price > 5000) {
         const impliedUnit = price / quantity;
         if (impliedUnit > 50 && impliedUnit < 15000) {
@@ -107,89 +79,56 @@ function parseLine(line: string): TelegramMiner | null {
         }
     }
 
-    // 5. Name Cleaning
-    // Remove the parts we matched to leave just the model name
     let name = cleanLine;
     if (hashrateMatch) name = name.replace(hashrateMatch[0], '');
     if (powerMatch) name = name.replace(powerMatch[0], '');
     if (effMatch) name = name.replace(effMatch[0], '');
     if (unitMatch) name = name.replace(unitMatch[0], '');
     if (flatMatch) name = name.replace(flatMatch[0], '');
-    if (qtyMatch) name = name.replace(qtyMatch[0], ''); // Remove "100pcs"
+    if (qtyMatch) name = name.replace(qtyMatch[0], '');
 
-    // Aggressive Cleanup (Stop words)
-    name = name.replace(/@\w+/g, '') // Mentions
-        .replace(/http\S+/g, '') // Links
-        .replace(/[:|\-—,]/g, ' ') // Punctuation key chars
+    name = name.replace(/@\w+/g, '')
+        .replace(/http\S+/g, '')
+        .replace(/[:|\-—,]/g, ' ')
         .replace(/\b(?:moq|doa|warranty|working|condition|lot|batch|stock|spot|new|used|refurb|refurbished|for sale|selling|available|now)\b/gi, ' ')
-        .replace(/\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\b/gi, '') // Month frags
-        // Emoji Removal (Broader Ranges)
-        // \u2700-\u27BF: Dingbats
-        // \uE000-\uF8FF: PUC
-        // \uD83C..\uD83E..: Surrogate pairs for Emojis
-        // \u2000-\u2BFF: Symbols/Arrows/etc
+        .replace(/\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\b/gi, '')
         .replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]|\u2B50|\u2B55|\u231A|\u231B|\u23F3|\u23F0|\u25AA|\u25AB)/g, '')
         .replace(/\s+/g, ' ').trim();
 
-    // Final Shortening
-    // "S21+ HYD /H" -> "S21+ HYD"
     name = name.replace(/\/h\b/i, '');
 
-    // Standardization / Branding
     const lowerName = name.toLowerCase();
 
-    // Antminer (S/T/L/K/D/E series generally, but be careful with U3 or others)
-    // S21, T21, L7, K7..
-    // Only apply if not already present
     if (!lowerName.includes('antminer') && !lowerName.includes('bitmain')) {
         if (/^(s|t|l|k|d|e)[0-9]/i.test(name) || /^u3/i.test(name) || /^b19/i.test(name)) {
             name = `Antminer ${name}`;
         }
     }
 
-    // Whatsminer (M series)
     if (!lowerName.includes('whatsminer') && !lowerName.includes('microbt')) {
         if (/^m[0-9]/i.test(name)) {
             name = `Whatsminer ${name}`;
         }
     }
 
-    // Avalon (A series)
     if (!lowerName.includes('avalon') && !lowerName.includes('canaan')) {
         if (/^a[0-9]/i.test(name)) {
             name = `Avalon ${name}`;
         }
     }
 
-    // STRICT FILTER: Match Positive Keywords on the CLEANED Name using Regex
-    // This allows covering variants (M60, M63, M66) without listing every single one.
-
-    // BTC Miner Patterns
-    // Bitmain: S19, S21, S23, T19, T21, B19, U3
-    // Whatsminer: M3x, M5x, M6x, M7x (e.g., M30, M31, M50, M53, M60, M63, M66, M70, M76)
-    // Avalon: A11 to A16
-    // Auradine: AT (Teraflux)
     const btcPatterns = [
-        /Antminer\s*[ST](19|21|23)/i, // S19, T21, S23...
+        /Antminer\s*[ST](19|21|23)/i,
         /Antminer\s*B19/i,
         /Antminer\s*U3/i,
-        /Whatsminer\s*M[3-7][0-9]/i, // Matches M30-M79
-        /Avalon\s*A1[1-6]/i, // A11-A16
+        /Whatsminer\s*M[3-7][0-9]/i,
+        /Avalon\s*A1[1-6]/i,
         /Teraflux|Auradine/i
     ];
 
     const isMatch = btcPatterns.some(pattern => pattern.test(name));
 
-    // Fallback: If no "Brand" prefix was added (e.g. just "S21"), check simple codes
-    // But our Branding logic above forces prefixes. so "S21" became "Antminer S21".
-    // So the Regex should work.
-
-    // However, let's be safe. If branding logic failed (e.g. "Hammer Miner"), 
-    // we might want to check the raw codes too? 
-    // No, let's rely on the normalized name which has the brand.
-
     if (!isMatch) {
-        // Debug Log? console.log(`Filtered out: ${name}`);
         return null;
     }
 
@@ -199,34 +138,29 @@ function parseLine(line: string): TelegramMiner | null {
     return null;
 }
 
-// --- HK Filter Logic ---
-const hkIdentifiers = [/🇭🇰/, /Hong Kong/i, /HK\s*Stock/i, /HK\s*Spot/i];
-function isHKContent(text: string): boolean {
-    return hkIdentifiers.some(r => r.test(text));
-}
-
-// --- Main Service Class ---
-export class TelegramService {
-    private client: TelegramClient | null = null;
+class TelegramService {
+    constructor() {
+        this.client = null;
+    }
 
     async connect() {
         if (!SESSION_STRING) throw new Error("TELEGRAM_SESSION not found");
 
-        console.log("Connecting to Telegram...");
+        console.log("Connecting to Telegram (JS)...");
         this.client = new TelegramClient(new StringSession(SESSION_STRING), API_ID, API_HASH, {
             connectionRetries: 1,
         });
         await this.client.connect();
     }
 
-    async scrapePrices(): Promise<any[]> {
+    async scrapePrices() {
         if (!this.client) await this.connect();
-        const client = this.client!;
+        const client = this.client;
 
-        const dialogs = await client.getDialogs({ limit: 100 }); // Increased to 100 to find more vendors
+        const dialogs = await client.getDialogs({ limit: 100 });
         console.log(`Fetched ${dialogs.length} dialogs`);
 
-        const results: TelegramMiner[] = [];
+        const results = [];
         const cutoff = Date.now() - (MAX_AGE_HOURS * 3600 * 1000);
 
         for (const dialog of dialogs) {
@@ -239,65 +173,40 @@ export class TelegramService {
 
                 const lowerMsg = msg.message.toLowerCase();
 
-                // 1. Positive Keywords (BTC Only)
-                // We keep this at Message level to avoid scanning irrelevant chats, 
-                // BUT we must be careful. If a list has "Antminer S21", it passes.
-                // If it has "New Stock", it fails?
-                // Re-adding generic tokens "Antminer", "Whatsminer" to safe-guard.
-                // For now, let's trust the series keys.
                 if (!KEYWORDS.some(k => lowerMsg.includes(k.toLowerCase()))) {
                     continue;
                 }
 
-                // 2. Message-Level Negative Check?
-                // NO. If we block "Jan" here, we lose mixed lists.
-                // specific "Post-wide" bans (like "WTB" - Want To Buy) could be here.
                 if (lowerMsg.includes("wtb") || lowerMsg.includes("want to buy")) continue;
 
-                // Check Region
-                // If message has specific filtered region (HK)
-                // We reuse script logic: simple HK check on the message
-                // if (!isHKContent(msg.message)) continue; // DISABLED filter to force data flow
-
-                // Context State
                 let currentRegion = "";
 
-                // Parse
                 const lines = msg.message.split('\n');
                 for (const line of lines) {
                     const lowerLine = line.toLowerCase();
 
-                    // Region Detection (Header Lines)
-                    // "HK Stock", "USA Spot", "Dubai Warehouse"
                     if (/(hk|hong kong|hkg).*stock/i.test(line)) { currentRegion = "HK"; continue; }
                     if (/(us|usa|united states|america).*stock/i.test(line)) { currentRegion = "USA"; continue; }
                     if (/(dubai|uae|abudhabi).*stock/i.test(line)) { currentRegion = "Dubai"; continue; }
                     if (/(russia|moscow).*stock/i.test(line)) { currentRegion = "Russia"; continue; }
                     if (/(paraguay|py).*stock/i.test(line)) { currentRegion = "PY"; continue; }
 
-                    // Line-Level Negative Filter (Futures/Alts)
-                    // Added "ex factory", "preorder" to be safer
                     if (NEGATIVE_KEYWORDS.some(nk => lowerLine.includes(nk.toLowerCase()))) {
                         continue;
                     }
 
                     // Strict Spot Checks (Regex for flexibility)
-                    // Block "Ex factory", "Future Batch", "Est Date"
                     if (/ex\s*factory/i.test(line) || /future\s*batch/i.test(line) || /est\.?\s*date/i.test(line)) continue;
 
                     const miner = parseLine(line);
                     if (miner) {
-                        // Double check: If name still contains future keywords, drop it
-                        if (/ex\s*factory/i.test(miner.name) || /est\.?\s*date/i.test(miner.name)) continue;
-
-                        // Append Region to Source if detected
                         const regionTag = currentRegion ? ` (${currentRegion})` : '';
                         miner.source = (dialog.title || "Telegram") + regionTag;
 
-                        // Clean Name (Remove leading hash from tags like #Whatsminer)
+                        // Enhanced Cleanup
                         miner.name = miner.name.replace(/^#/, '')
                             .replace(/\/s\b/gi, '') // Remove "/s" suffix
-                            .replace(/\b(est\.?|date)\b/gi, '') // Remove "Est." "Date" artifacts
+                            .replace(/\b(est\.?|date)\b/gi, '') // Remove "Est." "Date"
                             .trim();
 
                         miner.date = new Date(msg.date * 1000);
@@ -310,11 +219,10 @@ export class TelegramService {
         return this.aggregate(results);
     }
 
-    aggregate(listings: TelegramMiner[]) {
-        const groups: Record<string, any> = {};
+    aggregate(listings) {
+        const groups = {};
 
         for (const l of listings) {
-            // Key: s21xp-270
             const clean = l.name.toLowerCase().replace(/antminer|whatsminer|spot|hk|stock|\(.*\)|[^a-z0-9]/g, '');
             const key = `${clean}-${Math.round(l.hashrateTH)}`;
 
@@ -327,17 +235,13 @@ export class TelegramService {
                 };
             }
 
-            // Name improvement: Keep the longest descriptive name found for this normalized key
             if (l.name.length > groups[key].name.length) {
                 groups[key].name = l.name;
             }
 
-            // Add to listings (Deduplicate: Same Source + Same Price)
-            // Note: l.source now includes Region (e.g. "JingleMining (HK)")
-            const existingIdx = groups[key].listings.findIndex((item: any) => item.source === l.source && item.price === l.price);
+            const existingIdx = groups[key].listings.findIndex((item) => item.source === l.source && item.price === l.price);
 
             if (existingIdx !== -1) {
-                // Update date if newer
                 if (l.date > groups[key].listings[existingIdx].date) {
                     groups[key].listings[existingIdx].date = l.date;
                 }
@@ -353,16 +257,14 @@ export class TelegramService {
         }
 
         return Object.values(groups).map(g => {
-            const prices = g.listings.map((x: any) => x.price).sort((a: number, b: number) => a - b);
-
-            // Calculate stats if needed, but we mostly care about Min Price now.
+            const prices = g.listings.map((x) => x.price).sort((a, b) => a - b);
             const midIdx = Math.floor(prices.length / 2);
             const middle = prices.length > 0 ? (prices.length % 2 === 0 ? (prices[midIdx - 1] + prices[midIdx]) / 2 : prices[midIdx]) : 0;
 
             return {
                 name: g.name,
                 hashrateTH: g.hashrateTH,
-                price: prices.length > 0 ? Math.round(prices[0]) : 0, // Lowest Price
+                price: prices.length > 0 ? Math.round(prices[0]) : 0,
                 stats: {
                     min: prices[0] || 0,
                     max: prices[prices.length - 1] || 0,
@@ -378,3 +280,27 @@ export class TelegramService {
         if (this.client) await this.client.disconnect();
     }
 }
+
+async function main() {
+    if (!process.env.TELEGRAM_SESSION) {
+        console.error("TELEGRAM_SESSION not found in .env.local");
+        process.exit(1);
+    }
+
+    const service = new TelegramService();
+    try {
+        const results = await service.scrapePrices();
+        console.log(`Scrape Complete. Found ${results.length} models.`);
+
+        const outFile = path.resolve(process.cwd(), 'debug-output.json');
+        fs.writeFileSync(outFile, JSON.stringify(results, null, 2));
+        console.log(`Results saved to ${outFile}`);
+    } catch (err) {
+        console.error("Scrape Failed:", err);
+    } finally {
+        await service.disconnect();
+        process.exit(0);
+    }
+}
+
+main();
