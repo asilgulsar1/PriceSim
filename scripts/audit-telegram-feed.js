@@ -24,7 +24,22 @@ const LIMIT = 50;
 const MAX_AGE_HOURS = 72;
 
 function parseLine(line) {
-    let cleanLine = line.replace(/^[-\*•#]\s*/, '').trim();
+    // 1. Clean basic bullets and Emojis (Full Range)
+    let cleanLine = line.replace(/^([-\*•#⚙️\u2699\uFE0F]|[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|\uD83E[\uDD10-\uDDFF]|[\u2011-\u26FF])+\s*/u, '').trim();
+    cleanLine = cleanLine.replace(/^[\u2699\u2692\uFE0F\s]+/, ''); // Explicit Gear/Hammer Stripper
+
+    // Clean "300 qty" / "100 pcs" prefix
+    cleanLine = cleanLine.replace(/^\d+\s*(qty|pcs|units)\s+/i, '');
+
+    // De-Mash: "395TGTD" -> "395T GTD"
+    cleanLine = cleanLine.replace(/(\d+T)(GTD|RB)/gi, '$1 $2');
+
+
+    // De-Mash: "M60s+16.5w" -> "M60s+ 16.5w"
+    cleanLine = cleanLine.replace(/([a-zA-Z\+\-])(\d+(?:\.\d+)?w)/gi, '$1 $2');
+
+    // De-Mash: "206/208/T" -> "206/208 T"
+    cleanLine = cleanLine.replace(/\/t\b/gi, ' T');
 
     // Check for Slash-Separated Hashrates (e.g., 434/436/440T or /440T/442T)
     // Updated to handle optional leading slash and units inside groups
@@ -241,33 +256,23 @@ class TelegramService {
 
                 if (lowerMsg.includes("wtb") || lowerMsg.includes("want to buy")) continue;
 
-                // DEBUG: Inspect CoolDragon Messages
-                if (dialog.title && dialog.title.toLowerCase().includes('cooldragon')) {
-                    const lines = msg.message.split('\n');
-                    for (const line of lines) {
-                        if (line.toLowerCase().includes('s21')) { // Trace S21 lines
-                            console.log(`[TRACE] Analyzing Line: "${line}"`);
-                            const res = parseLine(line);
-                            console.log(`   -> Parsed Result:`, JSON.stringify(res));
-                            if (res.length === 0) {
-                                let clean = line.replace(/^[-\*•#]\s*/, '').trim();
-                                console.log(`   -> Cleaned: "${clean}"`);
-                                let testName = clean;
-                                if (!testName.toLowerCase().includes('antminer') && !testName.toLowerCase().includes('bitmain')) {
-                                    // Replicating prefix logic
-                                    if (/^(s|t|l|k|d|e)[0-9]/i.test(testName)) testName = `Antminer ${testName}`;
-                                }
-                                console.log(`   -> Test Namebase: "${testName}"`);
-                                const matchesBTC = btcPatterns.some(p => p.test(testName));
-                                console.log(`   -> Passes BTC Filter? ${matchesBTC}`);
-                            }
-                        }
-                    }
-                }
-
                 let currentRegion = "";
 
                 const lines = msg.message.split('\n');
+                for (const line of lines) {
+
+                    // Check for High-Value Keywords
+                    if (/(s21|t21|m60|m50|m63|m64|avalon a15)/i.test(line)) {
+                        const res = parseLine(line);
+                        // If parser returns nothing, IT'S A MISS
+                        if (!res || res.length === 0) {
+                            // Ignore WTB/In search of
+                            if (/wtb|want to buy|looking for/i.test(line)) continue;
+
+                            console.log(`[MISS] Potential Miner: "${line.trim()}" (Source: ${dialog.title})`);
+                        }
+                    }
+                }
                 for (const line of lines) {
                     const lowerLine = line.toLowerCase();
 

@@ -1,13 +1,13 @@
 [
   {
-    "name": "Whatsminer M63S+",
+    "name": "Whatsminer M63S+ T",
     "hashrateTH": 442,
     "price": 11,
     "stats": {
       "min": 11,
       "max": 5923,
-      "count": 4,
-      "middle": 5039
+      "count": 3,
+      "middle": 5083
     },
     "listings": [
       {
@@ -22,25 +22,20 @@
       },
       {
         "source": "ASICXchange Market Place (USA)",
-        "price": 4995,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
         "price": 11,
-        "date": "2025-12-19T06:11:49.000Z"
+        "date": "2025-12-19T08:41:32.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M63S+",
+    "name": "Whatsminer M63S+ T",
     "hashrateTH": 420,
     "price": 11,
     "stats": {
       "min": 11,
       "max": 5502,
-      "count": 16,
-      "middle": 4875
+      "count": 5,
+      "middle": 11
     },
     "listings": [
       {
@@ -54,86 +49,31 @@
         "date": "2025-12-19T06:48:44.000Z"
       },
       {
-        "source": "CooldragonMinerList",
-        "price": 11,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerList (Russia)",
-        "price": 5010,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 11,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel (Russia)",
-        "price": 5010,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 4930,
-        "date": "2025-12-19T13:47:59.000Z"
-      },
-      {
         "source": "ASICXchange Market Place (USA)",
-        "price": 4704,
+        "price": 11,
         "date": "2025-12-19T08:41:32.000Z"
       },
       {
-        "source": "ASICXchange Market Place",
-        "price": 11,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (Russia)",
-        "price": 5010,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰",
-        "price": 4930,
-        "date": "2025-12-20T11:31:32.000Z"
-      },
-      {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 4620,
+        "price": 11,
         "date": "2025-12-20T11:31:17.000Z"
       },
       {
-        "source": "SCminer (Russia)",
-        "price": 5010,
-        "date": "2025-12-20T04:42:16.000Z"
-      },
-      {
-        "source": "How2mine | Россия",
-        "price": 5010,
-        "date": "2025-12-19T09:37:02.000Z"
-      },
-      {
-        "source": "BT-Miners Global (HK)",
-        "price": 4820,
-        "date": "2025-12-19T09:32:21.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
+        "source": "SCminer",
         "price": 11,
-        "date": "2025-12-19T06:11:49.000Z"
+        "date": "2025-12-20T04:40:50.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M63S+",
+    "name": "Whatsminer M63S+ T",
     "hashrateTH": 418,
     "price": 11,
     "stats": {
       "min": 11,
       "max": 5476,
-      "count": 13,
-      "middle": 4682
+      "count": 5,
+      "middle": 11
     },
     "listings": [
       {
@@ -147,71 +87,31 @@
         "date": "2025-12-19T06:48:44.000Z"
       },
       {
-        "source": "CooldragonMinerList",
-        "price": 11,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 11,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 4900,
-        "date": "2025-12-19T13:47:59.000Z"
-      },
-      {
         "source": "ASICXchange Market Place (USA)",
-        "price": 4682,
+        "price": 11,
         "date": "2025-12-19T08:41:32.000Z"
       },
       {
-        "source": "ASICXchange Market Place",
-        "price": 11,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰",
-        "price": 4900,
-        "date": "2025-12-20T11:31:32.000Z"
-      },
-      {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 4598,
+        "price": 11,
         "date": "2025-12-20T11:31:17.000Z"
       },
       {
-        "source": "SCminer (Russia)",
-        "price": 4980,
-        "date": "2025-12-20T04:42:16.000Z"
-      },
-      {
-        "source": "How2mine | Россия",
-        "price": 4980,
-        "date": "2025-12-19T09:37:02.000Z"
-      },
-      {
-        "source": "BT-Miners Global (HK)",
-        "price": 4820,
-        "date": "2025-12-19T09:32:21.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
+        "source": "SCminer",
         "price": 11,
-        "date": "2025-12-19T06:11:49.000Z"
+        "date": "2025-12-20T04:40:50.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M63S+",
+    "name": "Whatsminer M63S+ T",
     "hashrateTH": 432,
     "price": 11,
     "stats": {
       "min": 11,
       "max": 5702,
-      "count": 12,
-      "middle": 4921
+      "count": 4,
+      "middle": 2447
     },
     "listings": [
       {
@@ -225,66 +125,26 @@
         "date": "2025-12-19T06:48:44.000Z"
       },
       {
-        "source": "CooldragonMinerList",
-        "price": 11,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 11,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 5390,
-        "date": "2025-12-19T13:47:59.000Z"
-      },
-      {
         "source": "ASICXchange Market Place (USA)",
-        "price": 4882,
+        "price": 11,
         "date": "2025-12-19T08:41:32.000Z"
       },
       {
-        "source": "ASICXchange Market Place",
-        "price": 11,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰",
-        "price": 5390,
-        "date": "2025-12-20T11:31:32.000Z"
-      },
-      {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 4795,
+        "price": 11,
         "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "SCminer (Russia)",
-        "price": 5470,
-        "date": "2025-12-20T04:42:16.000Z"
-      },
-      {
-        "source": "How2mine | Россия",
-        "price": 5470,
-        "date": "2025-12-19T09:37:02.000Z"
-      },
-      {
-        "source": "BT-Miners Global (HK)",
-        "price": 4960,
-        "date": "2025-12-19T09:32:21.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M63S+",
+    "name": "Whatsminer M63S+ T",
     "hashrateTH": 440,
     "price": 11,
     "stats": {
       "min": 11,
       "max": 5896,
       "count": 3,
-      "middle": 4972
+      "middle": 11
     },
     "listings": [
       {
@@ -294,25 +154,25 @@
       },
       {
         "source": "ASICXchange Market Place (USA)",
-        "price": 4972,
+        "price": 11,
         "date": "2025-12-19T08:41:32.000Z"
       },
       {
-        "source": "BITMARS _Leila~",
+        "source": "SCminer",
         "price": 11,
-        "date": "2025-12-19T06:11:49.000Z"
+        "date": "2025-12-20T04:40:50.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M63S+",
+    "name": "Whatsminer M63S+ T",
     "hashrateTH": 436,
-    "price": 11,
+    "price": 10,
     "stats": {
-      "min": 11,
+      "min": 10,
       "max": 5842,
-      "count": 17,
-      "middle": 5160
+      "count": 6,
+      "middle": 11
     },
     "listings": [
       {
@@ -327,90 +187,35 @@
       },
       {
         "source": "Mining Resell",
-        "price": 4273,
+        "price": 10,
         "date": "2025-12-21T13:57:27.000Z"
       },
       {
-        "source": "CooldragonMinerList",
-        "price": 11,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerList (Russia)",
-        "price": 5530,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 11,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel (Russia)",
-        "price": 5530,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 5450,
-        "date": "2025-12-19T13:47:59.000Z"
-      },
-      {
         "source": "ASICXchange Market Place (USA)",
-        "price": 4927,
+        "price": 11,
         "date": "2025-12-19T08:41:32.000Z"
       },
       {
-        "source": "ASICXchange Market Place",
-        "price": 11,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (Russia)",
-        "price": 5530,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰",
-        "price": 5450,
-        "date": "2025-12-20T11:31:32.000Z"
-      },
-      {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 4840,
+        "price": 11,
         "date": "2025-12-20T11:31:17.000Z"
       },
       {
-        "source": "SCminer (Russia)",
-        "price": 5530,
-        "date": "2025-12-20T04:42:16.000Z"
-      },
-      {
-        "source": "How2mine | Россия",
-        "price": 5530,
-        "date": "2025-12-19T09:37:02.000Z"
-      },
-      {
-        "source": "BT-Miners Global (HK)",
-        "price": 5160,
-        "date": "2025-12-19T09:32:21.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
+        "source": "SCminer",
         "price": 11,
-        "date": "2025-12-19T06:11:49.000Z"
+        "date": "2025-12-20T04:40:50.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M60S+",
+    "name": "Whatsminer M60S+ T",
     "hashrateTH": 206,
     "price": 11,
     "stats": {
       "min": 11,
-      "max": 42848,
-      "count": 26,
-      "middle": 2338
+      "max": 2822,
+      "count": 10,
+      "middle": 12
     },
     "listings": [
       {
@@ -434,109 +239,29 @@
         "date": "2025-12-19T06:48:44.000Z"
       },
       {
-        "source": "CooldragonMinerList",
+        "source": "ASICXchange Market Place (USA)",
+        "price": 12,
+        "date": "2025-12-19T08:41:32.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place (USA)",
         "price": 11,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 11,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 2280,
-        "date": "2025-12-19T13:47:59.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 2390,
-        "date": "2025-12-19T13:47:59.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2513,
         "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2328,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2307,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2348,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (Russia)",
-        "price": 2300,
-        "date": "2025-12-19T07:26:05.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 11,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰",
-        "price": 2280,
-        "date": "2025-12-20T11:31:32.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰",
-        "price": 2390,
-        "date": "2025-12-20T11:31:32.000Z"
       },
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2287,
+        "price": 11,
         "date": "2025-12-20T11:31:17.000Z"
       },
       {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2307,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "SCminer (Russia)",
-        "price": 2490,
-        "date": "2025-12-20T04:42:16.000Z"
-      },
-      {
-        "source": "SCminer (Russia)",
-        "price": 2400,
-        "date": "2025-12-20T04:42:16.000Z"
-      },
-      {
-        "source": "How2mine | Россия",
-        "price": 2490,
-        "date": "2025-12-19T09:37:02.000Z"
-      },
-      {
-        "source": "How2mine | Россия",
-        "price": 2400,
-        "date": "2025-12-19T09:37:02.000Z"
-      },
-      {
-        "source": "BT-Miners Global (HK)",
-        "price": 2440,
-        "date": "2025-12-19T09:32:21.000Z"
+        "source": "SCminer",
+        "price": 11,
+        "date": "2025-12-20T04:40:50.000Z"
       },
       {
         "source": "AsicArk Official Channel (HK)",
-        "price": 2287,
+        "price": 11,
         "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 42848,
-        "date": "2025-12-19T06:11:49.000Z"
       },
       {
         "source": "BITMARS _Leila~",
@@ -546,14 +271,14 @@
     ]
   },
   {
-    "name": "Whatsminer M63S+",
+    "name": "Whatsminer M63S+ T",
     "hashrateTH": 430,
     "price": 11,
     "stats": {
       "min": 11,
       "max": 5676,
-      "count": 9,
-      "middle": 4773
+      "count": 5,
+      "middle": 11
     },
     "listings": [
       {
@@ -567,51 +292,31 @@
         "date": "2025-12-19T06:48:44.000Z"
       },
       {
-        "source": "CooldragonMinerList",
-        "price": 11,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 11,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
         "source": "ASICXchange Market Place (USA)",
-        "price": 4859,
+        "price": 11,
         "date": "2025-12-19T08:41:32.000Z"
       },
       {
-        "source": "ASICXchange Market Place",
-        "price": 11,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 4773,
+        "price": 11,
         "date": "2025-12-20T11:31:17.000Z"
       },
       {
-        "source": "BT-Miners Global (HK)",
-        "price": 4960,
-        "date": "2025-12-19T09:32:21.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
+        "source": "SCminer",
         "price": 11,
-        "date": "2025-12-19T06:11:49.000Z"
+        "date": "2025-12-20T04:40:50.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M63S+",
+    "name": "Whatsminer M63S+ T",
     "hashrateTH": 428,
     "price": 11,
     "stats": {
       "min": 11,
       "max": 5650,
-      "count": 7,
-      "middle": 5320
+      "count": 3,
+      "middle": 4837
     },
     "listings": [
       {
@@ -625,41 +330,21 @@
         "date": "2025-12-19T06:48:44.000Z"
       },
       {
-        "source": "ASICXchange Market Place",
-        "price": 5320,
-        "date": "2025-12-19T13:47:59.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰",
-        "price": 5320,
-        "date": "2025-12-20T11:31:32.000Z"
-      },
-      {
-        "source": "SCminer (Russia)",
-        "price": 5400,
-        "date": "2025-12-20T04:42:16.000Z"
-      },
-      {
-        "source": "How2mine | Россия",
-        "price": 5400,
-        "date": "2025-12-19T09:37:02.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
+        "source": "SCminer",
         "price": 11,
-        "date": "2025-12-19T06:11:49.000Z"
+        "date": "2025-12-20T04:40:50.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M60S+",
+    "name": "Whatsminer M60S+ T",
     "hashrateTH": 208,
     "price": 11,
     "stats": {
       "min": 11,
-      "max": 43264,
-      "count": 28,
-      "middle": 2406
+      "max": 2850,
+      "count": 9,
+      "middle": 11
     },
     "listings": [
       {
@@ -683,119 +368,24 @@
         "date": "2025-12-19T06:48:44.000Z"
       },
       {
-        "source": "CooldragonMinerList",
-        "price": 11,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerList (Russia)",
-        "price": 2520,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 11,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel (Russia)",
-        "price": 2520,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 2390,
-        "date": "2025-12-19T13:47:59.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 2420,
-        "date": "2025-12-19T13:47:59.000Z"
-      },
-      {
         "source": "ASICXchange Market Place (USA)",
-        "price": 2350,
+        "price": 11,
         "date": "2025-12-19T08:41:32.000Z"
       },
       {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2371,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (Russia)",
-        "price": 2390,
-        "date": "2025-12-19T07:26:05.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
         "price": 11,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (Russia)",
-        "price": 2520,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰",
-        "price": 2390,
-        "date": "2025-12-20T11:31:32.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰",
-        "price": 2420,
-        "date": "2025-12-20T11:31:32.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2309,
         "date": "2025-12-20T11:31:17.000Z"
       },
       {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2330,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "SCminer (Russia)",
-        "price": 2520,
-        "date": "2025-12-20T04:42:16.000Z"
-      },
-      {
-        "source": "SCminer (Russia)",
-        "price": 2490,
-        "date": "2025-12-20T04:42:16.000Z"
-      },
-      {
-        "source": "How2mine | Россия",
-        "price": 2520,
-        "date": "2025-12-19T09:37:02.000Z"
-      },
-      {
-        "source": "How2mine | Россия",
-        "price": 2490,
-        "date": "2025-12-19T09:37:02.000Z"
-      },
-      {
-        "source": "BT-Miners Global (HK)",
-        "price": 2510,
-        "date": "2025-12-19T09:32:21.000Z"
+        "source": "SCminer",
+        "price": 11,
+        "date": "2025-12-20T04:40:50.000Z"
       },
       {
         "source": "AsicArk Official Channel (HK)",
-        "price": 2350,
+        "price": 11,
         "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 2330,
-        "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 43264,
-        "date": "2025-12-19T06:11:49.000Z"
       },
       {
         "source": "BITMARS _Leila~",
@@ -805,7 +395,7 @@
     ]
   },
   {
-    "name": "Whatsminer M60S+",
+    "name": "Whatsminer M60S+ T",
     "hashrateTH": 210,
     "price": 2457,
     "stats": {
@@ -828,14 +418,14 @@
     ]
   },
   {
-    "name": "Whatsminer M60S+",
+    "name": "Whatsminer M60S+ T",
     "hashrateTH": 204,
     "price": 11,
     "stats": {
       "min": 11,
       "max": 2693,
-      "count": 11,
-      "middle": 2285
+      "count": 5,
+      "middle": 11
     },
     "listings": [
       {
@@ -849,61 +439,31 @@
         "date": "2025-12-19T06:48:44.000Z"
       },
       {
-        "source": "CooldragonMinerList",
-        "price": 11,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 11,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
         "source": "ASICXchange Market Place (USA)",
-        "price": 2285,
+        "price": 11,
         "date": "2025-12-19T08:41:32.000Z"
       },
       {
-        "source": "ASICXchange Market Place",
-        "price": 11,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2264,
+        "price": 11,
         "date": "2025-12-20T11:31:17.000Z"
       },
       {
-        "source": "SCminer (Dubai)",
-        "price": 2500,
-        "date": "2025-12-20T04:40:50.000Z"
-      },
-      {
-        "source": "BT-Miners Global (HK)",
-        "price": 2440,
-        "date": "2025-12-19T09:32:21.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
+        "source": "SCminer",
         "price": 11,
-        "date": "2025-12-19T06:11:49.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 2450,
-        "date": "2025-12-19T06:11:49.000Z"
+        "date": "2025-12-20T04:40:50.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M60S+",
+    "name": "Whatsminer M60S+ T",
     "hashrateTH": 202,
     "price": 11,
     "stats": {
       "min": 11,
       "max": 2666,
       "count": 4,
-      "middle": 2273
+      "middle": 1147
     },
     "listings": [
       {
@@ -918,13 +478,13 @@
       },
       {
         "source": "ASICXchange Market Place (USA)",
-        "price": 2262,
+        "price": 11,
         "date": "2025-12-19T08:41:32.000Z"
       },
       {
-        "source": "BITMARS _Leila~",
+        "source": "SCminer",
         "price": 11,
-        "date": "2025-12-19T06:11:49.000Z"
+        "date": "2025-12-20T04:40:50.000Z"
       }
     ]
   },
@@ -935,8 +495,8 @@
     "stats": {
       "min": 11,
       "max": 2930,
-      "count": 31,
-      "middle": 2590
+      "count": 18,
+      "middle": 2865
     },
     "listings": [
       {
@@ -950,19 +510,9 @@
         "date": "2025-12-21T13:57:27.000Z"
       },
       {
-        "source": "UNISTAR MINER（https://www.unistarminer.com/） (HK)",
-        "price": 2486,
-        "date": "2025-12-21T12:00:00.000Z"
-      },
-      {
         "source": "UNISTAR MINER（https://www.unistarminer.com/） (Russia)",
         "price": 2900,
         "date": "2025-12-21T12:00:00.000Z"
-      },
-      {
-        "source": "CooldragonMinerList",
-        "price": 2486,
-        "date": "2025-12-21T09:54:22.000Z"
       },
       {
         "source": "CooldragonMinerList (USA)",
@@ -973,11 +523,6 @@
         "source": "CooldragonMinerList (Russia)",
         "price": 2930,
         "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 2486,
-        "date": "2025-12-21T09:54:07.000Z"
       },
       {
         "source": "CooldragonMinerChannel (USA)",
@@ -1000,24 +545,9 @@
         "date": "2025-12-19T13:47:59.000Z"
       },
       {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2816,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2552,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
         "source": "ASICXchange Market Place (Russia)",
         "price": 2880,
         "date": "2025-12-19T07:26:05.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 2486,
-        "date": "2025-12-19T07:22:54.000Z"
       },
       {
         "source": "ASICXchange Market Place (USA)",
@@ -1031,11 +561,6 @@
       },
       {
         "source": "Unistar Miner(Offical)",
-        "price": 2486,
-        "date": "2025-12-20T16:24:13.000Z"
-      },
-      {
-        "source": "Unistar Miner(Offical)",
         "price": 2900,
         "date": "2025-12-20T16:24:13.000Z"
       },
@@ -1045,24 +570,9 @@
         "date": "2025-12-20T11:31:32.000Z"
       },
       {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2442,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
         "source": "SCminer (Russia)",
         "price": 2900,
         "date": "2025-12-20T04:42:16.000Z"
-      },
-      {
-        "source": "SCminer",
-        "price": 2486,
-        "date": "2025-12-20T04:40:50.000Z"
-      },
-      {
-        "source": "SCminer (USA)",
-        "price": 2794,
-        "date": "2025-12-20T04:40:50.000Z"
       },
       {
         "source": "SCminer (Russia)",
@@ -1070,41 +580,26 @@
         "date": "2025-12-19T03:48:15.000Z"
       },
       {
-        "source": "AsicArk Official Channel (USA)",
-        "price": 2772,
-        "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 2464,
-        "date": "2025-12-19T09:15:50.000Z"
+        "source": "How2mine | Россия",
+        "price": 2880,
+        "date": "2025-12-19T09:37:02.000Z"
       },
       {
         "source": "DCE miner",
         "price": 11,
         "date": "2025-12-19T08:17:26.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 2464,
-        "date": "2025-12-19T06:11:49.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 2772,
-        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
   {
     "name": "Antminer S21e Hydro",
     "hashrateTH": 332,
-    "price": 2058,
+    "price": 2160,
     "stats": {
-      "min": 2058,
+      "min": 2160,
       "max": 2680,
-      "count": 11,
-      "middle": 2092
+      "count": 4,
+      "middle": 2520
     },
     "listings": [
       {
@@ -1118,49 +613,14 @@
         "date": "2025-12-21T13:57:27.000Z"
       },
       {
-        "source": "CooldragonMinerList",
-        "price": 2092,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 2092,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
         "source": "ASICXchange Market Place (Russia)",
         "price": 2670,
         "date": "2025-12-19T07:26:05.000Z"
       },
       {
-        "source": "ASICXchange Market Place",
-        "price": 2092,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2058,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "SCminer",
-        "price": 2092,
-        "date": "2025-12-20T04:40:50.000Z"
-      },
-      {
         "source": "How2mine | Россия",
         "price": 2680,
         "date": "2025-12-19T09:37:02.000Z"
-      },
-      {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 2058,
-        "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 2058,
-        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
@@ -1171,8 +631,8 @@
     "stats": {
       "min": 6,
       "max": 2480,
-      "count": 13,
-      "middle": 1953
+      "count": 5,
+      "middle": 2190
     },
     "listings": [
       {
@@ -1186,39 +646,9 @@
         "date": "2025-12-21T13:57:27.000Z"
       },
       {
-        "source": "CooldragonMinerList",
-        "price": 1953,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 1953,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 1953,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
         "source": "ASICXchange Market Place (Russia)",
         "price": 2470,
         "date": "2025-12-19T07:26:05.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 1953,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 1922,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "SCminer",
-        "price": 1953,
-        "date": "2025-12-20T04:40:50.000Z"
       },
       {
         "source": "How2mine | Россия",
@@ -1226,19 +656,9 @@
         "date": "2025-12-19T09:37:02.000Z"
       },
       {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 1922,
-        "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
         "source": "DCE miner",
         "price": 6,
         "date": "2025-12-19T08:17:26.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 1891,
-        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
@@ -1249,29 +669,14 @@
     "stats": {
       "min": 4,
       "max": 1730,
-      "count": 21,
-      "middle": 1260
+      "count": 10,
+      "middle": 1680
     },
     "listings": [
       {
         "source": "JingleMining Group I ASIC Miner Supplier",
         "price": 1300,
         "date": "2025-12-19T06:48:43.000Z"
-      },
-      {
-        "source": "UNISTAR MINER（https://www.unistarminer.com/） (HK)",
-        "price": 1260,
-        "date": "2025-12-21T12:00:00.000Z"
-      },
-      {
-        "source": "CooldragonMinerList",
-        "price": 1260,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 1260,
-        "date": "2025-12-21T09:54:07.000Z"
       },
       {
         "source": "NHASH Miners Market",
@@ -1284,29 +689,9 @@
         "date": "2025-12-19T13:47:59.000Z"
       },
       {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 1260,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
         "source": "ASICXchange Market Place (Russia)",
         "price": 1680,
         "date": "2025-12-19T07:26:05.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 1260,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "Unistar Miner(Offical)",
-        "price": 1260,
-        "date": "2025-12-20T16:24:13.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 1231,
-        "date": "2025-12-20T11:31:17.000Z"
       },
       {
         "source": "⛏️Asic mining center - Mila💰",
@@ -1317,11 +702,6 @@
         "source": "SCminer (Russia)",
         "price": 1680,
         "date": "2025-12-20T04:42:16.000Z"
-      },
-      {
-        "source": "SCminer",
-        "price": 1260,
-        "date": "2025-12-20T04:40:50.000Z"
       },
       {
         "source": "SCminer (Russia)",
@@ -1339,24 +719,9 @@
         "date": "2025-12-19T09:32:21.000Z"
       },
       {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 1231,
-        "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
         "source": "DCE miner",
         "price": 4,
         "date": "2025-12-19T08:17:26.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 1231,
-        "date": "2025-12-19T06:11:49.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 1201,
-        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
@@ -1367,8 +732,8 @@
     "stats": {
       "min": 8,
       "max": 3500,
-      "count": 22,
-      "middle": 2658
+      "count": 13,
+      "middle": 3400
     },
     "listings": [
       {
@@ -1382,24 +747,9 @@
         "date": "2025-12-21T13:57:27.000Z"
       },
       {
-        "source": "UNISTAR MINER（https://www.unistarminer.com/） (HK)",
-        "price": 2603,
-        "date": "2025-12-21T12:00:00.000Z"
-      },
-      {
-        "source": "CooldragonMinerList",
-        "price": 2636,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
         "source": "CooldragonMinerList (Russia)",
         "price": 3500,
         "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 2636,
-        "date": "2025-12-21T09:54:07.000Z"
       },
       {
         "source": "CooldragonMinerChannel (Russia)",
@@ -1422,19 +772,9 @@
         "date": "2025-12-19T07:26:05.000Z"
       },
       {
-        "source": "ASICXchange Market Place",
-        "price": 2636,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
         "source": "ASICXchange Market Place (Russia)",
         "price": 3500,
         "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "Unistar Miner(Offical)",
-        "price": 2603,
-        "date": "2025-12-20T16:24:13.000Z"
       },
       {
         "source": "⛏️Asic mining center - Mila💰",
@@ -1442,19 +782,9 @@
         "date": "2025-12-20T11:31:32.000Z"
       },
       {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2569,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
         "source": "SCminer (Russia)",
         "price": 3500,
         "date": "2025-12-20T04:42:16.000Z"
-      },
-      {
-        "source": "SCminer",
-        "price": 2636,
-        "date": "2025-12-20T04:40:50.000Z"
       },
       {
         "source": "How2mine | Россия",
@@ -1467,19 +797,9 @@
         "date": "2025-12-19T09:32:21.000Z"
       },
       {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 2535,
-        "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
         "source": "DCE miner",
         "price": 8,
         "date": "2025-12-19T08:17:26.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 2569,
-        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
@@ -1490,8 +810,8 @@
     "stats": {
       "min": 8,
       "max": 4300,
-      "count": 16,
-      "middle": 3200
+      "count": 9,
+      "middle": 4200
     },
     "listings": [
       {
@@ -1500,19 +820,9 @@
         "date": "2025-12-19T06:48:43.000Z"
       },
       {
-        "source": "UNISTAR MINER（https://www.unistarminer.com/） (HK)",
-        "price": 3121,
-        "date": "2025-12-21T12:00:00.000Z"
-      },
-      {
-        "source": "CooldragonMinerList",
-        "price": 3200,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 3200,
-        "date": "2025-12-21T09:54:07.000Z"
+        "source": "ASICXchange Market Place",
+        "price": 4200,
+        "date": "2025-12-19T13:47:59.000Z"
       },
       {
         "source": "ASICXchange Market Place (Russia)",
@@ -1521,33 +831,18 @@
       },
       {
         "source": "ASICXchange Market Place",
-        "price": 3200,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
         "price": 3950,
         "date": "2025-12-18T21:20:02.000Z"
       },
       {
-        "source": "Unistar Miner(Offical)",
-        "price": 3121,
-        "date": "2025-12-20T16:24:13.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3121,
-        "date": "2025-12-20T11:31:17.000Z"
+        "source": "⛏️Asic mining center - Mila💰",
+        "price": 4200,
+        "date": "2025-12-20T11:31:32.000Z"
       },
       {
         "source": "SCminer (Russia)",
         "price": 4300,
         "date": "2025-12-20T04:42:16.000Z"
-      },
-      {
-        "source": "SCminer",
-        "price": 3200,
-        "date": "2025-12-20T04:40:50.000Z"
       },
       {
         "source": "How2mine | Россия",
@@ -1560,19 +855,9 @@
         "date": "2025-12-19T09:32:21.000Z"
       },
       {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 3121,
-        "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
         "source": "DCE miner",
         "price": 8,
         "date": "2025-12-19T08:17:26.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 3121,
-        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
@@ -1583,8 +868,8 @@
     "stats": {
       "min": 8,
       "max": 4000,
-      "count": 28,
-      "middle": 3100
+      "count": 19,
+      "middle": 3800
     },
     "listings": [
       {
@@ -1598,11 +883,6 @@
         "date": "2025-12-21T13:57:27.000Z"
       },
       {
-        "source": "UNISTAR MINER（https://www.unistarminer.com/） (HK)",
-        "price": 2828,
-        "date": "2025-12-21T12:00:00.000Z"
-      },
-      {
         "source": "UNISTAR MINER（https://www.unistarminer.com/） (Dubai)",
         "price": 3100,
         "date": "2025-12-21T12:00:00.000Z"
@@ -1613,19 +893,9 @@
         "date": "2025-12-19T12:00:00.000Z"
       },
       {
-        "source": "CooldragonMinerList",
-        "price": 2864,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
         "source": "CooldragonMinerList (Russia)",
         "price": 3900,
         "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 2864,
-        "date": "2025-12-21T09:54:07.000Z"
       },
       {
         "source": "CooldragonMinerChannel (Russia)",
@@ -1648,19 +918,9 @@
         "date": "2025-12-19T07:26:05.000Z"
       },
       {
-        "source": "ASICXchange Market Place",
-        "price": 2864,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
         "source": "ASICXchange Market Place (Russia)",
         "price": 3900,
         "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "Unistar Miner(Offical)",
-        "price": 2828,
-        "date": "2025-12-20T16:24:13.000Z"
       },
       {
         "source": "Unistar Miner(Offical)",
@@ -1678,19 +938,9 @@
         "date": "2025-12-20T11:31:32.000Z"
       },
       {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2792,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
         "source": "SCminer (Russia)",
         "price": 3900,
         "date": "2025-12-20T04:42:16.000Z"
-      },
-      {
-        "source": "SCminer",
-        "price": 2864,
-        "date": "2025-12-20T04:40:50.000Z"
       },
       {
         "source": "SCminer (Dubai)",
@@ -1708,19 +958,9 @@
         "date": "2025-12-19T09:32:21.000Z"
       },
       {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 2757,
-        "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
         "source": "DCE miner",
         "price": 8,
         "date": "2025-12-19T08:17:26.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 2792,
-        "date": "2025-12-19T06:11:49.000Z"
       },
       {
         "source": "BITMARS _Leila~",
@@ -1736,8 +976,8 @@
     "stats": {
       "min": 10,
       "max": 3050,
-      "count": 24,
-      "middle": 2225
+      "count": 13,
+      "middle": 2300
     },
     "listings": [
       {
@@ -1746,24 +986,9 @@
         "date": "2025-12-19T06:48:43.000Z"
       },
       {
-        "source": "UNISTAR MINER（https://www.unistarminer.com/） (HK)",
-        "price": 2138,
-        "date": "2025-12-21T12:00:00.000Z"
-      },
-      {
         "source": "UNISTAR MINER（https://www.unistarminer.com/） (Russia)",
         "price": 2430,
         "date": "2025-12-21T12:00:00.000Z"
-      },
-      {
-        "source": "CooldragonMinerList",
-        "price": 2138,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 2138,
-        "date": "2025-12-21T09:54:07.000Z"
       },
       {
         "source": "NHASH Miners Market",
@@ -1776,29 +1001,9 @@
         "date": "2025-12-19T13:47:59.000Z"
       },
       {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 3015,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2138,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
         "source": "ASICXchange Market Place (Russia)",
         "price": 2300,
         "date": "2025-12-19T07:26:05.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 2138,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "Unistar Miner(Offical)",
-        "price": 2138,
-        "date": "2025-12-20T16:24:13.000Z"
       },
       {
         "source": "Unistar Miner(Offical)",
@@ -1811,11 +1016,6 @@
         "date": "2025-12-20T11:31:32.000Z"
       },
       {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2093,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
         "source": "⛏️Asic mining center - Mila💰",
         "price": 2300,
         "date": "2025-12-19T09:03:49.000Z"
@@ -1824,11 +1024,6 @@
         "source": "SCminer (Russia)",
         "price": 2350,
         "date": "2025-12-20T04:42:16.000Z"
-      },
-      {
-        "source": "SCminer",
-        "price": 2138,
-        "date": "2025-12-20T04:40:50.000Z"
       },
       {
         "source": "How2mine | Россия",
@@ -1846,19 +1041,9 @@
         "date": "2025-12-19T09:32:21.000Z"
       },
       {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 2115,
-        "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
         "source": "DCE miner",
         "price": 10,
         "date": "2025-12-19T08:17:26.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 2093,
-        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
@@ -1868,9 +1053,9 @@
     "price": 11,
     "stats": {
       "min": 11,
-      "max": 3220,
-      "count": 17,
-      "middle": 2430
+      "max": 2540,
+      "count": 10,
+      "middle": 2425
     },
     "listings": [
       {
@@ -1884,34 +1069,14 @@
         "date": "2025-12-21T12:00:00.000Z"
       },
       {
-        "source": "CooldragonMinerList",
-        "price": 2444,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 2444,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
         "source": "ASICXchange Market Place",
         "price": 2400,
         "date": "2025-12-19T13:47:59.000Z"
       },
       {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 3220,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
         "source": "ASICXchange Market Place (Russia)",
         "price": 2400,
         "date": "2025-12-19T07:26:05.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 2444,
-        "date": "2025-12-19T07:22:54.000Z"
       },
       {
         "source": "Unistar Miner(Offical)",
@@ -1924,19 +1089,9 @@
         "date": "2025-12-20T11:31:32.000Z"
       },
       {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2397,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
         "source": "SCminer (Russia)",
         "price": 2450,
         "date": "2025-12-20T04:42:16.000Z"
-      },
-      {
-        "source": "SCminer",
-        "price": 2444,
-        "date": "2025-12-20T04:40:50.000Z"
       },
       {
         "source": "How2mine | Россия",
@@ -1952,11 +1107,6 @@
         "source": "DCE miner",
         "price": 11,
         "date": "2025-12-19T08:17:26.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 2397,
-        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
@@ -1967,8 +1117,8 @@
     "stats": {
       "min": 12,
       "max": 3550,
-      "count": 18,
-      "middle": 3023
+      "count": 11,
+      "middle": 3320
     },
     "listings": [
       {
@@ -1980,16 +1130,6 @@
         "source": "Mining Resell",
         "price": 2450,
         "date": "2025-12-21T13:57:27.000Z"
-      },
-      {
-        "source": "CooldragonMinerList",
-        "price": 2965,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 2965,
-        "date": "2025-12-21T09:54:07.000Z"
       },
       {
         "source": "NHASH Miners Market",
@@ -2007,29 +1147,14 @@
         "date": "2025-12-19T07:26:05.000Z"
       },
       {
-        "source": "ASICXchange Market Place",
-        "price": 2965,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
         "source": "⛏️Asic mining center - Mila💰",
         "price": 3320,
         "date": "2025-12-20T11:31:32.000Z"
       },
       {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2940,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
         "source": "SCminer (Russia)",
         "price": 3350,
         "date": "2025-12-20T04:42:16.000Z"
-      },
-      {
-        "source": "SCminer",
-        "price": 2965,
-        "date": "2025-12-20T04:40:50.000Z"
       },
       {
         "source": "How2mine | Россия",
@@ -2047,19 +1172,9 @@
         "date": "2025-12-19T09:32:21.000Z"
       },
       {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 2965,
-        "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
         "source": "DCE miner",
         "price": 12,
         "date": "2025-12-19T08:17:26.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 2940,
-        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
@@ -2070,8 +1185,8 @@
     "stats": {
       "min": 3,
       "max": 535,
-      "count": 17,
-      "middle": 319
+      "count": 9,
+      "middle": 340
     },
     "listings": [
       {
@@ -2083,16 +1198,6 @@
         "source": "Mining Resell",
         "price": 169,
         "date": "2025-12-19T19:19:39.000Z"
-      },
-      {
-        "source": "CooldragonMinerList",
-        "price": 319,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 319,
-        "date": "2025-12-21T09:54:07.000Z"
       },
       {
         "source": "NHASH Miners Market",
@@ -2110,29 +1215,9 @@
         "date": "2025-12-19T13:47:59.000Z"
       },
       {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 407,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 319,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
         "source": "⛏️Asic mining center - Mila💰",
         "price": 370,
         "date": "2025-12-20T11:31:32.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 319,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "SCminer",
-        "price": 319,
-        "date": "2025-12-20T04:40:50.000Z"
       },
       {
         "source": "ASICXchange-Your Mining Supplier",
@@ -2145,19 +1230,9 @@
         "date": "2025-12-19T09:32:21.000Z"
       },
       {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 319,
-        "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
         "source": "DCE miner",
         "price": 3,
         "date": "2025-12-19T08:17:26.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 308,
-        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
@@ -2168,8 +1243,8 @@
     "stats": {
       "min": 4,
       "max": 619,
-      "count": 18,
-      "middle": 410
+      "count": 10,
+      "middle": 520
     },
     "listings": [
       {
@@ -2188,16 +1263,6 @@
         "date": "2025-12-19T19:19:39.000Z"
       },
       {
-        "source": "CooldragonMinerList",
-        "price": 408,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 408,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
         "source": "NHASH Miners Market",
         "price": 619,
         "date": "2025-12-19T09:00:07.000Z"
@@ -2213,29 +1278,9 @@
         "date": "2025-12-19T13:47:59.000Z"
       },
       {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 444,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 408,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
         "source": "⛏️Asic mining center - Mila💰",
         "price": 410,
         "date": "2025-12-20T11:31:32.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 396,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "SCminer",
-        "price": 396,
-        "date": "2025-12-20T04:40:50.000Z"
       },
       {
         "source": "ASICXchange-Your Mining Supplier",
@@ -2248,19 +1293,9 @@
         "date": "2025-12-19T09:32:21.000Z"
       },
       {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 396,
-        "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
         "source": "DCE miner",
         "price": 4,
         "date": "2025-12-19T08:17:26.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 384,
-        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
@@ -2271,8 +1306,8 @@
     "stats": {
       "min": 3,
       "max": 549,
-      "count": 18,
-      "middle": 334
+      "count": 10,
+      "middle": 380
     },
     "listings": [
       {
@@ -2291,16 +1326,6 @@
         "date": "2025-12-19T19:19:39.000Z"
       },
       {
-        "source": "CooldragonMinerList",
-        "price": 334,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 334,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
         "source": "NHASH Miners Market",
         "price": 549,
         "date": "2025-12-19T09:00:07.000Z"
@@ -2316,29 +1341,9 @@
         "date": "2025-12-19T13:47:59.000Z"
       },
       {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 426,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 334,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
         "source": "⛏️Asic mining center - Mila💰",
         "price": 390,
         "date": "2025-12-20T11:31:32.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 334,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "SCminer",
-        "price": 334,
-        "date": "2025-12-20T04:40:50.000Z"
       },
       {
         "source": "ASICXchange-Your Mining Supplier",
@@ -2351,19 +1356,9 @@
         "date": "2025-12-19T09:32:21.000Z"
       },
       {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 334,
-        "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
         "source": "DCE miner",
         "price": 3,
         "date": "2025-12-19T08:17:26.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 322,
-        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
@@ -2374,8 +1369,8 @@
     "stats": {
       "min": 17,
       "max": 8250,
-      "count": 14,
-      "middle": 7805
+      "count": 5,
+      "middle": 7850
     },
     "listings": [
       {
@@ -2389,41 +1384,6 @@
         "date": "2025-12-21T13:57:27.000Z"
       },
       {
-        "source": "UNISTAR MINER（https://www.unistarminer.com/） (HK)",
-        "price": 7805,
-        "date": "2025-12-21T12:00:00.000Z"
-      },
-      {
-        "source": "CooldragonMinerList",
-        "price": 7805,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 7805,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 7805,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 7805,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "Unistar Miner(Offical)",
-        "price": 7805,
-        "date": "2025-12-20T16:24:13.000Z"
-      },
-      {
-        "source": "SCminer",
-        "price": 7805,
-        "date": "2025-12-20T04:40:50.000Z"
-      },
-      {
         "source": "BT-Miners Global (USA)",
         "price": 8250,
         "date": "2025-12-19T09:32:21.000Z"
@@ -2434,19 +1394,9 @@
         "date": "2025-12-19T09:32:21.000Z"
       },
       {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 7710,
-        "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
         "source": "DCE miner",
         "price": 17,
         "date": "2025-12-19T08:17:26.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 7757,
-        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
@@ -2457,8 +1407,8 @@
     "stats": {
       "min": 12,
       "max": 3300,
-      "count": 28,
-      "middle": 2780
+      "count": 18,
+      "middle": 2990
     },
     "listings": [
       {
@@ -2467,29 +1417,14 @@
         "date": "2025-12-19T06:48:43.000Z"
       },
       {
-        "source": "UNISTAR MINER（https://www.unistarminer.com/） (HK)",
-        "price": 2691,
-        "date": "2025-12-21T12:00:00.000Z"
-      },
-      {
         "source": "UNISTAR MINER（https://www.unistarminer.com/） (Russia)",
         "price": 3000,
         "date": "2025-12-21T12:00:00.000Z"
       },
       {
-        "source": "CooldragonMinerList",
-        "price": 2714,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
         "source": "CooldragonMinerList (Russia)",
         "price": 3030,
         "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 2714,
-        "date": "2025-12-21T09:54:07.000Z"
       },
       {
         "source": "CooldragonMinerChannel (Russia)",
@@ -2512,24 +1447,9 @@
         "date": "2025-12-19T13:47:59.000Z"
       },
       {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 3182,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2714,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
         "source": "ASICXchange Market Place (Russia)",
         "price": 2980,
         "date": "2025-12-19T07:26:05.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 2714,
-        "date": "2025-12-19T07:22:54.000Z"
       },
       {
         "source": "ASICXchange Market Place (Russia)",
@@ -2543,11 +1463,6 @@
       },
       {
         "source": "Unistar Miner(Offical)",
-        "price": 2691,
-        "date": "2025-12-20T16:24:13.000Z"
-      },
-      {
-        "source": "Unistar Miner(Offical)",
         "price": 3000,
         "date": "2025-12-20T16:24:13.000Z"
       },
@@ -2557,24 +1472,19 @@
         "date": "2025-12-20T11:31:32.000Z"
       },
       {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2668,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
         "source": "SCminer (Russia)",
         "price": 3000,
         "date": "2025-12-20T04:42:16.000Z"
       },
       {
-        "source": "SCminer",
-        "price": 2714,
-        "date": "2025-12-20T04:40:50.000Z"
-      },
-      {
         "source": "SCminer (Russia)",
         "price": 3030,
         "date": "2025-12-19T03:48:15.000Z"
+      },
+      {
+        "source": "How2mine | Россия",
+        "price": 2980,
+        "date": "2025-12-19T09:37:02.000Z"
       },
       {
         "source": "BT-Miners Global (USA)",
@@ -2587,19 +1497,9 @@
         "date": "2025-12-19T09:32:21.000Z"
       },
       {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 2668,
-        "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
         "source": "DCE miner",
         "price": 12,
         "date": "2025-12-19T08:17:26.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 2668,
-        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
@@ -2610,8 +1510,8 @@
     "stats": {
       "min": 10,
       "max": 2349,
-      "count": 14,
-      "middle": 2052
+      "count": 4,
+      "middle": 2150
     },
     "listings": [
       {
@@ -2620,49 +1520,9 @@
         "date": "2025-12-19T06:48:43.000Z"
       },
       {
-        "source": "UNISTAR MINER（https://www.unistarminer.com/） (HK)",
-        "price": 2052,
-        "date": "2025-12-21T12:00:00.000Z"
-      },
-      {
-        "source": "CooldragonMinerList",
-        "price": 2052,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 2052,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
         "source": "NHASH Miners Market",
         "price": 2349,
         "date": "2025-12-19T09:00:07.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2052,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 2052,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "Unistar Miner(Offical)",
-        "price": 2052,
-        "date": "2025-12-20T16:24:13.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2009,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "SCminer",
-        "price": 2052,
-        "date": "2025-12-20T04:40:50.000Z"
       },
       {
         "source": "BT-Miners Global (HK)",
@@ -2670,19 +1530,9 @@
         "date": "2025-12-19T09:32:21.000Z"
       },
       {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 2030,
-        "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
         "source": "DCE miner",
         "price": 10,
         "date": "2025-12-19T08:17:26.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 2009,
-        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
@@ -2764,63 +1614,566 @@
     ]
   },
   {
-    "name": "Whatsminer M63S+",
+    "name": "Whatsminer M63S+ T",
     "hashrateTH": 434,
-    "price": 4253,
+    "price": 10,
     "stats": {
-      "min": 4253,
-      "max": 5500,
-      "count": 6,
-      "middle": 5420
+      "min": 10,
+      "max": 11,
+      "count": 2,
+      "middle": 11
     },
     "listings": [
       {
         "source": "Mining Resell",
-        "price": 4253,
+        "price": 10,
         "date": "2025-12-21T13:57:27.000Z"
       },
       {
-        "source": "ASICXchange Market Place",
-        "price": 5420,
-        "date": "2025-12-19T13:47:59.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰",
-        "price": 5420,
-        "date": "2025-12-20T11:31:32.000Z"
-      },
-      {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 4817,
+        "price": 11,
         "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "SCminer (Russia)",
-        "price": 5500,
-        "date": "2025-12-20T04:42:16.000Z"
-      },
-      {
-        "source": "How2mine | Россия",
-        "price": 5500,
-        "date": "2025-12-19T09:37:02.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M63S+",
+    "name": "Whatsminer M63S+ T",
     "hashrateTH": 438,
-    "price": 11,
+    "price": 10,
     "stats": {
-      "min": 11,
-      "max": 5160,
-      "count": 6,
-      "middle": 2152
+      "min": 10,
+      "max": 11,
+      "count": 2,
+      "middle": 11
     },
     "listings": [
       {
         "source": "Mining Resell",
-        "price": 4292,
+        "price": 10,
         "date": "2025-12-21T13:57:27.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 11,
+        "date": "2025-12-20T11:31:17.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M61S+ T",
+    "hashrateTH": 238,
+    "price": 10,
+    "stats": {
+      "min": 10,
+      "max": 11,
+      "count": 3,
+      "middle": 11
+    },
+    "listings": [
+      {
+        "source": "Mining Resell",
+        "price": 10,
+        "date": "2025-12-21T13:57:27.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 11,
+        "date": "2025-12-19T08:41:32.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 11,
+        "date": "2025-12-20T04:40:50.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M61S+ T",
+    "hashrateTH": 240,
+    "price": 10,
+    "stats": {
+      "min": 10,
+      "max": 12,
+      "count": 3,
+      "middle": 11
+    },
+    "listings": [
+      {
+        "source": "Mining Resell",
+        "price": 10,
+        "date": "2025-12-21T13:57:27.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 12,
+        "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 11,
+        "date": "2025-12-20T04:40:50.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M61S+ T",
+    "hashrateTH": 242,
+    "price": 10,
+    "stats": {
+      "min": 10,
+      "max": 12,
+      "count": 2,
+      "middle": 11
+    },
+    "listings": [
+      {
+        "source": "Mining Resell",
+        "price": 10,
+        "date": "2025-12-21T13:57:27.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 12,
+        "date": "2025-12-20T11:31:17.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S19 XP Hydro T",
+    "hashrateTH": 293,
+    "price": 4,
+    "stats": {
+      "min": 4,
+      "max": 4,
+      "count": 10,
+      "middle": 4
+    },
+    "listings": [
+      {
+        "source": "UNISTAR MINER（https://www.unistarminer.com/） (HK)",
+        "price": 4,
+        "date": "2025-12-21T12:00:00.000Z"
+      },
+      {
+        "source": "CooldragonMinerList",
+        "price": 4,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 4,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 4,
+        "date": "2025-12-19T08:41:32.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 4,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "Unistar Miner(Offical)",
+        "price": 4,
+        "date": "2025-12-20T16:24:13.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 4,
+        "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 4,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 4,
+        "date": "2025-12-19T09:15:50.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 4,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21+ Hydro T",
+    "hashrateTH": 395,
+    "price": 8,
+    "stats": {
+      "min": 8,
+      "max": 8,
+      "count": 9,
+      "middle": 8
+    },
+    "listings": [
+      {
+        "source": "UNISTAR MINER（https://www.unistarminer.com/） (HK)",
+        "price": 8,
+        "date": "2025-12-21T12:00:00.000Z"
+      },
+      {
+        "source": "CooldragonMinerList",
+        "price": 8,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 8,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 8,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "Unistar Miner(Offical)",
+        "price": 8,
+        "date": "2025-12-20T16:24:13.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 8,
+        "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 8,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 8,
+        "date": "2025-12-19T09:15:50.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 8,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21+ Hydro T",
+    "hashrateTH": 358,
+    "price": 8,
+    "stats": {
+      "min": 8,
+      "max": 8,
+      "count": 9,
+      "middle": 8
+    },
+    "listings": [
+      {
+        "source": "UNISTAR MINER（https://www.unistarminer.com/） (HK)",
+        "price": 8,
+        "date": "2025-12-21T12:00:00.000Z"
+      },
+      {
+        "source": "CooldragonMinerList",
+        "price": 8,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 8,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 8,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "Unistar Miner(Offical)",
+        "price": 8,
+        "date": "2025-12-20T16:24:13.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 8,
+        "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 8,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 8,
+        "date": "2025-12-19T09:15:50.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 8,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21+ Hydro T",
+    "hashrateTH": 338,
+    "price": 8,
+    "stats": {
+      "min": 8,
+      "max": 8,
+      "count": 9,
+      "middle": 8
+    },
+    "listings": [
+      {
+        "source": "UNISTAR MINER（https://www.unistarminer.com/） (HK)",
+        "price": 8,
+        "date": "2025-12-21T12:00:00.000Z"
+      },
+      {
+        "source": "CooldragonMinerList",
+        "price": 8,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 8,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 8,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "Unistar Miner(Offical)",
+        "price": 8,
+        "date": "2025-12-20T16:24:13.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 8,
+        "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 8,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 8,
+        "date": "2025-12-19T09:15:50.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 8,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21+ T",
+    "hashrateTH": 225,
+    "price": 9,
+    "stats": {
+      "min": 9,
+      "max": 13,
+      "count": 10,
+      "middle": 10
+    },
+    "listings": [
+      {
+        "source": "UNISTAR MINER（https://www.unistarminer.com/） (HK)",
+        "price": 10,
+        "date": "2025-12-21T12:00:00.000Z"
+      },
+      {
+        "source": "CooldragonMinerList",
+        "price": 10,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 10,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 13,
+        "date": "2025-12-19T08:41:32.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 10,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "Unistar Miner(Offical)",
+        "price": 10,
+        "date": "2025-12-20T16:24:13.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 9,
+        "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 10,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 9,
+        "date": "2025-12-19T09:15:50.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 9,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21+ T",
+    "hashrateTH": 216,
+    "price": 9,
+    "stats": {
+      "min": 9,
+      "max": 10,
+      "count": 9,
+      "middle": 10
+    },
+    "listings": [
+      {
+        "source": "UNISTAR MINER（https://www.unistarminer.com/） (HK)",
+        "price": 10,
+        "date": "2025-12-21T12:00:00.000Z"
+      },
+      {
+        "source": "CooldragonMinerList",
+        "price": 10,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 10,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 10,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "Unistar Miner(Offical)",
+        "price": 10,
+        "date": "2025-12-20T16:24:13.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 9,
+        "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 10,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 9,
+        "date": "2025-12-19T09:15:50.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 9,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21 Pro T",
+    "hashrateTH": 234,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 14,
+      "count": 10,
+      "middle": 12
+    },
+    "listings": [
+      {
+        "source": "UNISTAR MINER（https://www.unistarminer.com/） (HK)",
+        "price": 12,
+        "date": "2025-12-21T12:00:00.000Z"
+      },
+      {
+        "source": "CooldragonMinerList",
+        "price": 12,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 12,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 14,
+        "date": "2025-12-19T08:41:32.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 12,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "Unistar Miner(Offical)",
+        "price": 12,
+        "date": "2025-12-20T16:24:13.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 11,
+        "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 12,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 11,
+        "date": "2025-12-19T09:15:50.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 11,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21 Pro T",
+    "hashrateTH": 220,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 13,
+      "count": 13,
+      "middle": 11
+    },
+    "listings": [
+      {
+        "source": "UNISTAR MINER（https://www.unistarminer.com/） (HK)",
+        "price": 11,
+        "date": "2025-12-21T12:00:00.000Z"
       },
       {
         "source": "CooldragonMinerList",
@@ -2833,19 +2186,666 @@
         "date": "2025-12-21T09:54:07.000Z"
       },
       {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 13,
+        "date": "2025-12-19T08:41:32.000Z"
+      },
+      {
         "source": "ASICXchange Market Place",
         "price": 11,
         "date": "2025-12-19T07:22:54.000Z"
       },
       {
+        "source": "Unistar Miner(Offical)",
+        "price": 11,
+        "date": "2025-12-20T16:24:13.000Z"
+      },
+      {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 4862,
+        "price": 11,
         "date": "2025-12-20T11:31:17.000Z"
       },
       {
+        "source": "SCminer",
+        "price": 11,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "SCminer (USA)",
+        "price": 13,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (USA)",
+        "price": 13,
+        "date": "2025-12-19T09:15:50.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 11,
+        "date": "2025-12-19T09:15:50.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 11,
+        "date": "2025-12-19T06:11:49.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 13,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21 XP Hydro T",
+    "hashrateTH": 473,
+    "price": 16,
+    "stats": {
+      "min": 16,
+      "max": 17,
+      "count": 9,
+      "middle": 17
+    },
+    "listings": [
+      {
+        "source": "UNISTAR MINER（https://www.unistarminer.com/） (HK)",
+        "price": 17,
+        "date": "2025-12-21T12:00:00.000Z"
+      },
+      {
+        "source": "CooldragonMinerList",
+        "price": 17,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 17,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 17,
+        "date": "2025-12-19T08:41:32.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 17,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "Unistar Miner(Offical)",
+        "price": 17,
+        "date": "2025-12-20T16:24:13.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 17,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 16,
+        "date": "2025-12-19T09:15:50.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 16,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S19 XP",
+    "hashrateTH": 151,
+    "price": 1350,
+    "stats": {
+      "min": 1350,
+      "max": 1350,
+      "count": 2,
+      "middle": 1350
+    },
+    "listings": [
+      {
+        "source": "UNISTAR MINER（https://www.unistarminer.com/） (Russia)",
+        "price": 1350,
+        "date": "2025-12-21T12:00:00.000Z"
+      },
+      {
+        "source": "Unistar Miner(Offical)",
+        "price": 1350,
+        "date": "2025-12-20T16:24:13.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21 XP T",
+    "hashrateTH": 270,
+    "price": 15,
+    "stats": {
+      "min": 15,
+      "max": 16,
+      "count": 7,
+      "middle": 15
+    },
+    "listings": [
+      {
+        "source": "UNISTAR MINER（https://www.unistarminer.com/） (Dubai)",
+        "price": 15,
+        "date": "2025-12-21T12:00:00.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 16,
+        "date": "2025-12-19T08:41:32.000Z"
+      },
+      {
+        "source": "Unistar Miner(Offical)",
+        "price": 15,
+        "date": "2025-12-20T16:24:13.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 15,
+        "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 15,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 15,
+        "date": "2025-12-19T09:15:50.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 15,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S19k Pro T",
+    "hashrateTH": 120,
+    "price": 3,
+    "stats": {
+      "min": 3,
+      "max": 3,
+      "count": 7,
+      "middle": 3
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 3,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 3,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 3,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 3,
+        "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 3,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 3,
+        "date": "2025-12-19T09:15:50.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 3,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S19k Pro T",
+    "hashrateTH": 115,
+    "price": 3,
+    "stats": {
+      "min": 3,
+      "max": 3,
+      "count": 7,
+      "middle": 3
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 3,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 3,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 3,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 3,
+        "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 3,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 3,
+        "date": "2025-12-19T09:15:50.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 3,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S19k Pro T",
+    "hashrateTH": 110,
+    "price": 3,
+    "stats": {
+      "min": 3,
+      "max": 3,
+      "count": 7,
+      "middle": 3
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 3,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 3,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 3,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 3,
+        "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 3,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 3,
+        "date": "2025-12-19T09:15:50.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 3,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S19k Pro T",
+    "hashrateTH": 105,
+    "price": 3,
+    "stats": {
+      "min": 3,
+      "max": 3,
+      "count": 5,
+      "middle": 3
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 3,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 3,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 3,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 3,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 3,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S19 XP 7Day T",
+    "hashrateTH": 270,
+    "price": 16,
+    "stats": {
+      "min": 16,
+      "max": 16,
+      "count": 3,
+      "middle": 16
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 16,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 16,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 16,
+        "date": "2025-12-19T07:22:54.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21 Pro T",
+    "hashrateTH": 245,
+    "price": 12,
+    "stats": {
+      "min": 12,
+      "max": 12,
+      "count": 7,
+      "middle": 12
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 12,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 12,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 12,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 12,
+        "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 12,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 12,
+        "date": "2025-12-19T09:15:50.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 12,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21+ T",
+    "hashrateTH": 235,
+    "price": 10,
+    "stats": {
+      "min": 10,
+      "max": 14,
+      "count": 7,
+      "middle": 10
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 10,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 10,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 14,
+        "date": "2025-12-19T08:41:32.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 10,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 10,
+        "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 10,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 10,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21 Imm T",
+    "hashrateTH": 215,
+    "price": 7,
+    "stats": {
+      "min": 7,
+      "max": 7,
+      "count": 5,
+      "middle": 7
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 7,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 7,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 7,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 7,
+        "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 7,
+        "date": "2025-12-20T04:40:50.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21e Hydro T",
+    "hashrateTH": 310,
+    "price": 6,
+    "stats": {
+      "min": 6,
+      "max": 6,
+      "count": 8,
+      "middle": 6
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 6,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 6,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 6,
+        "date": "2025-12-19T08:41:32.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 6,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 6,
+        "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 6,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 6,
+        "date": "2025-12-19T09:15:50.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 6,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21e Hydro T",
+    "hashrateTH": 332,
+    "price": 6,
+    "stats": {
+      "min": 6,
+      "max": 6,
+      "count": 7,
+      "middle": 6
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 6,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 6,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 6,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 6,
+        "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 6,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 6,
+        "date": "2025-12-19T09:15:50.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 6,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M61S+",
+    "hashrateTH": 244,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 2999,
+      "count": 5,
+      "middle": 12
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 12,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 12,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 12,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
         "source": "BT-Miners Global (HK)",
-        "price": 5160,
+        "price": 2999,
         "date": "2025-12-19T09:32:21.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 11,
+        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
@@ -2856,15 +2856,10 @@
     "stats": {
       "min": 11,
       "max": 3090,
-      "count": 11,
-      "middle": 2689
+      "count": 9,
+      "middle": 2952
     },
     "listings": [
-      {
-        "source": "Mining Resell",
-        "price": 2356,
-        "date": "2025-12-21T13:57:27.000Z"
-      },
       {
         "source": "CooldragonMinerList",
         "price": 12,
@@ -2879,11 +2874,6 @@
         "source": "ASICXchange Market Place",
         "price": 2990,
         "date": "2025-12-19T13:47:59.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2689,
-        "date": "2025-12-19T08:41:32.000Z"
       },
       {
         "source": "ASICXchange Market Place",
@@ -2924,298 +2914,7 @@
     "stats": {
       "min": 11,
       "max": 2952,
-      "count": 8,
-      "middle": 1194
-    },
-    "listings": [
-      {
-        "source": "Mining Resell",
-        "price": 2376,
-        "date": "2025-12-21T13:57:27.000Z"
-      },
-      {
-        "source": "CooldragonMinerList",
-        "price": 12,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 12,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 12,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2736,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2784,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "BT-Miners Global (HK)",
-        "price": 2952,
-        "date": "2025-12-19T09:32:21.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 11,
-        "date": "2025-12-19T06:11:49.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M61S+",
-    "hashrateTH": 242,
-    "price": 2396,
-    "stats": {
-      "min": 2396,
-      "max": 2807,
-      "count": 2,
-      "middle": 2602
-    },
-    "listings": [
-      {
-        "source": "Mining Resell",
-        "price": 2396,
-        "date": "2025-12-21T13:57:27.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2807,
-        "date": "2025-12-20T11:31:17.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Antminer S19 XP",
-    "hashrateTH": 151,
-    "price": 1350,
-    "stats": {
-      "min": 1350,
-      "max": 1350,
-      "count": 2,
-      "middle": 1350
-    },
-    "listings": [
-      {
-        "source": "UNISTAR MINER（https://www.unistarminer.com/） (Russia)",
-        "price": 1350,
-        "date": "2025-12-21T12:00:00.000Z"
-      },
-      {
-        "source": "Unistar Miner(Offical)",
-        "price": 1350,
-        "date": "2025-12-20T16:24:13.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Antminer S21 XP",
-    "hashrateTH": 270,
-    "price": 16,
-    "stats": {
-      "min": 16,
-      "max": 4650,
-      "count": 12,
-      "middle": 4131
-    },
-    "listings": [
-      {
-        "source": "UNISTAR MINER（https://www.unistarminer.com/） (Dubai)",
-        "price": 4131,
-        "date": "2025-12-21T12:00:00.000Z"
-      },
-      {
-        "source": "NHASH Miners Market",
-        "price": 4499,
-        "date": "2025-12-19T09:00:07.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 4374,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 4185,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "Unistar Miner(Offical)",
-        "price": 4131,
-        "date": "2025-12-20T16:24:13.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 4077,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "SCminer",
-        "price": 4104,
-        "date": "2025-12-20T04:40:50.000Z"
-      },
-      {
-        "source": "BT-Miners Global (USA)",
-        "price": 4650,
-        "date": "2025-12-19T09:32:21.000Z"
-      },
-      {
-        "source": "BT-Miners Global (HK)",
-        "price": 4150,
-        "date": "2025-12-19T09:32:21.000Z"
-      },
-      {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 4077,
-        "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
-        "source": "DCE miner",
-        "price": 16,
-        "date": "2025-12-19T08:17:26.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 4077,
-        "date": "2025-12-19T06:11:49.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Antminer S19k Pro",
-    "hashrateTH": 105,
-    "price": 273,
-    "stats": {
-      "min": 273,
-      "max": 499,
-      "count": 6,
-      "middle": 284
-    },
-    "listings": [
-      {
-        "source": "CooldragonMinerList",
-        "price": 284,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 284,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
-        "source": "NHASH Miners Market",
-        "price": 499,
-        "date": "2025-12-19T09:00:07.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 284,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "SCminer",
-        "price": 284,
-        "date": "2025-12-20T04:40:50.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 273,
-        "date": "2025-12-19T06:11:49.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Antminer S19 XP 7Day",
-    "hashrateTH": 270,
-    "price": 4185,
-    "stats": {
-      "min": 4185,
-      "max": 4185,
-      "count": 3,
-      "middle": 4185
-    },
-    "listings": [
-      {
-        "source": "CooldragonMinerList",
-        "price": 4185,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 4185,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 4185,
-        "date": "2025-12-19T07:22:54.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Antminer S21 Imm",
-    "hashrateTH": 215,
-    "price": 8,
-    "stats": {
-      "min": 8,
-      "max": 1890,
-      "count": 7,
-      "middle": 1591
-    },
-    "listings": [
-      {
-        "source": "CooldragonMinerList",
-        "price": 1591,
-        "date": "2025-12-21T09:54:22.000Z"
-      },
-      {
-        "source": "CooldragonMinerChannel",
-        "price": 1591,
-        "date": "2025-12-21T09:54:07.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place",
-        "price": 1591,
-        "date": "2025-12-19T07:22:54.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 1570,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "SCminer",
-        "price": 1591,
-        "date": "2025-12-20T04:40:50.000Z"
-      },
-      {
-        "source": "BT-Miners Global (HK)",
-        "price": 1890,
-        "date": "2025-12-19T09:32:21.000Z"
-      },
-      {
-        "source": "DCE miner",
-        "price": 8,
-        "date": "2025-12-19T08:17:26.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M61S+",
-    "hashrateTH": 244,
-    "price": 11,
-    "stats": {
-      "min": 11,
-      "max": 2999,
-      "count": 7,
+      "count": 5,
       "middle": 12
     },
     "listings": [
@@ -3230,23 +2929,247 @@
         "date": "2025-12-21T09:54:07.000Z"
       },
       {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2782,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
         "source": "ASICXchange Market Place",
         "price": 12,
         "date": "2025-12-19T07:22:54.000Z"
       },
       {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2830,
-        "date": "2025-12-20T11:31:17.000Z"
+        "source": "BT-Miners Global (HK)",
+        "price": 2952,
+        "date": "2025-12-19T09:32:21.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 11,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M60S+",
+    "hashrateTH": 208,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 2550,
+      "count": 18,
+      "middle": 2455
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 11,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerList (Russia)",
+        "price": 2520,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 11,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel (Russia)",
+        "price": 2520,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 2390,
+        "date": "2025-12-19T13:47:59.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 2420,
+        "date": "2025-12-19T13:47:59.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place (Russia)",
+        "price": 2390,
+        "date": "2025-12-19T07:26:05.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 11,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place (Russia)",
+        "price": 2520,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰",
+        "price": 2390,
+        "date": "2025-12-20T11:31:32.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰",
+        "price": 2420,
+        "date": "2025-12-20T11:31:32.000Z"
+      },
+      {
+        "source": "SCminer (Russia)",
+        "price": 2520,
+        "date": "2025-12-20T04:42:16.000Z"
+      },
+      {
+        "source": "SCminer (Russia)",
+        "price": 2490,
+        "date": "2025-12-20T04:42:16.000Z"
+      },
+      {
+        "source": "How2mine | Россия",
+        "price": 2520,
+        "date": "2025-12-19T09:37:02.000Z"
+      },
+      {
+        "source": "How2mine | Россия",
+        "price": 2490,
+        "date": "2025-12-19T09:37:02.000Z"
       },
       {
         "source": "BT-Miners Global (HK)",
-        "price": 2999,
+        "price": 2550,
+        "date": "2025-12-19T09:32:21.000Z"
+      },
+      {
+        "source": "BT-Miners Global (HK)",
+        "price": 2510,
+        "date": "2025-12-19T09:32:21.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 11,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M60S+",
+    "hashrateTH": 204,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 2500,
+      "count": 7,
+      "middle": 11
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 11,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 11,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 11,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "SCminer (Dubai)",
+        "price": 2500,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "BT-Miners Global (HK)",
+        "price": 2440,
+        "date": "2025-12-19T09:32:21.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 11,
+        "date": "2025-12-19T06:11:49.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 2450,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M60S+",
+    "hashrateTH": 206,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 2490,
+      "count": 14,
+      "middle": 2345
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 11,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 11,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 2280,
+        "date": "2025-12-19T13:47:59.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 2390,
+        "date": "2025-12-19T13:47:59.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place (Russia)",
+        "price": 2300,
+        "date": "2025-12-19T07:26:05.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 11,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰",
+        "price": 2280,
+        "date": "2025-12-20T11:31:32.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰",
+        "price": 2390,
+        "date": "2025-12-20T11:31:32.000Z"
+      },
+      {
+        "source": "SCminer (Russia)",
+        "price": 2490,
+        "date": "2025-12-20T04:42:16.000Z"
+      },
+      {
+        "source": "SCminer (Russia)",
+        "price": 2400,
+        "date": "2025-12-20T04:42:16.000Z"
+      },
+      {
+        "source": "How2mine | Россия",
+        "price": 2490,
+        "date": "2025-12-19T09:37:02.000Z"
+      },
+      {
+        "source": "How2mine | Россия",
+        "price": 2400,
+        "date": "2025-12-19T09:37:02.000Z"
+      },
+      {
+        "source": "BT-Miners Global (HK)",
+        "price": 2440,
         "date": "2025-12-19T09:32:21.000Z"
       },
       {
@@ -3258,13 +3181,210 @@
   },
   {
     "name": "Whatsminer M63S+",
+    "hashrateTH": 436,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 5530,
+      "count": 12,
+      "middle": 5450
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 11,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerList (Russia)",
+        "price": 5530,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 11,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel (Russia)",
+        "price": 5530,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 5450,
+        "date": "2025-12-19T13:47:59.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 11,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place (Russia)",
+        "price": 5530,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰",
+        "price": 5450,
+        "date": "2025-12-20T11:31:32.000Z"
+      },
+      {
+        "source": "SCminer (Russia)",
+        "price": 5530,
+        "date": "2025-12-20T04:42:16.000Z"
+      },
+      {
+        "source": "How2mine | Россия",
+        "price": 5530,
+        "date": "2025-12-19T09:37:02.000Z"
+      },
+      {
+        "source": "BT-Miners Global (HK)",
+        "price": 5160,
+        "date": "2025-12-19T09:32:21.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 11,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M63S+",
+    "hashrateTH": 438,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 5160,
+      "count": 4,
+      "middle": 11
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 11,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 11,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 11,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "BT-Miners Global (HK)",
+        "price": 5160,
+        "date": "2025-12-19T09:32:21.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M63S+",
+    "hashrateTH": 430,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 4960,
+      "count": 5,
+      "middle": 11
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 11,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 11,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 11,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "BT-Miners Global (HK)",
+        "price": 4960,
+        "date": "2025-12-19T09:32:21.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 11,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M63S+",
+    "hashrateTH": 432,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 5470,
+      "count": 8,
+      "middle": 5175
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 11,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 11,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 5390,
+        "date": "2025-12-19T13:47:59.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 11,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰",
+        "price": 5390,
+        "date": "2025-12-20T11:31:32.000Z"
+      },
+      {
+        "source": "SCminer (Russia)",
+        "price": 5470,
+        "date": "2025-12-20T04:42:16.000Z"
+      },
+      {
+        "source": "How2mine | Россия",
+        "price": 5470,
+        "date": "2025-12-19T09:37:02.000Z"
+      },
+      {
+        "source": "BT-Miners Global (HK)",
+        "price": 4960,
+        "date": "2025-12-19T09:32:21.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M63S+",
     "hashrateTH": 416,
     "price": 11,
     "stats": {
       "min": 11,
       "max": 4940,
-      "count": 9,
-      "middle": 4820
+      "count": 8,
+      "middle": 4840
     },
     "listings": [
       {
@@ -3293,11 +3413,6 @@
         "date": "2025-12-20T11:31:32.000Z"
       },
       {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 4576,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
         "source": "SCminer (Russia)",
         "price": 4940,
         "date": "2025-12-20T04:42:16.000Z"
@@ -3315,55 +3430,176 @@
     ]
   },
   {
-    "name": "Avalon A15 Pro",
-    "hashrateTH": 221,
-    "price": 2210,
+    "name": "Whatsminer M63S+",
+    "hashrateTH": 418,
+    "price": 11,
     "stats": {
-      "min": 2210,
-      "max": 3280,
-      "count": 8,
-      "middle": 2939
+      "min": 11,
+      "max": 4980,
+      "count": 9,
+      "middle": 4820
     },
     "listings": [
       {
         "source": "CooldragonMinerList",
-        "price": 2939,
+        "price": 11,
         "date": "2025-12-21T09:54:22.000Z"
       },
       {
         "source": "CooldragonMinerChannel",
-        "price": 2939,
+        "price": 11,
         "date": "2025-12-21T09:54:07.000Z"
       },
       {
-        "source": "NHASH Miners Market",
-        "price": 2499,
-        "date": "2025-12-19T09:00:07.000Z"
+        "source": "ASICXchange Market Place",
+        "price": 4900,
+        "date": "2025-12-19T13:47:59.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 11,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰",
+        "price": 4900,
+        "date": "2025-12-20T11:31:32.000Z"
+      },
+      {
+        "source": "SCminer (Russia)",
+        "price": 4980,
+        "date": "2025-12-20T04:42:16.000Z"
+      },
+      {
+        "source": "How2mine | Россия",
+        "price": 4980,
+        "date": "2025-12-19T09:37:02.000Z"
+      },
+      {
+        "source": "BT-Miners Global (HK)",
+        "price": 4820,
+        "date": "2025-12-19T09:32:21.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 11,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M63S+",
+    "hashrateTH": 420,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 5010,
+      "count": 12,
+      "middle": 4930
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 11,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerList (Russia)",
+        "price": 5010,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 11,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel (Russia)",
+        "price": 5010,
+        "date": "2025-12-21T09:54:07.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 4930,
+        "date": "2025-12-19T13:47:59.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place",
+        "price": 11,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place (Russia)",
+        "price": 5010,
+        "date": "2025-12-19T07:22:54.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰",
+        "price": 4930,
+        "date": "2025-12-20T11:31:32.000Z"
+      },
+      {
+        "source": "SCminer (Russia)",
+        "price": 5010,
+        "date": "2025-12-20T04:42:16.000Z"
+      },
+      {
+        "source": "How2mine | Россия",
+        "price": 5010,
+        "date": "2025-12-19T09:37:02.000Z"
+      },
+      {
+        "source": "BT-Miners Global (HK)",
+        "price": 4820,
+        "date": "2025-12-19T09:32:21.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 11,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Avalon A15 Pro T",
+    "hashrateTH": 221,
+    "price": 10,
+    "stats": {
+      "min": 10,
+      "max": 14,
+      "count": 6,
+      "middle": 13
+    },
+    "listings": [
+      {
+        "source": "CooldragonMinerList",
+        "price": 13,
+        "date": "2025-12-21T09:54:22.000Z"
+      },
+      {
+        "source": "CooldragonMinerChannel",
+        "price": 13,
+        "date": "2025-12-21T09:54:07.000Z"
       },
       {
         "source": "ASICXchange Market Place (USA)",
-        "price": 3160,
+        "price": 14,
         "date": "2025-12-19T08:41:32.000Z"
       },
       {
         "source": "ASICXchange Market Place (USA)",
-        "price": 2608,
+        "price": 12,
         "date": "2025-12-19T08:41:32.000Z"
       },
       {
         "source": "ASICXchange Market Place",
-        "price": 2939,
+        "price": 13,
         "date": "2025-12-19T07:22:54.000Z"
       },
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2210,
+        "price": 10,
         "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "BT-Miners Global (USA)",
-        "price": 3280,
-        "date": "2025-12-19T09:32:21.000Z"
       }
     ]
   },
@@ -3548,36 +3784,82 @@
     ]
   },
   {
+    "name": "Antminer S19k Pro",
+    "hashrateTH": 105,
+    "price": 499,
+    "stats": {
+      "min": 499,
+      "max": 499,
+      "count": 1,
+      "middle": 499
+    },
+    "listings": [
+      {
+        "source": "NHASH Miners Market",
+        "price": 499,
+        "date": "2025-12-19T09:00:07.000Z"
+      }
+    ]
+  },
+  {
     "name": "Antminer S21",
     "hashrateTH": 215,
-    "price": 1570,
+    "price": 1899,
     "stats": {
-      "min": 1570,
+      "min": 1899,
       "max": 1899,
-      "count": 2,
-      "middle": 1735
+      "count": 1,
+      "middle": 1899
     },
     "listings": [
       {
         "source": "NHASH Miners Market",
         "price": 1899,
         "date": "2025-12-19T09:00:07.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21 XP",
+    "hashrateTH": 270,
+    "price": 16,
+    "stats": {
+      "min": 16,
+      "max": 4650,
+      "count": 4,
+      "middle": 4325
+    },
+    "listings": [
+      {
+        "source": "NHASH Miners Market",
+        "price": 4499,
+        "date": "2025-12-19T09:00:07.000Z"
       },
       {
-        "source": "BITMARS _Leila~",
-        "price": 1570,
-        "date": "2025-12-19T06:11:49.000Z"
+        "source": "BT-Miners Global (USA)",
+        "price": 4650,
+        "date": "2025-12-19T09:32:21.000Z"
+      },
+      {
+        "source": "BT-Miners Global (HK)",
+        "price": 4150,
+        "date": "2025-12-19T09:32:21.000Z"
+      },
+      {
+        "source": "DCE miner",
+        "price": 16,
+        "date": "2025-12-19T08:17:26.000Z"
       }
     ]
   },
   {
     "name": "Whatsminer M60",
     "hashrateTH": 164,
-    "price": 1492,
+    "price": 1620,
     "stats": {
-      "min": 1492,
-      "max": 1689,
-      "count": 5,
+      "min": 1620,
+      "max": 1649,
+      "count": 3,
       "middle": 1620
     },
     "listings": [
@@ -3592,19 +3874,9 @@
         "date": "2025-12-19T13:47:59.000Z"
       },
       {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 1689,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
         "source": "⛏️Asic mining center - Mila💰",
         "price": 1620,
         "date": "2025-12-20T11:31:32.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 1492,
-        "date": "2025-12-20T11:31:17.000Z"
       }
     ]
   },
@@ -3623,6 +3895,29 @@
         "source": "NHASH Miners Market",
         "price": 3799,
         "date": "2025-12-19T09:00:07.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Avalon A15 Pro",
+    "hashrateTH": 221,
+    "price": 2499,
+    "stats": {
+      "min": 2499,
+      "max": 3280,
+      "count": 2,
+      "middle": 2890
+    },
+    "listings": [
+      {
+        "source": "NHASH Miners Market",
+        "price": 2499,
+        "date": "2025-12-19T09:00:07.000Z"
+      },
+      {
+        "source": "BT-Miners Global (USA)",
+        "price": 3280,
+        "date": "2025-12-19T09:32:21.000Z"
       }
     ]
   },
@@ -4154,6 +4449,77 @@
     ]
   },
   {
+    "name": "Whatsminer M63S+",
+    "hashrateTH": 428,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 5400,
+      "count": 5,
+      "middle": 5320
+    },
+    "listings": [
+      {
+        "source": "ASICXchange Market Place",
+        "price": 5320,
+        "date": "2025-12-19T13:47:59.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰",
+        "price": 5320,
+        "date": "2025-12-20T11:31:32.000Z"
+      },
+      {
+        "source": "SCminer (Russia)",
+        "price": 5400,
+        "date": "2025-12-20T04:42:16.000Z"
+      },
+      {
+        "source": "How2mine | Россия",
+        "price": 5400,
+        "date": "2025-12-19T09:37:02.000Z"
+      },
+      {
+        "source": "BITMARS _Leila~",
+        "price": 11,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M63S+",
+    "hashrateTH": 434,
+    "price": 5420,
+    "stats": {
+      "min": 5420,
+      "max": 5500,
+      "count": 4,
+      "middle": 5460
+    },
+    "listings": [
+      {
+        "source": "ASICXchange Market Place",
+        "price": 5420,
+        "date": "2025-12-19T13:47:59.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰",
+        "price": 5420,
+        "date": "2025-12-20T11:31:32.000Z"
+      },
+      {
+        "source": "SCminer (Russia)",
+        "price": 5500,
+        "date": "2025-12-20T04:42:16.000Z"
+      },
+      {
+        "source": "How2mine | Россия",
+        "price": 5500,
+        "date": "2025-12-19T09:37:02.000Z"
+      }
+    ]
+  },
+  {
     "name": "Whatsminer M61S+",
     "hashrateTH": 236,
     "price": 2960,
@@ -4594,12 +4960,12 @@
   {
     "name": "Whatsminer M61",
     "hashrateTH": 208,
-    "price": 1976,
+    "price": 2050,
     "stats": {
-      "min": 1976,
-      "max": 2226,
-      "count": 7,
-      "middle": 2090
+      "min": 2050,
+      "max": 2090,
+      "count": 4,
+      "middle": 2070
     },
     "listings": [
       {
@@ -4608,24 +4974,9 @@
         "date": "2025-12-19T13:47:59.000Z"
       },
       {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2163,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2226,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
         "source": "⛏️Asic mining center - Mila💰",
         "price": 2050,
         "date": "2025-12-20T11:31:32.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 1976,
-        "date": "2025-12-20T11:31:17.000Z"
       },
       {
         "source": "SCminer (Russia)",
@@ -4642,12 +4993,12 @@
   {
     "name": "Whatsminer M61",
     "hashrateTH": 206,
-    "price": 1957,
+    "price": 1999,
     "stats": {
-      "min": 1957,
-      "max": 2204,
-      "count": 7,
-      "middle": 2020
+      "min": 1999,
+      "max": 2020,
+      "count": 4,
+      "middle": 2010
     },
     "listings": [
       {
@@ -4656,24 +5007,9 @@
         "date": "2025-12-19T13:47:59.000Z"
       },
       {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2142,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2204,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
         "source": "⛏️Asic mining center - Mila💰",
         "price": 1999,
         "date": "2025-12-20T11:31:32.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 1957,
-        "date": "2025-12-20T11:31:17.000Z"
       },
       {
         "source": "SCminer (Russia)",
@@ -4690,11 +5026,11 @@
   {
     "name": "Whatsminer M61",
     "hashrateTH": 204,
-    "price": 1938,
+    "price": 1980,
     "stats": {
-      "min": 1938,
-      "max": 2122,
-      "count": 6,
+      "min": 1980,
+      "max": 2000,
+      "count": 4,
       "middle": 1990
     },
     "listings": [
@@ -4704,19 +5040,9 @@
         "date": "2025-12-19T13:47:59.000Z"
       },
       {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2122,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
         "source": "⛏️Asic mining center - Mila💰",
         "price": 1980,
         "date": "2025-12-20T11:31:32.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 1938,
-        "date": "2025-12-20T11:31:17.000Z"
       },
       {
         "source": "SCminer (Russia)",
@@ -4912,170 +5238,73 @@
     ]
   },
   {
-    "name": "Avalon A1566",
-    "hashrateTH": 179,
-    "price": 1432,
+    "name": "Antminer S19 XP $",
+    "hashrateTH": 4.4,
+    "price": 4,
     "stats": {
-      "min": 1432,
-      "max": 1432,
-      "count": 2,
-      "middle": 1432
+      "min": 4,
+      "max": 4,
+      "count": 1,
+      "middle": 4
     },
     "listings": [
       {
-        "source": "ASICXchange Market Place",
-        "price": 1432,
-        "date": "2025-12-19T13:47:59.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰",
-        "price": 1432,
-        "date": "2025-12-20T11:31:32.000Z"
+        "source": "ASICXchange Market Place (USA)",
+        "price": 4,
+        "date": "2025-12-19T08:41:32.000Z"
       }
     ]
   },
   {
-    "name": "Avalon A1566",
-    "hashrateTH": 182,
-    "price": 1456,
-    "stats": {
-      "min": 1456,
-      "max": 1456,
-      "count": 2,
-      "middle": 1456
-    },
-    "listings": [
-      {
-        "source": "ASICXchange Market Place",
-        "price": 1456,
-        "date": "2025-12-19T13:47:59.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰",
-        "price": 1456,
-        "date": "2025-12-20T11:31:32.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Avalon A1566",
-    "hashrateTH": 185,
-    "price": 1480,
-    "stats": {
-      "min": 1480,
-      "max": 1480,
-      "count": 2,
-      "middle": 1480
-    },
-    "listings": [
-      {
-        "source": "ASICXchange Market Place",
-        "price": 1480,
-        "date": "2025-12-19T13:47:59.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰",
-        "price": 1480,
-        "date": "2025-12-20T11:31:32.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Avalon A1566",
-    "hashrateTH": 188,
-    "price": 1504,
-    "stats": {
-      "min": 1504,
-      "max": 1504,
-      "count": 2,
-      "middle": 1504
-    },
-    "listings": [
-      {
-        "source": "ASICXchange Market Place",
-        "price": 1504,
-        "date": "2025-12-19T13:47:59.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰",
-        "price": 1504,
-        "date": "2025-12-20T11:31:32.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Avalon A1566",
-    "hashrateTH": 192,
-    "price": 1536,
-    "stats": {
-      "min": 1536,
-      "max": 1536,
-      "count": 2,
-      "middle": 1536
-    },
-    "listings": [
-      {
-        "source": "ASICXchange Market Place",
-        "price": 1536,
-        "date": "2025-12-19T13:47:59.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰",
-        "price": 1536,
-        "date": "2025-12-20T11:31:32.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Antminer S19j Pro+",
+    "name": "Antminer S19j Pro+ T",
     "hashrateTH": 120,
-    "price": 312,
+    "price": 3,
     "stats": {
-      "min": 312,
-      "max": 312,
+      "min": 3,
+      "max": 3,
       "count": 1,
-      "middle": 312
+      "middle": 3
     },
     "listings": [
       {
         "source": "ASICXchange Market Place (USA)",
-        "price": 312,
+        "price": 3,
         "date": "2025-12-19T08:41:32.000Z"
       }
     ]
   },
   {
-    "name": "Antminer T21",
+    "name": "Antminer T21 T",
     "hashrateTH": 190,
-    "price": 1235,
+    "price": 7,
     "stats": {
-      "min": 1235,
-      "max": 1235,
+      "min": 7,
+      "max": 7,
       "count": 1,
-      "middle": 1235
+      "middle": 7
     },
     "listings": [
       {
         "source": "ASICXchange Market Place (USA)",
-        "price": 1235,
+        "price": 7,
         "date": "2025-12-19T08:41:32.000Z"
       }
     ]
   },
   {
-    "name": "Antminer S19 Pro",
+    "name": "Antminer S19 Pro T",
     "hashrateTH": 110,
-    "price": 308,
+    "price": 3,
     "stats": {
-      "min": 308,
-      "max": 308,
+      "min": 3,
+      "max": 3,
       "count": 1,
-      "middle": 308
+      "middle": 3
     },
     "listings": [
       {
         "source": "ASICXchange Market Place (USA)",
-        "price": 308,
+        "price": 3,
         "date": "2025-12-19T08:41:32.000Z"
       }
     ]
@@ -5171,148 +5400,440 @@
     ]
   },
   {
-    "name": "Whatsminer M60",
+    "name": "Antminer S19kpro 3.7 T",
+    "hashrateTH": 110,
+    "price": 3,
+    "stats": {
+      "min": 3,
+      "max": 3,
+      "count": 1,
+      "middle": 3
+    },
+    "listings": [
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 3,
+        "date": "2025-12-19T08:41:32.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S19kpro 3.7 T",
+    "hashrateTH": 115,
+    "price": 3,
+    "stats": {
+      "min": 3,
+      "max": 3,
+      "count": 1,
+      "middle": 3
+    },
+    "listings": [
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 3,
+        "date": "2025-12-19T08:41:32.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S19kpro 3.7 T",
+    "hashrateTH": 120,
+    "price": 3,
+    "stats": {
+      "min": 3,
+      "max": 3,
+      "count": 1,
+      "middle": 3
+    },
+    "listings": [
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 3,
+        "date": "2025-12-19T08:41:32.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21+ 9.5 T",
+    "hashrateTH": 216,
+    "price": 10,
+    "stats": {
+      "min": 10,
+      "max": 10,
+      "count": 1,
+      "middle": 10
+    },
+    "listings": [
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 10,
+        "date": "2025-12-19T08:41:32.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21+ 9.5 T",
+    "hashrateTH": 225,
+    "price": 10,
+    "stats": {
+      "min": 10,
+      "max": 10,
+      "count": 1,
+      "middle": 10
+    },
+    "listings": [
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 10,
+        "date": "2025-12-19T08:41:32.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21 Pro 11.6 T",
+    "hashrateTH": 220,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 11,
+      "count": 1,
+      "middle": 11
+    },
+    "listings": [
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 11,
+        "date": "2025-12-19T08:41:32.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21 Pro 11.6 T",
+    "hashrateTH": 234,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 11,
+      "count": 1,
+      "middle": 11
+    },
+    "listings": [
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 11,
+        "date": "2025-12-19T08:41:32.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M60 T",
     "hashrateTH": 156,
-    "price": 1420,
+    "price": 9,
     "stats": {
-      "min": 1420,
-      "max": 1607,
+      "min": 9,
+      "max": 10,
       "count": 2,
-      "middle": 1514
+      "middle": 10
     },
     "listings": [
       {
         "source": "ASICXchange Market Place (USA)",
-        "price": 1607,
+        "price": 10,
         "date": "2025-12-19T08:41:32.000Z"
       },
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 1420,
+        "price": 9,
         "date": "2025-12-20T11:31:17.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M60",
+    "name": "Whatsminer M60 T",
     "hashrateTH": 158,
-    "price": 1627,
+    "price": 10,
     "stats": {
-      "min": 1627,
-      "max": 1627,
+      "min": 10,
+      "max": 10,
       "count": 1,
-      "middle": 1627
+      "middle": 10
     },
     "listings": [
       {
         "source": "ASICXchange Market Place (USA)",
-        "price": 1627,
+        "price": 10,
         "date": "2025-12-19T08:41:32.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M60",
+    "name": "Whatsminer M60 T",
     "hashrateTH": 160,
-    "price": 1648,
+    "price": 10,
     "stats": {
-      "min": 1648,
-      "max": 1648,
+      "min": 10,
+      "max": 10,
       "count": 1,
-      "middle": 1648
+      "middle": 10
     },
     "listings": [
       {
         "source": "ASICXchange Market Place (USA)",
-        "price": 1648,
+        "price": 10,
         "date": "2025-12-19T08:41:32.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M60",
+    "name": "Whatsminer M60 T",
     "hashrateTH": 162,
-    "price": 1669,
+    "price": 10,
     "stats": {
-      "min": 1669,
-      "max": 1669,
+      "min": 10,
+      "max": 10,
       "count": 1,
-      "middle": 1669
+      "middle": 10
     },
     "listings": [
       {
         "source": "ASICXchange Market Place (USA)",
-        "price": 1669,
+        "price": 10,
         "date": "2025-12-19T08:41:32.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M61",
-    "hashrateTH": 202,
-    "price": 2101,
+    "name": "Whatsminer M60 T",
+    "hashrateTH": 164,
+    "price": 9,
     "stats": {
-      "min": 2101,
-      "max": 2101,
-      "count": 1,
-      "middle": 2101
-    },
-    "listings": [
-      {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2101,
-        "date": "2025-12-19T08:41:32.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M61",
-    "hashrateTH": 210,
-    "price": 2016,
-    "stats": {
-      "min": 2016,
-      "max": 2268,
-      "count": 3,
-      "middle": 2184
-    },
-    "listings": [
-      {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2184,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "ASICXchange Market Place (USA)",
-        "price": 2268,
-        "date": "2025-12-19T08:41:32.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2016,
-        "date": "2025-12-20T11:31:17.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M61",
-    "hashrateTH": 212,
-    "price": 2035,
-    "stats": {
-      "min": 2035,
-      "max": 2290,
+      "min": 9,
+      "max": 10,
       "count": 2,
-      "middle": 2163
+      "middle": 10
     },
     "listings": [
       {
         "source": "ASICXchange Market Place (USA)",
-        "price": 2290,
+        "price": 10,
         "date": "2025-12-19T08:41:32.000Z"
       },
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2035,
+        "price": 9,
         "date": "2025-12-20T11:31:17.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M61 T",
+    "hashrateTH": 202,
+    "price": 10,
+    "stats": {
+      "min": 10,
+      "max": 10,
+      "count": 1,
+      "middle": 10
+    },
+    "listings": [
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 10,
+        "date": "2025-12-19T08:41:32.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M61 T",
+    "hashrateTH": 204,
+    "price": 10,
+    "stats": {
+      "min": 10,
+      "max": 10,
+      "count": 2,
+      "middle": 10
+    },
+    "listings": [
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 10,
+        "date": "2025-12-19T08:41:32.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 10,
+        "date": "2025-12-20T11:31:17.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M61 T",
+    "hashrateTH": 206,
+    "price": 10,
+    "stats": {
+      "min": 10,
+      "max": 11,
+      "count": 3,
+      "middle": 10
+    },
+    "listings": [
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 10,
+        "date": "2025-12-19T08:41:32.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 11,
+        "date": "2025-12-19T08:41:32.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 10,
+        "date": "2025-12-20T11:31:17.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M61 T",
+    "hashrateTH": 208,
+    "price": 10,
+    "stats": {
+      "min": 10,
+      "max": 11,
+      "count": 3,
+      "middle": 10
+    },
+    "listings": [
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 10,
+        "date": "2025-12-19T08:41:32.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 11,
+        "date": "2025-12-19T08:41:32.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 10,
+        "date": "2025-12-20T11:31:17.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M61 T",
+    "hashrateTH": 210,
+    "price": 10,
+    "stats": {
+      "min": 10,
+      "max": 11,
+      "count": 3,
+      "middle": 10
+    },
+    "listings": [
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 10,
+        "date": "2025-12-19T08:41:32.000Z"
+      },
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 11,
+        "date": "2025-12-19T08:41:32.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 10,
+        "date": "2025-12-20T11:31:17.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M61 T",
+    "hashrateTH": 212,
+    "price": 10,
+    "stats": {
+      "min": 10,
+      "max": 11,
+      "count": 2,
+      "middle": 11
+    },
+    "listings": [
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 11,
+        "date": "2025-12-19T08:41:32.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 10,
+        "date": "2025-12-20T11:31:17.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M61S+ T",
+    "hashrateTH": 244,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 12,
+      "count": 3,
+      "middle": 11
+    },
+    "listings": [
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 11,
+        "date": "2025-12-19T08:41:32.000Z"
+      },
+      {
+        "source": "⛏️Asic mining center - Mila💰 (HK)",
+        "price": 12,
+        "date": "2025-12-20T11:31:17.000Z"
+      },
+      {
+        "source": "SCminer",
+        "price": 11,
+        "date": "2025-12-20T04:40:50.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M60S+ T T",
+    "hashrateTH": 206,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 11,
+      "count": 1,
+      "middle": 11
+    },
+    "listings": [
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 11,
+        "date": "2025-12-19T08:41:32.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M60S+ T T",
+    "hashrateTH": 208,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 11,
+      "count": 1,
+      "middle": 11
+    },
+    "listings": [
+      {
+        "source": "ASICXchange Market Place (USA)",
+        "price": 11,
+        "date": "2025-12-19T08:41:32.000Z"
       }
     ]
   },
@@ -5335,101 +5856,101 @@
     ]
   },
   {
-    "name": "Antminer S21 Hydro",
+    "name": "Antminer S21 Hydro T",
     "hashrateTH": 473,
-    "price": 7710,
+    "price": 16,
     "stats": {
-      "min": 7710,
-      "max": 7710,
+      "min": 16,
+      "max": 16,
       "count": 1,
-      "middle": 7710
+      "middle": 16
     },
     "listings": [
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 7710,
+        "price": 16,
         "date": "2025-12-20T11:31:17.000Z"
       }
     ]
   },
   {
-    "name": "Antminer S19 XP Hydro",
+    "name": "Antminer S19 XP Hydro T",
     "hashrateTH": 251,
-    "price": 778,
+    "price": 3,
     "stats": {
-      "min": 778,
-      "max": 803,
+      "min": 3,
+      "max": 3,
       "count": 3,
-      "middle": 778
+      "middle": 3
     },
     "listings": [
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 778,
+        "price": 3,
         "date": "2025-12-20T11:31:17.000Z"
       },
       {
         "source": "SCminer",
-        "price": 803,
+        "price": 3,
         "date": "2025-12-20T04:40:50.000Z"
       },
       {
         "source": "BITMARS _Leila~",
-        "price": 778,
+        "price": 3,
         "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },
   {
-    "name": "Avalon A14XP",
+    "name": "Avalon A14XP T",
     "hashrateTH": 150,
-    "price": 840,
+    "price": 6,
     "stats": {
-      "min": 840,
-      "max": 840,
+      "min": 6,
+      "max": 6,
       "count": 1,
-      "middle": 840
+      "middle": 6
     },
     "listings": [
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 840,
+        "price": 6,
         "date": "2025-12-20T11:31:17.000Z"
       }
     ]
   },
   {
-    "name": "Avalon A15eHA",
+    "name": "Avalon A15eHA T",
     "hashrateTH": 400,
-    "price": 2240,
+    "price": 6,
     "stats": {
-      "min": 2240,
-      "max": 2240,
+      "min": 6,
+      "max": 6,
       "count": 1,
-      "middle": 2240
+      "middle": 6
     },
     "listings": [
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2240,
+        "price": 6,
         "date": "2025-12-20T11:31:17.000Z"
       }
     ]
   },
   {
-    "name": "Avalon A15",
+    "name": "Avalon A15 T",
     "hashrateTH": 200,
-    "price": 1820,
+    "price": 9,
     "stats": {
-      "min": 1820,
-      "max": 1820,
+      "min": 9,
+      "max": 9,
       "count": 1,
-      "middle": 1820
+      "middle": 9
     },
     "listings": [
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 1820,
+        "price": 9,
         "date": "2025-12-20T11:31:17.000Z"
       }
     ]
@@ -5499,472 +6020,150 @@
     ]
   },
   {
-    "name": "Whatsminer M50S",
+    "name": "Whatsminer M50S T",
     "hashrateTH": 128,
-    "price": 806,
+    "price": 6,
     "stats": {
-      "min": 806,
-      "max": 858,
+      "min": 6,
+      "max": 7,
       "count": 2,
-      "middle": 832
+      "middle": 7
     },
     "listings": [
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 806,
+        "price": 6,
         "date": "2025-12-20T11:31:17.000Z"
       },
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 858,
+        "price": 7,
         "date": "2025-12-19T09:03:34.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M60S+",
+    "name": "Whatsminer M60S+ T",
     "hashrateTH": 200,
-    "price": 2220,
+    "price": 11,
     "stats": {
-      "min": 2220,
-      "max": 2220,
+      "min": 11,
+      "max": 11,
       "count": 1,
-      "middle": 2220
+      "middle": 11
     },
     "listings": [
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 2220,
+        "price": 11,
         "date": "2025-12-20T11:31:17.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M60S++",
+    "name": "Whatsminer M60S++ T",
     "hashrateTH": 232,
-    "price": 3457,
+    "price": 15,
     "stats": {
-      "min": 3457,
-      "max": 3457,
+      "min": 15,
+      "max": 15,
       "count": 1,
-      "middle": 3457
+      "middle": 15
     },
     "listings": [
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3457,
+        "price": 15,
         "date": "2025-12-20T11:31:17.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M60S++",
+    "name": "Whatsminer M60S++ T",
     "hashrateTH": 230,
-    "price": 3427,
+    "price": 15,
     "stats": {
-      "min": 3427,
-      "max": 3427,
+      "min": 15,
+      "max": 15,
       "count": 1,
-      "middle": 3427
+      "middle": 15
     },
     "listings": [
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3427,
+        "price": 15,
         "date": "2025-12-20T11:31:17.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M60S++",
+    "name": "Whatsminer M60S++ T",
     "hashrateTH": 228,
-    "price": 3397,
+    "price": 15,
     "stats": {
-      "min": 3397,
-      "max": 3397,
+      "min": 15,
+      "max": 15,
       "count": 1,
-      "middle": 3397
+      "middle": 15
     },
     "listings": [
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3397,
+        "price": 15,
         "date": "2025-12-20T11:31:17.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M60S++",
+    "name": "Whatsminer M60S++ T",
     "hashrateTH": 226,
-    "price": 3367,
+    "price": 15,
     "stats": {
-      "min": 3367,
-      "max": 3367,
+      "min": 15,
+      "max": 15,
       "count": 1,
-      "middle": 3367
+      "middle": 15
     },
     "listings": [
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3367,
+        "price": 15,
         "date": "2025-12-20T11:31:17.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M70",
-    "hashrateTH": 248,
-    "price": 17,
-    "stats": {
-      "min": 17,
-      "max": 4092,
-      "count": 2,
-      "middle": 2055
-    },
-    "listings": [
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 4092,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 17,
-        "date": "2025-12-19T06:11:49.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M70",
-    "hashrateTH": 246,
-    "price": 4059,
-    "stats": {
-      "min": 4059,
-      "max": 4059,
-      "count": 1,
-      "middle": 4059
-    },
-    "listings": [
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 4059,
-        "date": "2025-12-20T11:31:17.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M70",
-    "hashrateTH": 244,
-    "price": 16,
-    "stats": {
-      "min": 16,
-      "max": 4026,
-      "count": 3,
-      "middle": 3880
-    },
-    "listings": [
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 4026,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3880,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 16,
-        "date": "2025-12-19T06:11:49.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M70",
-    "hashrateTH": 242,
-    "price": 3848,
-    "stats": {
-      "min": 3848,
-      "max": 3993,
-      "count": 3,
-      "middle": 3872
-    },
-    "listings": [
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3993,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3848,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 3872,
-        "date": "2025-12-19T09:15:50.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M70",
+    "name": "Whatsminer M61S+ 238 T",
     "hashrateTH": 240,
-    "price": 3720,
+    "price": 11,
     "stats": {
-      "min": 3720,
-      "max": 3960,
-      "count": 3,
-      "middle": 3816
-    },
-    "listings": [
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3960,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3816,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 3720,
-        "date": "2025-12-19T09:15:50.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M70",
-    "hashrateTH": 238,
-    "price": 17,
-    "stats": {
-      "min": 17,
-      "max": 3927,
-      "count": 3,
-      "middle": 3784
-    },
-    "listings": [
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3927,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3784,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 17,
-        "date": "2025-12-19T06:11:49.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M70",
-    "hashrateTH": 236,
-    "price": 3752,
-    "stats": {
-      "min": 3752,
-      "max": 3752,
+      "min": 11,
+      "max": 11,
       "count": 1,
-      "middle": 3752
+      "middle": 11
     },
     "listings": [
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3752,
+        "price": 11,
         "date": "2025-12-20T11:31:17.000Z"
       }
     ]
   },
   {
-    "name": "Whatsminer M70",
-    "hashrateTH": 234,
-    "price": 3721,
+    "name": "Whatsminer M63S+ T",
+    "hashrateTH": 416,
+    "price": 11,
     "stats": {
-      "min": 3721,
-      "max": 3721,
+      "min": 11,
+      "max": 11,
       "count": 1,
-      "middle": 3721
+      "middle": 11
     },
     "listings": [
       {
         "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3721,
-        "date": "2025-12-20T11:31:17.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M70",
-    "hashrateTH": 232,
-    "price": 3689,
-    "stats": {
-      "min": 3689,
-      "max": 3689,
-      "count": 1,
-      "middle": 3689
-    },
-    "listings": [
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3689,
-        "date": "2025-12-20T11:31:17.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M70",
-    "hashrateTH": 230,
-    "price": 3657,
-    "stats": {
-      "min": 3657,
-      "max": 3657,
-      "count": 1,
-      "middle": 3657
-    },
-    "listings": [
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3657,
-        "date": "2025-12-20T11:31:17.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M70",
-    "hashrateTH": 228,
-    "price": 3625,
-    "stats": {
-      "min": 3625,
-      "max": 3625,
-      "count": 1,
-      "middle": 3625
-    },
-    "listings": [
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3625,
-        "date": "2025-12-20T11:31:17.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M70",
-    "hashrateTH": 226,
-    "price": 3593,
-    "stats": {
-      "min": 3593,
-      "max": 3593,
-      "count": 1,
-      "middle": 3593
-    },
-    "listings": [
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3593,
-        "date": "2025-12-20T11:31:17.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M70",
-    "hashrateTH": 224,
-    "price": 3562,
-    "stats": {
-      "min": 3562,
-      "max": 3562,
-      "count": 1,
-      "middle": 3562
-    },
-    "listings": [
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3562,
-        "date": "2025-12-20T11:31:17.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M70",
-    "hashrateTH": 222,
-    "price": 3508,
-    "stats": {
-      "min": 3508,
-      "max": 3530,
-      "count": 2,
-      "middle": 3519
-    },
-    "listings": [
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3530,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3508,
-        "date": "2025-12-20T11:31:17.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M70",
-    "hashrateTH": 220,
-    "price": 16,
-    "stats": {
-      "min": 16,
-      "max": 3498,
-      "count": 4,
-      "middle": 3388
-    },
-    "listings": [
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3498,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3476,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "AsicArk Official Channel (HK)",
-        "price": 3300,
-        "date": "2025-12-19T09:15:50.000Z"
-      },
-      {
-        "source": "BITMARS _Leila~",
-        "price": 16,
-        "date": "2025-12-19T06:11:49.000Z"
-      }
-    ]
-  },
-  {
-    "name": "Whatsminer M70",
-    "hashrateTH": 218,
-    "price": 3423,
-    "stats": {
-      "min": 3423,
-      "max": 3466,
-      "count": 2,
-      "middle": 3445
-    },
-    "listings": [
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3466,
-        "date": "2025-12-20T11:31:17.000Z"
-      },
-      {
-        "source": "⛏️Asic mining center - Mila💰 (HK)",
-        "price": 3423,
+        "price": 11,
         "date": "2025-12-20T11:31:17.000Z"
       }
     ]
@@ -6136,6 +6335,250 @@
     ]
   },
   {
+    "name": "Whatsminer M50S T",
+    "hashrateTH": 126,
+    "price": 6,
+    "stats": {
+      "min": 6,
+      "max": 6,
+      "count": 1,
+      "middle": 6
+    },
+    "listings": [
+      {
+        "source": "SCminer",
+        "price": 6,
+        "date": "2025-12-20T04:40:50.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M70 T",
+    "hashrateTH": 238,
+    "price": 17,
+    "stats": {
+      "min": 17,
+      "max": 17,
+      "count": 1,
+      "middle": 17
+    },
+    "listings": [
+      {
+        "source": "SCminer",
+        "price": 17,
+        "date": "2025-12-20T04:40:50.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M70 T",
+    "hashrateTH": 248,
+    "price": 17,
+    "stats": {
+      "min": 17,
+      "max": 17,
+      "count": 1,
+      "middle": 17
+    },
+    "listings": [
+      {
+        "source": "SCminer",
+        "price": 17,
+        "date": "2025-12-20T04:40:50.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M70 T",
+    "hashrateTH": 220,
+    "price": 15,
+    "stats": {
+      "min": 15,
+      "max": 16,
+      "count": 2,
+      "middle": 16
+    },
+    "listings": [
+      {
+        "source": "SCminer",
+        "price": 16,
+        "date": "2025-12-20T04:40:50.000Z"
+      },
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 15,
+        "date": "2025-12-19T09:15:50.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M70 T",
+    "hashrateTH": 244,
+    "price": 16,
+    "stats": {
+      "min": 16,
+      "max": 16,
+      "count": 1,
+      "middle": 16
+    },
+    "listings": [
+      {
+        "source": "SCminer",
+        "price": 16,
+        "date": "2025-12-20T04:40:50.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M63S+ T",
+    "hashrateTH": 402,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 11,
+      "count": 1,
+      "middle": 11
+    },
+    "listings": [
+      {
+        "source": "SCminer",
+        "price": 11,
+        "date": "2025-12-20T04:40:50.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M63S+ T",
+    "hashrateTH": 410,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 11,
+      "count": 1,
+      "middle": 11
+    },
+    "listings": [
+      {
+        "source": "SCminer",
+        "price": 11,
+        "date": "2025-12-20T04:40:50.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M73 T",
+    "hashrateTH": 514,
+    "price": 16,
+    "stats": {
+      "min": 16,
+      "max": 16,
+      "count": 1,
+      "middle": 16
+    },
+    "listings": [
+      {
+        "source": "SCminer",
+        "price": 16,
+        "date": "2025-12-20T04:40:50.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M73 T",
+    "hashrateTH": 526,
+    "price": 16,
+    "stats": {
+      "min": 16,
+      "max": 16,
+      "count": 1,
+      "middle": 16
+    },
+    "listings": [
+      {
+        "source": "SCminer",
+        "price": 16,
+        "date": "2025-12-20T04:40:50.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M73 T",
+    "hashrateTH": 496,
+    "price": 15,
+    "stats": {
+      "min": 15,
+      "max": 15,
+      "count": 1,
+      "middle": 15
+    },
+    "listings": [
+      {
+        "source": "SCminer",
+        "price": 15,
+        "date": "2025-12-20T04:40:50.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M73 T",
+    "hashrateTH": 508,
+    "price": 15,
+    "stats": {
+      "min": 15,
+      "max": 15,
+      "count": 1,
+      "middle": 15
+    },
+    "listings": [
+      {
+        "source": "SCminer",
+        "price": 15,
+        "date": "2025-12-20T04:40:50.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M73 T",
+    "hashrateTH": 512,
+    "price": 15,
+    "stats": {
+      "min": 15,
+      "max": 15,
+      "count": 1,
+      "middle": 15
+    },
+    "listings": [
+      {
+        "source": "SCminer",
+        "price": 15,
+        "date": "2025-12-20T04:40:50.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21 Imm",
+    "hashrateTH": 215,
+    "price": 8,
+    "stats": {
+      "min": 8,
+      "max": 1890,
+      "count": 2,
+      "middle": 949
+    },
+    "listings": [
+      {
+        "source": "BT-Miners Global (HK)",
+        "price": 1890,
+        "date": "2025-12-19T09:32:21.000Z"
+      },
+      {
+        "source": "DCE miner",
+        "price": 8,
+        "date": "2025-12-19T08:17:26.000Z"
+      }
+    ]
+  },
+  {
     "name": "Antminer S23",
     "hashrateTH": 296,
     "price": 8150,
@@ -6150,6 +6593,186 @@
         "source": "BT-Miners Global (HK)",
         "price": 8150,
         "date": "2025-12-19T09:32:21.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M70 T",
+    "hashrateTH": 242,
+    "price": 16,
+    "stats": {
+      "min": 16,
+      "max": 16,
+      "count": 1,
+      "middle": 16
+    },
+    "listings": [
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 16,
+        "date": "2025-12-19T09:15:50.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M70 T",
+    "hashrateTH": 240,
+    "price": 16,
+    "stats": {
+      "min": 16,
+      "max": 16,
+      "count": 1,
+      "middle": 16
+    },
+    "listings": [
+      {
+        "source": "AsicArk Official Channel (HK)",
+        "price": 16,
+        "date": "2025-12-19T09:15:50.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Antminer S21 T",
+    "hashrateTH": 215,
+    "price": 7,
+    "stats": {
+      "min": 7,
+      "max": 7,
+      "count": 1,
+      "middle": 7
+    },
+    "listings": [
+      {
+        "source": "BITMARS _Leila~",
+        "price": 7,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M60S+",
+    "hashrateTH": 202,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 11,
+      "count": 1,
+      "middle": 11
+    },
+    "listings": [
+      {
+        "source": "BITMARS _Leila~",
+        "price": 11,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M70",
+    "hashrateTH": 238,
+    "price": 17,
+    "stats": {
+      "min": 17,
+      "max": 17,
+      "count": 1,
+      "middle": 17
+    },
+    "listings": [
+      {
+        "source": "BITMARS _Leila~",
+        "price": 17,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M70",
+    "hashrateTH": 248,
+    "price": 17,
+    "stats": {
+      "min": 17,
+      "max": 17,
+      "count": 1,
+      "middle": 17
+    },
+    "listings": [
+      {
+        "source": "BITMARS _Leila~",
+        "price": 17,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M70",
+    "hashrateTH": 220,
+    "price": 16,
+    "stats": {
+      "min": 16,
+      "max": 16,
+      "count": 1,
+      "middle": 16
+    },
+    "listings": [
+      {
+        "source": "BITMARS _Leila~",
+        "price": 16,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M70",
+    "hashrateTH": 244,
+    "price": 16,
+    "stats": {
+      "min": 16,
+      "max": 16,
+      "count": 1,
+      "middle": 16
+    },
+    "listings": [
+      {
+        "source": "BITMARS _Leila~",
+        "price": 16,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M63S+",
+    "hashrateTH": 440,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 11,
+      "count": 1,
+      "middle": 11
+    },
+    "listings": [
+      {
+        "source": "BITMARS _Leila~",
+        "price": 11,
+        "date": "2025-12-19T06:11:49.000Z"
+      }
+    ]
+  },
+  {
+    "name": "Whatsminer M63S+",
+    "hashrateTH": 442,
+    "price": 11,
+    "stats": {
+      "min": 11,
+      "max": 11,
+      "count": 1,
+      "middle": 11
+    },
+    "listings": [
+      {
+        "source": "BITMARS _Leila~",
+        "price": 11,
+        "date": "2025-12-19T06:11:49.000Z"
       }
     ]
   },

@@ -34,7 +34,22 @@ interface TelegramMiner {
 
 function parseLine(line: string): TelegramMiner[] | null {
     // 1. Clean basic bullets
-    let cleanLine = line.replace(/^[-\*•#]\s*/, '').trim();
+    // 1. Clean basic bullets and Emojis (Full Range)
+    let cleanLine = line.replace(/^([-\*•#⚙️\u2699\uFE0F]|[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|\uD83E[\uDD10-\uDDFF]|[\u2011-\u26FF])+\s*/u, '').trim();
+    cleanLine = cleanLine.replace(/^[\u2699\u2692\uFE0F\s]+/, ''); // Explicit Gear/Hammer Stripper
+
+    // Clean "300 qty" / "100 pcs" prefix
+    cleanLine = cleanLine.replace(/^\d+\s*(qty|pcs|units)\s+/i, '');
+
+    // De-Mash: "395TGTD" -> "395T GTD"
+    cleanLine = cleanLine.replace(/(\d+T)(GTD|RB)/gi, '$1 $2');
+
+
+    // De-Mash: "M60s+16.5w" -> "M60s+ 16.5w"
+    cleanLine = cleanLine.replace(/([a-zA-Z\+\-])(\d+(?:\.\d+)?w)/gi, '$1 $2');
+
+    // De-Mash: "206/208/T" -> "206/208 T"
+    cleanLine = cleanLine.replace(/\/t\b/gi, ' T');
 
     // Check for Slash-Separated Hashrates (e.g., 434/436/440T or /440T/442T)
     // Updated to handle optional leading slash and units inside groups
