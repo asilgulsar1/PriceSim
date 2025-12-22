@@ -205,7 +205,8 @@ function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
                     middlePrice: tgMiner.stats?.middle || price,
                     vendorCount: tgMiner.stats?.count || 1,
                     lastUpdated: new Date().toISOString()
-                }
+                },
+                source: 'Market Aggregated'
             });
         }
     }
