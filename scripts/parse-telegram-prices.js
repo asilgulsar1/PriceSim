@@ -5,11 +5,25 @@ const path = require('path');
 const INPUT_FILE = path.join(__dirname, '../scraped_prices.json');
 const OUTPUT_FILE = path.join(__dirname, '../public/miners-latest.json');
 
+// Universal Identity Logic (Must match market-utils.ts)
+function cleanNameForIdentity(name) {
+    return name.toLowerCase()
+        .replace(/antminer|whatsminer|bitmain|microbt|avalon|canaan|bitdeer|sealminer/g, '') // Strip Brands
+        .replace(/\bplus\b/g, '+')
+        .replace(/\bhyd\b/g, 'hydro')
+        .replace(/\bpro\b/g, 'pro')
+        .replace(/(\d+)(t|th|g|gh|m|mh)/g, '') // Strip embedded hashrate strings like "216T" from name
+        .replace(/[^a-z0-9\+\-\s]/g, '') // Remove special chars
+        .replace(/\s+/g, ' ')
+        .trim();
+}
+
 function parseLine(line) {
     // 1. Clean line
     line = line.replace(/^[-\*•]\s*/, '').trim();
 
-    // 2. Extract Hashrate using Regex
+    // 2. Extract Hashrate using Strict Regex
+    // Look for number immediately followed by T/TH (e.g. 216T, 216TH, 216 TH)
     const hashrateRegex = /(\d+(?:\.\d+)?)\s*(T|Th|G|Gh|M|Mh)/i;
     const hashrateMatch = line.match(hashrateRegex);
     let hashrateTH = 0;
@@ -24,15 +38,7 @@ function parseLine(line) {
     }
 
     // 3. Extract Price
-    // Valid formats: "10.7U/TH", "$16.5/T", "$3850"
-
-    // Unit Price: Look for number followed by /T or /TH, with optional prefix/suffix currency
-    // Matches: "10.7U/TH", "$16.5/T", "16.5 $/T", "16.5/T" (if we assume T context implies currency?) 
-    // Let's require currency symbol OR unit context for safety.
     const unitPriceRegex = /(?:[\$u]\s*)?(\d+(?:\.\d+)?)\s*(?:[u\$]|usd)?\s*\/\s*(?:t|th)/i;
-
-    // Flat Price: Look for currency prefix "$" OR suffix "u"/"usd"
-    // Matches: "$3850", "4499u", "4499 USD"
     const flatPriceRegex = /(?:\$|usd)\s*(\d+(?:\.\d+)?)|(\d+(?:\.\d+)?)\s*(?:u|usd)(?!\/)/i;
 
     let price = 0;
@@ -42,27 +48,22 @@ function parseLine(line) {
     const flatMatch = line.match(flatPriceRegex);
 
     if (unitMatch && hashrateTH > 0) {
-        // unitMatch[1] is the number. 
         const pricePerTH = parseFloat(unitMatch[1]);
         price = pricePerTH * hashrateTH;
         type = 'calculated_from_unit';
     } else if (flatMatch) {
-        // Group 1 ($prefix) or Group 2 (suffix)
         const val = flatMatch[1] || flatMatch[2];
         price = parseFloat(val);
         type = 'flat';
     }
 
     // 4. Extract Model Name
-    // Separators can be ':', '—', '-', or just space before hashrate?
-    // Strategy: Take everything before the hashrate? 
-    // Or split by common separators.
     let namePart = line;
     if (line.includes(':')) namePart = line.split(':')[0];
     else if (line.includes('—')) namePart = line.split('—')[0];
-    else if (line.includes(' - ')) namePart = line.split(' - ')[0]; // space-dash-space to avoid hyphenated names
+    else if (line.includes(' - ')) namePart = line.split(' - ')[0];
 
-    // Cleanup name
+    // Basic cleanup
     let name = namePart.replace(/\*\*/g, '').trim();
 
     return {
@@ -75,47 +76,15 @@ function parseLine(line) {
     };
 }
 
-
-
-
-function calculateStats(listings) {
-    if (!listings.length) return null;
-    const prices = listings.map(l => l.price).sort((a, b) => a - b);
-    const min = prices[0];
-    const max = prices[prices.length - 1];
-    const avg = Math.round(prices.reduce((a, b) => a + b, 0) / prices.length);
-
-    // Middle/Median calculation
-    let middle = 0;
-    const midIdx = Math.floor(prices.length / 2);
-    if (prices.length % 2 === 0) {
-        middle = Math.round((prices[midIdx - 1] + prices[midIdx]) / 2);
-    } else {
-        middle = prices[midIdx];
-    }
-
-    return { min, max, avg, middle, count: listings.length };
-}
-
 function normalizeKey(name, hashrateTH) {
-    // simplified name for grouping
-    // Remove "Antminer", "Whatsminer"
-    let clean = name.toLowerCase()
-        .replace(/antminer/g, '')
-        .replace(/whatsminer/g, '')
-        .replace(/spot/g, '')
-        .replace(/hk/g, '')
-        .replace(/stock/g, '')
-        .replace(/\(.*\)/g, '') // remove parens
-        .trim();
+    if (!hashrateTH || hashrateTH === 0) return `unknown-${Date.now()}`; // Fallback
 
-    // Remove spaces and special chars
-    clean = clean.replace(/[^a-z0-9]/g, '');
+    const clean = cleanNameForIdentity(name);
+    // Slugify manually
+    const slug = clean.replace(/\s+/g, '-');
+    const hr = Math.floor(hashrateTH); // Strictly integer hashrate for grouping
 
-    // Add hashrate bucket (to avoid grouping 200T and 100T together)
-    // Round hashrate to nearest whole number for grouping?
-    const hr = Math.round(hashrateTH);
-    return `${clean}-${hr}`;
+    return `${slug}-${hr}`;
 }
 
 function main() {
