@@ -105,7 +105,8 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
         // 4. Universal Strict Key Generation
         // Key = Slug(CleanNameWithoutHash) + "-" + IntegerHashrate
         const seriesKey = normalizeForKey(cleanName);
-        const uniqueKey = `${seriesKey}-${Math.floor(hashrate)}`;
+        const hashInt = Math.floor(hashrate);
+        const uniqueKey = `${seriesKey}-${hashInt}`;
 
         let powerW = miner.specs?.powerW || miner.powerW || 0;
 
@@ -121,11 +122,44 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
             powerW = estimatePowerFromSeries(cleanName, hashrate);
         }
 
+        // 6. Universal Naming Standard Reconstruction
+        // Format: [Brand] [Series] [Variant] [Hashrate]T
+        // Example: Antminer S21+ Hydro 395T
+
+        let displayName = cleanName;
+
+        // A. Infer Brand if missing (for Telegram items like "S21")
+        const lowerName = displayName.toLowerCase();
+        if (!lowerName.includes('antminer') && !lowerName.includes('whatsminer') && !lowerName.includes('avalon') && !lowerName.includes('bitdeer') && !lowerName.includes('sealminer')) {
+            // Heuristic Brand Assignment
+            if (lowerName.startsWith('s') || lowerName.startsWith('t') || lowerName.startsWith('l') || lowerName.startsWith('k')) {
+                displayName = `Antminer ${displayName}`;
+            } else if (lowerName.startsWith('m')) {
+                displayName = `Whatsminer ${displayName}`;
+            } else if (lowerName.startsWith('a')) {
+                displayName = `Avalon ${displayName}`;
+            }
+        }
+
+        // B. Standardize Hashrate Suffix
+        // Check if name already implies exact hashrate (e.g. "Antminer S21+ 395T")
+        const hashrateSuffix = `${hashInt}T`;
+        // Check if name ENDS with the hashrate (allowing for T/TH and case)
+        const endsWithHash = new RegExp(`${hashInt}\\s*(t|th|g|m)?$`, 'i');
+
+        if (!endsWithHash.test(displayName)) {
+            // If name doesn't end with "395T", append it.
+            displayName = `${displayName} ${hashrateSuffix}`;
+        } else {
+            // Ensure T suffix is standardized (e.g. replace "395 TH" with "395T")
+            displayName = displayName.replace(endsWithHash, hashrateSuffix);
+        }
+
         if (!mergedMap.has(uniqueKey)) {
             // New Entry
             mergedMap.set(uniqueKey, {
                 id: uniqueKey,
-                name: cleanName, // We display the "Cleanest" name we found
+                name: displayName, // UNIVERSAL STANDARD NAME
                 specs: {
                     hashrateTH: hashrate,
                     powerW: powerW, // Enriched Power
@@ -143,8 +177,8 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
                 source: isTelegram ? 'Telegram' : 'Web'
             });
         } else {
-            // Optional: Update name if current is cleaner? 
-            // Keeping first found (likely via findBestStaticMatch) is usually safe.
+            // Entry exists.
+            // Ensure we trust key.
         }
 
         // Add Listing
