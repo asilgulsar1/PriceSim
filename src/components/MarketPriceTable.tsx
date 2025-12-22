@@ -1,6 +1,5 @@
-'use client';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { MinerRow } from '@/components/market/MinerDisplay';
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useMemo } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
@@ -230,7 +229,7 @@ export function MarketPriceTable({ initialData, lastUpdated, userRole }: MarketP
                 {/* Desktop Table */}
                 <Table className="hidden md:table">
                     <TableHeader>
-                        <TableRow>
+                        <TableRow className="bg-muted/50">
                             <TableHead className="w-[300px] cursor-pointer" onClick={() => handleSort('name')}>
                                 <div className="flex items-center">Model <SortIcon field="name" /></div>
                             </TableHead>
@@ -239,9 +238,8 @@ export function MarketPriceTable({ initialData, lastUpdated, userRole }: MarketP
                             </TableHead>
                             <TableHead>Power</TableHead>
                             <TableHead className="cursor-pointer" onClick={() => handleSort('price')}>
-                                <div className="flex items-center">Middle Price <SortIcon field="price" /></div>
+                                <div className="flex items-center">Est. Price <SortIcon field="price" /></div>
                             </TableHead>
-                            <TableHead>Price Range</TableHead>
                             <TableHead className="cursor-pointer text-right" onClick={() => handleSort('vendors')}>
                                 <div className="flex items-center justify-end">Vendors <SortIcon field="vendors" /></div>
                             </TableHead>
@@ -256,44 +254,11 @@ export function MarketPriceTable({ initialData, lastUpdated, userRole }: MarketP
                             </TableRow>
                         ) : (
                             sortedData.map((miner) => (
-                                <TableRow
-                                    key={miner.id}
-                                    className="group cursor-pointer hover:bg-muted/50 transition-colors"
-                                    onClick={() => router.push(`/products/${slugify(miner.name)}`)}
-                                >
-                                    <TableCell className="font-medium">
-                                        <div className="flex flex-col">
-                                            <Link
-                                                href={`/products/${slugify(miner.name)}`}
-                                                className="hover:underline text-primary font-semibold text-base block w-full py-1"
-                                                onClick={(e) => e.stopPropagation()}
-                                            >
-                                                {miner.name}
-                                            </Link>
-                                            <span className="text-xs text-muted-foreground">{miner.listings.length > 0 && miner.listings[0].stockStatus}</span>
-                                        </div>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Badge variant="secondary">{miner.specs.hashrateTH} TH/s</Badge>
-                                    </TableCell>
-                                    <TableCell className="text-muted-foreground">{miner.specs.powerW} W</TableCell>
-                                    <TableCell>
-                                        <div className="font-bold text-green-500 text-lg flex items-center gap-2">
-                                            <span>${miner.stats.middlePrice.toLocaleString()}</span>
-                                            {userRole === 'admin' && miner.source && miner.source.includes('Telegram') && (
-                                                <span className="text-[10px] uppercase font-bold text-sky-600 bg-sky-50 px-1.5 py-0.5 rounded border border-sky-100">
-                                                    Telegram Spot
-                                                </span>
-                                            )}
-                                        </div>
-                                    </TableCell>
-                                    <TableCell className="text-xs text-muted-foreground">
-                                        ${miner.stats.minPrice.toLocaleString()} - ${miner.stats.maxPrice.toLocaleString()}
-                                    </TableCell>
-                                    <TableCell className="text-right">
-                                        <Badge variant="outline">{miner.stats.vendorCount}</Badge>
-                                    </TableCell>
-                                </TableRow>
+                                <MinerRow
+                                    key={miner.id || miner.name}
+                                    miner={miner}
+                                    userRole={userRole}
+                                />
                             ))
                         )}
                     </TableBody>
