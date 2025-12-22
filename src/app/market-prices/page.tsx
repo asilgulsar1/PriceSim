@@ -5,16 +5,44 @@ import { auth } from "@/auth";
 
 export const revalidate = 60; // Revalidate every minute
 
+import { mergeMarketData } from '@/lib/market-utils';
+
 async function getInitialData() {
     try {
-        const { blobs } = await list({ prefix: 'market-prices.json', limit: 1 });
+        // Fetch both blobs in parallel
+        const [marketBlob, telegramBlob] = await Promise.all([
+            list({ prefix: 'market-prices.json', limit: 1 }),
+            list({ prefix: 'miners-latest.json', limit: 1 })
+        ]);
 
-        if (blobs.length > 0) {
-            const res = await fetch(blobs[0].url, { next: { revalidate: 60 } });
+        let marketMiners = [];
+        let telegramMiners = [];
+        let updatedAt = null;
+
+        // Process Market Prices Blob
+        if (marketBlob.blobs.length > 0) {
+            const res = await fetch(marketBlob.blobs[0].url, { next: { revalidate: 60 } });
             if (res.ok) {
-                return await res.json();
+                const json = await res.json();
+                marketMiners = json.miners || [];
+                updatedAt = json.updatedAt;
             }
         }
+
+        // Process Telegram Blob
+        if (telegramBlob.blobs.length > 0) {
+            const res = await fetch(`${telegramBlob.blobs[0].url}?t=${Date.now()}`, { next: { revalidate: 60 } });
+            if (res.ok) {
+                const json = await res.json();
+                telegramMiners = Array.isArray(json) ? json : (json.miners || []);
+            }
+        }
+
+        // Merge Data
+        const merged = mergeMarketData(marketMiners, telegramMiners);
+
+        return { miners: merged, updatedAt };
+
     } catch (e) {
         console.error('Failed to load initial market data', e);
     }
