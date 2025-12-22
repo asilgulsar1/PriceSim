@@ -44,7 +44,17 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
     const processMiner = (miner: any, isTelegram: boolean) => {
         // 1. Sanitize Price (Fix $/TH < 100)
         let price = miner.price || (miner.stats ? miner.stats.middlePrice : 0);
-        const hashrate = miner.specs?.hashrateTH || miner.hashrateTH || 0;
+
+        // 2. Hashrate Extraction (Granular Normalization)
+        let hashrate = miner.specs?.hashrateTH || miner.hashrateTH || 0;
+
+        // If Hashrate is missing, try to extract from Name (e.g. "S21+ 338T")
+        if (!hashrate || hashrate === 0) {
+            const hashMatch = miner.name.match(/(\d{2,4})\s*(T|TH|th|Th)/);
+            if (hashMatch) {
+                hashrate = parseInt(hashMatch[1]);
+            }
+        }
 
         if (price < 100 && price > 0 && hashrate > 0) {
             price = Math.round(price * hashrate);
@@ -52,26 +62,34 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
 
         if (price <= 0) return; // Skip invalid prices
 
-        // 2. Normalize Identity
+        // 3. Normalize Identity
         // Try to match against Static DB first
         const match = findBestStaticMatch(miner.name, INITIAL_MINERS);
 
-        // Strict Filter: If user wants only BTC/known miners, we could filter here.
-        // For now, we allow "Unmatched" if they look like miners, but prioritize clean names.
-
         let cleanName = match ? match.name : miner.name;
+
+        // If we extracted a hashrate but the match name doesn't have it (e.g. "Antminer S21+"), 
+        // we keep the base name clean, but the Key will use the hashrate.
+        // Actually, for display, we might want to strip the hashrate from the cleanName if it's there,
+        // so we can reconstruct it as "[Name] [Hash]T" consistently.
+        // For now, relies on findBestStaticMatch returning the Model Name.
+
         let powerW = miner.specs?.powerW || miner.powerW || 0;
 
-        // Enrich Power if matched
+        // 4. Power Enrichment (Critical for Simulation)
         if (match && (!powerW || powerW === 0)) {
+            // Perfect Match -> Use Static DB
             powerW = match.powerWatts;
-        } else if (!powerW && hashrate > 0) {
-            // Fallback enrichment
+        }
+
+        if ((!powerW || powerW === 0) && hashrate > 0) {
+            // Fallback: Use Series-based estimation
             powerW = getPowerForMiner(cleanName, hashrate);
         }
 
-        // Create Unique Key (Deduplication Core)
-        // Group precisely by Name + Hashrate to separate variants (S19k Pro 115T vs 120T)
+        // 5. Create Unique Key (Deduplication Core)
+        // Group precisely by CleanName + Hashrate to separate variants (S21+ 338T vs 358T)
+        // This ensures the Simulation Engine (5% tolerance) finds the exact match.
         const key = slugify(`${cleanName}-${hashrate}`);
 
         if (!mergedMap.has(key)) {
@@ -81,7 +99,7 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
                 name: cleanName,
                 specs: {
                     hashrateTH: hashrate,
-                    powerW: powerW,
+                    powerW: powerW, // Enriched Power
                     algo: 'SHA-256'
                 },
                 listings: [],
@@ -121,7 +139,7 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
         } else {
             // Create a listing from the main record itself
             entry.listings.push({
-                vendor: miner.source || (isTelegram ? "Telegram Broker" : "Available"), // TODO: Pass vendor name better
+                vendor: miner.source || (isTelegram ? "Telegram Broker" : "Available"),
                 price: price,
                 currency: "USD",
                 stockStatus: "Spot",

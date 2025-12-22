@@ -4,8 +4,7 @@ import React, { useState } from "react";
 import { TableRow, TableCell } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { ExternalLink } from "lucide-react";
+
 
 /**
  * Shared Component for Displaying a Miner Row.
@@ -21,14 +20,15 @@ export function MinerRow({ miner, userRole }: MinerDisplayProps) {
     const [open, setOpen] = useState(false);
 
     // Data is now pre-sanitized by mergeMarketData
-    const displayName = miner.name;
+    // Granular Display: [CleanName] [Hashrate]T
     const hashrate = miner.specs.hashrateTH;
+    const baseName = miner.name;
+    const displayName = baseName.includes(hashrate + 'T') ? baseName : `${baseName} ${hashrate}T`;
+
     const powerW = miner.specs.powerW;
     const displayPrice = miner.stats.middlePrice;
 
-    // Only expand if there are ACTUAL listings > 0.
-    // Sometimes listings might be 1 but it's just the aggregated row itself.
-    // Logic: If vendorCount > 1 OR (vendorCount == 1 and listings[0].url != '#')
+    // Only expand if there are ACTUAL listings > 1.
     const hasListings = miner.listings && miner.listings.length > 1;
 
     // Determine Profitability (Visual)
@@ -41,8 +41,11 @@ export function MinerRow({ miner, userRole }: MinerDisplayProps) {
                 {/* Model Name */}
                 <TableCell className="font-medium">
                     <div className="flex items-center gap-2">
-                        {hasListings && (
+                        {/* Only show arrow if expandable */}
+                        {hasListings ? (
                             <span className="text-xs text-muted-foreground w-4">{open ? '▼' : '▶'}</span>
+                        ) : (
+                            <span className="w-4"></span>
                         )}
                         <span className="text-base text-primary/90 font-semibold group-hover:text-blue-600 transition-colors">
                             {displayName}
