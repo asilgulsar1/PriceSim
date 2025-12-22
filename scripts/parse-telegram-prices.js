@@ -114,6 +114,25 @@ function parseLine(line) {
     };
 }
 
+function calculateStats(listings) {
+    if (!listings.length) return null;
+    const prices = listings.map(l => l.price).sort((a, b) => a - b);
+    const min = prices[0];
+    const max = prices[prices.length - 1];
+    const avg = Math.round(prices.reduce((a, b) => a + b, 0) / prices.length);
+
+    // Middle/Median calculation
+    let middle = 0;
+    const midIdx = Math.floor(prices.length / 2);
+    if (prices.length % 2 === 0) {
+        middle = Math.round((prices[midIdx - 1] + prices[midIdx]) / 2);
+    } else {
+        middle = prices[midIdx];
+    }
+
+    return { min, max, avg, middle, count: listings.length };
+}
+
 function normalizeKey(name, hashrateTH) {
     if (!hashrateTH || hashrateTH === 0) return `unknown-${Date.now()}`; // Fallback
 
