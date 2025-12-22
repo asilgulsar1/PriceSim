@@ -34,113 +34,126 @@ export function getPowerForMiner(name: string, hashrate: number): number {
 // Logic: Merge Telegram Data into Market Data
 // ------------------------------------------------------------------
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { findBestStaticMatch, normalizeMinerName } from './market-matching';
+import { slugify } from '@/lib/slug-utils';
+
 export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
-    // Clone to avoid mutation
-    const result = [...marketMiners];
+    // Master Map: Key = Slug(CleanName + Hashrate)
+    const mergedMap = new Map<string, any>();
 
-    for (const tgMiner of telegramMiners) {
-        let price = tgMiner.price;
-        if (!price || price <= 0) continue;
+    // Helper to process any miner (Web or Telegram)
+    const processMiner = (miner: any, isTelegram: boolean) => {
+        // 1. Sanitize Price (Fix $/TH < 100)
+        let price = miner.price || (miner.stats ? miner.stats.middlePrice : 0);
+        const hashrate = miner.specs?.hashrateTH || miner.hashrateTH || 0;
 
-        // SANITIZATION: Detect $/TH prices (< $100 usually)
-        if (price < 100 && tgMiner.hashrateTH > 0) {
-            price = Math.round(price * tgMiner.hashrateTH);
+        if (price < 100 && price > 0 && hashrate > 0) {
+            price = Math.round(price * hashrate);
         }
 
-        // ENRICHMENT: Backfill Power if missing
-        let powerW = tgMiner.powerW || 0;
-        if (powerW === 0 && tgMiner.hashrateTH > 0) {
-            powerW = getPowerForMiner(tgMiner.name, tgMiner.hashrateTH);
+        if (price <= 0) return; // Skip invalid prices
+
+        // 2. Normalize Identity
+        // Try to match against Static DB first
+        const match = findBestStaticMatch(miner.name, INITIAL_MINERS);
+
+        // Strict Filter: If user wants only BTC/known miners, we could filter here.
+        // For now, we allow "Unmatched" if they look like miners, but prioritize clean names.
+
+        let cleanName = match ? match.name : miner.name;
+        let powerW = miner.specs?.powerW || miner.powerW || 0;
+
+        // Enrich Power if matched
+        if (match && (!powerW || powerW === 0)) {
+            powerW = match.powerWatts;
+        } else if (!powerW && hashrate > 0) {
+            // Fallback enrichment
+            powerW = getPowerForMiner(cleanName, hashrate);
         }
 
-        // Find match
-        // 1. Match by exact Hashrate (+- 2%) AND similar name
-        const matchIndex = result.findIndex(m => {
-            if (!m.specs?.hashrateTH) return false;
+        // Create Unique Key (Deduplication Core)
+        // Group precisely by Name + Hashrate to separate variants (S19k Pro 115T vs 120T)
+        const key = slugify(`${cleanName}-${hashrate}`);
 
-            // Hashrate check
-            const hashrateMatch = Math.abs(m.specs.hashrateTH - tgMiner.hashrateTH) < (tgMiner.hashrateTH * 0.02);
-            if (!hashrateMatch) return false;
+        if (!mergedMap.has(key)) {
+            // New Entry
+            mergedMap.set(key, {
+                id: key,
+                name: cleanName,
+                specs: {
+                    hashrateTH: hashrate,
+                    powerW: powerW,
+                    algo: 'SHA-256'
+                },
+                listings: [],
+                stats: {
+                    minPrice: price,
+                    maxPrice: price,
+                    avgPrice: price,
+                    middlePrice: price,
+                    vendorCount: 0,
+                    lastUpdated: new Date().toISOString()
+                },
+                source: isTelegram ? 'Telegram' : 'Web'
+            });
+        }
 
-            // Name check: normalized
-            const normM = normalizeMinerName(m.name);
-            const normT = normalizeMinerName(tgMiner.name);
+        // Add Listing
+        const entry = mergedMap.get(key);
 
-            return normM.includes(normT) || normT.includes(normM);
-        });
+        // Flatten source listings if they exist
+        const rawListings = miner.listings || [];
 
-        if (matchIndex !== -1) {
-            // Update existing
-            const m = result[matchIndex];
+        if (rawListings.length > 0) {
+            // Import existing listings
+            rawListings.forEach((l: any) => {
+                let lPrice = l.price;
+                if (lPrice < 100 && hashrate > 0) lPrice = lPrice * hashrate;
 
-            // 1. Merge Listings
-            const originalListings = m.listings || [];
-            const telegramListings = (tgMiner.listings || []).map((l: any) => ({
-                vendor: l.source || "Telegram Broker",
-                price: l.price || price, // Use sanitized price fallback
+                entry.listings.push({
+                    vendor: l.vendor || l.source || (isTelegram ? "Telegram Broker" : "MarketPlace"),
+                    price: lPrice,
+                    currency: "USD",
+                    stockStatus: "Spot",
+                    url: l.url || "#",
+                    isTelegram: l.isTelegram || isTelegram
+                });
+            });
+        } else {
+            // Create a listing from the main record itself
+            entry.listings.push({
+                vendor: miner.source || (isTelegram ? "Telegram Broker" : "Available"), // TODO: Pass vendor name better
+                price: price,
                 currency: "USD",
                 stockStatus: "Spot",
                 url: "#",
-                isTelegram: true
-            }));
-
-            // Combine
-            m.listings = [...telegramListings, ...originalListings];
-
-            // 2. Recalculate Stats (Weighted by listings)
-            const allPrices = m.listings.map((l: any) => l.price).filter((p: number) => p > 0).sort((a: number, b: number) => a - b);
-
-            if (allPrices.length > 0) {
-                const count = allPrices.length;
-                const mid = Math.floor(count / 2);
-                const median = count % 2 === 0 ? (allPrices[mid - 1] + allPrices[mid]) / 2 : allPrices[mid];
-
-                m.stats.middlePrice = Math.round(median);
-                m.stats.minPrice = allPrices[0];
-                m.stats.maxPrice = allPrices[count - 1];
-                m.stats.avgPrice = Math.round(allPrices.reduce((a: number, b: number) => a + b, 0) / count);
-                m.stats.vendorCount = count;
-            } else {
-                // Fallback if no valid prices found
-                m.stats.middlePrice = tgMiner.stats?.middle || price;
-            }
-
-            // Backfill power if existing record was empty
-            if (!m.specs.powerW && powerW > 0) m.specs.powerW = powerW;
-
-            m.stats.lastUpdated = new Date().toISOString();
-            m.source = 'Market Aggregated';
-
-        } else {
-            // Add new entry
-            result.push({
-                id: tgMiner.name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-                name: tgMiner.name,
-                specs: {
-                    hashrateTH: tgMiner.hashrateTH,
-                    powerW: powerW, // Use enriched power
-                    algo: 'SHA-256'
-                },
-                listings: (tgMiner.listings || []).map((l: any) => ({
-                    vendor: l.source || "Telegram Broker",
-                    price: l.price || price,
-                    currency: "USD",
-                    stockStatus: "Spot",
-                    url: "#",
-                    isTelegram: true
-                })),
-                stats: {
-                    minPrice: tgMiner.stats?.min || price,
-                    maxPrice: tgMiner.stats?.max || price,
-                    avgPrice: tgMiner.stats?.avg || price,
-                    middlePrice: tgMiner.stats?.middle || price,
-                    vendorCount: tgMiner.stats?.count || 1,
-                    lastUpdated: new Date().toISOString()
-                },
-                source: 'Market Aggregated'
+                isTelegram: isTelegram
             });
         }
-    }
+    };
 
-    return result;
+    // Process Both Sets
+    marketMiners.forEach(m => processMiner(m, false));
+    telegramMiners.forEach(m => processMiner(m, true));
+
+    // Finalize Stats for each merged entry
+    const finalResults = Array.from(mergedMap.values()).map(m => {
+        const prices = m.listings.map((l: any) => l.price).filter((p: number) => p > 0).sort((a: number, b: number) => a - b);
+        const count = prices.length;
+
+        if (count > 0) {
+            const mid = Math.floor(count / 2);
+            const median = count % 2 === 0 ? (prices[mid - 1] + prices[mid]) / 2 : prices[mid];
+
+            m.stats.minPrice = prices[0];
+            m.stats.maxPrice = prices[count - 1];
+            m.stats.avgPrice = Math.round(prices.reduce((a: number, b: number) => a + b, 0) / count);
+            m.stats.middlePrice = Math.round(median);
+            m.stats.vendorCount = count;
+        }
+
+        return m;
+    });
+
+    return finalResults.sort((a, b) => b.specs.hashrateTH - a.specs.hashrateTH); // Sort by hashrate default
 }

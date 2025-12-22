@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import { TableRow, TableCell } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from "lucide-react";
-import { findBestStaticMatch } from "@/lib/market-matching";
-import { INITIAL_MINERS } from "@/lib/miner-data";
+import { Badge } from "@/components/ui/badge";
+import { ExternalLink } from "lucide-react";
 
 /**
  * Shared Component for Displaying a Miner Row.
@@ -20,35 +20,24 @@ interface MinerDisplayProps {
 export function MinerRow({ miner, userRole }: MinerDisplayProps) {
     const [open, setOpen] = useState(false);
 
-    // 1. Sanitization: Resolve Clean Name
-    // This fixes "Antminer S19k Pro Гонконг" -> "Antminer S19k Pro"
-    const match = findBestStaticMatch(miner.name, INITIAL_MINERS);
-    const displayName = match ? match.name : miner.name;
-    const isEstimated = !match;
+    // Data is now pre-sanitized by mergeMarketData
+    const displayName = miner.name;
+    const hashrate = miner.specs.hashrateTH;
+    const powerW = miner.specs.powerW;
+    const displayPrice = miner.stats.middlePrice;
 
-    // 2. Sanitization: Fix Low Prices ($/TH to Unit Price)
-    // Some web sources (ASIC Jungle via API?) might return $/TH as price
-    let displayPrice = miner.stats.middlePrice || miner.price || 0;
-    const hashrate = miner.specs.hashrateTH || miner.hashrateTH || 0;
+    // Only expand if there are ACTUAL listings > 0.
+    // Sometimes listings might be 1 but it's just the aggregated row itself.
+    // Logic: If vendorCount > 1 OR (vendorCount == 1 and listings[0].url != '#')
+    const hasListings = miner.listings && miner.listings.length > 1;
 
-    if (displayPrice < 100 && displayPrice > 0 && hashrate > 0) {
-        // Heuristic: If price is < $100 and it's a miner, it's likely $/TH
-        displayPrice = Math.round(displayPrice * hashrate);
-    }
-
-    // Determine Profitability (Quick Calc for visual parity with Telegram Table)
-    // We assume $0.055 kWh 
-    const powerW = miner.specs.powerW || (match ? match.powerWatts : 0) || (hashrate * 25); // Fallback Est
+    // Determine Profitability (Visual)
     const kwhPrice = 0.055;
     const dailyExp = (powerW / 1000) * 24 * kwhPrice;
-    // Revenue is harder to get without Live Hashprice in props. 
-    // For now, we focus on Clean Name + Clean Price + Vendors.
-
-    const hasListings = miner.listings && miner.listings.length > 0;
 
     return (
         <>
-            <TableRow className="hover:bg-muted/50 cursor-pointer group" onClick={() => hasListings && setOpen(!open)}>
+            <TableRow className={`hover:bg-muted/50 cursor-pointer group ${!hasListings ? 'cursor-default' : ''}`} onClick={() => hasListings && setOpen(!open)}>
                 {/* Model Name */}
                 <TableCell className="font-medium">
                     <div className="flex items-center gap-2">
@@ -58,7 +47,6 @@ export function MinerRow({ miner, userRole }: MinerDisplayProps) {
                         <span className="text-base text-primary/90 font-semibold group-hover:text-blue-600 transition-colors">
                             {displayName}
                         </span>
-                        {isEstimated && <span className="text-[10px] text-muted-foreground opacity-50">(Raw)</span>}
                     </div>
                 </TableCell>
 
@@ -103,9 +91,8 @@ export function MinerRow({ miner, userRole }: MinerDisplayProps) {
                             </h4>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                                 {miner.listings.map((l: any, idx: number) => {
-                                    // Local sanitize for listing price too needed?
-                                    let lPrice = l.price;
-                                    if (lPrice < 100 && hashrate > 0) lPrice = lPrice * hashrate;
+                                    // Data is pre-sanitized in Listings array too
+                                    const lPrice = l.price;
 
                                     return (
                                         <div key={idx} className="flex justify-between items-center text-sm p-3 bg-white border rounded-md shadow-sm hover:shadow-md transition-shadow">
