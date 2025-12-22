@@ -1,3 +1,4 @@
+'use client';
 
 import { MinerRow } from '@/components/market/MinerDisplay';
 /* eslint-disable @typescript-eslint/no-unused-vars */
