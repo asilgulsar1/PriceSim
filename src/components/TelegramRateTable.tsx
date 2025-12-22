@@ -113,8 +113,12 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
         const groups: Record<string, any> = {};
 
         enrichedData.forEach(m => {
-            if (!groups[m.name]) {
-                groups[m.name] = {
+            // Un-Group variants: Use Name + Hashrate as key
+            // This ensures "S21 Pro 235T" and "S21 Pro 225T" are separate rows
+            const key = `${m.name}-${m.hashrateTH}`;
+
+            if (!groups[key]) {
+                groups[key] = {
                     name: m.name,
                     minHash: m.hashrateTH,
                     maxHash: m.hashrateTH,
@@ -126,7 +130,7 @@ export function TelegramRateTable({ telegramMiners }: TelegramRateTableProps) {
                 };
             }
 
-            const g = groups[m.name];
+            const g = groups[key];
             g.children.push(m);
             g.minHash = Math.min(g.minHash, m.hashrateTH);
             g.maxHash = Math.max(g.maxHash, m.hashrateTH);
