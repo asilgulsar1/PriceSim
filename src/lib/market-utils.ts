@@ -80,7 +80,8 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
                 price: l.price || price, // Use sanitized price fallback
                 currency: "USD",
                 stockStatus: "Spot",
-                url: "#"
+                url: "#",
+                isTelegram: true
             }));
 
             // Combine
@@ -125,7 +126,8 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
                     price: l.price || price,
                     currency: "USD",
                     stockStatus: "Spot",
-                    url: "#"
+                    url: "#",
+                    isTelegram: true
                 })),
                 stats: {
                     minPrice: tgMiner.stats?.min || price,

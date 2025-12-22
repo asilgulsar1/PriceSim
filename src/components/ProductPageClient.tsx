@@ -286,7 +286,8 @@ export default function ProductPageClient({ miner }: { miner: MinerProfile & { l
                                                     price: l.price,
                                                     moq: '1 Unit',
                                                     status: l.stockStatus || 'Verify',
-                                                    url: l.url
+                                                    url: l.url,
+                                                    isTelegram: l.isTelegram
                                                 }));
                                             }
                                             // 2. Fallback to Industry Standard Simulation if no scraped data
