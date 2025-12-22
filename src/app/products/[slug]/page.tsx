@@ -31,7 +31,7 @@ async function getMiner(slug: string): Promise<ExtendedMinerProfile | null> {
 
     // 2. Fetch Market Data to enrich or fallback
     try {
-        let marketData = { miners: [] };
+        let marketData: { miners: any[] } = { miners: [] };
 
         // Try Local First (Dev)
         if (process.env.NODE_ENV === 'development') {

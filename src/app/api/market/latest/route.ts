@@ -76,8 +76,7 @@ export async function GET(request: Request) {
     }
 }
 
-return result;
-}
+
 
 // Helper to look up power from static DB
 import { INITIAL_MINERS } from '@/lib/miner-data';
