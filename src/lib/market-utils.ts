@@ -34,7 +34,6 @@ export function getPowerForMiner(name: string, hashrate: number): number {
 // Logic: Merge Telegram Data into Market Data
 // ------------------------------------------------------------------
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { findBestStaticMatch, normalizeMinerName } from './market-matching';
 import { slugify } from '@/lib/slug-utils';
 
 export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
