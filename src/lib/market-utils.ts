@@ -1,4 +1,4 @@
-import { normalizeMinerName } from './market-matching';
+import { normalizeMinerName, findBestStaticMatch } from './market-matching';
 import { INITIAL_MINERS } from './miner-data';
 
 // ------------------------------------------------------------------
