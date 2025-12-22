@@ -47,6 +47,7 @@ function estimatePowerFromSeries(name: string, hashrate: number): number {
     return Math.round(hashrate * 22.0);
 }
 
+// Universal Identity Logic (Must match parse-telegram-prices.js)
 function normalizeForKey(name: string): string {
     let n = name.toLowerCase();
     // 1. Strip Brands
@@ -54,8 +55,11 @@ function normalizeForKey(name: string): string {
     // 2. Normalize Series
     n = n.replace(/\bplus\b/g, '+');
     n = n.replace(/\bhyd\b/g, 'hydro');
-    n = n.replace(/\bpro\b/g, 'pro'); // distinct word
-    // 3. Remove non-alphanumeric (except +)
+    n = n.replace(/\bpro\b/g, 'pro');
+    // 3. Strip embedded hashrate strings like "216T" from name for the Key (to avoid s21-216t-216)
+    n = n.replace(/(\d+)(t|th|g|gh|m|mh)/g, '');
+
+    // 4. Remove non-alphanumeric (except +)
     // slugify will handle the rest, but we want "s21+" to remain
     return slugify(n);
 }
@@ -95,15 +99,13 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
         // Try to match against Static DB first to Clean the Name
         const match = findBestStaticMatch(miner.name, INITIAL_MINERS);
 
+        // Use Matched Name if available, otherwise allow raw name but we will clean it in Key
         let cleanName = match ? match.name : miner.name;
 
-        // 4. Strict Key Generation
-        // Remove Brand, Normalize Series, Append Hashrate
-        // "Antminer S21+ 338T" -> "s21-plus-338"
-        // "S21 Plus 338 T"     -> "s21-plus-338"
-        // This ensures distinct sources merge into one row.
+        // 4. Universal Strict Key Generation
+        // Key = Slug(CleanNameWithoutHash) + "-" + IntegerHashrate
         const seriesKey = normalizeForKey(cleanName);
-        const uniqueKey = `${seriesKey}-${hashrate}`;
+        const uniqueKey = `${seriesKey}-${Math.floor(hashrate)}`;
 
         let powerW = miner.specs?.powerW || miner.powerW || 0;
 
