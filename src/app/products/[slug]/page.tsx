@@ -47,14 +47,38 @@ async function getMiner(slug: string): Promise<ExtendedMinerProfile | null> {
             }
         }
 
-        // If no local data, try Blob
+        // If no local data, fetch Blobs (Both Market and Telegram) and Merge
         if (!marketData.miners || marketData.miners.length === 0) {
-            const { blobs } = await list({ prefix: 'market-prices.json', limit: 1 });
-            if (blobs.length > 0) {
-                const blobUrl = `${blobs[0].url}?t=${Date.now()}`;
+            let staticMarketData = { miners: [] };
+            let telegramData: any[] = [];
+
+            // Parallel Fetch
+            const [marketBlob, telegramBlob] = await Promise.all([
+                list({ prefix: 'market-prices.json', limit: 1 }),
+                list({ prefix: 'miners-latest.json', limit: 1 })
+            ]);
+
+            // Fetch Market Data
+            if (marketBlob.blobs.length > 0) {
+                const blobUrl = `${marketBlob.blobs[0].url}?t=${Date.now()}`;
                 const res = await fetch(blobUrl, { cache: 'no-store' });
-                if (res.ok) marketData = await res.json();
+                if (res.ok) staticMarketData = await res.json();
             }
+
+            // Fetch Telegram Data
+            if (telegramBlob.blobs.length > 0) {
+                const blobUrl = `${telegramBlob.blobs[0].url}?t=${Date.now()}`;
+                const res = await fetch(blobUrl, { cache: 'no-store' });
+                if (res.ok) {
+                    const raw = await res.json();
+                    telegramData = Array.isArray(raw) ? raw : (raw.miners || []);
+                }
+            }
+
+            // Merge
+            const { mergeMarketData } = await import('@/lib/market-utils');
+            const mergedMiners = mergeMarketData(staticMarketData.miners || [], telegramData || []);
+            marketData = { miners: mergedMiners };
         }
 
         const marketMiner = marketData.miners?.find((m: any) => slugify(m.name) === slug);

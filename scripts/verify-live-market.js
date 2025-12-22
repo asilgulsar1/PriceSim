@@ -128,6 +128,32 @@ async function runTests() {
             );
         }
 
+        // 5. Route Reachability (New 404 Check)
+        console.log(`\n${colors.bold}4. Product Routing Check${colors.reset}`);
+        if (u3) {
+            // Simulate slug generation (assuming standard slugify)
+            const slug = u3.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+            const productUrl = `https://asic.academy/products/${slug}`;
+            console.log(`   Testing URL: ${productUrl}`);
+
+            try {
+                const res = await new Promise((resolve) => {
+                    const req = https.request(productUrl, { method: 'HEAD' }, (r) => resolve(r.statusCode));
+                    req.on('error', () => resolve(500));
+                    req.end();
+                });
+
+                assert(
+                    `Product Page Returns 200 (Not 404)`,
+                    res === 200,
+                    `Got Status Code: ${res}`
+                );
+            } catch (e) {
+                console.log(`[${colors.red}FAIL${colors.reset}] URL Check Failed: ${e.message}`);
+                failed++;
+            }
+        }
+
         console.log(`\n${colors.bold}--- Test Summary ---${colors.reset}`);
         console.log(`Passed: ${colors.green}${passed}${colors.reset}`);
         console.log(`Failed: ${colors.red}${failed}${colors.reset}`);
