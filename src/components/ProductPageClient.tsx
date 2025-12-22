@@ -325,9 +325,23 @@ export default function ProductPageClient({ miner }: { miner: MinerProfile & { l
                                                                 <a href={item.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-blue-600 hover:underline">
                                                                     {item.vendor}
                                                                     <ExternalLink className="w-3 h-3 opacity-50" />
+                                                                    {/* @ts-ignore */}
+                                                                    {item.isTelegram && (
+                                                                        <Badge variant="secondary" className="text-[10px] h-5 bg-sky-100 text-sky-800 border-sky-200">
+                                                                            Telegram
+                                                                        </Badge>
+                                                                    )}
                                                                 </a>
                                                             ) : (
-                                                                item.vendor
+                                                                <div className="flex items-center gap-2">
+                                                                    {item.vendor}
+                                                                    {/* @ts-ignore */}
+                                                                    {item.isTelegram && (
+                                                                        <Badge variant="secondary" className="text-[10px] h-5 bg-sky-100 text-sky-800 border-sky-200">
+                                                                            Telegram
+                                                                        </Badge>
+                                                                    )}
+                                                                </div>
                                                             )}
                                                         </TableCell>
                                                         <TableCell><span className="text-xs text-slate-500">{item.location}</span></TableCell>
