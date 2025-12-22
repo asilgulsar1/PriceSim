@@ -27,6 +27,7 @@ function parseLine(line) {
     const hashrateRegex = /(\d+(?:\.\d+)?)\s*(T|Th|G|Gh|M|Mh)/i;
     const hashrateMatch = line.match(hashrateRegex);
     let hashrateTH = 0;
+    let cleanLine = line;
 
     if (hashrateMatch) {
         const value = parseFloat(hashrateMatch[1]);
@@ -35,36 +36,73 @@ function parseLine(line) {
         if (unit.startsWith('T')) hashrateTH = value;
         else if (unit.startsWith('G')) hashrateTH = value / 1000;
         else if (unit.startsWith('M')) hashrateTH = value / 1000000;
+
+        // REMOVE Hashrate Token from Name Candidate
+        cleanLine = cleanLine.replace(hashrateMatch[0], '');
     }
 
-    // 3. Extract Price
+    // 3. Extract Price & Remove Price Token
     const unitPriceRegex = /(?:[\$u]\s*)?(\d+(?:\.\d+)?)\s*(?:[u\$]|usd)?\s*\/\s*(?:t|th)/i;
     const flatPriceRegex = /(?:\$|usd)\s*(\d+(?:\.\d+)?)|(\d+(?:\.\d+)?)\s*(?:u|usd)(?!\/)/i;
 
     let price = 0;
-    let type = 'unknown';
 
+    // Check Unit Price First
     const unitMatch = line.match(unitPriceRegex);
+
+    // Check Flat Price
     const flatMatch = line.match(flatPriceRegex);
 
     if (unitMatch && hashrateTH > 0) {
         const pricePerTH = parseFloat(unitMatch[1]);
         price = pricePerTH * hashrateTH;
-        type = 'calculated_from_unit';
+        cleanLine = cleanLine.replace(unitMatch[0], '');
     } else if (flatMatch) {
         const val = flatMatch[1] || flatMatch[2];
         price = parseFloat(val);
-        type = 'flat';
+        cleanLine = cleanLine.replace(flatMatch[0], '');
+    } else {
+        // Fallback: Look for standalone numbers < 100 that might be Unit Prices without unit
+        // e.g. "Antminer S21+ 9.5 216T"
+        const looseUnitRegex = /\b(\d+(?:\.\d+)?)\b/;
+        const looseMatch = cleanLine.match(looseUnitRegex);
+        if (looseMatch) {
+            const val = parseFloat(looseMatch[1]);
+            // Heuristic: If < 100 and we have a hashrate, likely price/TH
+            if (val < 100 && val > 0 && hashrateTH > 0) {
+                // Confirm it's not part of the name (S21) or something? 
+                // Hard to distinguish "S19" from "19". 
+                // But usually name numbers are attached to letters (S19, M30).
+                // Standalone "9.5" is suspicious.
+                price = val * hashrateTH;
+                cleanLine = cleanLine.replace(looseMatch[0], '');
+            }
+        }
     }
 
-    // 4. Extract Model Name
-    let namePart = line;
-    if (line.includes(':')) namePart = line.split(':')[0];
-    else if (line.includes('—')) namePart = line.split('—')[0];
-    else if (line.includes(' - ')) namePart = line.split(' - ')[0];
+    // 4. Extract Model Name from the CLEANED line
+    let namePart = cleanLine;
+    if (namePart.includes(':')) namePart = namePart.split(':')[0];
+    else if (namePart.includes('—')) namePart = namePart.split('—')[0];
+    else if (namePart.includes(' - ')) namePart = namePart.split(' - ')[0];
 
     // Basic cleanup
-    let name = namePart.replace(/\*\*/g, '').trim();
+    let name = namePart
+        .replace(/\*\*/g, '')
+        .replace(/\s+/g, ' ')
+        // Remove trailing/leading special chars often left over
+        .replace(/^[^a-zA-Z0-9]+|[^a-zA-Z0-9]+$/g, '')
+        .trim();
+
+    // Reconstruct Name Strategy:
+    // If we have a hashrate, append it nicely? 
+    // The aggregator does this, but for raw ingestion, kept clean is good.
+    // Actually, user wants "Brand Series Hashrate" as standard.
+    // If name is just "Antminer S21+", we usually want "Antminer S21+ 216T"
+    if (hashrateTH > 0 && name.length > 0) {
+        // Ensure name includes brand?
+        // Let's just return the Clean Name prefix. The aggregator merges it.
+    }
 
     return {
         name,
