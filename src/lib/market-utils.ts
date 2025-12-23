@@ -78,25 +78,21 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
         // 1. Sanitize Price (Fix $/TH < 100)
         let price = miner.price || (miner.stats ? miner.stats.middlePrice : 0);
 
-        // 2. Hashrate Extraction (Granular Normalization)
-        // 2. Hashrate Extraction (Granular Normalization)
+        // 2. Hashrate Extraction & Guardrails
         let hashrate = miner.specs?.hashrateTH || miner.hashrateTH || 0;
+        const lowerName = miner.name.toLowerCase();
 
-        // Guardrails (Same as Ingestion)
+        // Guardrails for known series to prevent Price/Unit tokens (e.g. "4T")
         const SERIES_MIN_HASHRATE: Record<string, number> = {
             's21': 100, 's19': 80, 't21': 150, 'm30': 70,
             'm50': 100, 'm60': 150, 'a13': 90, 'a14': 100, 'a15': 150
         };
 
-        // If Hashrate is missing OR Suspiciously Low (Aggregator Clean-up), try to re-extract or Fallback
-        const lowerName = miner.name.toLowerCase();
-        let isSuspicious = false;
-
+        // Check if existing hashrate is suspicious
         if (hashrate > 0) {
             for (const [series, min] of Object.entries(SERIES_MIN_HASHRATE)) {
                 if (lowerName.includes(series)) {
                     if (hashrate < min) {
-                        isSuspicious = true;
                         hashrate = 0; // Reset bad hashrate
                         break;
                     }
@@ -104,12 +100,13 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
             }
         }
 
+        // Try to re-extract if missing
         if (!hashrate || hashrate === 0) {
             const hashMatch = miner.name.match(/(\d{2,4})\s*(T|TH|th|Th)/);
             if (hashMatch) {
                 const val = parseInt(hashMatch[1]);
                 let regexValid = true;
-                // Check Regex result against guardrails too
+                // Check Regex result against guardrails
                 for (const [series, min] of Object.entries(SERIES_MIN_HASHRATE)) {
                     if (lowerName.includes(series) && val < min) {
                         regexValid = false;
@@ -120,9 +117,11 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
             }
         }
 
-        // 3. Fallback to Static DB if still missing
+        // 3. Normalize Identity & Fallback (Consolidated Step)
+        // Find best static match for BOTH Name Cleaning AND Hashrate Fallback
         const match = findBestStaticMatch(miner.name, INITIAL_MINERS);
 
+        // Fallback Hashrate from Static Match if still 0
         if ((!hashrate || hashrate === 0) && match) {
             hashrate = match.specs?.hashrateTH || (match as any).hashrateTH || 0;
         }
@@ -133,24 +132,18 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
 
         if (price <= 0) return; // Skip invalid prices
 
-        // 3. Normalize Identity
-        // Try to match against Static DB first to Clean the Name
-        const match = findBestStaticMatch(miner.name, INITIAL_MINERS);
-
         // Use Matched Name if available, otherwise allow raw name but we will clean it in Key
         let cleanName = match ? match.name : miner.name;
 
         // 4. Universal Strict Key Generation
-        // Key = Slug(CleanNameWithoutHash) + "-" + IntegerHashrate
         const seriesKey = normalizeForKey(cleanName);
         const hashInt = Math.floor(hashrate);
         const uniqueKey = `${seriesKey}-${hashInt}`;
 
         let powerW = miner.specs?.powerW || miner.powerW || 0;
 
-        // 5. Power Enrichment (Critical for Simulation)
+        // 5. Power Enrichment
         if (match && (!powerW || powerW === 0)) {
-            // Perfect Match -> Use Static DB
             powerW = match.powerWatts;
         }
 
@@ -161,15 +154,10 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
         }
 
         // 6. Universal Naming Standard Reconstruction
-        // Format: [Brand] [Series] [Variant] [Hashrate]T
-        // Example: Antminer S21+ Hydro 395T
-
         let displayName = cleanName;
 
-        // A. Infer Brand if missing (for Telegram items like "S21")
-        const lowerName = displayName.toLowerCase();
+        // A. Infer Brand if missing
         if (!lowerName.includes('antminer') && !lowerName.includes('whatsminer') && !lowerName.includes('avalon') && !lowerName.includes('bitdeer') && !lowerName.includes('sealminer')) {
-            // Heuristic Brand Assignment
             if (lowerName.startsWith('s') || lowerName.startsWith('t') || lowerName.startsWith('l') || lowerName.startsWith('k')) {
                 displayName = `Antminer ${displayName}`;
             } else if (lowerName.startsWith('m')) {
@@ -180,17 +168,13 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
         }
 
         // B. Aggressive Token Cleanup (Remove redundant hashrate artifacts)
-        // e.g. "Antminer S19 (95Th)" -> "Antminer S19"
-        // 1. Remove parenthesized/bracketed hashrate: (95T), [95Th], (95 Th)
+        // 1. Remove parenthesized/bracketed hashrate: (95T), [95Th]
         displayName = displayName.replace(/[\[\(]\s*\d+(?:\.\d+)?\s*(t|th|g|m|gh|mh)?[\]\)]/gi, '');
 
-        // 2. Remove loose hashrate-like numbers at the end of string if extracted hashrate > 0
+        // 2. Remove loose hashrate-like numbers matching the extracted hashrate
         if (hashrate > 0) {
-            // Remove exact matches of hashrate + T/TH
             const hrRegex = new RegExp(`\\b${hashrate}(?:\\.0)?\\s*(t|th)?\\b`, 'gi');
             displayName = displayName.replace(hrRegex, '');
-
-            // Remove floor(hashrate) + T/TH (e.g. "95" vs "95T")
             const floorHrRegex = new RegExp(`\\b${hashInt}\\s*(t|th)?\\b`, 'gi');
             displayName = displayName.replace(floorHrRegex, '');
         }
@@ -199,19 +183,12 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
         displayName = displayName.replace(/\(\s*\)/g, '').replace(/\[\s*\]/g, '').replace(/\s+/g, ' ').trim();
 
         // C. Standardize Hashrate Suffix
-        // Check if name already implies exact hashrate (e.g. "Antminer S21+ 395T")
-        // Since we aggressively stripped it above, we should usually append.
-        // But check if strict Standard T pattern exists at end.
-
         const hashrateSuffix = `${hashInt}T`;
-        // Check if name ENDS with the hashrate (allowing for T/TH and case)
         const endsWithHash = new RegExp(`${hashInt}\\s*(t|th|g|m)?$`, 'i');
 
         if (!endsWithHash.test(displayName)) {
-            // If name doesn't end with "395T", append it.
             displayName = `${displayName} ${hashrateSuffix}`;
         } else {
-            // Ensure T suffix is standardized (e.g. replace "395 TH" with "395T")
             displayName = displayName.replace(endsWithHash, hashrateSuffix);
         }
 
@@ -237,8 +214,7 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
                 source: isTelegram ? 'Telegram' : 'Web'
             });
         } else {
-            // Entry exists.
-            // Ensure we trust key.
+            // Entry exists. Trust key.
         }
 
         // Add Listing
