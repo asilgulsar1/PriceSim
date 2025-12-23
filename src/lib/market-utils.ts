@@ -123,7 +123,9 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
 
         // Fallback Hashrate from Static Match if still 0
         if ((!hashrate || hashrate === 0) && match) {
-            hashrate = match.specs?.hashrateTH || (match as any).hashrateTH || 0;
+            // Static DB has flat properties: hashrateTH, powerWatts
+            // Casting as any because findBestStaticMatch returns MinerProfile | null, but INITIAL_MINERS elements have hashrateTH strict.
+            hashrate = (match as any).hashrateTH || 0;
         }
 
         if (price < 100 && price > 0 && hashrate > 0) {
