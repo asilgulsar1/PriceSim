@@ -157,12 +157,13 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
         let displayName = cleanName;
 
         // A. Infer Brand if missing
-        if (!lowerName.includes('antminer') && !lowerName.includes('whatsminer') && !lowerName.includes('avalon') && !lowerName.includes('bitdeer') && !lowerName.includes('sealminer')) {
-            if (lowerName.startsWith('s') || lowerName.startsWith('t') || lowerName.startsWith('l') || lowerName.startsWith('k')) {
+        const lowerDisplay = displayName.toLowerCase();
+        if (!lowerDisplay.includes('antminer') && !lowerDisplay.includes('whatsminer') && !lowerDisplay.includes('avalon') && !lowerDisplay.includes('bitdeer') && !lowerDisplay.includes('sealminer')) {
+            if (lowerDisplay.startsWith('s') || lowerDisplay.startsWith('t') || lowerDisplay.startsWith('l') || lowerDisplay.startsWith('k')) {
                 displayName = `Antminer ${displayName}`;
-            } else if (lowerName.startsWith('m')) {
+            } else if (lowerDisplay.startsWith('m')) {
                 displayName = `Whatsminer ${displayName}`;
-            } else if (lowerName.startsWith('a')) {
+            } else if (lowerDisplay.startsWith('a')) {
                 displayName = `Avalon ${displayName}`;
             }
         }
