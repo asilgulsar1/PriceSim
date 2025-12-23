@@ -141,8 +141,30 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
             }
         }
 
-        // B. Standardize Hashrate Suffix
+        // B. Aggressive Token Cleanup (Remove redundant hashrate artifacts)
+        // e.g. "Antminer S19 (95Th)" -> "Antminer S19"
+        // 1. Remove parenthesized/bracketed hashrate: (95T), [95Th], (95 Th)
+        displayName = displayName.replace(/[\[\(]\s*\d+(?:\.\d+)?\s*(t|th|g|m|gh|mh)?[\]\)]/gi, '');
+
+        // 2. Remove loose hashrate-like numbers at the end of string if extracted hashrate > 0
+        if (hashrate > 0) {
+            // Remove exact matches of hashrate + T/TH
+            const hrRegex = new RegExp(`\\b${hashrate}(?:\\.0)?\\s*(t|th)?\\b`, 'gi');
+            displayName = displayName.replace(hrRegex, '');
+
+            // Remove floor(hashrate) + T/TH (e.g. "95" vs "95T")
+            const floorHrRegex = new RegExp(`\\b${hashInt}\\s*(t|th)?\\b`, 'gi');
+            displayName = displayName.replace(floorHrRegex, '');
+        }
+
+        // 3. Cleanup empty parens and spaces
+        displayName = displayName.replace(/\(\s*\)/g, '').replace(/\[\s*\]/g, '').replace(/\s+/g, ' ').trim();
+
+        // C. Standardize Hashrate Suffix
         // Check if name already implies exact hashrate (e.g. "Antminer S21+ 395T")
+        // Since we aggressively stripped it above, we should usually append.
+        // But check if strict Standard T pattern exists at end.
+
         const hashrateSuffix = `${hashInt}T`;
         // Check if name ENDS with the hashrate (allowing for T/TH and case)
         const endsWithHash = new RegExp(`${hashInt}\\s*(t|th|g|m)?$`, 'i');
