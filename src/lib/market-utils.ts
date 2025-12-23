@@ -174,13 +174,12 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
         // 1. Remove parenthesized/bracketed hashrate: (95T), [95Th]
         displayName = displayName.replace(/[\[\(]\s*\d+(?:\.\d+)?\s*(t|th|g|m|gh|mh)?[\]\)]/gi, '');
 
-        // 2. Remove loose hashrate-like numbers matching the extracted hashrate
-        if (hashrate > 0) {
-            const hrRegex = new RegExp(`\\b${hashrate}(?:\\.0)?\\s*(t|th)?\\b`, 'gi');
-            displayName = displayName.replace(hrRegex, '');
-            const floorHrRegex = new RegExp(`\\b${hashInt}\\s*(t|th)?\\b`, 'gi');
-            displayName = displayName.replace(floorHrRegex, '');
-        }
+        // 2. Remove loose hashrate-like numbers matching ANY extracted hashrate token
+        // We reconstruct it at the end, so we want to strip ANY "240T", "238T", "95Th" from the name body.
+        displayName = displayName.replace(/\b\d+(?:\.\d+)?\s*(t|th|g|m|gh|mh)\b/gi, '');
+
+        // 3. Remove standalone "T" debris (common in "M61 T 212T")
+        displayName = displayName.replace(/\b(t|th)\b/gi, '');
 
         // 3. Cleanup empty parens and spaces
         displayName = displayName.replace(/\(\s*\)/g, '').replace(/\[\s*\]/g, '').replace(/\s+/g, ' ').trim();
