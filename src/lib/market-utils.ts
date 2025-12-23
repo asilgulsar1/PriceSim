@@ -79,14 +79,52 @@ export function mergeMarketData(marketMiners: any[], telegramMiners: any[]) {
         let price = miner.price || (miner.stats ? miner.stats.middlePrice : 0);
 
         // 2. Hashrate Extraction (Granular Normalization)
+        // 2. Hashrate Extraction (Granular Normalization)
         let hashrate = miner.specs?.hashrateTH || miner.hashrateTH || 0;
 
-        // If Hashrate is missing, try to extract from Name (e.g. "S21+ 338T")
+        // Guardrails (Same as Ingestion)
+        const SERIES_MIN_HASHRATE: Record<string, number> = {
+            's21': 100, 's19': 80, 't21': 150, 'm30': 70,
+            'm50': 100, 'm60': 150, 'a13': 90, 'a14': 100, 'a15': 150
+        };
+
+        // If Hashrate is missing OR Suspiciously Low (Aggregator Clean-up), try to re-extract or Fallback
+        const lowerName = miner.name.toLowerCase();
+        let isSuspicious = false;
+
+        if (hashrate > 0) {
+            for (const [series, min] of Object.entries(SERIES_MIN_HASHRATE)) {
+                if (lowerName.includes(series)) {
+                    if (hashrate < min) {
+                        isSuspicious = true;
+                        hashrate = 0; // Reset bad hashrate
+                        break;
+                    }
+                }
+            }
+        }
+
         if (!hashrate || hashrate === 0) {
             const hashMatch = miner.name.match(/(\d{2,4})\s*(T|TH|th|Th)/);
             if (hashMatch) {
-                hashrate = parseInt(hashMatch[1]);
+                const val = parseInt(hashMatch[1]);
+                let regexValid = true;
+                // Check Regex result against guardrails too
+                for (const [series, min] of Object.entries(SERIES_MIN_HASHRATE)) {
+                    if (lowerName.includes(series) && val < min) {
+                        regexValid = false;
+                        break;
+                    }
+                }
+                if (regexValid) hashrate = val;
             }
+        }
+
+        // 3. Fallback to Static DB if still missing
+        const match = findBestStaticMatch(miner.name, INITIAL_MINERS);
+
+        if ((!hashrate || hashrate === 0) && match) {
+            hashrate = match.specs?.hashrateTH || (match as any).hashrateTH || 0;
         }
 
         if (price < 100 && price > 0 && hashrate > 0) {

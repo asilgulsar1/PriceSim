@@ -29,16 +29,52 @@ function parseLine(line) {
     let hashrateTH = 0;
     let cleanLine = line;
 
+    // Guardrails for known series to prevent Price/Unit tokens (e.g. "4T") being parsed as Hashrate
+    const SERIES_MIN_HASHRATE = {
+        's21': 100,
+        's19': 80,
+        't21': 150,
+        'm30': 70,
+        'm50': 100,
+        'm60': 150,
+        'a13': 90,
+        'a14': 100,
+        'a15': 150
+    };
+
     if (hashrateMatch) {
         const value = parseFloat(hashrateMatch[1]);
         const unit = hashrateMatch[2].toUpperCase();
+        let extractedTH = 0;
 
-        if (unit.startsWith('T')) hashrateTH = value;
-        else if (unit.startsWith('G')) hashrateTH = value / 1000;
-        else if (unit.startsWith('M')) hashrateTH = value / 1000000;
+        if (unit.startsWith('T')) extractedTH = value;
+        else if (unit.startsWith('G')) extractedTH = value / 1000;
+        else if (unit.startsWith('M')) extractedTH = value / 1000000;
 
-        // REMOVE Hashrate Token from Name Candidate
-        cleanLine = cleanLine.replace(hashrateMatch[0], '');
+        // Validation against Guardrails
+        const lowerLine = line.toLowerCase();
+        let isValid = true;
+
+        // Only apply guardrails if we detect a specific series name
+        for (const [series, min] of Object.entries(SERIES_MIN_HASHRATE)) {
+            if (lowerLine.includes(series)) {
+                if (extractedTH < min && extractedTH > 0) {
+                    // Suspiciously low hashrate (likely Price/TH: "4T")
+                    // REJECT IT.
+                    isValid = false;
+                    break;
+                }
+            }
+        }
+
+        if (isValid) {
+            hashrateTH = extractedTH;
+            // REMOVE Hashrate Token from Name Candidate
+            cleanLine = cleanLine.replace(hashrateMatch[0], '');
+        } else {
+            // If invalid/rejected, we DO NOT remove the token yet, 
+            // because it might be part of the price string we need to extract later.
+        }
     }
 
     // 3. Extract Price & Remove Price Token
