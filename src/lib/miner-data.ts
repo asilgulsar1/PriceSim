@@ -213,5 +213,14 @@ export const INITIAL_MINERS: MinerProfile[] = [
     { name: "Antminer L7 (9500M)", hashrateTH: 9.5, powerWatts: 3425, price: 0 },
     { name: "Antminer L7 (9300M)", hashrateTH: 9.3, powerWatts: 3425, price: 0 },
     { name: "Antminer L7 (9050M)", hashrateTH: 9.05, powerWatts: 3425, price: 0 },
+    // Air - S19 Series (Critical for Fallback)
+    { name: "Antminer S19 XP 141T", hashrateTH: 141, powerWatts: 3031, price: 0 },
+    { name: "Antminer S19 XP 134T", hashrateTH: 134, powerWatts: 2881, price: 0 },
+    { name: "Antminer S19j Pro+ 120T", hashrateTH: 120, powerWatts: 3300, price: 0 },
+    { name: "Antminer S19j Pro 104T", hashrateTH: 104, powerWatts: 3068, price: 0 },
+    { name: "Antminer S19 Pro 110T", hashrateTH: 110, powerWatts: 3250, price: 0 },
+    { name: "Antminer S19j 90T", hashrateTH: 90, powerWatts: 3100, price: 0 },
+    { name: "Antminer S19 95T", hashrateTH: 95, powerWatts: 3250, price: 0 },
+
     { name: "Antminer S19k Pro", hashrateTH: 120, powerWatts: 2760, price: 0 },
 ];
